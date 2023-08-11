@@ -10,6 +10,14 @@ class Map extends CI_Controller
     }
     public function index()
     {
+        $this->load->view('templates/header');
+        $this->load->view('shp_map/map');
+        $this->load->view('templates/footer');
+        $this->load->view('templates/footScript');
+        $this->load->view('shp_map/script');
+    }
+    public function index1()
+    {
         $data['p'] = '';
         $this->load->view('templates/header');
         $this->load->view('map/map',  $data);

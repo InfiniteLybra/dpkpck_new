@@ -60,3 +60,4 @@ $route['info'] = 'firstcontroller/info';
 
 $route['Filter.html'] = 'Kkpr/filter';
 $route['Formulir.html'] = 'Kkpr/proses_filter';
+$route['Persiapan.html'] = 'Kkpr/persiapan';

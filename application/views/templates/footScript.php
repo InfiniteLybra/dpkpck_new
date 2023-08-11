@@ -43,6 +43,13 @@
 <script src=" <?= base_url('assets/') ?>assets/js/custom/utilities/modals/create-app.js "></script>
 <script src=" <?= base_url('assets/') ?>assets/js/custom/utilities/modals/new-target.js "></script>
 <script src=" <?= base_url('assets/') ?>assets/js/custom/utilities/modals/users-search.js "></script>
+<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+
+<script src="<?= base_url('assets/map/') ?>catiline.js"></script>
+<script src="<?= base_url('assets/map/') ?>leaflet.shpfile.js"></script>
 <script>
     toastr.options = {
         "closeButton": true,

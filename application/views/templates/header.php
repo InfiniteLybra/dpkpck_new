@@ -27,7 +27,11 @@
     <link href="<?= base_url('assets/') ?>assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="<?= base_url('assets/amcharts/css/') ?>index.css">
     <link href="<?= base_url('assets/') ?>assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/map/') ?>gh-pages.css" />
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -450,7 +454,7 @@
                                     </div>
                                     <div class="menu-item">
                                         <!--begin:Menu link-->
-                                        <a class="menu-link" href="<?= base_url('Filter.html') ?>">
+                                        <a class="menu-link" href="<?= base_url('Persiapan.html') ?>">
                                             <span class="menu-icon">
                                             <i class="fa-solid fa-file fa-2xl"></i>
                                             </span>
@@ -785,7 +789,7 @@
                                     </div>
                                     <div class="menu-item">
                                         <!--begin:Menu link-->
-                                        <a class="menu-link" href="<?= base_url('Filter.html') ?>">
+                                        <a class="menu-link" href="<?= base_url('Persiapan.html') ?>">
                                             <span class="menu-icon">
                                             <i class="fa-solid fa-file fa-2xl"></i>
                                             </span>
@@ -916,7 +920,7 @@
                                     </div>
                                     <div class="menu-item">
                                         <!--begin:Menu link-->
-                                        <a class="menu-link" href="<?= base_url('Filter.html') ?>">
+                                        <a class="menu-link" href="<?= base_url('Persiapan.html') ?>">
                                             <span class="menu-icon">
                                             <i class="fa-solid fa-file fa-2xl"></i>
                                             </span>
@@ -1061,7 +1065,7 @@
                                     </div>
                                     <div class="menu-item">
                                         <!--begin:Menu link-->
-                                        <a class="menu-link" href="<?= base_url('Filter.html') ?>">
+                                        <a class="menu-link" href="<?= base_url('Persiapan.html') ?>">
                                             <span class="menu-icon">
                                             <i class="fa-solid fa-file fa-2xl"></i>
                                             </span>
@@ -1178,7 +1182,7 @@
                                     </div>
                                     <div class="menu-item">
                                         <!--begin:Menu link-->
-                                        <a class="menu-link" href="<?= base_url('Filter.html') ?>">
+                                        <a class="menu-link" href="<?= base_url('Persiapan.html') ?>">
                                             <span class="menu-icon">
                                             <i class="fa-solid fa-file fa-2xl"></i>
                                             </span>

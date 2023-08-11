@@ -126,6 +126,7 @@ class Kkpr_Model extends CI_Model
                 $file18 = $data18['file_name'];
             }
 
+            $id_user = $this->session->userdata('id_user');
             $type_isi_kategori = $this->input->post('type_isi_kategori');
             $type_kategori = $this->input->post('type_kategori');
             $pemilik_lahan_meninggal = $this->input->post('pemilik_lahan_meninggal');
@@ -176,9 +177,12 @@ class Kkpr_Model extends CI_Model
                 }
             }
             $Tanah_Array = json_encode($dataArray);
+            $tgl_reg = date('d-m-y');
 
             $insert = "INSERT INTO kkpr_permohonan (
+                id_user,
                 type,
+                tgl_reg,
 
                 nama_pemohon,
                 alamat_pemohon,
@@ -248,7 +252,9 @@ class Kkpr_Model extends CI_Model
                 " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
                 ) 
                 VALUES(
+                    '$id_user',
                     '$type_kategori',
+                    '$tgl_reg',
 
                     '$nama_pemohon',
                     '$alamat_pemohon',
@@ -438,6 +444,7 @@ class Kkpr_Model extends CI_Model
                 $file18 = $data18['file_name'];
             }
 
+            $id_user = $this->session->userdata('id_user');
             $type_isi_kategori = $this->input->post('type_isi_kategori');
             $type_kategori = $this->input->post('type_kategori');
             $pemilik_lahan_meninggal = $this->input->post('pemilik_lahan_meninggal');
@@ -483,6 +490,7 @@ class Kkpr_Model extends CI_Model
             $tgl_reg = date('d-m-y');
 
             $insert = "INSERT INTO kkpr_permohonan (
+                id_user,
                 type,
                 tgl_reg,
 
@@ -549,6 +557,7 @@ class Kkpr_Model extends CI_Model
                 " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
                 ) 
                 VALUES(
+                    '$id_user',
                     '$type_kategori',
                     '$tgl_reg',
 
@@ -3086,6 +3095,13 @@ class Kkpr_Model extends CI_Model
             '$pihak_lain'                      
         )";
         }
+        $this->db->query("UPDATE kkpr_permohonan SET 
+            tgl_survei = '$tgl_survei',
+            surveyor1 = '$petugas1',
+            surveyor2 = '$petugas2'
+            WHERE 
+            id_kkpr_permohonan = '$id_permohonan'
+        ");
         // echo $query;
         $query1 = $this->db->query($query);
         if ($query1) {

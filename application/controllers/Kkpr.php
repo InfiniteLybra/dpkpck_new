@@ -29,6 +29,14 @@ class Kkpr extends CI_Controller
         $this->load->view('templates/footScript');
         $this->load->view('kkpr/filter/script_filter');
     }
+    public function persiapan()
+    {       
+        $this->load->view('templates/header');
+        $this->load->view('kkpr/filter/persiapan');
+        $this->load->view('templates/footer');
+        $this->load->view('templates/footScript');
+        // $this->load->view('kkpr/filter/script_filter');
+    }
     public function proses_filter()
     {
         $formulir = $this->input->post('formulir');
