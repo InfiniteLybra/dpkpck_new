@@ -9,7 +9,7 @@
                     <span class="path1"></span>
                     <span class="path2"></span>
                 </i>
-                <input type="text" data-kt-ecommerce-category-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="Search Category" />
+                <input type="text" data-kt-ecommerce-category-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="Search..." />
             </div>
             <!--end::Search-->
         </div>
@@ -22,11 +22,13 @@
         <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_category_table">
             <thead>
                 <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                    <th class="text-center min-w-50px">No.</th>
+                    <th class="text-center min-w-10px">No.</th>
                     <th class="text-center min-w-150px">Nama</th>
-                    <th class="text-center min-w-200px">Alamat</th>
+                    <th class="text-center min-w-300px">Alamat</th>
                     <th class="text-center min-w-150px">Type</th>
-                    <th class="text-center min-w-100px">Actions</th>
+                    <th class="text-center min-w-100px">Status</th>
+                    <th class="text-center min-w-100px">Sertifikat</th>
+                    <th class="text-center min-w-50px">Actions</th>
                 </tr>
             </thead>
             <tbody class="text-center">
@@ -53,6 +55,15 @@
                         <td class="text-center pe-0">
                             <span class="fw-bold"><?php if ($d) echo $d->kategori ?></span>
                         </td>
+                        <td class="text-center pe-0">
+                            <span class="fw-bold"><?php 
+                            if($d->status_berkas == '2'){
+                                echo "Belum";
+                            }else if($d->status_berkas == '3'){
+                                echo "Selesai";
+                            }  
+                            ?></span>
+                        </td>                        
                         <td class="text-center">
                             <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                 <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
@@ -75,6 +86,11 @@
                                 <!--end::Menu item-->
                             </div>
                             <!--end::Menu-->
+                        </td>
+                        <td class="text-center pe-0">
+                            <?php if($d->status_berkas == '2'){ ?>
+                            <a href="<?php echo base_url('Kkpr/status_selesai/');?><?= $d->id_kkpr_permohonan?>" class="btn btn-primary btn-sm">Selesai</a>
+                            <?php }?>
                         </td>
                     </tr>
                 <?php } ?>

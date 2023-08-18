@@ -7,10 +7,11 @@ class Kkpr extends CI_Controller
     {
         parent::__construct();
         $this->load->model("Kkpr_Model");
-        $this->load->model("Auth_model");
         $this->load->library('session');
+        $this->load->model("Auth_model");
         $this->Auth_model->cek_login();
     }
+    
     public function index()
     {
         $data['provinsi'] = $this->db->query("SELECT * FROM indo_provinsi")->result();
@@ -125,7 +126,7 @@ class Kkpr extends CI_Controller
     }
     public function config()
     {   
-        $data['data'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE status_berkas = '2'")->result();
+        $data['data'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE status_berkas = '2' OR status_berkas = '3'")->result();
         $this->load->view('templates/header');
         $this->load->view('admin/kkpr/config_sertifikat/list_data',$data);
         $this->load->view('templates/footer');
@@ -248,6 +249,32 @@ class Kkpr extends CI_Controller
         } else {
             redirect('Kkpr/config');
         }
+    }
+    public function status_selesai($id)
+    {
+        $query = $this->db->query("UPDATE kkpr_permohonan SET status_berkas = '3' WHERE id_kkpr_permohonan = '$id'");
+        if ($query) {
+            $this->session->set_flashdata('success', 'Data Berhasil Disimpan');
+            $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');
+        } else {
+            $this->session->set_flashdata('error', 'Data gagal disimpan');
+            $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');            
+        }
+        redirect('Kkpr/config');
+    }
+    public function rekap()
+    {       
+        $data['kkpr'] = $this->db->query("SELECT * FROM kkpr_permohonan")->result();
+        $this->load->view('templates/header');
+        $this->load->view('admin/kkpr/rekap/rekap',$data);
+        $this->load->view('templates/footer');
+        $this->load->view('templates/footScript');
+        $this->load->view('admin/kkpr/rekap/script_rekap');
+    }
+    public function export_rekap()
+    {       
+        $data['kkpr'] = $this->db->query("SELECT * FROM kkpr_permohonan")->result();
+        $this->load->view('admin/kkpr/rekap/export_excel',$data);    
     }
     public function proses_filter_1()
     {

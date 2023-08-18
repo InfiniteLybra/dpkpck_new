@@ -24,6 +24,26 @@
         </div>
     </div>
     <div class="card-body">
+    <form method="POST" action="<?php echo base_url('Map/proses_shp'); ?>" enctype="multipart/form-data">
+        <?php
+            if($cek_shp){
+            }else{
+        ?>
+        <div class="d-flex mb-3">
+            <input type="file" name="shp" class="form-control flex-grow-1" value="">
+            <button type="submit" class="btn btn-primary fw-bold flex-shrink-0">Upload</button>
+        </div>
+        <?php }?>
+        <?php 
+            if($cek_shp){
+                foreach($cek_shp as $s){
+        ?>
+        <div class="d-flex mb-3">
+            <input type="text" class="form-control flex-grow-1" value="<?= $s->shp?>" readonly>
+            <a href="<?php echo base_url('Map/hapus_shp/');?><?= $s->id?>" class="btn btn-danger fw-bold flex-shrink-0">Hapus</a>
+        </div>
+        <?php }}?>
+    </form>
         <div id="map" style="
         height: 500px;
         min-width: 300px;

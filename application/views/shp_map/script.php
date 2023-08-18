@@ -57,7 +57,7 @@
 
     L.Control.geocoder().addTo(map);
 
-    var shpfile = new L.Shapefile('<?= base_url('assets/map/') ?>L-202307181708491195802-20230724121640.zip', {
+    var shpfile = new L.Shapefile('<?= base_url('assets_dokumen/shp/') ?><?= $shp->shp?>', {
         onEachFeature: function(feature, layer) {
             if (feature.properties) {
                 layer.bindPopup(Object.keys(feature.properties).map(function(k) {
@@ -72,9 +72,10 @@
     shpfile.once("data:loaded", function() {
         console.log("finished loaded shapefile");
         alert('File shp berhasil dimuat.');
+       
     });
     shpfile.once("data:error", function() {
         console.log('error');
-        alert('error yawo.');
+        alert('Error Harap Masukan File SHP .');
     });
 </script>

@@ -7,7 +7,8 @@ class User extends CI_Controller
     {
         parent::__construct();
         $this->load->model("Itr_Model");
-        
+        $this->load->model("Auth_model");
+        $this->Auth_model->cek_login();
     }
     public function index()
     {

@@ -283,7 +283,7 @@ if ($cek) {
 
                                 <?php } else { ?>
                                     <?php
-                                    $legenda = $this->db->query("SELECT * FROM legenda")->row();
+                                    $legenda = $this->db->query("SELECT * FROM legenda")->result();
                                     // $legenda = json_decode($get_legenda->pilihan);
                                     // $no = 1;
                                     foreach ($legenda as $l) {
@@ -291,7 +291,7 @@ if ($cek) {
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="<?= $l->id_legenda ?>" id="legenda[]" name="legenda[]" />
                                             <label class="form-check-label" for="legenda" style="float: left;">
-                                                <img src="<?php echo base_url('assets/legenda/'); ?><?= $data->foto ?>" alt="" style="width: 20px; height: 9px;">
+                                                <img src="<?php echo base_url('assets/legenda/'); ?><?= $l->foto ?>" alt="" style="width: 20px; height: 9px;">
                                                 <?= $l->legenda ?>
                                             </label>
                                         </div>
@@ -528,7 +528,11 @@ if ($cek) {
                             <?php } else { ?>
                                 <a href="<?php echo base_url('Pdf/laporan_kkpr/'); ?><?= $data->id_kkpr_permohonan ?>" download class="btn btn-danger">Download PDF</a>&ensp;
                             <?php } ?>
-                            <a href="#" class="btn btn-success" disabled>Download EXCEL</a>&ensp;
+                            <?php if ($cek) { ?>
+                                <a href="<?php echo base_url('Excel/laporan_kkpr/'); ?><?= $data->id_permohonan ?>" download class="btn btn-success">Download EXCEL</a>&ensp;
+                            <?php } else { ?>
+                                <a href="<?php echo base_url('Excel/laporan_kkpr/'); ?><?= $data->id_kkpr_permohonan ?>" download class="btn btn-success">Download EXCEL</a>&ensp;
+                            <?php } ?>
                             <button type="submit" class="btn btn-primary">Simpan</button>&ensp;                            
                             <?php if ($cek) { ?>
                                 <?php 

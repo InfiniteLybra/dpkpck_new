@@ -32,6 +32,9 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <link rel="stylesheet" href="<?= base_url('assets/map/') ?>gh-pages.css" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -334,10 +337,12 @@
 
                                                     <span class="badge badge-light-<?php
                                                                                     $role = array(
-                                                                                        1 => 'kasir',
-                                                                                        2 => 'manager',
-                                                                                        3 => 'supervisor',
-                                                                                        4 => 'owner'
+                                                                                        1 => 'Pemohon',
+                                                                                        2 => 'Staff',
+                                                                                        3 => 'Koordinator',
+                                                                                        4 => 'Kepala Bidang',
+                                                                                        5 => 'Kepala Dinas',
+                                                                                        6 => 'Developer'
                                                                                     );
                                                                                     if ($this->session->userdata('level') == 1) {
                                                                                         echo 'danger';
@@ -347,7 +352,7 @@
                                                                                         echo 'success';
                                                                                     } ?> fw-bold fs-8 px-2 py-1 ms-2"><?= $role[$this->session->userdata('level')] ?></span>
                                                 </div>
-                                                <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">max@kt.com <?= $this->session->userdata('id_user') ?></a>
+                                                <a href="#" class="fw-semibold text-muted text-hover-primary fs-7"><?= $this->session->userdata('nama') ?></a>
                                             </div>
                                             <!--end::Username-->
                                         </div>
@@ -358,7 +363,7 @@
                                     <!--end::Menu separator-->
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-5">
-                                        <a href="<?php echo base_url('Akun'); ?>" class="menu-link px-5">Edit Profile</a>
+                                        <a href="#" class="menu-link px-5">Edit Profile</a>
                                     </div>
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
@@ -420,7 +425,7 @@
                     </div>
                     <!--end::Logo-->
                     <!--begin::sidebar menu-->
-                    <?php if ($this->session->userdata('level') == 5) { ?>
+                    <?php if ($this->session->userdata('level') == 6) { ?>
                         <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
                             <!--begin::Menu wrapper-->
                             <div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper hover-scroll-overlay-y my-5" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_app_sidebar_logo, #kt_app_sidebar_footer" data-kt-scroll-wrappers="#kt_app_sidebar_menu" data-kt-scroll-offset="5px" data-kt-scroll-save-state="true">
@@ -627,7 +632,17 @@
                                             <span class="menu-icon">
                                             <i class="fa-solid fa-map fa-2xl"></i>
                                             </span>
-                                            <span class="menu-title">Map</span>
+                                            <span class="menu-title">SHP Map</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('Map/polygon') ?>">
+                                            <span class="menu-icon">
+                                            <i class="fa-solid fa-map-location-dot fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Polygon Map</span>
                                         </a>
                                         <!--end:Menu link-->
                                     </div>
@@ -755,6 +770,147 @@
                             <!--end::Menu wrapper-->
                         </div>
                     <?php } ?>
+                    <?php if ($this->session->userdata('level') == 5) { ?>
+                        <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
+                            <!--begin::Menu wrapper-->
+                            <div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper hover-scroll-overlay-y my-5" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_app_sidebar_logo, #kt_app_sidebar_footer" data-kt-scroll-wrappers="#kt_app_sidebar_menu" data-kt-scroll-offset="5px" data-kt-scroll-save-state="true">
+                                <!--begin::Menu-->
+                                <div class="menu menu-column menu-rounded menu-sub-indention px-3" id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false">
+                                    <!--begin:Menu item-->
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('User') ?>">
+                                            <span class="menu-icon">
+                                                <i class="ki-duotone ki-element-11 fs-2">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                    <span class="path3"></span>
+                                                    <span class="path4"></span>
+                                                    <span class="path5"></span>
+                                                    <span class="path6"></span>
+                                                </i>
+                                            </span>
+                                            <span class="menu-title">Dashboards</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
+
+                                    <div class="menu-item pt-5">
+                                        <!--begin:Menu content-->
+                                        <div class="menu-content">
+                                            <span class="menu-heading fw-bold text-uppercase fs-7">MASTER</span>
+                                        </div>
+                                        <!--end:Menu content-->
+                                    </div>
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('Persiapan.html') ?>">
+                                            <span class="menu-icon">
+                                            <i class="fa-solid fa-file fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Formulir</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
+                                    <!--begin:Menu item-->
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('Map') ?>">
+                                            <span class="menu-icon">
+                                            <i class="fa-solid fa-map fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Map</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('Map/polygon') ?>">
+                                            <span class="menu-icon">
+                                            <i class="fa-solid fa-map-location-dot fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Polygon Map</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
+                                    <div class="menu-item pt-5">
+                                        <!--begin:Menu content-->
+                                        <div class="menu-content">
+                                            <span class="menu-heading fw-bold text-uppercase fs-7">ADMINISTRATOR</span>
+                                        </div>
+                                        <!--end:Menu content-->
+                                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                                            <!--begin:Menu link-->
+                                            <span class="menu-link">
+                                                <span class="menu-icon">
+                                                <i class="fa-solid fa-file-import fa-2xl"></i>
+                                                </span>
+                                                <span class="menu-title">ITR</span>
+                                                <span class="menu-arrow"></span>
+                                            </span>
+                                            <!--end:Menu link-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Itr/admin_itr') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Admin Permohonan</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->                                            
+                                        </div>
+                                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                                            <!--begin:Menu link-->
+                                            <span class="menu-link">
+                                                <span class="menu-icon">
+                                                <i class="fa-solid fa-file-import fa-2xl"></i>
+                                                </span>
+                                                <span class="menu-title">KKPR</span>
+                                                <span class="menu-arrow"></span>
+                                            </span>
+                                            <!--end:Menu link-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/admin_kkpr') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Admin Permohonan</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/config') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Config/Berkas Diterima</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->                                            
+                                        </div>
+                                    </div>                                    
+                                </div>
+
+                                <!--end::Menu-->
+                            </div>
+                            <!--end::Menu wrapper-->
+                        </div>
+                    <?php } ?>
                     <?php if ($this->session->userdata('level') == 4) { ?>
                         <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
                             <!--begin::Menu wrapper-->
@@ -808,6 +964,16 @@
                                         </a>
                                         <!--end:Menu link-->
                                     </div>
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('Map/polygon') ?>">
+                                            <span class="menu-icon">
+                                            <i class="fa-solid fa-map-location-dot fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Polygon Map</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
                                     <div class="menu-item pt-5">
                                         <!--begin:Menu content-->
                                         <div class="menu-content">
@@ -837,7 +1003,21 @@
                                                     <!--end:Menu link-->
                                                 </div>
                                             </div>
-                                            <!--end:Menu sub-->                                            
+                                            <!--end:Menu sub-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Itr/admin_itr_kuasa') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Admin Kuasa</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->
                                         </div>
                                         <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                                             <!--begin:Menu link-->
@@ -936,6 +1116,16 @@
                                             <i class="fa-solid fa-map fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Map</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('Map/polygon') ?>">
+                                            <span class="menu-icon">
+                                            <i class="fa-solid fa-map-location-dot fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Polygon Map</span>
                                         </a>
                                         <!--end:Menu link-->
                                     </div>
@@ -1084,6 +1274,16 @@
                                         </a>
                                         <!--end:Menu link-->
                                     </div>
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('Map/polygon') ?>">
+                                            <span class="menu-icon">
+                                            <i class="fa-solid fa-map-location-dot fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Polygon Map</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
                                     <div class="menu-item pt-5">
                                         <!--begin:Menu content-->
                                         <div class="menu-content">
@@ -1193,11 +1393,11 @@
                                     <!--begin:Menu item-->
                                     <div class="menu-item">
                                         <!--begin:Menu link-->
-                                        <a class="menu-link" href="<?= base_url('Map') ?>">
+                                        <a class="menu-link" href="<?= base_url('Map/polygon') ?>">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-map fa-2xl"></i>
+                                            <i class="fa-solid fa-map-location-dot fa-2xl"></i>
                                             </span>
-                                            <span class="menu-title">Map</span>
+                                            <span class="menu-title">Polygon Map</span>
                                         </a>
                                         <!--end:Menu link-->
                                     </div>                                                                    
