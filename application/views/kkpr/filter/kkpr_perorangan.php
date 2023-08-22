@@ -40,7 +40,7 @@
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="text" id="nama_pemohon" class="form-control mb-2 " name="nama_pemohon" required="required" />
+                                <input type="text" id="nama_pemohon" class="form-control mb-2 " name="nama_pemohon" placeholder="Ex. Wawan Supriyadi" required="required" />
                                 <input type="hidden" class="form-control mb-2 " name="type_pengurusan" value="<?= $pengurusan ?>" required="required" />
                                 <input type="hidden" class="form-control mb-2 " name="type_isi_kategori" value="<?= $isi_pengajuan ?>" required="required" />
                                 <input type="hidden" class="form-control mb-2 " name="type_kategori" value="<?= $pengajuan ?>" required="required" />
@@ -66,13 +66,13 @@
                         <div class="mb-3 row">
                             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">RT<span class="required"></span></label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input id="middle-name" class="form-control mb-2 col" type="number" value="1" min="1" max="20" name="rt_pemohon" required>
+                                <input id="middle-name" class="form-control mb-2 col" type="number" placeholder="Ex. 001" min="1" max="20" name="rt_pemohon" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">RW<span class="required"></span></label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input id="middle-name" class="form-control mb-2 col" type="number" value="1" min="1" max="20" name="rw_pemohon" required>
+                                <input id="middle-name" class="form-control mb-2 col" type="number" placeholder="Ex. 001" min="1" max="20" name="rw_pemohon" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -132,7 +132,7 @@
                                 </span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input id="birthday" class="date-picker form-control mb-2" type="text" name="telp_pemohon">
+                                <input id="birthday" class="date-picker form-control mb-2" type="text" name="telp_pemohon" placeholder="Ex. 08998989809">
                                 <small>(Cantumkan No Telp. / HP / WA Pemohon <b>Bukan</b> Kuasa
                                     pengurusan)</small>
                             </div>
@@ -209,7 +209,7 @@
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input id="birthday" class="date-picker form-control" required="required" type="text" name="peruntukan_tanah">
+                                <input id="birthday" class="date-picker form-control" required="required" type="text" name="peruntukan_tanah" placeholder="Ex. Gudang Kosmetik">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -217,7 +217,7 @@
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input id="birthday" class="date-picker form-control" required="required" type="text" name="luas_tanah">
+                                <input id="birthday" class="date-picker form-control" required="required" type="number" name="luas_tanah" placeholder="Ex. 500">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -239,9 +239,9 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="status_tanah" class="col-form-label col-md-3 col-sm-3 label-align">Banyaknya Status tanah<span class="required"></span></label>
+                            <label for="status_tanah" class="col-form-label col-md-3 col-sm-3 label-align">Jumlah Surat tanah<span class="required"></span></label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input id="status_tanah" class="form-control mb-2 col" type="number" value="0" min="0" max="10" name="status_tanah" required>
+                                <input id="status_tanah" class="form-control mb-2 col" type="number" value="0" min="0" max="100" name="status_tanah" required>
                             </div>
                         </div>
 
@@ -264,13 +264,13 @@
                         <div class="mb-3 row">
                             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">RT<span class="required"></span></label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input id="middle-name" class="form-control col" type="number" value="1" min="1" max="20" name="rt_tanah" required>
+                                <input id="middle-name" class="form-control col" type="number" placeholder="Ex. 001" min="1" max="20" name="rt_tanah" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">RW<span class="required"></span></label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input id="middle-name" class="form-control col" type="number" value="1" min="1" max="20" name="rw_tanah" required>
+                                <input id="middle-name" class="form-control col" type="number" placeholder="Ex. 001" min="1" max="20" name="rw_tanah" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -315,7 +315,7 @@
                     <div class="w-100">
                         <div class="" id="file_status_tanah_container" style="display: none;">
                             <div class="mb-3 row">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Status Tanah
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Surat Tanah
                                     <span class="required"></span>
                                 </label>
                                 <div class="col-md-9 col-sm-9 ">
@@ -473,19 +473,10 @@
                             <div class="col-md-9 col-sm-9 ">
                                 <input type="file" id="alamat-pemohon" name="fotokopi_ktp" class="form-control ">
                             </div>
-                        </div>
+                        </div>                        
                         <div class="mb-3 row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
-                                SIUP
-                                <span class="required"></span>
-                            </label>
-                            <div class="col-md-9 col-sm-9 ">
-                                <input type="file" id="alamat-pemohon" name="siup" class="form-control ">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
-                                TDP / NIB
+                                NIB
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">

@@ -44,8 +44,8 @@ if ($cek) {
                         </td>
                         <td class="text-center pe-0">
                             <?php if ($cek) { ?>
-                                <input type="text" name="no_reg" class="form-control" value="<?= $data->id_permohonan ?>">
-                                <input type="hidden" name="id_permohonan" class="form-control" value="<?= $data->id_permohonan ?>">
+                                <input type="text" name="no_reg" class="form-control" value="<?= $data->no_reg ?>">
+                                <input type="hidden" name="id_permohonan" class="form-control" value="<?= $data->no_reg ?>">
                             <?php } else { ?>
                                 <input type="text" name="no_reg" class="form-control" value="<?= $data->id_kkpr_permohonan ?>">
                                 <input type="hidden" name="id_permohonan" class="form-control" value="<?= $data->id_kkpr_permohonan ?>">
@@ -572,7 +572,7 @@ if ($cek) {
                             <?php } else { ?>
                                 <a href="<?php echo base_url('Pdf/lhs/'); ?><?= $data->id_kkpr_permohonan ?>" download class="btn btn-danger">Download PDF</a>&ensp;
                             <?php } ?>
-                            <a href="#" class="btn btn-success" disabled>Download EXCEL</a>&ensp;
+                            <!-- <a href="#" class="btn btn-success" disabled>Download EXCEL</a>&ensp; -->
                             <button type="submit" class="btn btn-primary">Simpan</button>&ensp;
                             <?php if ($cek) { ?>
                                 <?php

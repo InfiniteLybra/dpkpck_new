@@ -4,7 +4,7 @@
     <div class="card-body">
         <!--begin::Stepper-->
         <div class="stepper stepper-links d-flex flex-column pt-15" id="kt_create_account_stepper">
-            <h2 class="text-center">Filter Formulir</h2>
+            <h2 class="text-center">Jenis Permohonan</h2>
             <!--begin::Form-->
             <form class="mx-auto mw-800px w-100 pt-15 pb-10" id="kt_create_account_form" method="POST" action="<?php echo base_url('Formulir.html'); ?>" enctype="multipart/form-data">
                 <!--begin::Step 1-->

@@ -428,7 +428,7 @@ if ($cek) {
                             <?php } else { ?>
                                 <a href="<?php echo base_url('Pdf/draf_peta/'); ?><?= $data->id_kkpr_permohonan ?>" download class="btn btn-danger">Download PDF</a>&ensp;
                             <?php } ?>
-                            <a href="#" class="btn btn-success" disabled>Download EXCEL</a>&ensp;
+                            <!-- <a href="#" class="btn btn-success" disabled>Download EXCEL</a>&ensp; -->
                             <button type="submit" class="btn btn-primary">Simpan</button>&ensp;
                             <?php if ($cek) { ?>
                                 <?php

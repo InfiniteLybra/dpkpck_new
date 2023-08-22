@@ -205,7 +205,7 @@ if ($cek) {
                                 foreach ($status as $s) {
                                 ?>
                                     <div class="mb-3 row">
-                                        <input type="text" name="status_tanah_" .<?= $no++; ?>."" class="form-control" value="<?= $s->status_tanah ?>" readonly>
+                                        <input type="text" name="status_tanah_" .<?= $no++; ?>."" class="form-control" value="<?= $s->status_tanah ?>">
                                     </div>
                                 <?php } ?>
                             <?php } else { ?>
@@ -236,7 +236,7 @@ if ($cek) {
                                 </div>
                             <?php } else { ?>
                                 <input type="file" name="peta" class="form-control" value="">
-                                <small style="float: left;"><a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?= $data->peta_bidang ?>" target="_blank">Lihat Disini</a></small>
+                                <small style="float: left;"><a href="<?php echo base_url('Map'); ?>" target="_blank">Shp Map</a></small>
                             <?php } ?>
                         </td>
                     </tr>
@@ -528,11 +528,11 @@ if ($cek) {
                             <?php } else { ?>
                                 <a href="<?php echo base_url('Pdf/laporan_kkpr/'); ?><?= $data->id_kkpr_permohonan ?>" download class="btn btn-danger">Download PDF</a>&ensp;
                             <?php } ?>
-                            <?php if ($cek) { ?>
+                            <!-- <?php if ($cek) { ?>
                                 <a href="<?php echo base_url('Excel/laporan_kkpr/'); ?><?= $data->id_permohonan ?>" download class="btn btn-success">Download EXCEL</a>&ensp;
                             <?php } else { ?>
                                 <a href="<?php echo base_url('Excel/laporan_kkpr/'); ?><?= $data->id_kkpr_permohonan ?>" download class="btn btn-success">Download EXCEL</a>&ensp;
-                            <?php } ?>
+                            <?php } ?> -->
                             <button type="submit" class="btn btn-primary">Simpan</button>&ensp;                            
                             <?php if ($cek) { ?>
                                 <?php 

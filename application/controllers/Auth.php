@@ -45,7 +45,7 @@ class Auth extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Kesalahan, pengguna telah ada');
         }
-        redirect('auth/register');
+        redirect('auth');
     }
     public function logout()
     {

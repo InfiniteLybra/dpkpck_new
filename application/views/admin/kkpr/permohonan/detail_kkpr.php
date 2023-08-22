@@ -182,6 +182,7 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                             <textarea class="form-control" name="dokumen_oss" data-kt-autosize="true" data-preview="preview"><?php if ($keterangan) echo $keterangan->dokumen_oss ?></textarea>
                             <input type="hidden" name="type" class="form-control" value="<?php if ($kkpr) echo $kkpr->type ?>">
                             <input type="hidden" name="id" class="form-control" value="<?php if ($kkpr) echo $kkpr->id_kkpr_permohonan ?>">
+                            <input type="hidden" name="telp_pemohon" class="form-control" value="<?php if ($kkpr) echo $kkpr->telp_pemohon ?>">
                         </td>
                     </tr>
                     <tr>

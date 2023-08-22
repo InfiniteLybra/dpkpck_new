@@ -108,7 +108,7 @@ class Kkpr extends CI_Controller
             $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
             redirect('Filter.html');
         }
-        redirect('Filter.html');
+        redirect('User');
     }
     public function proses_terima($id)
     {

@@ -8,7 +8,7 @@ class Kkpr_Model extends CI_Model
         $pengurusan = $this->input->post('type_pengurusan');
         if ($pengurusan == 'perusahaan') {
             $config['upload_path']          = './assets_dokumen/kkpr';
-            $config['allowed_types']        = 'pdf|PDF|png|PNG|jpg|JPG';
+            $config['allowed_types']        = 'pdf|PDF|png|PNG|jpg|JPG|zip';
             $config['max_size']             = 2048; //2MB
             // $config['max_width']            = 2048;
             // $config['max_height']           = 2000;
@@ -332,7 +332,7 @@ class Kkpr_Model extends CI_Model
             }
         } else {
             $config['upload_path']          = './assets_dokumen/kkpr';
-            $config['allowed_types']        = 'pdf|PDF|png|PNG|jpg|JPG';
+            $config['allowed_types']        = 'pdf|PDF|png|PNG|jpg|JPG|zip';
             $config['max_size']             = 2048; //2MB
             // $config['max_width']            = 2048;
             // $config['max_height']           = 2000;
@@ -2360,6 +2360,7 @@ class Kkpr_Model extends CI_Model
     public function tambah_keterangan()
     {
         $id = $this->input->post('id');
+        $telp_pemohon = $this->input->post('telp_pemohon');
         $type = $this->input->post('type');
         $dokumen_oss = $this->input->post('dokumen_oss');
         $fotokopi_ktp = $this->input->post('fotokopi_ktp');
@@ -2527,6 +2528,32 @@ class Kkpr_Model extends CI_Model
             // echo $insert;
             $this->db->query($insert);
         }
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.fonnte.com/send',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => array(
+        'target' => $telp_pemohon,
+        'message' => $preview, 
+        'countryCode' => '62', //optional
+        ),
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: 5@6!I4e2eSKYewSZSFhD' //change TOKEN to your actual token
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo $response;
         if ($query) {
             return true;
         } else {
