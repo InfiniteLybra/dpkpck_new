@@ -101,8 +101,7 @@ class Kkpr extends CI_Controller
         $query = $this->Kkpr_Model->tambah_kkpr_new();
         if ($query == true) {
             $this->session->set_flashdata('success', 'Data berhasil disimpan');
-            $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');
-            // redirect('Kasir/manage_user');
+            $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');            
         } else {
             $this->session->set_flashdata('error', 'Data gagal disimpan');
             $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
@@ -526,11 +525,9 @@ class Kkpr extends CI_Controller
         if ($query == true) {
             $this->session->set_flashdata('success', 'Data berhasil disimpan');
             $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');
-            // redirect('Kasir/manage_user');
         } else {
             $this->session->set_flashdata('error', 'Data gagal disimpan');
             $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
-            // redirect('Itr');
         }
         redirect('Kkpr/admin_kkpr');
     }
@@ -576,5 +573,53 @@ class Kkpr extends CI_Controller
         $data = $this->db->query("SELECT * FROM desa WHERE id_kecamatan = '$id_kecamatan'")->result();
         echo json_encode($data);
     }
+
+    //PEMOHON
+    public function pengembalian_formulir()
+    {
+        $id_user = $this->session->userdata('id_user');
+        $data['kkpr'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_user = '$id_user' AND status_berkas = '1'")->result();
+        $this->load->view('templates/header');
+        $this->load->view('user/kkpr/pengembalian_formulir',$data);
+        $this->load->view('templates/footer');
+        $this->load->view('templates/footScript');
+        $this->load->view('user/kkpr/script_pengembalian');
+    }
+    public function detail_pengembalian($id)
+    {
+        $data['kkpr'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_kkpr_permohonan = '$id'")->row();
+        $this->load->view('templates/header');
+        $this->load->view('user/kkpr/detail_pengembalian_formulir_kkpr',$data);
+        $this->load->view('templates/footer');
+        $this->load->view('templates/footScript');
+        $this->load->view('user/kkpr/script_pengembalian');
+    }
+    function proses_pengembalian()
+    {
+        $query = $this->Kkpr_Model->pengembalian();
+        if ($query == true) {
+            $this->session->set_flashdata('success', 'Data berhasil disimpan');
+            $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');
+        } else {
+            $this->session->set_flashdata('error', 'Data gagal disimpan');
+            $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
+        }
+        redirect('Kkpr/pengembalian_formulir');
+    }
+    public function monitoring_berkas()
+    {
+        $data['kkpr'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE status_berkas = '0' OR status_berkas = '2' OR status_berkas = '3' ")->result();
+        $this->load->view('templates/header');
+        $this->load->view('admin/kkpr/monitoring_berkas/monitoring_berkas',$data);
+        $this->load->view('templates/footer');
+        $this->load->view('templates/footScript');
+        $this->load->view('admin/kkpr/monitoring_berkas/script');
+    }
+    public function export_monitoring_berkas()
+    {
+        $data['kkpr'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE status_berkas = '0' OR status_berkas = '2' OR status_berkas = '3' ")->result();
+        $this->load->view('admin/kkpr/monitoring_berkas/export_monitoring_excel',$data);        
+    }
+
 }
 ?>

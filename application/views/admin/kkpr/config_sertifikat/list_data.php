@@ -26,9 +26,9 @@
                     <th class="text-center min-w-150px">Nama</th>
                     <th class="text-center min-w-300px">Alamat</th>
                     <th class="text-center min-w-150px">Type</th>
-                    <th class="text-center min-w-100px">Status</th>
+                    <!-- <th class="text-center min-w-100px">Status</th> -->
                     <th class="text-center min-w-100px">Sertifikat</th>
-                    <th class="text-center min-w-50px">Actions</th>
+                    <!-- <th class="text-center min-w-50px">Actions</th> -->
                 </tr>
             </thead>
             <tbody class="text-center">
@@ -55,7 +55,7 @@
                         <td class="text-center pe-0">
                             <span class="fw-bold"><?php if ($d) echo $d->kategori ?></span>
                         </td>
-                        <td class="text-center pe-0">
+                        <!-- <td class="text-center pe-0">
                             <span class="fw-bold"><?php 
                             if($d->status_berkas == '2'){
                                 echo "Belum";
@@ -63,7 +63,7 @@
                                 echo "Selesai";
                             }  
                             ?></span>
-                        </td>                        
+                        </td>                         -->
                         <td class="text-center">
                             <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                 <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
@@ -87,11 +87,11 @@
                             </div>
                             <!--end::Menu-->
                         </td>
-                        <td class="text-center pe-0">
+                        <!-- <td class="text-center pe-0">
                             <?php if($d->status_berkas == '2'){ ?>
                             <a href="<?php echo base_url('Kkpr/status_selesai/');?><?= $d->id_kkpr_permohonan?>" class="btn btn-primary btn-sm">Selesai</a>
                             <?php }?>
-                        </td>
+                        </td> -->
                     </tr>
                 <?php } ?>
             </tbody>

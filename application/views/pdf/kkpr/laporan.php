@@ -25,79 +25,88 @@
             <td>1.</td>
             <td>Nama </td>
             <td>:</td>
-            <td><?= $data->nama_pemohon ?></td>
+            <td>&ensp;<?= $data->nama_pemohon ?></td>
         </tr>
         <tr>
             <td>2.</td>
             <td>Alamat</td>
             <td>:</td>
-            <td><?= $data->alamat_pemohon ?></td>
+            <td>&ensp;<?= $data->alamat_pemohon ?></td>
         </tr>
         <tr>
             <td>3.</td>
             <td>Bertindak Atas Nama</td>
             <td>:</td>
-            <td><?= $data->nama_perusahaan ?></td>
+            <td>&ensp;<?= $data->nama_perusahaan ?></td>
         </tr>
         <tr>
             <td>4.</td>
             <td>Alamat</td>
             <td>:</td>
-            <td><?= $data->alamat_perusahaan ?></td>
+            <td>&ensp;<?= $data->alamat_perusahaan ?></td>
         </tr>
         <tr>
             <td>5.</td>
             <td>NIB/SKala Usaha</td>
             <td>:</td>
-            <td><?= $data->nib_skala_usaha ?></td>
-        </tr>
+            <td>&ensp;<?= $data->nib_skala_usaha ?></td>
+        </tr>              
+        <?php
+        $kbli = json_decode($data->kbli_tingkat_resiko,true);
+        ?>
         <tr>
             <td>6.</td>
             <td>KBLI/Tingkat Risiko</td>
             <td>:</td>
-            <td><?= $data->kbli_tingkat_resiko ?></td>
+            <td>&ensp;<?php echo $kbli[0]['kbli']; ?></td>
         </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><?= $data->kbli_tingkat_resiko ?></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><?= $data->kbli_tingkat_resiko ?></td>
-        </tr>
+        <?php for ($i = 1; $i < count($kbli); $i++) { ?>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>&ensp;<?php echo $kbli[$i]['kbli']; ?></td>
+            </tr>
+        <?php } ?>
         <tr>
             <td>7.</td>
             <td>Peruntukan/Luas Tanah</td>
             <td>:</td>
-            <td><?= $data->peruntukan ?></td>
+            <td>&ensp;<?= $data->peruntukan ?></td>
         </tr>
         <tr>
             <td>8.</td>
             <td>Lokasi</td>
             <td>:</td>
-            <td><?= $data->lokasi ?></td>
+            <td>&ensp;<?= $data->lokasi ?></td>
         </tr>
         <?php
-        $status_tanah_data = json_decode($data->status_tanah, true);
+        $count = $this->db->query("SELECT JSON_LENGTH(status_tanah) AS total_data FROM data_sertifikat_peta WHERE id_permohonan = '$data->id_permohonan'")->row();
+        if ($count->total_data < 4) {
+            $status_tanah_data = json_decode($data->status_tanah, true);
         ?>
 
-        <tr>
-            <td>9.</td>
-            <td>Status Tanah</td>
-            <td>:</td>
-            <td><?php echo $status_tanah_data[0]['status_tanah']; ?></td>
-        </tr>
-
-        <?php for ($i = 1; $i < count($status_tanah_data); $i++) { ?>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><?php echo $status_tanah_data[$i]['status_tanah']; ?></td>
+                <td>9.</td>
+                <td>Status Tanah</td>
+                <td>:</td>
+                <td>&ensp;<?php echo $status_tanah_data[0]['status_tanah']; ?></td>
+            </tr>
+
+            <?php for ($i = 1; $i < count($status_tanah_data); $i++) { ?>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>&ensp;<?php echo $status_tanah_data[$i]['status_tanah']; ?></td>
+                </tr>
+            <?php }
+        } else { ?>
+            <tr>
+                <td>9.</td>
+                <td>Status Tanah</td>
+                <td>:</td>
+                <td>&ensp;Lampiran</td>
             </tr>
         <?php } ?>
 
@@ -128,16 +137,16 @@
                             foreach ($legenda as $l) {
                                 $get_legenda = $this->db->query("SELECT * FROM legenda WHERE id_legenda = '$l->legenda'")->row();
                             ?>
-                            <table style="font-size: 9px;">
-                                <tr>
-                                    <td><img src="<?php echo base_url('assets/legenda/'); ?><?= $get_legenda->foto ?>" alt="" style="width: 20px; height: 9px;"></td>
-                                    <td><?= $get_legenda->legenda ?></td>
-                                </tr>
-                            </table>                                
+                                <table style="font-size: 9px;">
+                                    <tr>
+                                        <td><img src="<?php echo base_url('assets/legenda/'); ?><?= $get_legenda->foto ?>" alt="" style="width: 20px; height: 9px;"></td>
+                                        <td><?= $get_legenda->legenda ?></td>
+                                    </tr>
+                                </table>
                             <?php } ?>
                         </td>
                     </tr>
-                </table>                
+                </table>
                 <b>Titik koordinat :</b>
                 <br>
                 <?php
@@ -179,10 +188,28 @@
                     <?php if ($data->flexsible_zoning == 'tidak_diijinkan') { ?>
                         Dinyatakan "ditolak seluruhnya" sebagai dasar pertimbangan dari:
                     <?php } ?>
-                    <br>
-                    • Peraturan Presiden Republik Indonesia Nomor 59 Tahun 2019 tentang Pengendalian Alih Fungsi Lahan Sawah dan Berita Acara Kesepakatan Verifikasi Aktual Penyelesaian Ketidaksesuaian Lahan Sawah yang Dilindungi dengan Rencana Tata Ruang antara Direktorat Jenderal Pengendalian dan Penertiban Tanah dan Ruang Kementerian Agraria dan Tata Ruang / Badan Pertanahan Nasional dengan Pemerintah Kabupaten Malang tanggal 15 September 2022,
-                    <!-- • lokasi dimohon masuk dalam Peta Lahan Sawah Dilindungi (LSD) seluas "&MASTER!B128&" m² dan tidak masuk dalam Peta Rencana Kawasan Pertanian Pangan Berkelanjutan  (KP2B)  dengan ketentuan  Pemanfaatan Ruang untuk Pembangunan "&DK!G14&" dapat “DIARAHKAN” hanya seluas "&MASTER!B131&" m² dari total lahan "&MASTER!B41&" m²"
-                    • lokasi dimohon masuk dalam Peta Lahan Sawah Dilindungi (LSD) seluas "&MASTER!B41&" m² dan masuk dalam Peta Rencana Kawasan Pertanían Pangan Berkelanjutan (KP2B) seluas "&MASTER!B130&" m²."              -->
+                    <br>        
+                    <?php 
+                        $pola_ruang = $this->db->query("SELECT * FROM rencana_pola_ruang WHERE id_pola_ruang = '$data->perda_rtr1'")->row();
+                    ?>          
+                    <?php if ($data->masuk_lsd == 'tidak' AND $data->flexsible_zoning == 'diijinkan') { ?>
+                       • Peraturan Presiden Republik Indonesia Nomor 59 Tahun 2019 tentang Pengendalian Alih Fungsi Lahan Sawah dan Berita Acara Kesepakatan Verifikasi Aktual Penyelesaian Ketidaksesuaian Lahan Sawah yang Dilindungi dengan Rencana Tata Ruang antara Direktorat Jenderal Pengendalian dan Penertiban Tanah dan Ruang Kementerian Agraria dan Tata Ruang / Badan Pertanahan Nasional dengan Pemerintah Kabupaten Malang tanggal 15 September 2022, lokasi dimohon tidak masuk dalam Peta Lahan Sawah yang Dilindungi (LSD).
+                       <br>
+                       • Peraturan Daerah Kabupaten Malang Nomor 03 Tahun 2010 tentang Rencana Tata Ruang Wilayah Kabupaten Malang, lokasi dimohon masuk dalam Rencana Pola Ruang “<?= $pola_ruang->pola_ruang?>” dengan ketentuan Pemanfaatan Ruang untuk <?= $data->peruntukan?>  dapat “DIARAHKAN” pada koordinat dimaksud.
+                    <?php } ?>                 
+                    <?php if ($data->masuk_lsd == 'iya_seluruhnya' AND $data->flexsible_zoning == 'diijinkan') { ?>
+                       • Peraturan Presiden Republik Indonesia Nomor 59 Tahun 2019 tentang Pengendalian Alih Fungsi Lahan Sawah dan Berita Acara Kesepakatan Verifikasi Aktual Penyelesaian Ketidaksesuaian Lahan Sawah yang Dilindungi dengan Rencana Tata Ruang antara Direktorat Jenderal Pengendalian dan Penertiban Tanah dan Ruang Kementerian Agraria dan Tata Ruang / Badan Pertanahan Nasional dengan Pemerintah Kabupaten Malang tanggal 15 September 2022, lokasi dimohon tidak masuk dalam Peta Lahan Sawah yang Dilindungi (LSD).
+                       <br>
+                       • Peraturan Daerah Kabupaten Malang Nomor 03 Tahun 2010 tentang Rencana Tata Ruang Wilayah Kabupaten Malang, lokasi dimohon masuk dalam Rencana Pola Ruang “<?= $pola_ruang->pola_ruang?>” dengan ketentuan Pemanfaatan Ruang untuk <?= $data->peruntukan?>  dapat “DIARAHKAN” pada koordinat dimaksud.
+                    <?php } ?>            
+                    <?php if ($data->masuk_lsd == 'iya_sebagian' AND $data->flexsible_zoning == 'bersyarat_tertentu' || $data->flexsible_zoning == 'bersyarat_terbatas') { ?>
+                       • Peraturan Presiden Republik Indonesia Nomor 59 Tahun 2019 tentang Pengendalian Alih Fungsi Lahan Sawah dan Berita Acara Kesepakatan Verifikasi Aktual Penyelesaian Ketidaksesuaian Lahan Sawah yang Dilindungi dengan Rencana Tata Ruang antara Direktorat Jenderal Pengendalian dan Penertiban Tanah dan Ruang Kementerian Agraria dan Tata Ruang / Badan Pertanahan Nasional dengan Pemerintah Kabupaten Malang tanggal 15 September 2022, lokasi dimohon tidak masuk dalam Peta Lahan Sawah yang Dilindungi (LSD).
+                       <br>
+                       • Peraturan Daerah Kabupaten Malang Nomor 03 Tahun 2010 tentang Rencana Tata Ruang Wilayah Kabupaten Malang, lokasi dimohon masuk dalam Rencana Pola Ruang “xxxx dan xxxx” dengan ketentuan Pemanfaatan Ruang untuk <?= $data->peruntukan?>   dapat “DIARAHKAN” pada koordinat dimaksud hanya seluas <?= $data->diijinkan_sebagian?>  m² dari total lahan <?= $data->luas_tanah?>  m².
+                    <?php } ?>  
+                    <?php if ($data->flexsible_zoning == 'tidak_diijinkan') { ?>
+                       • Peraturan Daerah Kabupaten Malang Nomor 03 Tahun 2010 tentang Rencana Tata Ruang Wilayah Kabupaten Malang, lokasi dimohon masuk dalam Rencana Pola Ruang “<?= $pola_ruang->pola_ruang?> ” dengan ketentuan Pemanfaatan Ruang untuk <?= $data->peruntukan?> “TIDAK DIARAHKAN” pada koordinat dimaksud.
+                    <?php } ?>         
                 </p>
             </td>
         </tr>

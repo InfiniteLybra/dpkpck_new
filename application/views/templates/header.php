@@ -3,7 +3,9 @@
 
 <head>
     <base href="" />
-    <title>Metronic - The World's #1 Selling Bootstrap Admin Template by Keenthemes</title>
+    <meta name="description" content="Frontend by unimasoft.id">
+    <meta name="author" content="Zamah Sari, zamahsari@umm.ac.id">
+    <title>DPKCPK</title>
     <meta charset="utf-8" />
     <meta name="description" content="The most advanced Bootstrap 5 Admin Theme with 40 unique prebuilt layouts on Themeforest trusted by 100,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel versions. Grab your copy now and get life-time updates for free." />
     <meta name="keywords" content="metronic, bootstrap, bootstrap 5, angular, VueJs, React, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel starter kits, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
@@ -33,8 +35,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <link rel="stylesheet" href="<?= base_url('assets/map/') ?>gh-pages.css" />
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -461,7 +462,7 @@
                                         <!--begin:Menu link-->
                                         <a class="menu-link" href="<?= base_url('Persiapan.html') ?>">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-file fa-2xl"></i>
+                                                <i class="fa-solid fa-file fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Formulir</span>
                                         </a>
@@ -471,7 +472,7 @@
                                         <!--begin:Menu link-->
                                         <span class="menu-link">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-file fa-2xl"></i>
+                                                <i class="fa-solid fa-file fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Formulir ITR</span>
                                             <span class="menu-arrow"></span>
@@ -524,7 +525,7 @@
                                         <!--begin:Menu link-->
                                         <span class="menu-link">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-file fa-2xl"></i>
+                                                <i class="fa-solid fa-file fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Formulir KKPR</span>
                                             <span class="menu-arrow"></span>
@@ -630,7 +631,7 @@
                                         <!--begin:Menu link-->
                                         <a class="menu-link" href="<?= base_url('Map') ?>">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-map fa-2xl"></i>
+                                                <i class="fa-solid fa-map fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">SHP Map</span>
                                         </a>
@@ -640,7 +641,7 @@
                                         <!--begin:Menu link-->
                                         <a class="menu-link" href="<?= base_url('Map/polygon') ?>">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-map-location-dot fa-2xl"></i>
+                                                <i class="fa-solid fa-map-location-dot fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Polygon Map</span>
                                         </a>
@@ -656,7 +657,7 @@
                                             <!--begin:Menu link-->
                                             <span class="menu-link">
                                                 <span class="menu-icon">
-                                                <i class="fa-solid fa-file-import fa-2xl"></i>
+                                                    <i class="fa-solid fa-file-import fa-2xl"></i>
                                                 </span>
                                                 <span class="menu-title">ITR</span>
                                                 <span class="menu-arrow"></span>
@@ -695,7 +696,7 @@
                                             <!--begin:Menu link-->
                                             <span class="menu-link">
                                                 <span class="menu-icon">
-                                                <i class="fa-solid fa-file-import fa-2xl"></i>
+                                                    <i class="fa-solid fa-file-import fa-2xl"></i>
                                                 </span>
                                                 <span class="menu-title">KKPR</span>
                                                 <span class="menu-arrow"></span>
@@ -754,9 +755,9 @@
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link" href="<?= base_url('Pengembalian_formulir_itr') ?>">
+                                            <a class="menu-link" href="<?= base_url('Kkpr/pengembalian_formulir') ?>">
                                                 <span class="menu-icon">
-                                                <i class="fa-solid fa-file-import fa-2xl"></i>
+                                                    <i class="fa-solid fa-file fa-2xl"></i>
                                                 </span>
                                                 <span class="menu-title">Pengembalian Formulir</span>
                                             </a>
@@ -806,7 +807,7 @@
                                         <!--begin:Menu link-->
                                         <a class="menu-link" href="<?= base_url('Persiapan.html') ?>">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-file fa-2xl"></i>
+                                                <i class="fa-solid fa-file fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Formulir</span>
                                         </a>
@@ -817,7 +818,7 @@
                                         <!--begin:Menu link-->
                                         <a class="menu-link" href="<?= base_url('Map') ?>">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-map fa-2xl"></i>
+                                                <i class="fa-solid fa-map fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Map</span>
                                         </a>
@@ -827,7 +828,7 @@
                                         <!--begin:Menu link-->
                                         <a class="menu-link" href="<?= base_url('Map/polygon') ?>">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-map-location-dot fa-2xl"></i>
+                                                <i class="fa-solid fa-map-location-dot fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Polygon Map</span>
                                         </a>
@@ -843,7 +844,7 @@
                                             <!--begin:Menu link-->
                                             <span class="menu-link">
                                                 <span class="menu-icon">
-                                                <i class="fa-solid fa-file-import fa-2xl"></i>
+                                                    <i class="fa-solid fa-file-import fa-2xl"></i>
                                                 </span>
                                                 <span class="menu-title">ITR</span>
                                                 <span class="menu-arrow"></span>
@@ -862,13 +863,13 @@
                                                     <!--end:Menu link-->
                                                 </div>
                                             </div>
-                                            <!--end:Menu sub-->                                            
+                                            <!--end:Menu sub-->
                                         </div>
                                         <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                                             <!--begin:Menu link-->
                                             <span class="menu-link">
                                                 <span class="menu-icon">
-                                                <i class="fa-solid fa-file-import fa-2xl"></i>
+                                                    <i class="fa-solid fa-file-import fa-2xl"></i>
                                                 </span>
                                                 <span class="menu-title">KKPR</span>
                                                 <span class="menu-arrow"></span>
@@ -901,9 +902,9 @@
                                                     <!--end:Menu link-->
                                                 </div>
                                             </div>
-                                            <!--end:Menu sub-->                                            
+                                            <!--end:Menu sub-->
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
 
                                 <!--end::Menu-->
@@ -947,7 +948,7 @@
                                         <!--begin:Menu link-->
                                         <a class="menu-link" href="<?= base_url('Persiapan.html') ?>">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-file fa-2xl"></i>
+                                                <i class="fa-solid fa-file fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Formulir</span>
                                         </a>
@@ -958,7 +959,7 @@
                                         <!--begin:Menu link-->
                                         <a class="menu-link" href="<?= base_url('Map') ?>">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-map fa-2xl"></i>
+                                                <i class="fa-solid fa-map fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Map</span>
                                         </a>
@@ -968,7 +969,7 @@
                                         <!--begin:Menu link-->
                                         <a class="menu-link" href="<?= base_url('Map/polygon') ?>">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-map-location-dot fa-2xl"></i>
+                                                <i class="fa-solid fa-map-location-dot fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Polygon Map</span>
                                         </a>
@@ -984,7 +985,7 @@
                                             <!--begin:Menu link-->
                                             <span class="menu-link">
                                                 <span class="menu-icon">
-                                                <i class="fa-solid fa-file-import fa-2xl"></i>
+                                                    <i class="fa-solid fa-file-import fa-2xl"></i>
                                                 </span>
                                                 <span class="menu-title">ITR</span>
                                                 <span class="menu-arrow"></span>
@@ -1023,7 +1024,7 @@
                                             <!--begin:Menu link-->
                                             <span class="menu-link">
                                                 <span class="menu-icon">
-                                                <i class="fa-solid fa-file-import fa-2xl"></i>
+                                                    <i class="fa-solid fa-file-import fa-2xl"></i>
                                                 </span>
                                                 <span class="menu-title">KKPR</span>
                                                 <span class="menu-arrow"></span>
@@ -1056,9 +1057,9 @@
                                                     <!--end:Menu link-->
                                                 </div>
                                             </div>
-                                            <!--end:Menu sub-->                                            
+                                            <!--end:Menu sub-->
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
 
                                 <!--end::Menu-->
@@ -1102,7 +1103,7 @@
                                         <!--begin:Menu link-->
                                         <a class="menu-link" href="<?= base_url('Persiapan.html') ?>">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-file fa-2xl"></i>
+                                                <i class="fa-solid fa-file fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Formulir</span>
                                         </a>
@@ -1113,7 +1114,7 @@
                                         <!--begin:Menu link-->
                                         <a class="menu-link" href="<?= base_url('Map') ?>">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-map fa-2xl"></i>
+                                                <i class="fa-solid fa-map fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Map</span>
                                         </a>
@@ -1123,7 +1124,7 @@
                                         <!--begin:Menu link-->
                                         <a class="menu-link" href="<?= base_url('Map/polygon') ?>">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-map-location-dot fa-2xl"></i>
+                                                <i class="fa-solid fa-map-location-dot fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Polygon Map</span>
                                         </a>
@@ -1139,7 +1140,7 @@
                                             <!--begin:Menu link-->
                                             <span class="menu-link">
                                                 <span class="menu-icon">
-                                                <i class="fa-solid fa-file-import fa-2xl"></i>
+                                                    <i class="fa-solid fa-file-import fa-2xl"></i>
                                                 </span>
                                                 <span class="menu-title">ITR</span>
                                                 <span class="menu-arrow"></span>
@@ -1178,7 +1179,7 @@
                                             <!--begin:Menu link-->
                                             <span class="menu-link">
                                                 <span class="menu-icon">
-                                                <i class="fa-solid fa-file-import fa-2xl"></i>
+                                                    <i class="fa-solid fa-file-import fa-2xl"></i>
                                                 </span>
                                                 <span class="menu-title">KKPR</span>
                                                 <span class="menu-arrow"></span>
@@ -1211,9 +1212,9 @@
                                                     <!--end:Menu link-->
                                                 </div>
                                             </div>
-                                            <!--end:Menu sub-->                                            
+                                            <!--end:Menu sub-->
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
 
                                 <!--end::Menu-->
@@ -1257,7 +1258,7 @@
                                         <!--begin:Menu link-->
                                         <a class="menu-link" href="<?= base_url('Persiapan.html') ?>">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-file fa-2xl"></i>
+                                                <i class="fa-solid fa-file fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Formulir</span>
                                         </a>
@@ -1268,7 +1269,7 @@
                                         <!--begin:Menu link-->
                                         <a class="menu-link" href="<?= base_url('Map') ?>">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-map fa-2xl"></i>
+                                                <i class="fa-solid fa-map fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Map</span>
                                         </a>
@@ -1278,7 +1279,7 @@
                                         <!--begin:Menu link-->
                                         <a class="menu-link" href="<?= base_url('Map/polygon') ?>">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-map-location-dot fa-2xl"></i>
+                                                <i class="fa-solid fa-map-location-dot fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Polygon Map</span>
                                         </a>
@@ -1294,7 +1295,7 @@
                                             <!--begin:Menu link-->
                                             <span class="menu-link">
                                                 <span class="menu-icon">
-                                                <i class="fa-solid fa-file-import fa-2xl"></i>
+                                                    <i class="fa-solid fa-file-import fa-2xl"></i>
                                                 </span>
                                                 <span class="menu-title">ITR</span>
                                                 <span class="menu-arrow"></span>
@@ -1313,13 +1314,13 @@
                                                     <!--end:Menu link-->
                                                 </div>
                                             </div>
-                                            <!--end:Menu sub-->                                            
+                                            <!--end:Menu sub-->
                                         </div>
                                         <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                                             <!--begin:Menu link-->
                                             <span class="menu-link">
                                                 <span class="menu-icon">
-                                                <i class="fa-solid fa-file-import fa-2xl"></i>
+                                                    <i class="fa-solid fa-file-import fa-2xl"></i>
                                                 </span>
                                                 <span class="menu-title">KKPR</span>
                                                 <span class="menu-arrow"></span>
@@ -1338,9 +1339,9 @@
                                                     <!--end:Menu link-->
                                                 </div>
                                             </div>
-                                            <!--end:Menu sub-->                                                                                       
+                                            <!--end:Menu sub-->
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
 
                                 <!--end::Menu-->
@@ -1384,7 +1385,7 @@
                                         <!--begin:Menu link-->
                                         <a class="menu-link" href="<?= base_url('Persiapan.html') ?>">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-file fa-2xl"></i>
+                                                <i class="fa-solid fa-file fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Formulir</span>
                                         </a>
@@ -1395,12 +1396,22 @@
                                         <!--begin:Menu link-->
                                         <a class="menu-link" href="<?= base_url('Map/polygon') ?>">
                                             <span class="menu-icon">
-                                            <i class="fa-solid fa-map-location-dot fa-2xl"></i>
+                                                <i class="fa-solid fa-map-location-dot fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Polygon Map</span>
                                         </a>
                                         <!--end:Menu link-->
-                                    </div>                                                                    
+                                    </div>
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('Kkpr/pengembalian_formulir') ?>">
+                                            <span class="menu-icon">
+                                                <i class="fa-solid fa-file fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Pengembalian Formulir</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
                                 </div>
 
                                 <!--end::Menu-->

@@ -70,6 +70,6 @@ class Map extends CI_Controller
     } 
     function cek1()
     {
-        $this->load->view('polygon_map/backup');
+        $this->load->view('map/cek_koordinat');
     }   
 }

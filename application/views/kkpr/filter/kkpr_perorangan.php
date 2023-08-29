@@ -22,9 +22,9 @@
                 </div>
                 <!--end::Step 3-->
                 <!--begin::Step 4-->
-                <div class="stepper-item" data-kt-stepper-element="nav">
+                <!-- <div class="stepper-item" data-kt-stepper-element="nav">
                     <h3 class="stepper-title">Lampiran</h3>
-                </div>
+                </div> -->
                 <!--end::Step 4-->
             </div>
             <!--end::Nav-->
@@ -44,7 +44,7 @@
                                 <input type="hidden" class="form-control mb-2 " name="type_pengurusan" value="<?= $pengurusan ?>" required="required" />
                                 <input type="hidden" class="form-control mb-2 " name="type_isi_kategori" value="<?= $isi_pengajuan ?>" required="required" />
                                 <input type="hidden" class="form-control mb-2 " name="type_kategori" value="<?= $pengajuan ?>" required="required" />
-                                <input type="hidden" class="form-control mb-2 " name="pemilik_lahan_meninggal" value="<?= $pemilik_lahan_meninggal ?>" required="required" />
+                                <!-- <input type="hidden" class="form-control mb-2 " name="pemilik_lahan_meninggal" value="<?= $pemilik_lahan_meninggal ?>" required="required" /> -->
                                 <input type="hidden" class="form-control mb-2 " name="badan_hukum" value="<?= $badan_hukum ?>" required="required" />
                             </div>
                         </div>
@@ -137,6 +137,14 @@
                                     pengurusan)</small>
                             </div>
                         </div>
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Fotokopi KTP Pemohon
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 ">
+                                <input type="file" id="alamat-pemohon" name="fotokopi_ktp" class="form-control ">
+                            </div>
+                        </div> 
                     </div>
                     <!--end::Wrapper-->
                 </div>
@@ -153,6 +161,15 @@
                                 <input type="text" id="" class="form-control " required="required" data-validate-length-range="6" name="nib">
                             </div>
                         </div>
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
+                                NIB
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 ">
+                                <input type="file" id="alamat-pemohon" name="tdp_nib" class="form-control ">
+                            </div>
+                        </div> 
                         <div class="mb-3 row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama-pemohon">
                                 Skala Usaha
@@ -190,20 +207,53 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama-pemohon">
-                                KBLI
+                            <label for="jumlah_kbli" class="col-form-label col-md-3 col-sm-3 label-align">Jumlah Surat KBLI<span class="required"></span></label>
+                            <div class="col-md-9 col-sm-9 ">
+                                <input id="jumlah_kbli" class="form-control mb-2 col" type="number" value="0" min="0" max="100" name="jumlah_kbli" required>
+                            </div>
+                        </div>
+
+                        <div id="kbli_container"></div> 
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name"> Dokumen yang di unduh pada OSS
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="text" id="" class="form-control " required="required" data-validate-length-range="6" name="kbli">
+                                <input type="file" id="alamat-pemohon" name="dokumen_oss" class="form-control ">
                             </div>
-                        </div>                                                
+                        </div>                                                                       
+                        <?php if ($badan_hukum == '1') { ?>
+                            <div class="mb-3 row">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
+                                    Fotokopi NPWP
+                                    <br>
+                                    <small>(jika berbadan hukum, dan wajib untuk permohonan Perumahan luas di atas 5.000 m2)</small>
+                                    <span class="required"></span>
+                                </label>
+                                <div class="col-md-9 col-sm-9 ">
+                                    <input type="file" id="alamat-pemohon" name="npwp" class="form-control ">
+                                </div>
+                            </div>
+                        <?php } ?>                                                                  
                     </div>
                 </div>
                 <!--begin::Step 2-->
                 <!--begin::Step 3-->
                 <div data-kt-stepper-element="content">
                     <div class="w-100">
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama-pemohon">
+                                Status Tanah
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 ">
+                                <select name="status_tanah_sm" id="status_tanah_sm" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Status Tanah" <?php if ($pengajuan == 'perumahan' || $pengajuan == 'pergudangan') echo"disabled";  ?>>
+                                    <option value="" selected></option>                                    
+                                    <option value="sewa">Sewa</option>                                 
+                                    <option value="milik_sendiri"  <?php if ($pengajuan == 'perumahan' || $pengajuan == 'pergudangan') echo"selected";  ?>>Milik Sendiri</option>                                 
+                                </select>
+                            </div>
+                        </div>
                         <div class="mb-3 row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align">Peruntukan dimohon
                                 <span class="required"></span>
@@ -247,6 +297,51 @@
 
                         <div id="status_tanah_container"></div>
                         <div class="mb-3 row">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">
+                                Apakah ada surat ahli waris?
+                                <span class="ms-1" data-bs-toggle="tooltip" title="Pilih Ya jika pemilik lahan sudah meninggal">
+                                    <i class="ki-duotone ki-information fs-7">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                        <span class="path3"></span>
+                                    </i>
+                                </span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 ">
+                                <div class="form-check form-check-custom form-check-solid mb-5">
+                                    <input class="form-check-input mb-2" type="radio" value="1" id="pemilik_lahan_meninggal_y" name="pemilik_lahan_meninggal" />
+                                    <label class="form-check-label" for="flexRadioDefault">
+                                        Ya
+                                    </label>&emsp;
+                                    <input class="form-check-input mb-2" type="radio" value="0" id="pemilik_lahan_meninggal_t" name="pemilik_lahan_meninggal" />
+                                    <label class="form-check-label" for="flexRadioDefault">
+                                        Tidak
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="lahan_meninggal" style="display: none;">
+                            <div class="mb-3 row">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
+                                    Surat Kematian
+                                    <span class="required"></span>
+                                </label>
+                                <div class="col-md-9 col-sm-9 ">
+                                    <input type="file" id="alamat-pemohon" name="surat_kematian" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
+                                    Surat Kuasa dari semua ahli waris
+                                    <small>(jika ahli waris lebih dari 1)</small>
+                                    <span class="required"></span>
+                                </label>
+                                <div class="col-md-9 col-sm-9 ">
+                                    <input type="file" id="alamat-pemohon" name="surat_kuasa_ahli_waris" class="form-control ">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Lokasi Dimohon
                                 <span class="ms-1" data-bs-toggle="tooltip" title="Ex. Jl.Kebon Raya blok 3A No.01">
                                     <i class="ki-duotone ki-information fs-7">
@@ -255,20 +350,20 @@
                                         <span class="path3"></span>
                                     </i>
                                 </span>
-                                <span class="required"></span>
+                                
                             </label>
                             <div class="col-md-9 col-sm-9 ">
                                 <input type="text" id="alamat-pemohon" name="lokasi_tanah" required="required" class="form-control ">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">RT<span class="required"></span></label>
+                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">RT</label>
                             <div class="col-md-9 col-sm-9 ">
                                 <input id="middle-name" class="form-control col" type="number" placeholder="Ex. 001" min="1" max="20" name="rt_tanah" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">RW<span class="required"></span></label>
+                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">RW</label>
                             <div class="col-md-9 col-sm-9 ">
                                 <input id="middle-name" class="form-control col" type="number" placeholder="Ex. 001" min="1" max="20" name="rw_tanah" required>
                             </div>
@@ -307,20 +402,77 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <!--begin::Step 3-->
-                <!--begin::Step 4-->
-                <div data-kt-stepper-element="content">
-                    <div class="w-100">
-                        <div class="" id="file_status_tanah_container" style="display: none;">
+                        <?php if ($pengajuan == 'perumahan') { ?>                            
                             <div class="mb-3 row">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Surat Tanah
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
+                                    Peta Bidang
+                                    <span class="ms-1" data-bs-toggle="tooltip" title="Jika Luas tanah diatas 5000m2 maka harus sudah atas nama Pemohon (bertindak atas nama badan hukum), dan dilegalisir oleh BPN / Notaris ">
+                                        <i class="ki-duotone ki-information fs-7">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                        </i>
+                                    </span>
+                                    <br>
+                                    <small>sudah atas nama Pemohon, dan dilegalisir oleh BPN / Notaris </small>
                                     <span class="required"></span>
                                 </label>
                                 <div class="col-md-9 col-sm-9 ">
-                                    <input type="file" id="file_status_tanah" name="file_status_tanah" class="form-control ">
+                                    <input type="file" id="alamat-pemohon" name="peta_bidang" class="form-control ">
                                 </div>
+                            </div>
+                        <?php } ?>  
+                        <?php if ($pengajuan == 'perumahan') { ?>
+                        <?php } else { ?>                        
+                            <?php if ($pengajuan == 'tower') { ?>
+                                <div class="mb-3 row">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
+                                        Peta Bidang (dari BPN)
+                                        <span class="ms-1" data-bs-toggle="tooltip" title="Untuk Tower boleh tanpa peta bidang">
+                                            <i class="ki-duotone ki-information fs-7">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                                <span class="path3"></span>
+                                            </i>
+                                        </span>
+                                        <br>
+                                        <small>(jika belum bersertifikat) dan dilegalisir oleh BPN / Notaris.</small>
+                                        <!-- <span class="required"></span> -->
+                                    </label>
+                                    <div class="col-md-9 col-sm-9 ">
+                                        <input type="file" id="alamat-pemohon" name="peta_bidang_tower" class="form-control ">
+                                    </div>
+                                </div>
+                            <?php } else { ?>
+                                <div class="mb-3 row">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
+                                        Peta Bidang (dari BPN)
+                                        <br>
+                                        <small>(jika belum bersertifikat) dan dilegalisir oleh BPN / Notaris.</small>
+                                        <span class="required"></span>
+                                    </label>
+                                    <div class="col-md-9 col-sm-9 ">
+                                        <input type="file" id="alamat-pemohon" name="peta_bidang" class="form-control ">
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        <?php } ?> 
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
+                                SHP File
+                                <span class="ms-1" data-bs-toggle="tooltip" title="File berbentuk zip yang sudah di download">
+                                    <i class="ki-duotone ki-information fs-7">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                        <span class="path3"></span>
+                                    </i>
+                                </span>
+                                <br>
+                                <small><a href="<?php echo base_url('Map/polygon');?>" target="_blank">Polygon Map</a></small>
+                                <!-- <span class="required"></span> -->
+                            </label>
+                            <div class="col-md-9 col-sm-9 ">
+                                <input type="file" id="alamat-pemohon" name="shp" class="form-control ">
                             </div>
                         </div>
                         <?php if ($pemilik_lahan_meninggal == '1') { ?>
@@ -343,46 +495,7 @@
                                     <input type="file" id="alamat-pemohon" name="surat_kuasa_ahli_waris" class="form-control ">
                                 </div>
                             </div>
-                        <?php } ?>
-                        <?php if ($pengajuan == 'perumahan') { ?>
-                            <div class="mb-3 row">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
-                                    Fotokopi surat tanah
-                                    <span class="ms-1" data-bs-toggle="tooltip" title="Jika Luas tanah diatas 5000m2 maka harus ada Sertifikat Hak Guna Bangunan / Akta Pelepasan Hak Atas Tanah, sudah atas nama Pemohon (bertindak atas nama badan hukum), dan dilegalisir oleh BPN / Notaris ">
-                                        <i class="ki-duotone ki-information fs-7">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                            <span class="path3"></span>
-                                        </i>
-                                    </span>
-                                    <br>
-                                    <small>(Sertifikat / Akta Jual Beli sudah atas nama Pemohon, dan dilegalisir oleh BPN / Notaris )</small>
-                                    <span class="required"></span>
-                                </label>
-                                <div class="col-md-9 col-sm-9 ">
-                                    <input type="file" id="alamat-pemohon" name="surat_tanah" class="form-control ">
-                                    <!-- <small>(untuk permohonan Perumahan luas total di bawah 5.000 m2).</small> -->
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
-                                    Peta Bidang
-                                    <span class="ms-1" data-bs-toggle="tooltip" title="Jika Luas tanah diatas 5000m2 maka harus sudah atas nama Pemohon (bertindak atas nama badan hukum), dan dilegalisir oleh BPN / Notaris ">
-                                        <i class="ki-duotone ki-information fs-7">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                            <span class="path3"></span>
-                                        </i>
-                                    </span>
-                                    <br>
-                                    <small>sudah atas nama Pemohon, dan dilegalisir oleh BPN / Notaris </small>
-                                    <span class="required"></span>
-                                </label>
-                                <div class="col-md-9 col-sm-9 ">
-                                    <input type="file" id="alamat-pemohon" name="peta_bidang" class="form-control ">
-                                </div>
-                            </div>
-                        <?php } ?>
+                        <?php } ?>                        
                         <?php if ($pengajuan == 'tower') { ?>
                             <div class="mb-3 row">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
@@ -457,108 +570,10 @@
                                     <input type="file" name="surat_fkub" class="form-control ">
                                 </div>
                             </div>
-                        <?php } ?>
-                        <div class="mb-3 row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name"> Dokumen yang di unduh pada OSS
-                                <span class="required"></span>
-                            </label>
-                            <div class="col-md-9 col-sm-9 ">
-                                <input type="file" id="alamat-pemohon" name="dokumen_oss" class="form-control ">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Fotokopi KTP Pemohon
-                                <span class="required"></span>
-                            </label>
-                            <div class="col-md-9 col-sm-9 ">
-                                <input type="file" id="alamat-pemohon" name="fotokopi_ktp" class="form-control ">
-                            </div>
-                        </div>                        
-                        <div class="mb-3 row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
-                                NIB
-                                <span class="required"></span>
-                            </label>
-                            <div class="col-md-9 col-sm-9 ">
-                                <input type="file" id="alamat-pemohon" name="tdp_nib" class="form-control ">
-                            </div>
-                        </div>
-                        <?php if ($badan_hukum == '1') { ?>
-                            <div class="mb-3 row">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
-                                    Fotokopi NPWP
-                                    <br>
-                                    <small>(jika berbadan hukum, dan wajib untuk permohonan Perumahan luas di atas 5.000 m2)</small>
-                                    <span class="required"></span>
-                                </label>
-                                <div class="col-md-9 col-sm-9 ">
-                                    <input type="file" id="alamat-pemohon" name="npwp" class="form-control ">
-                                </div>
-                            </div>
-                        <?php } ?>
-                        <?php if ($pengajuan == 'perumahan') { ?>
-                        <?php } else { ?>
-                            <div class="mb-3 row">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
-                                    Fotokopi surat tanah
-                                    <br>
-                                    <small>(Sertifikat / Akta Jual Beli / Petok D / Letter C / Perjanjian Pengikatan Jual Beli dan Surat Kuasa Menjual / Perjanjian Sewa / Perjanjian Kerjasama)</small>
-                                    <span class="required"></span>
-                                </label>
-                                <div class="col-md-9 col-sm-9 ">
-                                    <input type="file" id="alamat-pemohon" name="surat_tanah" class="form-control ">
-                                    <small>Permohonan dilengkapi dengan setempel basah (jika berbadan
-                                        hukum)</small>
-                                </div>
-                            </div>
-                            <?php if ($pengajuan == 'tower') { ?>
-                                <div class="mb-3 row">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
-                                        Peta Bidang (dari BPN)
-                                        <span class="ms-1" data-bs-toggle="tooltip" title="Untuk Tower boleh tanpa peta bidang">
-                                            <i class="ki-duotone ki-information fs-7">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                                <span class="path3"></span>
-                                            </i>
-                                        </span>
-                                        <br>
-                                        <small>(jika belum bersertifikat) dan dilegalisir oleh BPN / Notaris.</small>
-                                        <!-- <span class="required"></span> -->
-                                    </label>
-                                    <div class="col-md-9 col-sm-9 ">
-                                        <input type="file" id="alamat-pemohon" name="peta_bidang_tower" class="form-control ">
-                                    </div>
-                                </div>
-                            <?php } else { ?>
-                                <div class="mb-3 row">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
-                                        Peta Bidang (dari BPN)
-                                        <br>
-                                        <small>(jika belum bersertifikat) dan dilegalisir oleh BPN / Notaris.</small>
-                                        <span class="required"></span>
-                                    </label>
-                                    <div class="col-md-9 col-sm-9 ">
-                                        <input type="file" id="alamat-pemohon" name="peta_bidang" class="form-control ">
-                                    </div>
-                                </div>
-                            <?php } ?>
-                        <?php } ?>
-                        <div class="mb-3 row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
-                                Pertimbangan Teknis pertanahan dari BPN
-                                <!-- <br> -->
-                                <!-- <small>(Sertifikat  /  Akta  Jual  Beli  /  Petok   D  /  Letter  C  /  Perjanjian Pengikatan Jual Beli dan  Surat  Kuasa Menjual / Perjanjian Sewa / Perjanjian Kerjasama)</small> -->
-                                <span class="required"></span>
-                            </label>
-                            <div class="col-md-9 col-sm-9 ">
-                                <input type="file" id="alamat-pemohon" name="surat_teknis_tanah" class="form-control ">
-                                <small>(untuk permohonan Non Berusaha dan Berusaha Non UMK, Perolehan Tanah atau sesuai ketentuan teknis yang berlaku)</small>
-                            </div>
-                        </div>
+                        <?php } ?> 
                     </div>
                 </div>
-                <!--begin::Step 4-->
+                <!--begin::Step 3-->                
                 <!--begin::Actions-->
                 <div class="d-flex flex-stack pt-15">
                     <!--begin::Wrapper-->

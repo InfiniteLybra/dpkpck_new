@@ -60,10 +60,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mb-3 row">
+                            <!-- <div class="mb-3 row">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">
                                     Apakah Pemilik Lahan Meninggal ?
-                                    <!-- <span class="required"></span> -->
+                                    
                                 </label>
                                 <div class="col-md-9 col-sm-9 ">
                                     <div class="form-check form-check-custom form-check-solid mb-5">
@@ -77,7 +77,7 @@
                                         </label>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="mb-3 row">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">
                                     Type Pengajuan

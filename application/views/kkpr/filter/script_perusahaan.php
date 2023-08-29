@@ -5,7 +5,7 @@
         return {
             init: function() {
                 (e = document.querySelector("#kt_modal_create_account")) && new bootstrap.Modal(e), (t = document.querySelector("#kt_create_account_stepper")) && (i = t.querySelector("#kt_create_account_form"), o = t.querySelector('[data-kt-stepper-action="submit"]'), a = t.querySelector('[data-kt-stepper-action="next"]'), (r = new KTStepper(t)).on("kt.stepper.changed", (function(e) {
-                    4 === r.getCurrentStepIndex() ? (o.classList.remove("d-none"), o.classList.add("d-inline-block"), a.classList.add("d-none")) : 5 === r.getCurrentStepIndex() ? (o.classList.add("d-none"), a.classList.add("d-none")) : (o.classList.remove("d-inline-block"), o.classList.remove("d-none"), a.classList.remove("d-none"))
+                    3 === r.getCurrentStepIndex() ? (o.classList.remove("d-none"), o.classList.add("d-inline-block"), a.classList.add("d-none")) : 5 === r.getCurrentStepIndex() ? (o.classList.add("d-none"), a.classList.add("d-none")) : (o.classList.remove("d-inline-block"), o.classList.remove("d-none"), a.classList.remove("d-none"))
                 })), r.on("kt.stepper.next", (function(e) {
                     console.log("stepper.next");
                     var t = s[e.getCurrentStepIndex() - 1];
@@ -83,6 +83,13 @@
                             }
                         },
                         telp_pemohon: {
+                            validators: {
+                                notEmpty: {
+                                    message: "Harus Diisi!"
+                                }
+                            }
+                        },
+                        fotokopi_ktp: {
                             validators: {
                                 notEmpty: {
                                     message: "Harus Diisi!"
@@ -183,6 +190,27 @@
                                     message: "Harus Diisi!"
                                 }
                             }
+                        },
+                        dokumen_oss: {
+                            validators: {
+                                notEmpty: {
+                                    message: "Harus Diisi!"
+                                }
+                            }
+                        },
+                        fc_akta_perusahaan: {
+                            validators: {
+                                notEmpty: {
+                                    message: "Harus Diisi!"
+                                }
+                            }
+                        },
+                        tdp_nib: {
+                            validators: {
+                                notEmpty: {
+                                    message: "Harus Diisi!"
+                                }
+                            }
                         }
                     },
                     plugins: {
@@ -195,6 +223,13 @@
                     }
                 })), s.push(FormValidation.formValidation(i, {
                     fields: {
+                        status_tanah_sm: {
+                            validators: {
+                                notEmpty: {
+                                    message: "Harus Diisi!"
+                                }
+                            }
+                        },
                         kota_tanah: {
                             validators: {
                                 notEmpty: {
@@ -216,28 +251,7 @@
                                 }
                             }
                         },
-                        lokasi_tanah: {
-                            validators: {
-                                notEmpty: {
-                                    message: "Harus Diisi!"
-                                }
-                            }
-                        },
                         perluasan: {
-                            validators: {
-                                notEmpty: {
-                                    message: "Harus Diisi!"
-                                }
-                            }
-                        },
-                        rt_tanah: {
-                            validators: {
-                                notEmpty: {
-                                    message: "Harus Diisi!"
-                                }
-                            }
-                        },
-                        rw_tanah: {
                             validators: {
                                 notEmpty: {
                                     message: "Harus Diisi!"
@@ -257,26 +271,22 @@
                                     message: "Harus Diisi!"
                                 }
                             }
-                        }
-                    },
-                    plugins: {
-                        trigger: new FormValidation.plugins.Trigger,
-                        bootstrap: new FormValidation.plugins.Bootstrap5({
-                            rowSelector: ".row",
-                            eleInvalidClass: "",
-                            eleValidClass: ""
-                        })
-                    }
-                })), s.push(FormValidation.formValidation(i, {
-                    fields: {
-                        surat_kematian: {
+                        },
+                        surat_tanah: {
                             validators: {
                                 notEmpty: {
                                     message: "Harus Diisi!"
                                 }
                             }
                         },
-                        surat_kuasa_ahli_waris: {
+                        peta_bidang: {
+                            validators: {
+                                notEmpty: {
+                                    message: "Harus Diisi!"
+                                }
+                            }
+                        },
+                        npwp: {
                             validators: {
                                 notEmpty: {
                                     message: "Harus Diisi!"
@@ -289,7 +299,7 @@
                                     message: "Harus Diisi!"
                                 }
                             }
-                        },                        
+                        },
                         surat_dinas_perdagangan: {
                             validators: {
                                 notEmpty: {
@@ -325,77 +335,7 @@
                                 }
                             }
                         },
-                        dokumen_oss: {
-                            validators: {
-                                notEmpty: {
-                                    message: "Harus Diisi!"
-                                }
-                            }
-                        },
-                        fotokopi_ktp: {
-                            validators: {
-                                notEmpty: {
-                                    message: "Harus Diisi!"
-                                }
-                            }
-                        },
-                        spkkp1: {
-                            validators: {
-                                notEmpty: {
-                                    message: "Harus Diisi!"
-                                }
-                            }
-                        },
-                        fc_akta_perusahaan: {
-                            validators: {
-                                notEmpty: {
-                                    message: "Harus Diisi!"
-                                }
-                            }
-                        },
-                        siup: {
-                            validators: {
-                                notEmpty: {
-                                    message: "Harus Diisi!"
-                                }
-                            }
-                        },
-                        tdp_nib: {
-                            validators: {
-                                notEmpty: {
-                                    message: "Harus Diisi!"
-                                }
-                            }
-                        },
-                        npwp: {
-                            validators: {
-                                notEmpty: {
-                                    message: "Harus Diisi!"
-                                }
-                            }
-                        },
-                        surat_tanah: {
-                            validators: {
-                                notEmpty: {
-                                    message: "Harus Diisi!"
-                                }
-                            }
-                        },
-                        peta_bidang: {
-                            validators: {
-                                notEmpty: {
-                                    message: "Harus Diisi!"
-                                }
-                            }
-                        },
-                        surat_tanah: {
-                            validators: {
-                                notEmpty: {
-                                    message: "Harus Diisi!"
-                                }
-                            }
-                        },
-                        surat_teknis_tanah: {
+                        shp: {
                             validators: {
                                 notEmpty: {
                                     message: "Harus Diisi!"
@@ -412,7 +352,7 @@
                         })
                     }
                 })), o.addEventListener("click", function(e) {
-                    s[3].validate().then(function(t) {
+                    s[2].validate().then(function(t) {
                         console.log("validated!");
                         if (t === "Valid") {
                             e.preventDefault();
@@ -634,6 +574,32 @@
                     '<div class="col-md-9 col-sm-9">' +
                     '<input type="text" class="form-control mb-2" name="status_tanah_array[]" required />' +
                     '</div>' +
+                    '</div>' +
+                    '<div class="mb-3 row">' +
+                    '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah <span class="required"></span></label>' +
+                    '<div class="col-md-9 col-sm-9">' +
+                    '<input type="file" name="file_status_tanah[]" class="form-control ">' +
+                    '</div>' +
+                    '</div>';
+                namaPemohonContainer.append(formNamaPemohon);
+            }
+        });
+    });
+    $(document).ready(function() {
+        $("#jumlah_kbli").on("input", function() {
+            var rtValue = $(this).val();
+            var namaPemohonContainer = $("#kbli_container");
+
+            // Hapus semua form nama pemohon yang ada sebelumnya
+            namaPemohonContainer.empty();
+
+            // Buat form nama pemohon sesuai dengan nilai input number
+            for (var i = 0; i < rtValue; i++) {
+                var formNamaPemohon = '<div class="mb-3 row">' +
+                    '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">KBLI <span class="required"></span></label>' +
+                    '<div class="col-md-9 col-sm-9">' +
+                    '<input type="text" class="form-control mb-2" name="kbli_array[]" required />' +
+                    '</div>' +
                     '</div>';
 
                 namaPemohonContainer.append(formNamaPemohon);
@@ -650,6 +616,32 @@
                 FileStatusTanahContainer.show();
             } else {
                 FileStatusTanahContainer.hide();
+            }
+        });
+    });
+    $(document).ready(function() {
+        $("#pemilik_lahan_meninggal_y").on("change", function() {
+            var selectedOption = $(this).val();
+            var formPLM = $("#lahan_meninggal");
+
+            // Tampilkan atau sembunyikan form berdasarkan pilihan
+            if (selectedOption === "1") {
+                formPLM.show();
+            } else {
+                formPLM.hide();
+            }
+        });
+    });
+    $(document).ready(function() {
+        $("#pemilik_lahan_meninggal_t").on("change", function() {
+            var selectedOption = $(this).val();
+            var formPLM = $("#lahan_meninggal");
+
+            // Tampilkan atau sembunyikan form berdasarkan pilihan
+            if (selectedOption === "0") {
+                formPLM.hide();
+            } else {
+                formPLM.hide();
             }
         });
     });

@@ -8,8 +8,8 @@ class Kkpr_Model extends CI_Model
         $pengurusan = $this->input->post('type_pengurusan');
         if ($pengurusan == 'perusahaan') {
             $config['upload_path']          = './assets_dokumen/kkpr';
-            $config['allowed_types']        = 'pdf|PDF|png|PNG|jpg|JPG|zip';
-            $config['max_size']             = 2048; //2MB
+            $config['allowed_types']        = 'pdf|PDF|jpg|JPG|zip';
+            $config['max_size']             = 5120; //5MB
             // $config['max_width']            = 2048;
             // $config['max_height']           = 2000;
             // $config['encrypt_name']         = true;
@@ -35,11 +35,11 @@ class Kkpr_Model extends CI_Model
                 $file3 = $data3['file_name'];
             }
             //file4
-            if (!empty($_FILES['siup']['name'])) {
-                $this->upload->do_upload('siup');
-                $data4 = $this->upload->data();
-                $file4 = $data4['file_name'];
-            }
+            // if (!empty($_FILES['siup']['name'])) {
+            //     $this->upload->do_upload('siup');
+            //     $data4 = $this->upload->data();
+            //     $file4 = $data4['file_name'];
+            // }
             //file5
             if (!empty($_FILES['tdp_nib']['name'])) {
                 $this->upload->do_upload('tdp_nib');
@@ -53,11 +53,32 @@ class Kkpr_Model extends CI_Model
                 $file6 = $data6['file_name'];
             }
             //file7
-            if (!empty($_FILES['surat_tanah']['name'])) {
-                $this->upload->do_upload('surat_tanah');
-                $data7 = $this->upload->data();
-                $file7 = $data7['file_name'];
+            $jumlah_berkas = count($_FILES['file_status_tanah']['name']);
+            $dataArray_surat_tanah = array();
+
+            for ($i = 0; $i < $jumlah_berkas; $i++) {
+                if (!empty($_FILES['file_status_tanah']['name'][$i])) {
+                    $_FILES['file']['name'] = $_FILES['file_status_tanah']['name'][$i];
+                    $_FILES['file']['type'] = $_FILES['file_status_tanah']['type'][$i];
+                    $_FILES['file']['tmp_name'] = $_FILES['file_status_tanah']['tmp_name'][$i];
+                    $_FILES['file']['error'] = $_FILES['file_status_tanah']['error'][$i];
+                    $_FILES['file']['size'] = $_FILES['file_status_tanah']['size'][$i];
+
+                    if ($this->upload->do_upload('file')) {
+                        $uploadData = $this->upload->data();
+                        $data = array(
+                            'surat_tanah' => $uploadData['file_name']
+                        );
+                        $dataArray_surat_tanah[] = $data;
+                    }
+                }
             }
+
+            $file7 = json_encode($dataArray_surat_tanah);
+
+            // $this->upload->do_upload('file_status_tanah[]');
+            // $data7 = $this->upload->data();
+            // $file7 = $data7['file_name'];                        
             //file8
             if (!empty($_FILES['peta_bidang']['name'])) {
                 $this->upload->do_upload('peta_bidang');
@@ -65,11 +86,11 @@ class Kkpr_Model extends CI_Model
                 $file8 = $data8['file_name'];
             }
             //file9
-            if (!empty($_FILES['surat_teknis_tanah']['name'])) {
-                $this->upload->do_upload('surat_teknis_tanah');
-                $data9 = $this->upload->data();
-                $file9 = $data9['file_name'];
-            }
+            // if (!empty($_FILES['surat_teknis_tanah']['name'])) {
+            //     $this->upload->do_upload('surat_teknis_tanah');
+            //     $data9 = $this->upload->data();
+            //     $file9 = $data9['file_name'];
+            // }
             //TAMBAHAN
             //file10
             if (!empty($_FILES['surat_kematian']['name'])) {
@@ -145,7 +166,7 @@ class Kkpr_Model extends CI_Model
             $nib = $this->input->post('nib');
             $skala_usaha = $this->input->post('skala_usaha');
             $klasifikasi_resiko = $this->input->post('klasifikasi_resiko');
-            $kbli = $this->input->post('kbli');
+            $kbli = $this->input->post('kbli_array'); //array
             $alamat_perusahaan = $this->input->post('alamat_perusahaan');
             $rt_perusahaan = $this->input->post('rt_perusahaan');
             $rw_perusahaan = $this->input->post('rw_perusahaan');
@@ -154,6 +175,7 @@ class Kkpr_Model extends CI_Model
             $kecamatan_perusahaan = $this->input->post('kecamatan_perusahaan');
             $kelurahan_perusahaan = $this->input->post('kelurahan_perusahaan');
 
+            $status_tanah_sm = $this->input->post('status_tanah_sm');
             $peruntukan_tanah = $this->input->post('peruntukan_tanah');
             $luas_tanah = $this->input->post('luas_tanah');
             $perluasan = $this->input->post('perluasan');
@@ -177,6 +199,19 @@ class Kkpr_Model extends CI_Model
                 }
             }
             $Tanah_Array = json_encode($dataArray);
+
+            $dataArray_kbli = array();
+            if (!empty($kbli)) {
+                foreach ($kbli as $input) {
+                    if (!empty($input)) {
+                        $data = array(
+                            'kbli' => $input
+                        );
+                        $dataArray_kbli[] = $data;
+                    }
+                }
+            }
+            $kbli_Array = json_encode($dataArray_kbli);
             $tgl_reg = date('d-m-y');
 
             $insert = "INSERT INTO kkpr_permohonan (
@@ -223,33 +258,36 @@ class Kkpr_Model extends CI_Model
 
                 dokumen_oss,
                 fotokopi_ktp,
-                akta_perusahaan,
-                siup,
+                akta_perusahaan,                
                 tdp,
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,teknis_pertanahan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_dinas_peternakan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_dinas_peternakan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_pertamina" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_pertamina" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,teknis_pertanahan,daftar_nama_kk,surat_fkub" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,daftar_nama_kk,surat_fkub" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,surat_dinas_perdagangan" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,surat_dinas_perdagangan" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,surat_dinas_peternakan" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,surat_dinas_peternakan" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,surat_pertamina" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,surat_pertamina" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,daftar_nama_kk,surat_fkub" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,daftar_nama_kk,surat_fkub" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
                 ) 
                 VALUES(
                     '$id_user',
@@ -270,7 +308,7 @@ class Kkpr_Model extends CI_Model
                     '$nib',
                     '$skala_usaha',
                     '$klasifikasi_resiko',
-                    '$kbli',
+                    '$kbli_Array',
                     '$alamat_perusahaan',
                     '$rt_perusahaan',
                     '$rw_perusahaan',
@@ -295,36 +333,40 @@ class Kkpr_Model extends CI_Model
 
                     '$file1',
                     '$file2',
-                    '$file3',
-                    '$file4',
+                    '$file3',                    
                     '$file5',
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8','$file9','$file10','$file11'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file7','$file8','$file9'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8','$file9'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file7','$file8','$file9','$file10','$file11'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file9','$file10','$file11','$file12','$file13'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file7','$file8','$file9','$file12','$file13'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file9','$file12','$file13'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file7','$file8','$file9','$file10','$file11','$file12','$file13'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file9','$file10','$file11','$file14'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file9','$file14'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file9','$file14'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file9','$file10','$file11','$file14'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file9','$file10','$file11','$file15'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file9','$file15'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file9','$file15'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file9','$file10','$file11','$file15'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file9','$file10','$file11','$file16'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file7','$file8','$file9','$file16'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file9','$file16'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file7','$file8','$file9','$file10','$file11','$file16'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file9','$file10','$file11','$file17','$file18'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file9','$file17','$file18'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file9','$file17','$file18'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file9','$file10','$file11','$file17','$file18'" : "") . "                                                                    
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file7','$file8'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "'$file7','$file8'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "'$file6','$file7','$file8'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file10','$file11','$file12','$file13'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file7','$file8','$file12','$file13'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file12','$file13'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file7','$file8','$file10','$file11','$file12','$file13'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file10','$file11','$file14'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file14'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file14'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file10','$file11','$file14'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file10','$file11','$file15'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file15'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file15'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file10','$file11','$file15'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file10','$file11','$file16'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file7','$file8','$file16'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file16'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file7','$file8','$file10','$file11','$file16'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file17','$file18'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file17','$file18'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                                    
                     )";
 
             $query = $this->db->query($insert);
+            // echo $insert;
             if ($query) {
                 return true;
             } else {
@@ -353,11 +395,11 @@ class Kkpr_Model extends CI_Model
                 $file2 = $data2['file_name'];
             }
             //file4
-            if (!empty($_FILES['siup']['name'])) {
-                $this->upload->do_upload('siup');
-                $data4 = $this->upload->data();
-                $file4 = $data4['file_name'];
-            }
+            // if (!empty($_FILES['siup']['name'])) {
+            //     $this->upload->do_upload('siup');
+            //     $data4 = $this->upload->data();
+            //     $file4 = $data4['file_name'];
+            // }
             //file5
             if (!empty($_FILES['tdp_nib']['name'])) {
                 $this->upload->do_upload('tdp_nib');
@@ -371,11 +413,28 @@ class Kkpr_Model extends CI_Model
                 $file6 = $data6['file_name'];
             }
             //file7
-            if (!empty($_FILES['surat_tanah']['name'])) {
-                $this->upload->do_upload('surat_tanah');
-                $data7 = $this->upload->data();
-                $file7 = $data7['file_name'];
+            $jumlah_berkas = count($_FILES['file_status_tanah']['name']);
+            $dataArray_surat_tanah = array();
+
+            for ($i = 0; $i < $jumlah_berkas; $i++) {
+                if (!empty($_FILES['file_status_tanah']['name'][$i])) {
+                    $_FILES['file']['name'] = $_FILES['file_status_tanah']['name'][$i];
+                    $_FILES['file']['type'] = $_FILES['file_status_tanah']['type'][$i];
+                    $_FILES['file']['tmp_name'] = $_FILES['file_status_tanah']['tmp_name'][$i];
+                    $_FILES['file']['error'] = $_FILES['file_status_tanah']['error'][$i];
+                    $_FILES['file']['size'] = $_FILES['file_status_tanah']['size'][$i];
+
+                    if ($this->upload->do_upload('file')) {
+                        $uploadData = $this->upload->data();
+                        $data = array(
+                            'surat_tanah' => $uploadData['file_name']
+                        );
+                        $dataArray_surat_tanah[] = $data;
+                    }
+                }
             }
+
+            $file7 = json_encode($dataArray_surat_tanah);
             //file8
             if (!empty($_FILES['peta_bidang']['name'])) {
                 $this->upload->do_upload('peta_bidang');
@@ -383,11 +442,11 @@ class Kkpr_Model extends CI_Model
                 $file8 = $data8['file_name'];
             }
             //file9
-            if (!empty($_FILES['surat_teknis_tanah']['name'])) {
-                $this->upload->do_upload('surat_teknis_tanah');
-                $data9 = $this->upload->data();
-                $file9 = $data9['file_name'];
-            }
+            // if (!empty($_FILES['surat_teknis_tanah']['name'])) {
+            //     $this->upload->do_upload('surat_teknis_tanah');
+            //     $data9 = $this->upload->data();
+            //     $file9 = $data9['file_name'];
+            // }
             //TAMBAHAN
             //file10
             if (!empty($_FILES['surat_kematian']['name'])) {
@@ -462,7 +521,7 @@ class Kkpr_Model extends CI_Model
             $nib = $this->input->post('nib');
             $skala_usaha = $this->input->post('skala_usaha');
             $klasifikasi_resiko = $this->input->post('klasifikasi_resiko');
-            $kbli = $this->input->post('kbli');
+            $kbli = $this->input->post('kbli_array');
 
             $peruntukan_tanah = $this->input->post('peruntukan_tanah');
             $luas_tanah = $this->input->post('luas_tanah');
@@ -487,6 +546,18 @@ class Kkpr_Model extends CI_Model
                 }
             }
             $Tanah_Array = json_encode($dataArray);
+            $dataArray_kbli = array();
+            if (!empty($kbli)) {
+                foreach ($kbli as $input) {
+                    if (!empty($input)) {
+                        $data = array(
+                            'kbli' => $input
+                        );
+                        $dataArray_kbli[] = $data;
+                    }
+                }
+            }
+            $kbli_Array = json_encode($dataArray_kbli);
             $tgl_reg = date('d-m-y');
 
             $insert = "INSERT INTO kkpr_permohonan (
@@ -525,36 +596,39 @@ class Kkpr_Model extends CI_Model
 
                 dokumen_oss,
                 fotokopi_ktp,
-                siup,
                 tdp,
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                 " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,teknis_pertanahan" : "") . "                                            
                 " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang,teknis_pertanahan" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                 " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "surat_tanah,peta_bidang,teknis_pertanahan" : "") . "                                            
                 " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_dinas_peternakan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_dinas_peternakan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_pertamina" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_pertamina" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,teknis_pertanahan,daftar_nama_kk,surat_fkub" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,daftar_nama_kk,surat_fkub" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,surat_dinas_perdagangan" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,surat_dinas_perdagangan" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,surat_dinas_peternakan" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,surat_dinas_peternakan" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,surat_pertamina" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,surat_pertamina" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,daftar_nama_kk,surat_fkub" : "") . "                                            
+                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,daftar_nama_kk,surat_fkub" : "") . "                                            
+                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
                 ) 
                 VALUES(
                     '$id_user',
@@ -574,7 +648,7 @@ class Kkpr_Model extends CI_Model
                     '$nib',
                     '$skala_usaha',
                     '$klasifikasi_resiko',
-                    '$kbli',                    
+                    '$kbli_Array',                    
 
                     '$peruntukan_tanah',
                     '$luas_tanah',
@@ -591,37 +665,36 @@ class Kkpr_Model extends CI_Model
                     '0',
 
                     '$file1',
-                    '$file2',
-                    '$file4',
+                    '$file2',              
                     '$file5',
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8','$file9','$file10','$file11'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file7','$file8','$file9'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8','$file9'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file7','$file8','$file9','$file10','$file11'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "'$file6','$file7','$file8','$file9','$file10','$file11'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "'$file7','$file8','$file9'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "'$file6','$file7','$file8','$file9'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "'$file7','$file8','$file9','$file10','$file11'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file9','$file10','$file11','$file12','$file13'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file7','$file8','$file9','$file12','$file13'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file9','$file12','$file13'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file7','$file8','$file9','$file10','$file11','$file12','$file13'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file9','$file10','$file11','$file14'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file9','$file14'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file9','$file14'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file9','$file10','$file11','$file14'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file9','$file10','$file11','$file15'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file9','$file15'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file9','$file15'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file9','$file10','$file11','$file15'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file9','$file10','$file11','$file16'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file7','$file8','$file9','$file16'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file9','$file16'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file7','$file8','$file9','$file10','$file11','$file16'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file9','$file10','$file11','$file17','$file18'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file9','$file17','$file18'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file9','$file17','$file18'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file9','$file10','$file11','$file17','$file18'" : "") . "                                                                    
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file7','$file8'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "'$file7','$file8'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "'$file6','$file7','$file8'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file10','$file11','$file12','$file13'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file7','$file8','$file12','$file13'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file12','$file13'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file7','$file8','$file10','$file11','$file12','$file13'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file10','$file11','$file14'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file14'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file14'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file10','$file11','$file14'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file10','$file11','$file15'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file15'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file15'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file10','$file11','$file15'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file10','$file11','$file16'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file7','$file8','$file16'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file16'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file7','$file8','$file10','$file11','$file16'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file17','$file18'" : "") . "                                                
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file17','$file18'" : "") . "                                                
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                                    
                     )";
             // echo $insert;
             $query = $this->db->query($insert);
@@ -2412,8 +2485,27 @@ class Kkpr_Model extends CI_Model
         $yn_daftar_nama_kk = $this->input->post('yn_daftar_nama_kk');
         $yn_surat_fkub = $this->input->post('yn_surat_fkub');
 
-
         $preview = $this->input->post('preview');
+
+        $array_surat_tanah = array();
+        if (!empty($surat_tanah)) {
+            foreach ($surat_tanah as $input) {
+                if (!empty($input)) {
+                    $data = array(
+                        'surat_tanah' => $input
+                    );
+                    $array_surat_tanah[] = $data;
+                }
+            }
+        }
+        $surat_tanah_array = json_encode($array_surat_tanah);
+        $dataArray_tanah = array();
+        foreach ($yn_surat_tanah as $value) {
+            $data = array("surat_tanah" => $value);
+            $dataArray_tanah[] = $data;
+        }
+        $yn_surat_tanah_array = json_encode($dataArray_tanah);
+        // echo $yn_surat_tanah_array;
 
         $get_keterangan = $this->db->query("SELECT * FROM pengembalian_kkpr_permohonan WHERE id_permohonan = '$id'")->row();
         $get_yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE id_permohonan = '$id'")->row();
@@ -2424,16 +2516,17 @@ class Kkpr_Model extends CI_Model
                 akta_perusahaan = '$akta_perusahaan',
                 siup = '$siup',
                 tdp = '$tdp',
-                " . ($type == 'biasa' ? "npwp='$npwp',surat_tanah='$surat_tanah',peta_bidang='$peta_bidang',teknis_pertanahan='$teknis_pertanahan',surat_kematian='$surat_kematian',surat_kuasa_ahli_waris='$surat_kuasa_ahli_waris'" : "") . "
-                " . ($type == 'perumahan' ? "npwp='$npwp',surat_tanah='$surat_tanah',peta_bidang='$peta_bidang',teknis_pertanahan='$teknis_pertanahan',surat_kematian='$surat_kematian',surat_kuasa_ahli_waris='$surat_kuasa_ahli_waris'" : "") . "
-                " . ($type == 'tower' ? "npwp='$npwp',surat_tanah='$surat_tanah',peta_bidang='$peta_bidang',teknis_pertanahan='$teknis_pertanahan',surat_kematian='$surat_kematian',surat_kuasa_ahli_waris='$surat_kuasa_ahli_waris',surat_dinas_komunikasi='$surat_dinas_komunikasi',surat_rekom_tni='$surat_rekom_tni'" : "") . "
-                " . ($type == 'minimarket' ? "npwp='$npwp',surat_tanah='$surat_tanah',peta_bidang='$peta_bidang',teknis_pertanahan='$teknis_pertanahan',surat_kematian='$surat_kematian',surat_kuasa_ahli_waris='$surat_kuasa_ahli_waris',surat_dinas_perdagangan='$surat_dinas_perdagangan'" : "") . "
-                " . ($type == 'peternakan' ? "npwp='$npwp',surat_tanah='$surat_tanah',peta_bidang='$peta_bidang',teknis_pertanahan='$teknis_pertanahan',surat_kematian='$surat_kematian',surat_kuasa_ahli_waris='$surat_kuasa_ahli_waris',surat_dinas_peternakan='$surat_dinas_peternakan'" : "") . "
-                " . ($type == 'spbu' ? "npwp='$npwp',surat_tanah='$surat_tanah',peta_bidang='$peta_bidang',teknis_pertanahan='$teknis_pertanahan',surat_kematian='$surat_kematian',surat_kuasa_ahli_waris='$surat_kuasa_ahli_waris',surat_pertamina='$surat_pertamina'" : "") . "
-                " . ($type == 'tempat_ibadah' ? "npwp='$npwp',surat_tanah='$surat_tanah',peta_bidang='$peta_bidang',teknis_pertanahan='$teknis_pertanahan',surat_kematian='$surat_kematian',surat_kuasa_ahli_waris='$surat_kuasa_ahli_waris',daftar_nama_kk='$daftar_nama_kk',surat_fkub='$surat_fkub'" : "") . "
+                " . ($type == 'biasa' ? "npwp='$npwp',surat_tanah='$surat_tanah_array ',peta_bidang='$peta_bidang',teknis_pertanahan='$teknis_pertanahan',surat_kematian='$surat_kematian',surat_kuasa_ahli_waris='$surat_kuasa_ahli_waris'" : "") . "
+                " . ($type == 'perumahan' ? "npwp='$npwp',surat_tanah='$surat_tanah_array ',peta_bidang='$peta_bidang',teknis_pertanahan='$teknis_pertanahan',surat_kematian='$surat_kematian',surat_kuasa_ahli_waris='$surat_kuasa_ahli_waris'" : "") . "
+                " . ($type == 'tower' ? "npwp='$npwp',surat_tanah='$surat_tanah_array ',peta_bidang='$peta_bidang',teknis_pertanahan='$teknis_pertanahan',surat_kematian='$surat_kematian',surat_kuasa_ahli_waris='$surat_kuasa_ahli_waris',surat_dinas_komunikasi='$surat_dinas_komunikasi',surat_rekom_tni='$surat_rekom_tni'" : "") . "
+                " . ($type == 'minimarket' ? "npwp='$npwp',surat_tanah='$surat_tanah_array ',peta_bidang='$peta_bidang',teknis_pertanahan='$teknis_pertanahan',surat_kematian='$surat_kematian',surat_kuasa_ahli_waris='$surat_kuasa_ahli_waris',surat_dinas_perdagangan='$surat_dinas_perdagangan'" : "") . "
+                " . ($type == 'peternakan' ? "npwp='$npwp',surat_tanah='$surat_tanah_array ',peta_bidang='$peta_bidang',teknis_pertanahan='$teknis_pertanahan',surat_kematian='$surat_kematian',surat_kuasa_ahli_waris='$surat_kuasa_ahli_waris',surat_dinas_peternakan='$surat_dinas_peternakan'" : "") . "
+                " . ($type == 'spbu' ? "npwp='$npwp',surat_tanah='$surat_tanah_array ',peta_bidang='$peta_bidang',teknis_pertanahan='$teknis_pertanahan',surat_kematian='$surat_kematian',surat_kuasa_ahli_waris='$surat_kuasa_ahli_waris',surat_pertamina='$surat_pertamina'" : "") . "
+                " . ($type == 'tempat_ibadah' ? "npwp='$npwp',surat_tanah='$surat_tanah_array ',peta_bidang='$peta_bidang',teknis_pertanahan='$teknis_pertanahan',surat_kematian='$surat_kematian',surat_kuasa_ahli_waris='$surat_kuasa_ahli_waris',daftar_nama_kk='$daftar_nama_kk',surat_fkub='$surat_fkub'" : "") . "
                 WHERE id_permohonan = '$id'
                 ";
             $query = $this->db->query($update);
+            $this->db->query("UPDATE kkpr_permohonan SET status_berkas = '1' WHERE id_kkpr_permohonan = '$id'");
         } else {
             $insert = "INSERT INTO pengembalian_kkpr_permohonan (
                 id_permohonan,                                        
@@ -2461,13 +2554,13 @@ class Kkpr_Model extends CI_Model
                     '$akta_perusahaan',
                     '$siup',
                     '$tdp',
-                    " . ($type == 'biasa' ? "'$npwp','$surat_tanah','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris'" : "") . "                                                
-                    " . ($type == 'perumahan' ? "'$npwp','$surat_tanah','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris'" : "") . "                                                
-                    " . ($type == 'tower' ? "'$npwp','$surat_tanah','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris','$surat_dinas_komunikasi','$surat_rekom_tni'" : "") . "                                                
-                    " . ($type == 'minimarket' ? "'$npwp','$surat_tanah','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris','$surat_dinas_perdagangan'" : "") . "                                                
-                    " . ($type == 'peternakan' ? "'$npwp','$surat_tanah','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris','$surat_dinas_peternakan'" : "") . "                                                
-                    " . ($type == 'spbu' ? "'$npwp','$surat_tanah','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris','$surat_pertamina'" : "") . "                                                
-                    " . ($type == 'tempat_ibadah' ? "'$npwp','$surat_tanah','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris','$daftar_nama_kk','$surat_fkub'" : "") . "                                                
+                    " . ($type == 'biasa' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris'" : "") . "                                                
+                    " . ($type == 'perumahan' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris'" : "") . "                                                
+                    " . ($type == 'tower' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris','$surat_dinas_komunikasi','$surat_rekom_tni'" : "") . "                                                
+                    " . ($type == 'minimarket' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris','$surat_dinas_perdagangan'" : "") . "                                                
+                    " . ($type == 'peternakan' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris','$surat_dinas_peternakan'" : "") . "                                                
+                    " . ($type == 'spbu' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris','$surat_pertamina'" : "") . "                                                
+                    " . ($type == 'tempat_ibadah' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris','$daftar_nama_kk','$surat_fkub'" : "") . "                                                
                     )";
             // echo $insert;
             $query = $this->db->query($insert);
@@ -2480,16 +2573,18 @@ class Kkpr_Model extends CI_Model
                 akta_perusahaan = '$yn_akta_perusahaan',
                 siup = '$yn_siup',
                 tdp = '$yn_tdp',
-                " . ($type == 'biasa' ? "npwp='$yn_npwp',surat_tanah='$yn_surat_tanah',peta_bidang='$yn_peta_bidang',teknis_pertanahan='$yn_teknis_pertanahan',surat_kematian='$yn_surat_kematian',surat_kuasa_ahli_waris='$yn_surat_kuasa_ahli_waris'" : "") . "
-                " . ($type == 'perumahan' ? "npwp='$yn_npwp',surat_tanah='$yn_surat_tanah',peta_bidang='$yn_peta_bidang',teknis_pertanahan='$yn_teknis_pertanahan',surat_kematian='$yn_surat_kematian',surat_kuasa_ahli_waris='$yn_surat_kuasa_ahli_waris'" : "") . "
-                " . ($type == 'tower' ? "npwp='$yn_npwp',surat_tanah='$yn_surat_tanah',peta_bidang='$yn_peta_bidang',teknis_pertanahan='$yn_teknis_pertanahan',surat_kematian='$yn_surat_kematian',surat_kuasa_ahli_waris='$yn_surat_kuasa_ahli_waris',surat_dinas_komunikasi='$yn_surat_dinas_komunikasi',surat_rekom_tni='$yn_surat_rekom_tni'" : "") . "
-                " . ($type == 'minimarket' ? "npwp='$yn_npwp',surat_tanah='$yn_surat_tanah',peta_bidang='$yn_peta_bidang',teknis_pertanahan='$yn_teknis_pertanahan',surat_kematian='$yn_surat_kematian',surat_kuasa_ahli_waris='$yn_surat_kuasa_ahli_waris',surat_dinas_perdagangan='$yn_surat_dinas_perdagangan'" : "") . "
-                " . ($type == 'peternakan' ? "npwp='$yn_npwp',surat_tanah='$yn_surat_tanah',peta_bidang='$yn_peta_bidang',teknis_pertanahan='$yn_teknis_pertanahan',surat_kematian='$yn_surat_kematian',surat_kuasa_ahli_waris='$yn_surat_kuasa_ahli_waris',surat_dinas_peternakan='$yn_surat_dinas_peternakan'" : "") . "
-                " . ($type == 'spbu' ? "npwp='$yn_npwp',surat_tanah='$yn_surat_tanah',peta_bidang='$yn_peta_bidang',teknis_pertanahan='$yn_teknis_pertanahan',surat_kematian='$yn_surat_kematian',surat_kuasa_ahli_waris='$yn_surat_kuasa_ahli_waris',surat_pertamina='$yn_surat_pertamina'" : "") . "
-                " . ($type == 'tempat_ibadah' ? "npwp='$yn_npwp',surat_tanah='$yn_surat_tanah',peta_bidang='$yn_peta_bidang',teknis_pertanahan='$yn_teknis_pertanahan',surat_kematian='$yn_surat_kematian',surat_kuasa_ahli_waris='$yn_surat_kuasa_ahli_waris',daftar_nama_kk='$yn_daftar_nama_kk',surat_fkub='$yn_surat_fkub'" : "") . "
+                " . ($type == 'biasa' ? "npwp='$yn_npwp',surat_tanah='$yn_surat_tanah_array',peta_bidang='$yn_peta_bidang',teknis_pertanahan='$yn_teknis_pertanahan',surat_kematian='$yn_surat_kematian',surat_kuasa_ahli_waris='$yn_surat_kuasa_ahli_waris'" : "") . "
+                " . ($type == 'perumahan' ? "npwp='$yn_npwp',surat_tanah='$yn_surat_tanah_array',peta_bidang='$yn_peta_bidang',teknis_pertanahan='$yn_teknis_pertanahan',surat_kematian='$yn_surat_kematian',surat_kuasa_ahli_waris='$yn_surat_kuasa_ahli_waris'" : "") . "
+                " . ($type == 'tower' ? "npwp='$yn_npwp',surat_tanah='$yn_surat_tanah_array',peta_bidang='$yn_peta_bidang',teknis_pertanahan='$yn_teknis_pertanahan',surat_kematian='$yn_surat_kematian',surat_kuasa_ahli_waris='$yn_surat_kuasa_ahli_waris',surat_dinas_komunikasi='$yn_surat_dinas_komunikasi',surat_rekom_tni='$yn_surat_rekom_tni'" : "") . "
+                " . ($type == 'minimarket' ? "npwp='$yn_npwp',surat_tanah='$yn_surat_tanah_array',peta_bidang='$yn_peta_bidang',teknis_pertanahan='$yn_teknis_pertanahan',surat_kematian='$yn_surat_kematian',surat_kuasa_ahli_waris='$yn_surat_kuasa_ahli_waris',surat_dinas_perdagangan='$yn_surat_dinas_perdagangan'" : "") . "
+                " . ($type == 'peternakan' ? "npwp='$yn_npwp',surat_tanah='$yn_surat_tanah_array',peta_bidang='$yn_peta_bidang',teknis_pertanahan='$yn_teknis_pertanahan',surat_kematian='$yn_surat_kematian',surat_kuasa_ahli_waris='$yn_surat_kuasa_ahli_waris',surat_dinas_peternakan='$yn_surat_dinas_peternakan'" : "") . "
+                " . ($type == 'spbu' ? "npwp='$yn_npwp',surat_tanah='$yn_surat_tanah_array',peta_bidang='$yn_peta_bidang',teknis_pertanahan='$yn_teknis_pertanahan',surat_kematian='$yn_surat_kematian',surat_kuasa_ahli_waris='$yn_surat_kuasa_ahli_waris',surat_pertamina='$yn_surat_pertamina'" : "") . "
+                " . ($type == 'tempat_ibadah' ? "npwp='$yn_npwp',surat_tanah='$yn_surat_tanah_array',peta_bidang='$yn_peta_bidang',teknis_pertanahan='$yn_teknis_pertanahan',surat_kematian='$yn_surat_kematian',surat_kuasa_ahli_waris='$yn_surat_kuasa_ahli_waris',daftar_nama_kk='$yn_daftar_nama_kk',surat_fkub='$yn_surat_fkub'" : "") . "
                 WHERE id_permohonan = '$id'
                 ";
             $this->db->query($update);
+            // echo $update;
+            $this->db->query("UPDATE kkpr_permohonan SET status_berkas = '1' WHERE id_kkpr_permohonan = '$id'");
         } else {
             $insert = "INSERT INTO action_pengembalian_kkpr_permohonan (
                 id_permohonan,                                        
@@ -2517,37 +2612,38 @@ class Kkpr_Model extends CI_Model
                     '$yn_akta_perusahaan',
                     '$yn_siup',
                     '$yn_tdp',
-                    " . ($type == 'biasa' ? "'$yn_npwp','$yn_surat_tanah','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris'" : "") . "                                                
-                    " . ($type == 'perumahan' ? "'$yn_npwp','$yn_surat_tanah','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris'" : "") . "                                                
-                    " . ($type == 'tower' ? "'$yn_npwp','$yn_surat_tanah','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris','$yn_surat_dinas_komunikasi','$yn_surat_rekom_tni'" : "") . "                                                
-                    " . ($type == 'minimarket' ? "'$yn_npwp','$yn_surat_tanah','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris','$yn_surat_dinas_perdagangan'" : "") . "                                                
-                    " . ($type == 'peternakan' ? "'$yn_npwp','$yn_surat_tanah','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris','$yn_surat_dinas_peternakan'" : "") . "                                                
-                    " . ($type == 'spbu' ? "'$yn_npwp','$yn_surat_tanah','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris','$yn_surat_pertamina'" : "") . "                                                
-                    " . ($type == 'tempat_ibadah' ? "'$yn_npwp','$yn_surat_tanah','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris','$yn_daftar_nama_kk','$yn_surat_fkub'" : "") . "                                                
+                    " . ($type == 'biasa' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris'" : "") . "                                                
+                    " . ($type == 'perumahan' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris'" : "") . "                                                
+                    " . ($type == 'tower' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris','$yn_surat_dinas_komunikasi','$yn_surat_rekom_tni'" : "") . "                                                
+                    " . ($type == 'minimarket' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris','$yn_surat_dinas_perdagangan'" : "") . "                                                
+                    " . ($type == 'peternakan' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris','$yn_surat_dinas_peternakan'" : "") . "                                                
+                    " . ($type == 'spbu' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris','$yn_surat_pertamina'" : "") . "                                                
+                    " . ($type == 'tempat_ibadah' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris','$yn_daftar_nama_kk','$yn_surat_fkub'" : "") . "                                                
                     )";
             // echo $insert;
             $this->db->query($insert);
+            $this->db->query("UPDATE kkpr_permohonan SET status_berkas = '1' WHERE id_kkpr_permohonan = '$id'");
         }
 
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.fonnte.com/send',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => array(
-        'target' => $telp_pemohon,
-        'message' => $preview, 
-        'countryCode' => '62', //optional
-        ),
-        CURLOPT_HTTPHEADER => array(
-            'Authorization: 5@6!I4e2eSKYewSZSFhD' //change TOKEN to your actual token
-        ),
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'target' => $telp_pemohon,
+                'message' => $preview,
+                'countryCode' => '62', //optional
+            ),
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: 5@6!I4e2eSKYewSZSFhD' //change TOKEN to your actual token
+            ),
         ));
 
         $response = curl_exec($curl);
@@ -2584,10 +2680,10 @@ class Kkpr_Model extends CI_Model
             $this->upload->do_upload('peta');
             $data1 = $this->upload->data();
             $file1 = $data1['file_name'];
-        }else{
-            $file1 = $status_tanah->peta_bidang;
+        } else {
+            $file1 = $cek_data->gambar_peta;
         }
-        
+
         $nomor = $this->input->post('nomor');
         $nama_pemohon = $this->input->post('nama_pemohon');
         $alamat_pemohon = $this->input->post('alamat_pemohon');
@@ -2612,35 +2708,59 @@ class Kkpr_Model extends CI_Model
         $koefisien_bangunan = $this->input->post('koefisien_bangunan');
         $koefisien_dasar_hijau = $this->input->post('koefisien_dasar_hijau');
         $gsp_gsb = $this->input->post('gsp_gsb');
-        $koefisien_lantai = $this->input->post('koefisien_lantai');  
-        $flexsible_zoning = $this->input->post('flexsible_zoning');  
+        $koefisien_lantai = $this->input->post('koefisien_lantai');
+        $flexsible_zoning = $this->input->post('flexsible_zoning');
+        $perda_rtr1 = $this->input->post('perda_rtr1');
+        $perda_rtr2 = $this->input->post('perda_rtr2');
+        $perda_rtr3 = $this->input->post('perda_rtr3');
+        $masuk_lsd = $this->input->post('masuk_lsd');
+        $masuk_kp2b = $this->input->post('masuk_kp2b');
+        $diijinkan_sebagian = $this->input->post('diijinkan_sebagian');
+        $blok_kepanjen = $this->input->post('blok_kepanjen');
+        $zona_kepanjen1 = $this->input->post('zona_kepanjen1');
+        $zona_kepanjen2 = $this->input->post('zona_kepanjen2');
+        $zona_kepanjen3 = $this->input->post('zona_kepanjen3');
+        $indikasi_ppr = $this->input->post('indikasi_ppr');
 
-        $titik_koordinat = '[{"koordinat_a":"'.$koordinat_a.'","koordinat_b":"'.$koordinat_b.'","koordinat_c":"'.$koordinat_c.'","koordinat_d":"'.$koordinat_d.'"}]';
+        $titik_koordinat = '[{"koordinat_a":"' . $koordinat_a . '","koordinat_b":"' . $koordinat_b . '","koordinat_c":"' . $koordinat_c . '","koordinat_d":"' . $koordinat_d . '"}]';
         $legenda_array = array();
-            if (!empty($legenda)) {
-                foreach ($legenda as $input) {
-                    if (!empty($input)) {
-                        $data = array(
-                            'legenda' => $input
-                        );
-                        $legenda_array[] = $data;
-                    }
+        if (!empty($legenda)) {
+            foreach ($legenda as $input) {
+                if (!empty($input)) {
+                    $data = array(
+                        'legenda' => $input
+                    );
+                    $legenda_array[] = $data;
                 }
             }
-            $hasil_legenda = json_encode($legenda_array);
+        }
+        $hasil_legenda = json_encode($legenda_array);
 
         $ketentuan_array = array();
-            if (!empty($ketentuan)) {
-                foreach ($ketentuan as $input) {
-                    if (!empty($input)) {
-                        $data = array(
-                            'ketentuan' => $input
-                        );
-                        $ketentuan_array[] = $data;
-                    }
+        if (!empty($ketentuan)) {
+            foreach ($ketentuan as $input) {
+                if (!empty($input)) {
+                    $data = array(
+                        'ketentuan' => $input
+                    );
+                    $ketentuan_array[] = $data;
                 }
             }
-            $hasil_ketentuan = json_encode($ketentuan_array);
+        }
+        $hasil_ketentuan = json_encode($ketentuan_array);
+
+        $kbli_array = array();
+        if (!empty($kbli_tingkat_resiko)) {
+            foreach ($kbli_tingkat_resiko as $input) {
+                if (!empty($input)) {
+                    $data = array(
+                        'kbli' => $input
+                    );
+                    $kbli_array[] = $data;
+                }
+            }
+        }
+        $hasil_kbli = json_encode($kbli_array);
         if ($cek_data) {
             $query = "UPDATE data_sertifikat_peta SET
                 id_permohonan='$id_permohonan',
@@ -2650,7 +2770,7 @@ class Kkpr_Model extends CI_Model
                 nama_perusahaan='$nama_perusahaan',
                 alamat_perusahaan='$alamat_perusahaan',
                 nib_skala_usaha='$nib_skala_usaha',
-                kbli_tingkat_resiko='$kbli_tingkat_resiko',
+                kbli_tingkat_resiko='$hasil_kbli',
                 peruntukan='$peruntukan',
                 lokasi='$lokasi',
                 luas_tanah='$luas_tanah',
@@ -2667,11 +2787,22 @@ class Kkpr_Model extends CI_Model
                 koefisien_dasar_hijau='$koefisien_dasar_hijau',
                 gsp_gsb='$gsp_gsb',
                 lantai_bangunan='$koefisien_lantai',
-                flexsible_zoning='$flexsible_zoning'
+                flexsible_zoning='$flexsible_zoning',
+                perda_rtr1='$perda_rtr1',
+                perda_rtr2='$perda_rtr2',
+                perda_rtr3='$perda_rtr3',
+                masuk_lsd='$masuk_lsd',
+                masuk_kp2b='$masuk_kp2b',
+                diijinkan_sebagian='$diijinkan_sebagian',
+                blok_kepanjen='$blok_kepanjen',
+                zona_kepanjen1='$zona_kepanjen1',
+                zona_kepanjen2='$zona_kepanjen2',
+                zona_kepanjen3='$zona_kepanjen3',
+                indikasi_ppr='$indikasi_ppr'
             WHERE
             id_permohonan = '$id_permohonan'
             ";
-        } else {            
+        } else {
 
             $query = "INSERT INTO data_sertifikat_peta (
             id_permohonan,
@@ -2698,7 +2829,18 @@ class Kkpr_Model extends CI_Model
             koefisien_dasar_hijau,
             gsp_gsb,
             lantai_bangunan,
-            flexsible_zoning
+            flexsible_zoning,
+            perda_rtr1,
+            perda_rtr2,
+            perda_rtr3,
+            masuk_lsd,
+            masuk_kp2b,
+            diijinkan_sebagian,
+            blok_kepanjen,
+            zona_kepanjen1,
+            zona_kepanjen2,
+            zona_kepanjen3,
+            indikasi_ppr
         )VALUES(
             '$id_permohonan',
             '$nomor',
@@ -2707,7 +2849,7 @@ class Kkpr_Model extends CI_Model
             '$nama_perusahaan',
             '$alamat_perusahaan',
             '$nib_skala_usaha',
-            '$kbli_tingkat_resiko',
+            '$hasil_kbli',
             '$peruntukan',
             '$lokasi',
             '$luas_tanah',
@@ -2724,7 +2866,18 @@ class Kkpr_Model extends CI_Model
             '$koefisien_dasar_hijau',
             '$gsp_gsb',
             '$koefisien_lantai',
-            '$flexsible_zoning'
+            '$flexsible_zoning',
+            '$perda_rtr1',
+            '$perda_rtr2',
+            '$perda_rtr3',
+            '$masuk_lsd',
+            '$masuk_kp2b',
+            '$diijinkan_sebagian',
+            '$blok_kepanjen',
+            '$zona_kepanjen1',
+            '$zona_kepanjen2',
+            '$zona_kepanjen3',
+            '$indikasi_ppr'
         )";
         }
         // echo $query;
@@ -2749,7 +2902,7 @@ class Kkpr_Model extends CI_Model
             $this->upload->do_upload('citra_satelit');
             $data1 = $this->upload->data();
             $file1 = $data1['file_name'];
-        }else{
+        } else {
             $file1 = $cek_data->citra_satelit;
         }
         //file2
@@ -2757,7 +2910,7 @@ class Kkpr_Model extends CI_Model
             $this->upload->do_upload('pola_ruang');
             $data2 = $this->upload->data();
             $file2 = $data2['file_name'];
-        }else{
+        } else {
             $file2 = $cek_data->pola_ruang;
         }
         //file3
@@ -2765,7 +2918,7 @@ class Kkpr_Model extends CI_Model
             $this->upload->do_upload('peta_situasi');
             $data3 = $this->upload->data();
             $file3 = $data3['file_name'];
-        }else{
+        } else {
             $file3 = $cek_data->peta_situasi;
         }
         //file4
@@ -2773,10 +2926,10 @@ class Kkpr_Model extends CI_Model
             $this->upload->do_upload('peta_lsd');
             $data4 = $this->upload->data();
             $file4 = $data4['file_name'];
-        }else{
+        } else {
             $file4 = $cek_data->peta_lsd;
         }
-        
+
         $nama_pemohon = $this->input->post('nama_pemohon');
         $alamat_pemohon = $this->input->post('alamat_pemohon');
         $nama_perusahaan = $this->input->post('nama_perusahaan');
@@ -2793,53 +2946,53 @@ class Kkpr_Model extends CI_Model
         $legenda_peta_lsd = $this->input->post('legenda_lsd');
 
         $legenda_pola_ruang_array = array();
-            if (!empty($legenda_pola_ruang)) {
-                foreach ($legenda_pola_ruang as $input) {
-                    if (!empty($input)) {
-                        $data = array(
-                            'legenda' => $input
-                        );
-                        $legenda_pola_ruang_array[] = $data;
-                    }
+        if (!empty($legenda_pola_ruang)) {
+            foreach ($legenda_pola_ruang as $input) {
+                if (!empty($input)) {
+                    $data = array(
+                        'legenda' => $input
+                    );
+                    $legenda_pola_ruang_array[] = $data;
                 }
             }
-            $hasil_legenda_pola_ruang = json_encode($legenda_pola_ruang_array);
+        }
+        $hasil_legenda_pola_ruang = json_encode($legenda_pola_ruang_array);
         $legenda_peta_situasi_array = array();
-            if (!empty($legenda_peta_situasi)) {
-                foreach ($legenda_peta_situasi as $input) {
-                    if (!empty($input)) {
-                        $data = array(
-                            'legenda' => $input
-                        );
-                        $legenda_peta_situasi_array[] = $data;
-                    }
+        if (!empty($legenda_peta_situasi)) {
+            foreach ($legenda_peta_situasi as $input) {
+                if (!empty($input)) {
+                    $data = array(
+                        'legenda' => $input
+                    );
+                    $legenda_peta_situasi_array[] = $data;
                 }
             }
-            $hasil_legenda_peta_situasi = json_encode($legenda_peta_situasi_array);
+        }
+        $hasil_legenda_peta_situasi = json_encode($legenda_peta_situasi_array);
         $legenda_peta_lsd_array = array();
-            if (!empty($legenda_peta_lsd)) {
-                foreach ($legenda_peta_lsd as $input) {
-                    if (!empty($input)) {
-                        $data = array(
-                            'legenda' => $input
-                        );
-                        $legenda_peta_lsd_array[] = $data;
-                    }
+        if (!empty($legenda_peta_lsd)) {
+            foreach ($legenda_peta_lsd as $input) {
+                if (!empty($input)) {
+                    $data = array(
+                        'legenda' => $input
+                    );
+                    $legenda_peta_lsd_array[] = $data;
                 }
             }
-            $hasil_legenda_peta_lsd = json_encode($legenda_peta_lsd_array);
+        }
+        $hasil_legenda_peta_lsd = json_encode($legenda_peta_lsd_array);
 
         $ketentuan_array = array();
-            if (!empty($ketentuan)) {
-                foreach ($ketentuan as $input) {
-                    if (!empty($input)) {
-                        $data = array(
-                            'ketentuan' => $input
-                        );
-                        $ketentuan_array[] = $data;
-                    }
+        if (!empty($ketentuan)) {
+            foreach ($ketentuan as $input) {
+                if (!empty($input)) {
+                    $data = array(
+                        'ketentuan' => $input
+                    );
+                    $ketentuan_array[] = $data;
                 }
             }
+        }
         if ($cek_data) {
             $query = "UPDATE data_sertifikat_draft_peta SET
                 id_permohonan='$id_permohonan',
@@ -2863,7 +3016,7 @@ class Kkpr_Model extends CI_Model
             WHERE
             id_permohonan = '$id_permohonan'
             ";
-        } else {            
+        } else {
 
             $query = "INSERT INTO data_sertifikat_draft_peta (
             id_permohonan,
@@ -2928,31 +3081,31 @@ class Kkpr_Model extends CI_Model
             $this->upload->do_upload('foto1');
             $data1 = $this->upload->data();
             $file1 = $data1['file_name'];
-        }else{
+        } else {
             $file1 = $cek_data->foto1;
-        }        
+        }
         //file2
         if (!empty($_FILES['foto2']['name'])) {
             $this->upload->do_upload('foto2');
             $data2 = $this->upload->data();
             $file2 = $data2['file_name'];
-        }else{
+        } else {
             $file2 = $cek_data->foto2;
-        }        
+        }
         //file3
         if (!empty($_FILES['foto3']['name'])) {
             $this->upload->do_upload('foto3');
             $data3 = $this->upload->data();
             $file3 = $data3['file_name'];
-        }else{
+        } else {
             $file3 = $cek_data->foto3;
-        }  
+        }
         //file4
         if (!empty($_FILES['foto4']['name'])) {
             $this->upload->do_upload('foto4');
             $data4 = $this->upload->data();
             $file4 = $data4['file_name'];
-        }else{
+        } else {
             $file4 = $cek_data->foto4;
         }
         //file5
@@ -2960,18 +3113,18 @@ class Kkpr_Model extends CI_Model
             $this->upload->do_upload('foto5');
             $data5 = $this->upload->data();
             $file5 = $data5['file_name'];
-        }else{
+        } else {
             $file5 = $cek_data->foto5;
-        }   
+        }
         //file6
         if (!empty($_FILES['foto6']['name'])) {
             $this->upload->do_upload('foto6');
             $data6 = $this->upload->data();
             $file6 = $data6['file_name'];
-        }else{
+        } else {
             $file6 = $cek_data->foto6;
-        }      
-        
+        }
+
         $no_reg = $this->input->post('no_reg');
         $tgl_survei = $this->input->post('tgl_survei');
         $petugas1 = $this->input->post('petugas1');
@@ -3001,7 +3154,7 @@ class Kkpr_Model extends CI_Model
         $masuk_lsd = $this->input->post('masuk_lsd');
         $radius_mata_air = $this->input->post('radius_mata_air');
         $pihak_lain = $this->input->post('pihak_lain');
-           
+
         if ($cek_data) {
             $query = "UPDATE data_sertifikat_lhs SET
                 id_permohonan='$id_permohonan',
@@ -3043,7 +3196,7 @@ class Kkpr_Model extends CI_Model
             WHERE
             id_permohonan = '$id_permohonan'
             ";
-        } else {            
+        } else {
 
             $query = "INSERT INTO data_sertifikat_lhs (
             id_permohonan,
@@ -3132,6 +3285,232 @@ class Kkpr_Model extends CI_Model
         // echo $query;
         $query1 = $this->db->query($query);
         if ($query1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function pengembalian()
+    {
+        $id = $this->input->post('id');
+        $index = $this->input->post('index');
+        $cek = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_kkpr_permohonan = '$id' ")->row();
+        $config['upload_path']          = './assets_dokumen/kkpr';
+        $config['allowed_types']        = 'pdf|PDF|jpg|JPG|zip';
+        $config['max_size']             = 5120; //5MB          
+        $this->load->library('upload', $config);
+
+        //file1
+        if (!empty($_FILES['dokumen_oss']['name'])) {
+            $this->upload->do_upload('dokumen_oss');
+            $data1 = $this->upload->data();
+            $file1 = $data1['file_name'];
+        } else {
+            $file1 = $cek->dokumen_oss;
+        }
+
+        //file2
+        if (!empty($_FILES['fotokopi_ktp']['name'])) {
+            $this->upload->do_upload('fotokopi_ktp');
+            $data2 = $this->upload->data();
+            $file2 = $data2['file_name'];
+        } else {
+            $file2 = $cek->fotokopi_ktp;
+        }
+        //file3
+        if (!empty($_FILES['fc_akta_perusahaan']['name'])) {
+            $this->upload->do_upload('fc_akta_perusahaan');
+            $data3 = $this->upload->data();
+            $file3 = $data3['file_name'];
+        } else {
+            $file3 = $cek->akta_perusahaan;
+        }
+        //file5
+        if (!empty($_FILES['tdp_nib']['name'])) {
+            $this->upload->do_upload('tdp_nib');
+            $data5 = $this->upload->data();
+            $file5 = $data5['file_name'];
+        } else {
+            $file5 = $cek->tdp;
+        }
+        //file6
+        if (!empty($_FILES['npwp']['name'])) {
+            $this->upload->do_upload('npwp');
+            $data6 = $this->upload->data();
+            $file6 = $data6['file_name'];
+        } else {
+            $file6 = $cek->npwp;
+        }
+        //file7
+        $index = $this->input->post('index'); //index[]
+        if (!empty($_FILES['file_status_tanah']['name'])) {
+            $jumlah_berkas = count($_FILES['file_status_tanah']['name']);
+            $dataArray_surat_tanah = array();
+            
+            for ($i = 0; $i < $jumlah_berkas; $i++) {
+                if (!empty($_FILES['file_status_tanah']['name'][$i])) {
+                    $_FILES['file']['name'] = $_FILES['file_status_tanah']['name'][$i];
+                    $_FILES['file']['type'] = $_FILES['file_status_tanah']['type'][$i];
+                    $_FILES['file']['tmp_name'] = $_FILES['file_status_tanah']['tmp_name'][$i];
+                    $_FILES['file']['error'] = $_FILES['file_status_tanah']['error'][$i];
+                    $_FILES['file']['size'] = $_FILES['file_status_tanah']['size'][$i];
+
+                    if ($this->upload->do_upload('file')) {
+                        $uploadData = $this->upload->data();
+                        $data = array(
+                            'no' => $index[$i],
+                            'surat_tanah' => $uploadData['file_name']
+                        );
+                        $dataArray_surat_tanah[] = $data;
+                    }
+                }
+            }
+
+            $file7 = json_encode($dataArray_surat_tanah);
+            $cek_st = json_encode($dataArray_surat_tanah);
+            // echo $cek_st.'<br>';
+        } else {
+            $file7 = $cek->surat_tanah;
+        }
+        //file8
+        if (!empty($_FILES['peta_bidang']['name'])) {
+            $this->upload->do_upload('peta_bidang');
+            $data8 = $this->upload->data();
+            $file8 = $data8['file_name'];
+        } else {
+            $file8 = $cek->peta_bidang;
+        }
+        //TAMBAHAN
+        //file10
+        if (!empty($_FILES['surat_kematian']['name'])) {
+            $this->upload->do_upload('surat_kematian');
+            $data10 = $this->upload->data();
+            $file10 = $data10['file_name'];
+        } else {
+            $file10 = $cek->surat_kematian;
+        }
+        //file11
+        if (!empty($_FILES['surat_kuasa_ahli_waris']['name'])) {
+            $this->upload->do_upload('surat_kuasa_ahli_waris');
+            $data11 = $this->upload->data();
+            $file11 = $data11['file_name'];
+        } else {
+            $file11 = $cek->surat_kuasa_ahli_waris;
+        }
+        //file12
+        if (!empty($_FILES['rekomendasi_dinas_komunikasi']['name'])) {
+            $this->upload->do_upload('rekomendasi_dinas_komunikasi');
+            $data12 = $this->upload->data();
+            $file12 = $data12['file_name'];
+        } else {
+            $file12 = $cek->surat_dinas_komunikasi;
+        }
+        //file13
+        if (!empty($_FILES['rekomendasi_tni']['name'])) {
+            $this->upload->do_upload('rekomendasi_tni');
+            $data13 = $this->upload->data();
+            $file13 = $data13['file_name'];
+        } else {
+            $file13 = $cek->surat_rekom_tni;
+        }
+        //file14
+        if (!empty($_FILES['surat_dinas_perdagangan']['name'])) {
+            $this->upload->do_upload('surat_dinas_perdagangan');
+            $data14 = $this->upload->data();
+            $file14 = $data14['file_name'];
+        } else {
+            $file14 = $cek->surat_dinas_perdagangan;
+        }
+        //file15
+        if (!empty($_FILES['surat_dinas_peternakan']['name'])) {
+            $this->upload->do_upload('surat_dinas_peternakan');
+            $data15 = $this->upload->data();
+            $file15 = $data15['file_name'];
+        } else {
+            $file15 = $cek->surat_dinas_peternakan;
+        }
+        //file16
+        if (!empty($_FILES['surat_pertamina']['name'])) {
+            $this->upload->do_upload('surat_pertamina');
+            $data16 = $this->upload->data();
+            $file16 = $data16['file_name'];
+        } else {
+            $file16 = $cek->surat_pertamina;
+        }
+        //file17
+        if (!empty($_FILES['daftar_nama_kk']['name'])) {
+            $this->upload->do_upload('daftar_nama_kk');
+            $data17 = $this->upload->data();
+            $file17 = $data17['file_name'];
+        } else {
+            $file17 = $cek->daftar_nama_kk;
+        }
+        //file18
+        if (!empty($_FILES['surat_fkub']['name'])) {
+            $this->upload->do_upload('surat_fkub');
+            $data18 = $this->upload->data();
+            $file18 = $data18['file_name'];
+        } else {
+            $file18 = $cek->surat_fkub;
+        }
+
+        if ($cek_st) {
+            $query = "UPDATE kkpr_permohonan SET
+            dokumen_oss = '$file1',
+            fotokopi_ktp = '$file2',
+            akta_perusahaan = '$file3',
+            tdp = '$file5',
+            npwp = '$file6',
+            peta_bidang = '$file8',
+            surat_kematian = '$file10',
+            surat_kuasa_ahli_waris = '$file11',
+            surat_dinas_komunikasi = '$file12',
+            surat_rekom_tni = '$file13',
+            surat_dinas_perdagangan = '$file14',
+            surat_dinas_peternakan = '$file15',
+            surat_pertamina = '$file16',
+            daftar_nama_kk = '$file17',
+            surat_fkub = '$file18',
+            status_berkas = '0'
+            WHERE id_kkpr_permohonan = '$id'
+            ";
+            $surat_tanah_for = json_decode($cek_st);
+            foreach ($surat_tanah_for as $cst){
+                $query_st = "UPDATE kkpr_permohonan
+                SET surat_tanah = JSON_SET(surat_tanah, '$[$cst->no].surat_tanah', '$cst->surat_tanah')
+                WHERE id_kkpr_permohonan = '$id';
+            ";
+            // echo $query_st.'<br>';
+            $this->db->query($query_st);
+            }
+        } else {
+            $query = "UPDATE kkpr_permohonan SET
+            dokumen_oss = '$file1',
+            fotokopi_ktp = '$file2',
+            akta_perusahaan = '$file3',
+            tdp = '$file5',
+            npwp = '$file6',
+            surat_tanah = '$file7',
+            peta_bidang = '$file8',
+            surat_kematian = '$file10',
+            surat_kuasa_ahli_waris = '$file11',
+            surat_dinas_komunikasi = '$file12',
+            surat_rekom_tni = '$file13',
+            surat_dinas_perdagangan = '$file14',
+            surat_dinas_peternakan = '$file15',
+            surat_pertamina = '$file16',
+            daftar_nama_kk = '$file17',
+            surat_fkub = '$file18',
+            status_berkas = '0'
+            WHERE id_kkpr_permohonan = '$id'
+            ";
+        }
+        $update = $this->db->query($query);
+        $this->db->query("DELETE FROM pengembalian_kkpr_permohonan WHERE id_permohonan = '$id'");
+        $this->db->query("DELETE FROM action_pengembalian_kkpr_permohonan WHERE id_permohonan = '$id'");
+        // echo $query;
+        if ($update) {
             return true;
         } else {
             return false;
