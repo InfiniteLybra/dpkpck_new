@@ -71,6 +71,8 @@
                     <th class="text-center min-w-150px">No. Register</th>
                     <th class="text-center min-w-150px">Tanggal Verivikasi</th>
                     <th class="text-center min-w-150px">Nama Pemohon</th>
+                    <th class="text-center min-w-150px">Telp Pemohon</th>
+                    <th class="text-center min-w-150px">Telp Kuasa</th>
                     <th class="text-center min-w-150px">Badan Hukum</th>
                     <th class="text-center min-w-150px">Peruntukan</th>
                     <th class="text-center min-w-150px">Desa / Kel</th>
@@ -110,6 +112,12 @@
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold"><?= $i->nama_pemohon ?></span>
+                        </td>
+                        <td class="text-center pe-0">
+                            <span class="fw-bold"><?= $i->telp_pemohon ?></span>
+                        </td>
+                        <td class="text-center pe-0">
+                            <span class="fw-bold"></span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold"><?= $i->nama_perusahaan ?></span>

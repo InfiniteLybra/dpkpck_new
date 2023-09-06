@@ -130,7 +130,59 @@
         </tr>
         <tr>
             <td colspan="3" align="center">
-                <img src="<?= base_url('assets/image/penampang.jpeg') ?>" style="width: 25cm; height: 8cm;">
+                <img src="<?= base_url('assets/lhs/atas_lhs.jpg') ?>" style="width: 25cm; height: 8cm;">
+            </td>            
+        </tr>
+        <tr>
+            <td colspan="3" align="left">
+                <table width="100%">
+                    <tr>
+                        <td style="width: 140px;">Barat</td>
+                        <td style="width: 80px;">23</td>
+                        <td style="width: 48px;">2</td>
+                        <td style="width: 49px;">23</td>
+                        <td style="width: 50px;">24</td>
+                        <td style="width: 50px;">25</td>
+                        <td style="width: 140px;">26</td>
+                        <td style="width: 128px;">72</td>
+                        <td style="width: 25px;">28</td>
+                        <td style="width: 14px;"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="10" align="right">
+                            <img src="<?= base_url('assets/lhs/garis1.jpg') ?>" width="367px">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" align="left">
+                            Barat
+                        </td align="left">
+                        <td>1/2 Badan Jalan = 4</td>
+                    </tr>
+                    <tr>
+                        <td colspan="10" align="right">
+                            <img src="<?= base_url('assets/lhs/garis2.jpg') ?>" width="475px">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" align="left">
+                            Barat
+                        </td align="left">
+                        <td>1/2 Rumaja = 6</td>
+                    </tr>
+                    <tr>
+                        <td colspan="10" align="right">
+                            <img src="<?= base_url('assets/lhs/garis3.jpg') ?>" width="533px">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" align="left">
+                            Barat
+                        </td align="left">
+                        <td>1/2 Rumaja = 6</td>
+                    </tr>
+                </table>
             </td>
         </tr>
         <tr>

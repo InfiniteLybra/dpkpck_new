@@ -150,7 +150,7 @@ class Kkpr extends CI_Controller
         $this->load->view('admin/kkpr/config_sertifikat/config_peta',$data);
         $this->load->view('templates/footer');
         $this->load->view('templates/footScript');
-        // $this->load->view('admin/kkpr/config_sertifikat/script_config');
+        $this->load->view('admin/kkpr/config_sertifikat/script_peta');
 
         $this->session->set_userdata('detail_config', current_url());
     }

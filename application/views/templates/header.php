@@ -1390,18 +1390,7 @@
                                             <span class="menu-title">Formulir</span>
                                         </a>
                                         <!--end:Menu link-->
-                                    </div>
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="<?= base_url('Map/polygon') ?>">
-                                            <span class="menu-icon">
-                                                <i class="fa-solid fa-map-location-dot fa-2xl"></i>
-                                            </span>
-                                            <span class="menu-title">Polygon Map</span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
+                                    </div>                                                           
                                     <div class="menu-item">
                                         <!--begin:Menu link-->
                                         <a class="menu-link" href="<?= base_url('Kkpr/pengembalian_formulir') ?>">

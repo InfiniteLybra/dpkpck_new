@@ -2624,6 +2624,13 @@ class Kkpr_Model extends CI_Model
             $this->db->query($insert);
             $this->db->query("UPDATE kkpr_permohonan SET status_berkas = '1' WHERE id_kkpr_permohonan = '$id'");
         }
+        $validasi = $this->db->query("SELECT * FROM validasi_formulir WHERE id_permohonan = '$id'")->row();
+        $id_user = $this->session->userdata('id_user');
+        if($validasi){
+            $this->db->query("UPDATE validasi_formulir SET tolak_formulir = '$id_user' WHERE id_permohonan = '$id' ");
+        }else{
+            $this->db->query("INSERT INTO validasi_formulir (id_permohonan,tolak_formulir) VALUES ('$id','$id_user')");
+        }
 
         $curl = curl_init();
 
@@ -2703,11 +2710,12 @@ class Kkpr_Model extends CI_Model
         $ketentuan = $this->input->post('ketentuan');
         $pemanfaatan_ruang = $this->input->post('pemanfaatan_ruang');
         $luas_tanah_disetujui = $this->input->post('luas_tanah_disetujui');
-        $pola_ruang = $this->input->post('pola_ruang');
+        // $pola_ruang = $this->input->post('pola_ruang');
         $luas_tanah_lsd = $this->input->post('luas_tanah_lsd');
+        $luas_tanah_kp2b = $this->input->post('luas_tanah_kp2b');
         $koefisien_bangunan = $this->input->post('koefisien_bangunan');
         $koefisien_dasar_hijau = $this->input->post('koefisien_dasar_hijau');
-        $gsp_gsb = $this->input->post('gsp_gsb');
+        // $gsp_gsb = $this->input->post('gsp_gsb');
         $koefisien_lantai = $this->input->post('koefisien_lantai');
         $flexsible_zoning = $this->input->post('flexsible_zoning');
         $perda_rtr1 = $this->input->post('perda_rtr1');
@@ -2721,6 +2729,14 @@ class Kkpr_Model extends CI_Model
         $zona_kepanjen2 = $this->input->post('zona_kepanjen2');
         $zona_kepanjen3 = $this->input->post('zona_kepanjen3');
         $indikasi_ppr = $this->input->post('indikasi_ppr');
+        $fungsi_jalan1 = $this->input->post('fungsi_jalan1');
+        $fungsi_jalan2 = $this->input->post('fungsi_jalan2');
+        $fungsi_jalan3 = $this->input->post('fungsi_jalan3');
+        $fungsi_jalan4 = $this->input->post('fungsi_jalan4');
+        $kelas_jalan1 = $this->input->post('kelas_jalan1');
+        $kelas_jalan2 = $this->input->post('kelas_jalan2');
+        $kelas_jalan3 = $this->input->post('kelas_jalan3');
+        $kelas_jalan4 = $this->input->post('kelas_jalan4');
 
         $titik_koordinat = '[{"koordinat_a":"' . $koordinat_a . '","koordinat_b":"' . $koordinat_b . '","koordinat_c":"' . $koordinat_c . '","koordinat_d":"' . $koordinat_d . '"}]';
         $legenda_array = array();
@@ -2781,11 +2797,10 @@ class Kkpr_Model extends CI_Model
                 ketentuan_lainya='$hasil_ketentuan',
                 pemanfaatan_ruang='$pemanfaatan_ruang',
                 luas_disetujui='$luas_tanah_disetujui',
-                pola_ruang='$pola_ruang',
                 luas_tanah_lsd='$luas_tanah_lsd',
+                luas_tanah_kp2b='$luas_tanah_kp2b',
                 koefisien_bangunan='$koefisien_bangunan',
                 koefisien_dasar_hijau='$koefisien_dasar_hijau',
-                gsp_gsb='$gsp_gsb',
                 lantai_bangunan='$koefisien_lantai',
                 flexsible_zoning='$flexsible_zoning',
                 perda_rtr1='$perda_rtr1',
@@ -2798,7 +2813,15 @@ class Kkpr_Model extends CI_Model
                 zona_kepanjen1='$zona_kepanjen1',
                 zona_kepanjen2='$zona_kepanjen2',
                 zona_kepanjen3='$zona_kepanjen3',
-                indikasi_ppr='$indikasi_ppr'
+                indikasi_ppr='$indikasi_ppr',
+                fungsi_jalan1='$fungsi_jalan1',
+                fungsi_jalan2='$fungsi_jalan2',
+                fungsi_jalan3='$fungsi_jalan3',
+                fungsi_jalan4='$fungsi_jalan4',
+                kelas_jalan1='$kelas_jalan1',
+                kelas_jalan2='$kelas_jalan2',
+                kelas_jalan3='$kelas_jalan3',
+                kelas_jalan4='$kelas_jalan4'
             WHERE
             id_permohonan = '$id_permohonan'
             ";
@@ -2823,11 +2846,10 @@ class Kkpr_Model extends CI_Model
             ketentuan_lainya,
             pemanfaatan_ruang,
             luas_disetujui,
-            pola_ruang,
             luas_tanah_lsd,
+            luas_tanah_kp2b,
             koefisien_bangunan,
             koefisien_dasar_hijau,
-            gsp_gsb,
             lantai_bangunan,
             flexsible_zoning,
             perda_rtr1,
@@ -2840,7 +2862,15 @@ class Kkpr_Model extends CI_Model
             zona_kepanjen1,
             zona_kepanjen2,
             zona_kepanjen3,
-            indikasi_ppr
+            indikasi_ppr,
+            fungsi_jalan1,
+            fungsi_jalan2,
+            fungsi_jalan3,
+            fungsi_jalan4,
+            kelas_jalan1,
+            kelas_jalan2,
+            kelas_jalan3,
+            kelas_jalan4
         )VALUES(
             '$id_permohonan',
             '$nomor',
@@ -2860,11 +2890,10 @@ class Kkpr_Model extends CI_Model
             '$hasil_ketentuan',
             '$pemanfaatan_ruang',
             '$luas_tanah_disetujui',
-            '$pola_ruang',
             '$luas_tanah_lsd',
+            '$luas_tanah_kp2b',
             '$koefisien_bangunan',
             '$koefisien_dasar_hijau',
-            '$gsp_gsb',
             '$koefisien_lantai',
             '$flexsible_zoning',
             '$perda_rtr1',
@@ -2877,7 +2906,15 @@ class Kkpr_Model extends CI_Model
             '$zona_kepanjen1',
             '$zona_kepanjen2',
             '$zona_kepanjen3',
-            '$indikasi_ppr'
+            '$indikasi_ppr',
+            '$fungsi_jalan1',
+            '$fungsi_jalan2',
+            '$fungsi_jalan3',
+            '$fungsi_jalan4',
+            '$kelas_jalan1',
+            '$kelas_jalan2',
+            '$kelas_jalan3',
+            '$kelas_jalan4'
         )";
         }
         // echo $query;
@@ -2942,8 +2979,8 @@ class Kkpr_Model extends CI_Model
         $koordinat_tengah = $this->input->post('koordinat_tengah');
 
         $legenda_pola_ruang = $this->input->post('legenda_pola_ruang');
-        $legenda_peta_situasi = $this->input->post('legenda_peta_situasi');
-        $legenda_peta_lsd = $this->input->post('legenda_lsd');
+        // $legenda_peta_situasi = $this->input->post('legenda_peta_situasi');
+        // $legenda_peta_lsd = $this->input->post('legenda_lsd');
 
         $legenda_pola_ruang_array = array();
         if (!empty($legenda_pola_ruang)) {
@@ -2957,30 +2994,32 @@ class Kkpr_Model extends CI_Model
             }
         }
         $hasil_legenda_pola_ruang = json_encode($legenda_pola_ruang_array);
-        $legenda_peta_situasi_array = array();
-        if (!empty($legenda_peta_situasi)) {
-            foreach ($legenda_peta_situasi as $input) {
-                if (!empty($input)) {
-                    $data = array(
-                        'legenda' => $input
-                    );
-                    $legenda_peta_situasi_array[] = $data;
-                }
-            }
-        }
-        $hasil_legenda_peta_situasi = json_encode($legenda_peta_situasi_array);
-        $legenda_peta_lsd_array = array();
-        if (!empty($legenda_peta_lsd)) {
-            foreach ($legenda_peta_lsd as $input) {
-                if (!empty($input)) {
-                    $data = array(
-                        'legenda' => $input
-                    );
-                    $legenda_peta_lsd_array[] = $data;
-                }
-            }
-        }
-        $hasil_legenda_peta_lsd = json_encode($legenda_peta_lsd_array);
+        // $legenda_peta_situasi_array = array();
+        // if (!empty($legenda_peta_situasi)) {
+        //     foreach ($legenda_peta_situasi as $input) {
+        //         if (!empty($input)) {
+        //             $data = array(
+        //                 'legenda' => $input
+        //             );
+        //             $legenda_peta_situasi_array[] = $data;
+        //         }
+        //     }
+        // }
+        // $hasil_legenda_peta_situasi = json_encode($legenda_peta_situasi_array);
+        // $legenda_peta_lsd_array = array();
+        // if (!empty($legenda_peta_lsd)) {
+        //     foreach ($legenda_peta_lsd as $input) {
+        //         if (!empty($input)) {
+        //             $data = array(
+        //                 'legenda' => $input
+        //             );
+        //             $legenda_peta_lsd_array[] = $data;
+        //         }
+        //     }
+        // }
+        // $hasil_legenda_peta_lsd = json_encode($legenda_peta_lsd_array);
+        $hasil_legenda_peta_lsd = '[{"legenda":"27"},{"legenda":"28"},{"legenda":"29"}]';
+        $hasil_legenda_peta_situasi = '[{"legenda":"55"},{"legenda":"56"},{"legenda":"57"}]';
 
         $ketentuan_array = array();
         if (!empty($ketentuan)) {

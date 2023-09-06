@@ -50,9 +50,9 @@
             <td>NIB/SKala Usaha</td>
             <td>:</td>
             <td>&ensp;<?= $data->nib_skala_usaha ?></td>
-        </tr>              
+        </tr>
         <?php
-        $kbli = json_decode($data->kbli_tingkat_resiko,true);
+        $kbli = json_decode($data->kbli_tingkat_resiko, true);
         ?>
         <tr>
             <td>6.</td>
@@ -188,28 +188,38 @@
                     <?php if ($data->flexsible_zoning == 'tidak_diijinkan') { ?>
                         Dinyatakan "ditolak seluruhnya" sebagai dasar pertimbangan dari:
                     <?php } ?>
-                    <br>        
-                    <?php 
-                        $pola_ruang = $this->db->query("SELECT * FROM rencana_pola_ruang WHERE id_pola_ruang = '$data->perda_rtr1'")->row();
-                    ?>          
-                    <?php if ($data->masuk_lsd == 'tidak' AND $data->flexsible_zoning == 'diijinkan') { ?>
-                       • Peraturan Presiden Republik Indonesia Nomor 59 Tahun 2019 tentang Pengendalian Alih Fungsi Lahan Sawah dan Berita Acara Kesepakatan Verifikasi Aktual Penyelesaian Ketidaksesuaian Lahan Sawah yang Dilindungi dengan Rencana Tata Ruang antara Direktorat Jenderal Pengendalian dan Penertiban Tanah dan Ruang Kementerian Agraria dan Tata Ruang / Badan Pertanahan Nasional dengan Pemerintah Kabupaten Malang tanggal 15 September 2022, lokasi dimohon tidak masuk dalam Peta Lahan Sawah yang Dilindungi (LSD).
-                       <br>
-                       • Peraturan Daerah Kabupaten Malang Nomor 03 Tahun 2010 tentang Rencana Tata Ruang Wilayah Kabupaten Malang, lokasi dimohon masuk dalam Rencana Pola Ruang “<?= $pola_ruang->pola_ruang?>” dengan ketentuan Pemanfaatan Ruang untuk <?= $data->peruntukan?>  dapat “DIARAHKAN” pada koordinat dimaksud.
-                    <?php } ?>                 
-                    <?php if ($data->masuk_lsd == 'iya_seluruhnya' AND $data->flexsible_zoning == 'diijinkan') { ?>
-                       • Peraturan Presiden Republik Indonesia Nomor 59 Tahun 2019 tentang Pengendalian Alih Fungsi Lahan Sawah dan Berita Acara Kesepakatan Verifikasi Aktual Penyelesaian Ketidaksesuaian Lahan Sawah yang Dilindungi dengan Rencana Tata Ruang antara Direktorat Jenderal Pengendalian dan Penertiban Tanah dan Ruang Kementerian Agraria dan Tata Ruang / Badan Pertanahan Nasional dengan Pemerintah Kabupaten Malang tanggal 15 September 2022, lokasi dimohon tidak masuk dalam Peta Lahan Sawah yang Dilindungi (LSD).
-                       <br>
-                       • Peraturan Daerah Kabupaten Malang Nomor 03 Tahun 2010 tentang Rencana Tata Ruang Wilayah Kabupaten Malang, lokasi dimohon masuk dalam Rencana Pola Ruang “<?= $pola_ruang->pola_ruang?>” dengan ketentuan Pemanfaatan Ruang untuk <?= $data->peruntukan?>  dapat “DIARAHKAN” pada koordinat dimaksud.
-                    <?php } ?>            
-                    <?php if ($data->masuk_lsd == 'iya_sebagian' AND $data->flexsible_zoning == 'bersyarat_tertentu' || $data->flexsible_zoning == 'bersyarat_terbatas') { ?>
-                       • Peraturan Presiden Republik Indonesia Nomor 59 Tahun 2019 tentang Pengendalian Alih Fungsi Lahan Sawah dan Berita Acara Kesepakatan Verifikasi Aktual Penyelesaian Ketidaksesuaian Lahan Sawah yang Dilindungi dengan Rencana Tata Ruang antara Direktorat Jenderal Pengendalian dan Penertiban Tanah dan Ruang Kementerian Agraria dan Tata Ruang / Badan Pertanahan Nasional dengan Pemerintah Kabupaten Malang tanggal 15 September 2022, lokasi dimohon tidak masuk dalam Peta Lahan Sawah yang Dilindungi (LSD).
-                       <br>
-                       • Peraturan Daerah Kabupaten Malang Nomor 03 Tahun 2010 tentang Rencana Tata Ruang Wilayah Kabupaten Malang, lokasi dimohon masuk dalam Rencana Pola Ruang “xxxx dan xxxx” dengan ketentuan Pemanfaatan Ruang untuk <?= $data->peruntukan?>   dapat “DIARAHKAN” pada koordinat dimaksud hanya seluas <?= $data->diijinkan_sebagian?>  m² dari total lahan <?= $data->luas_tanah?>  m².
-                    <?php } ?>  
-                    <?php if ($data->flexsible_zoning == 'tidak_diijinkan') { ?>
-                       • Peraturan Daerah Kabupaten Malang Nomor 03 Tahun 2010 tentang Rencana Tata Ruang Wilayah Kabupaten Malang, lokasi dimohon masuk dalam Rencana Pola Ruang “<?= $pola_ruang->pola_ruang?> ” dengan ketentuan Pemanfaatan Ruang untuk <?= $data->peruntukan?> “TIDAK DIARAHKAN” pada koordinat dimaksud.
-                    <?php } ?>         
+                    <br>
+                    <?php
+                    $pola_ruang1 = $this->db->query("SELECT * FROM rencana_pola_ruang WHERE id_pola_ruang = '$data->perda_rtr1'")->row();
+                    $pola_ruang2 = $this->db->query("SELECT * FROM rencana_pola_ruang WHERE id_pola_ruang = '$data->perda_rtr2'")->row();
+                    $pola_ruang3 = $this->db->query("SELECT * FROM rencana_pola_ruang WHERE id_pola_ruang = '$data->perda_rtr3'")->row();
+                    ?>
+                    <?php if ($data->masuk_lsd == 'tidak' and $data->masuk_kp2b == 'tidak' and $data->flexsible_zoning == 'diijinkan') { ?>
+                        • Peraturan Presiden Republik Indonesia Nomor 59 Tahun 2019 tentang Pengendalian Alih Fungsi Lahan Sawah dan Berita Acara Kesepakatan Verifikasi Aktual Penyelesaian Ketidaksesuaian Lahan Sawah yang Dilindungi dengan Rencana Tata Ruang antara Direktorat Jenderal Pengendalian dan Penertiban Tanah dan Ruang Kementerian Agraria dan Tata Ruang / Badan Pertanahan Nasional dengan Pemerintah Kabupaten Malang tanggal 15 September 2022, lokasi dimohon tidak masuk dalam Peta Lahan Sawah yang Dilindungi (LSD).
+                        <br>
+                        • Peraturan Daerah Kabupaten Malang Nomor 03 Tahun 2010 tentang Rencana Tata Ruang Wilayah Kabupaten Malang, lokasi dimohon masuk dalam Rencana Pola Ruang “<?php if ($pola_ruang1) echo $pola_ruang1->pola_ruang ?><?php if ($pola_ruang2) echo $pola_ruang2->pola_ruang ?> <?php if ($pola_ruang3) echo $pola_ruang3->pola_ruang ?>” dengan ketentuan Pemanfaatan Ruang untuk <?= $data->peruntukan ?> dapat “DIARAHKAN” pada koordinat dimaksud.
+                    <?php } ?>
+                    <?php if ($data->masuk_lsd == 'iya_seluruhnya' and $data->flexsible_zoning == 'diijinkan') { ?>
+                        • Peraturan Presiden Republik Indonesia Nomor 59 Tahun 2019 tentang Pengendalian Alih Fungsi Lahan Sawah dan Berita Acara Kesepakatan Verifikasi Aktual Penyelesaian Ketidaksesuaian Lahan Sawah yang Dilindungi dengan Rencana Tata Ruang antara Direktorat Jenderal Pengendalian dan Penertiban Tanah dan Ruang Kementerian Agraria dan Tata Ruang / Badan Pertanahan Nasional dengan Pemerintah Kabupaten Malang tanggal 15 September 2022, lokasi dimohon tidak masuk dalam Peta Lahan Sawah yang Dilindungi (LSD).
+                        <br>
+                        • Peraturan Daerah Kabupaten Malang Nomor 03 Tahun 2010 tentang Rencana Tata Ruang Wilayah Kabupaten Malang, lokasi dimohon masuk dalam Rencana Pola Ruang “<?php if ($pola_ruang1) echo $pola_ruang1->pola_ruang ?><?php if ($pola_ruang2) echo $pola_ruang2->pola_ruang ?> <?php if ($pola_ruang3) echo $pola_ruang3->pola_ruang ?>” dengan ketentuan Pemanfaatan Ruang untuk <?= $data->peruntukan ?> dapat “DIARAHKAN” pada koordinat dimaksud.
+                    <?php } ?>
+                    <?php if ($data->masuk_lsd == 'iya_sebagian' and $data->masuk_kp2b == 'iya_sebagian' and $data->flexsible_zoning == 'bersyarat_tertentu' || $data->flexsible_zoning == 'bersyarat_terbatas') { ?>
+                        • Peraturan Presiden Republik Indonesia Nomor 59 Tahun 2019 tentang Pengendalian Alih Fungsi Lahan Sawah dan Berita Acara Kesepakatan Verifikasi Aktual Penyelesaian Ketidaksesuaian Lahan Sawah yang Dilindungi dengan Rencana Tata Ruang antara Direktorat Jenderal Pengendalian dan Penertiban Tanah dan Ruang Kementerian Agraria dan Tata Ruang / Badan Pertanahan Nasional dengan Pemerintah Kabupaten Malang tanggal 15 September 2022, lokasi dimohon tidak masuk dalam Peta Lahan Sawah yang Dilindungi (LSD).
+                        <br>
+                        • Peraturan Daerah Kabupaten Malang Nomor 03 Tahun 2010 tentang Rencana Tata Ruang Wilayah Kabupaten Malang, lokasi dimohon masuk dalam Rencana Pola Ruang “
+                        <?php
+                        if ($pola_ruang1 && $pola_ruang2 && $pola_ruang3) {
+                            echo $pola_ruang1->pola_ruang . ', ' . $pola_ruang2->pola_ruang . ' dan ' . $pola_ruang3->pola_ruang;
+                        } else if ($pola_ruang1 and $pola_ruang2) {
+                            echo $pola_ruang1->pola_ruang . ' dan ' . $pola_ruang2->pola_ruang;
+                        }
+                        ?>
+                        ” dengan ketentuan Pemanfaatan Ruang untuk <?= $data->peruntukan ?> dapat “DIARAHKAN” pada koordinat dimaksud hanya seluas <?= $data->diijinkan_sebagian ?> m² dari total lahan <?= $data->luas_tanah ?> m².
+                    <?php } ?>
+                    <?php if ($data->flexsible_zoning == 'tidak_diijinkan' || $data->masuk_kp2b == 'iya_seluruhnya') { ?>
+                        • Peraturan Daerah Kabupaten Malang Nomor 03 Tahun 2010 tentang Rencana Tata Ruang Wilayah Kabupaten Malang, lokasi dimohon masuk dalam Rencana Pola Ruang “<?php if ($pola_ruang1) echo $pola_ruang1->pola_ruang ?><?php if ($pola_ruang2) echo $pola_ruang2->pola_ruang ?> <?php if ($pola_ruang3) echo $pola_ruang3->pola_ruang ?>” dengan ketentuan Pemanfaatan Ruang untuk <?= $data->peruntukan ?> “TIDAK DIARAHKAN” pada koordinat dimaksud.
+                    <?php } ?>                                       
                 </p>
             </td>
         </tr>
@@ -254,26 +264,278 @@
                         <td>6.</td>
                         <td>GSP & GSB Min. Lis (Utara)</td>
                         <td>:</td>
-                        <td><?= $data->gsp_gsb ?></td>
+                        <td>
+                            <?php
+                                if($data->fungsi_jalan1 == 'ap' AND $data->kelas_jalan1 == 'r')
+                                {
+                                    echo "12,5 m & 15 m";
+                                }else if($data->fungsi_jalan1 == 'ap' AND $data->kelas_jalan1 == 's')
+                                {
+                                    echo "7,5 m & 15 m";
+                                }else if($data->fungsi_jalan1 == 'kp' AND $data->kelas_jalan1 == 'r')
+                                {
+                                    echo "12,5 m & 10 m";
+                                }else if($data->fungsi_jalan1 == 'kp' AND $data->kelas_jalan1 == 's')
+                                {
+                                    echo "7,5 m & 10 m";
+                                }else if($data->fungsi_jalan1 == 'lp' AND $data->kelas_jalan1 == 'r')
+                                {
+                                    echo "12,5 m & 7 m";
+                                }else if($data->fungsi_jalan1 == 'lp' AND $data->kelas_jalan1 == 's')
+                                {
+                                    echo "7,5 m & 7 m";
+                                }else if($data->fungsi_jalan1 == 'lp' AND $data->kelas_jalan1 == 'k')
+                                {
+                                    echo "5,5 m & 7 m";
+                                }else if($data->fungsi_jalan1 == 'lip' AND $data->kelas_jalan1 == 's')
+                                {
+                                    echo "7,5 m & 5 m";
+                                }else if($data->fungsi_jalan1 == 'lip' AND $data->kelas_jalan1 == 'k')
+                                {
+                                    echo "5,5 m & 5 m";
+                                }else if($data->fungsi_jalan1 == 'as' AND $data->kelas_jalan1 == 'r')
+                                {
+                                    echo "12,5 m & 15 m";
+                                }else if($data->fungsi_jalan1 == 'as' AND $data->kelas_jalan1 == 's')
+                                {
+                                    echo "7,5 m & 15 m";
+                                }else if($data->fungsi_jalan1 == 'ks' AND $data->kelas_jalan1 == 'r')
+                                {
+                                    echo "12,5 m & 5 m";
+                                }else if($data->fungsi_jalan1 == 'ks' AND $data->kelas_jalan1 == 's')
+                                {
+                                    echo "7,5 m & 5 m";
+                                }else if($data->fungsi_jalan1 == 'ls' AND $data->kelas_jalan1 == 'r')
+                                {
+                                    echo "12,5 m & 3 m ";
+                                }else if($data->fungsi_jalan1 == 'ls' AND $data->kelas_jalan1 == 's')
+                                {
+                                    echo "7,5 m & 3 m";
+                                }else if($data->fungsi_jalan1 == 'ls' AND $data->kelas_jalan1 == 'k')
+                                {
+                                    echo "5,5 m & 3 m";
+                                }else if($data->fungsi_jalan1 == 'lis' AND $data->kelas_jalan1 == 'r')
+                                {
+                                    echo "12,5 m & 2 m";
+                                }else if($data->fungsi_jalan1 == 'lis' AND $data->kelas_jalan1 == 's')
+                                {
+                                    echo "7,5 m & 2 m";
+                                }else if($data->fungsi_jalan1 == 'lis' AND $data->kelas_jalan1 == 'k')
+                                {
+                                    echo "5,5 m & 2 m";
+                                }else{
+                                    echo "";
+                                }
+                            ?>
+                        </td>
                     </tr>
-                    <!-- <tr>
+                    <tr>
                         <td></td>
                         <td>GSP & GSB Min. Lis (Barat)</td>
                         <td>:</td>
-                        <td>5,50 m & 2,00 m</td>
+                        <td>
+                        <?php
+                                if($data->fungsi_jalan2 == 'ap' AND $data->kelas_jalan2 == 'r')
+                                {
+                                    echo "12,5 m & 15 m";
+                                }else if($data->fungsi_jalan2 == 'ap' AND $data->kelas_jalan2 == 's')
+                                {
+                                    echo "7,5 m & 15 m";
+                                }else if($data->fungsi_jalan2 == 'kp' AND $data->kelas_jalan2 == 'r')
+                                {
+                                    echo "12,5 m & 10 m";
+                                }else if($data->fungsi_jalan2 == 'kp' AND $data->kelas_jalan2 == 's')
+                                {
+                                    echo "7,5 m & 10 m";
+                                }else if($data->fungsi_jalan2 == 'lp' AND $data->kelas_jalan2 == 'r')
+                                {
+                                    echo "12,5 m & 7 m";
+                                }else if($data->fungsi_jalan2 == 'lp' AND $data->kelas_jalan2 == 's')
+                                {
+                                    echo "7,5 m & 7 m";
+                                }else if($data->fungsi_jalan2 == 'lp' AND $data->kelas_jalan2 == 'k')
+                                {
+                                    echo "5,5 m & 7 m";
+                                }else if($data->fungsi_jalan2 == 'lip' AND $data->kelas_jalan2 == 's')
+                                {
+                                    echo "7,5 m & 5 m";
+                                }else if($data->fungsi_jalan2 == 'lip' AND $data->kelas_jalan2 == 'k')
+                                {
+                                    echo "5,5 m & 5 m";
+                                }else if($data->fungsi_jalan2 == 'as' AND $data->kelas_jalan2 == 'r')
+                                {
+                                    echo "12,5 m & 15 m";
+                                }else if($data->fungsi_jalan2 == 'as' AND $data->kelas_jalan2 == 's')
+                                {
+                                    echo "7,5 m & 15 m";
+                                }else if($data->fungsi_jalan2 == 'ks' AND $data->kelas_jalan2 == 'r')
+                                {
+                                    echo "12,5 m & 5 m";
+                                }else if($data->fungsi_jalan2 == 'ks' AND $data->kelas_jalan2 == 's')
+                                {
+                                    echo "7,5 m & 5 m";
+                                }else if($data->fungsi_jalan2 == 'ls' AND $data->kelas_jalan2 == 'r')
+                                {
+                                    echo "12,5 m & 3 m ";
+                                }else if($data->fungsi_jalan2 == 'ls' AND $data->kelas_jalan2 == 's')
+                                {
+                                    echo "7,5 m & 3 m";
+                                }else if($data->fungsi_jalan2 == 'ls' AND $data->kelas_jalan2 == 'k')
+                                {
+                                    echo "5,5 m & 3 m";
+                                }else if($data->fungsi_jalan2 == 'lis' AND $data->kelas_jalan2 == 'r')
+                                {
+                                    echo "12,5 m & 2 m";
+                                }else if($data->fungsi_jalan2 == 'lis' AND $data->kelas_jalan2 == 's')
+                                {
+                                    echo "7,5 m & 2 m";
+                                }else if($data->fungsi_jalan2 == 'lis' AND $data->kelas_jalan2 == 'k')
+                                {
+                                    echo "5,5 m & 2 m";
+                                }else{
+                                    echo "";
+                                }
+                            ?>
+                        </td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>GSP & GSB Min. Lis (Selatan)</td>
                         <td>:</td>
-                        <td>5,50 m & 2,00 m</td>
+                        <td>
+                        <?php
+                                if($data->fungsi_jalan3 == 'ap' AND $data->kelas_jalan3 == 'r')
+                                {
+                                    echo "12,5 m & 15 m";
+                                }else if($data->fungsi_jalan3 == 'ap' AND $data->kelas_jalan3 == 's')
+                                {
+                                    echo "7,5 m & 15 m";
+                                }else if($data->fungsi_jalan3 == 'kp' AND $data->kelas_jalan3 == 'r')
+                                {
+                                    echo "12,5 m & 10 m";
+                                }else if($data->fungsi_jalan3 == 'kp' AND $data->kelas_jalan3 == 's')
+                                {
+                                    echo "7,5 m & 10 m";
+                                }else if($data->fungsi_jalan3 == 'lp' AND $data->kelas_jalan3 == 'r')
+                                {
+                                    echo "12,5 m & 7 m";
+                                }else if($data->fungsi_jalan3 == 'lp' AND $data->kelas_jalan3 == 's')
+                                {
+                                    echo "7,5 m & 7 m";
+                                }else if($data->fungsi_jalan3 == 'lp' AND $data->kelas_jalan3 == 'k')
+                                {
+                                    echo "5,5 m & 7 m";
+                                }else if($data->fungsi_jalan3 == 'lip' AND $data->kelas_jalan3 == 's')
+                                {
+                                    echo "7,5 m & 5 m";
+                                }else if($data->fungsi_jalan3 == 'lip' AND $data->kelas_jalan3 == 'k')
+                                {
+                                    echo "5,5 m & 5 m";
+                                }else if($data->fungsi_jalan3 == 'as' AND $data->kelas_jalan3 == 'r')
+                                {
+                                    echo "12,5 m & 15 m";
+                                }else if($data->fungsi_jalan3 == 'as' AND $data->kelas_jalan3 == 's')
+                                {
+                                    echo "7,5 m & 15 m";
+                                }else if($data->fungsi_jalan3 == 'ks' AND $data->kelas_jalan3 == 'r')
+                                {
+                                    echo "12,5 m & 5 m";
+                                }else if($data->fungsi_jalan3 == 'ks' AND $data->kelas_jalan3 == 's')
+                                {
+                                    echo "7,5 m & 5 m";
+                                }else if($data->fungsi_jalan3 == 'ls' AND $data->kelas_jalan3 == 'r')
+                                {
+                                    echo "12,5 m & 3 m ";
+                                }else if($data->fungsi_jalan3 == 'ls' AND $data->kelas_jalan3 == 's')
+                                {
+                                    echo "7,5 m & 3 m";
+                                }else if($data->fungsi_jalan3 == 'ls' AND $data->kelas_jalan3 == 'k')
+                                {
+                                    echo "5,5 m & 3 m";
+                                }else if($data->fungsi_jalan3 == 'lis' AND $data->kelas_jalan3 == 'r')
+                                {
+                                    echo "12,5 m & 2 m";
+                                }else if($data->fungsi_jalan3 == 'lis' AND $data->kelas_jalan3 == 's')
+                                {
+                                    echo "7,5 m & 2 m";
+                                }else if($data->fungsi_jalan3 == 'lis' AND $data->kelas_jalan3 == 'k')
+                                {
+                                    echo "5,5 m & 2 m";
+                                }else{
+                                    echo "";
+                                }
+                            ?>
+                        </td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>GSP & GSB Min. Lis (Timur)</td>
                         <td>:</td>
-                        <td>5,50 m & 2,00 m</td>
-                    </tr> -->
+                        <td>
+                        <?php
+                                if($data->fungsi_jalan4 == 'ap' AND $data->kelas_jalan4 == 'r')
+                                {
+                                    echo "12,5 m & 15 m";
+                                }else if($data->fungsi_jalan4 == 'ap' AND $data->kelas_jalan4 == 's')
+                                {
+                                    echo "7,5 m & 15 m";
+                                }else if($data->fungsi_jalan4 == 'kp' AND $data->kelas_jalan4 == 'r')
+                                {
+                                    echo "12,5 m & 10 m";
+                                }else if($data->fungsi_jalan4 == 'kp' AND $data->kelas_jalan4 == 's')
+                                {
+                                    echo "7,5 m & 10 m";
+                                }else if($data->fungsi_jalan4 == 'lp' AND $data->kelas_jalan4 == 'r')
+                                {
+                                    echo "12,5 m & 7 m";
+                                }else if($data->fungsi_jalan4 == 'lp' AND $data->kelas_jalan4 == 's')
+                                {
+                                    echo "7,5 m & 7 m";
+                                }else if($data->fungsi_jalan4 == 'lp' AND $data->kelas_jalan4 == 'k')
+                                {
+                                    echo "5,5 m & 7 m";
+                                }else if($data->fungsi_jalan4 == 'lip' AND $data->kelas_jalan4 == 's')
+                                {
+                                    echo "7,5 m & 5 m";
+                                }else if($data->fungsi_jalan4 == 'lip' AND $data->kelas_jalan4 == 'k')
+                                {
+                                    echo "5,5 m & 5 m";
+                                }else if($data->fungsi_jalan4 == 'as' AND $data->kelas_jalan4 == 'r')
+                                {
+                                    echo "12,5 m & 15 m";
+                                }else if($data->fungsi_jalan4 == 'as' AND $data->kelas_jalan4 == 's')
+                                {
+                                    echo "7,5 m & 15 m";
+                                }else if($data->fungsi_jalan4 == 'ks' AND $data->kelas_jalan4 == 'r')
+                                {
+                                    echo "12,5 m & 5 m";
+                                }else if($data->fungsi_jalan4 == 'ks' AND $data->kelas_jalan4 == 's')
+                                {
+                                    echo "7,5 m & 5 m";
+                                }else if($data->fungsi_jalan4 == 'ls' AND $data->kelas_jalan4 == 'r')
+                                {
+                                    echo "12,5 m & 3 m ";
+                                }else if($data->fungsi_jalan4 == 'ls' AND $data->kelas_jalan4 == 's')
+                                {
+                                    echo "7,5 m & 3 m";
+                                }else if($data->fungsi_jalan4 == 'ls' AND $data->kelas_jalan4 == 'k')
+                                {
+                                    echo "5,5 m & 3 m";
+                                }else if($data->fungsi_jalan4 == 'lis' AND $data->kelas_jalan4 == 'r')
+                                {
+                                    echo "12,5 m & 2 m";
+                                }else if($data->fungsi_jalan4 == 'lis' AND $data->kelas_jalan4 == 's')
+                                {
+                                    echo "7,5 m & 2 m";
+                                }else if($data->fungsi_jalan4 == 'lis' AND $data->kelas_jalan4 == 'k')
+                                {
+                                    echo "5,5 m & 2 m";
+                                }else{
+                                    echo "";
+                                }
+                            ?>
+                        </td>
+                    </tr>
                     <tr>
                         <td>7.</td>
                         <td>Koefisien Lantai Bangunan Maks,</td>

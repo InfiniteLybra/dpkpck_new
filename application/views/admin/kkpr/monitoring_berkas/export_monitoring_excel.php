@@ -78,6 +78,8 @@ header("Content-Disposition: attachment; filename= Laporan_Monitoring_KKPR_" . d
                 <th>no. register</th>
                 <th>tgl verivikasi</th>
                 <th>Nama pemohon</th>
+                <th>Telp pemohon</th>
+                <th>Telp Kuasa</th>
                 <th>Badan Hukum</th>
                 <th>peruntukan</th>
                 <th>kec.</th>
@@ -118,6 +120,12 @@ header("Content-Disposition: attachment; filename= Laporan_Monitoring_KKPR_" . d
                     </td>
                     <td class="text-center pe-0">
                         <span class="fw-bold"><?= $i->nama_pemohon ?></span>
+                    </td>
+                    <td class="text-center pe-0">
+                        <span class="fw-bold"><?= $i->telp_pemohon ?></span>
+                    </td>
+                    <td class="text-center pe-0">
+                        <span class="fw-bold"></span>
                     </td>
                     <td class="text-center pe-0">
                         <span class="fw-bold"><?= $i->nama_perusahaan ?></span>

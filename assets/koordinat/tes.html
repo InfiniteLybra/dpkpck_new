@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert SHP to Array</title>
+</head>
+
+<body>
+    <input type="file" id="shpFileInput" accept=".shp">
+    <button id="convertButton">Convert to Array</button>
+    <pre id="output"></pre>
+
+</body>
+<!-- <script src="main.js"></script> -->
+<script>
+    // main.js
+
+    document.getElementById('convertButton').addEventListener('click', convertSHPTOArray);
+
+    async function convertSHPTOArray() {
+        const fileInput = document.getElementById('shpFileInput');
+        const outputElement = document.getElementById('output');
+
+        const shpFile = fileInput.files[0];
+        if (!shpFile) {
+            outputElement.textContent = 'Please select an SHP file first.';
+            return;
+        }
+
+        try {
+            const shp = require('L-202307181708491195802-20230724121640.zip');
+            const file = await shp.open(shpFile);
+            const {
+                value,
+                done
+            } = await file.read();
+            const coordinatesArray = [];
+
+            while (!done) {
+                if (value && value.geometry && value.geometry.type) {
+                    if (value.geometry.type === 'Polygon' || value.geometry.type === 'MultiPolygon') {
+                        coordinatesArray.push(value.geometry.coordinates);
+                    }
+                }
+                ({
+                    value,
+                    done
+                } = await file.read());
+            }
+
+            outputElement.textContent = JSON.stringify(coordinatesArray, null, 2);
+        } catch (error) {
+            outputElement.textContent = 'An error occurred while reading or converting the SHP file.';
+            console.error(error);
+        }
+    }
+</script>
+
+</html>

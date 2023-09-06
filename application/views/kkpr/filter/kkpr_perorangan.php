@@ -264,6 +264,13 @@
                         </div>
                         <div class="mb-3 row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align">Luas Tanah
+                                <span class="ms-1" data-bs-toggle="tooltip" title="Luas tanah menggunakan m2, Inputkan angka saja">
+                                    <i class="ki-duotone ki-information fs-7">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                        <span class="path3"></span>
+                                    </i>
+                                </span>
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">

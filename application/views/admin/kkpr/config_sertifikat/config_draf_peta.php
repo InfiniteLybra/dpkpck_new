@@ -253,7 +253,7 @@ if ($cek) {
                             <div class="checkbox-container">
                                 <?php if ($cek) { ?>
                                     <?php
-                                    $legenda = $this->db->query("SELECT * FROM legenda")->result();
+                                    $legenda = $this->db->query("SELECT * FROM legenda WHERE type = 'peta'")->result();
                                     $get = json_decode($cek->legenda_pola_ruang, true);
                                     foreach ($legenda as $l) {
                                     ?>
@@ -305,7 +305,7 @@ if ($cek) {
                             <?php } ?>
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td class="text-center pe-0">
                             <span class="fw-bold">15</span>
                         </td>
@@ -321,8 +321,7 @@ if ($cek) {
                                     foreach ($legenda as $l) {
                                     ?>
                                         <div class="form-check">
-                                            <?php
-                                            // Periksa apakah $l->id ada di dalam array $get
+                                            <?php                                           
                                             $isChecked = in_array($l->id_legenda, array_column($get, 'legenda'));
                                             ?>
                                             <input class="form-check-input" type="checkbox" value="<?= $l->id_legenda ?>" id="legenda_peta_situasi[]" name="legenda_peta_situasi[]" <?php if ($isChecked) echo 'checked' ?> />
@@ -348,7 +347,7 @@ if ($cek) {
                             <?php } ?>
                             </div>
                         </td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td class="text-center pe-0">
                             <span class="fw-bold">16</span>
@@ -368,7 +367,7 @@ if ($cek) {
                             <?php } ?>
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td class="text-center pe-0">
                             <span class="fw-bold">17</span>
                         </td>
@@ -413,7 +412,7 @@ if ($cek) {
                             <?php } ?>
                             </div>
                         </td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td class="text-center pe-0">
                             <span class="fw-bold"></span>
