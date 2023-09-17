@@ -578,7 +578,8 @@
                     '<div class="mb-3 row">' +
                     '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah <span class="required"></span></label>' +
                     '<div class="col-md-9 col-sm-9">' +
-                    '<input type="file" name="file_status_tanah[]" class="form-control ">' +
+                    '<input type="file" name="file_status_tanah[]" class="form-control "accept=".jpg, .pdf">' +
+                    '<small>File yang diterima hanya .jpg dan .pdf</small>' +
                     '</div>' +
                     '</div>';
                 namaPemohonContainer.append(formNamaPemohon);
@@ -645,4 +646,52 @@
             }
         });
     });
+</script>
+<script>
+  $(document).ready(function() {
+    $("#addInput").click(function() {
+      // Buat input baru dan tambahkan ke dalam "additionalInputs" div
+      var newInput = '<input type="text" class="form-control mb-2" name="kbli_array[]" required />';
+      $("#additionalInputs").append(newInput);
+    });
+    $("#removeInput").click(function() {
+      // Hapus input terakhir dari "additionalInputs" div
+      $("#additionalInputs input:last-child").remove();
+    });
+  });
+  $(document).ready(function() {
+    var inputCount = 1; // Untuk melacak jumlah input yang ada
+    $("#addInputtanah").click(function() {
+        // Buat input baru dengan ID yang unik
+        var newInput = '<div class="newInput" id="input' + inputCount + '">';
+        newInput += '<div class="mb-3 row">';
+        newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Status Tanah <span class="required"></span></label>';
+        newInput += '<div class="col-md-9 col-sm-9">';
+        newInput += '<input type="text" class="form-control mb-2" name="status_tanah_array[]" required />';
+        newInput += '</div>';
+        newInput += '</div>';
+        newInput += '<div class="mb-3 row">';
+        newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah <span class="required"></span></label>';
+        newInput += '<div class="col-md-9 col-sm-9">';
+        newInput += '<input type="file" name="file_status_tanah[]" class="form-control" accept=".jpg, .pdf">';
+        newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+        newInput += '</div>';
+        newInput += '</div>';
+        newInput += '</div>';
+
+        // Tambahkan input baru ke dalam "additionalInputstanah" div
+        $("#additionalInputstanah").append(newInput);
+
+        // Tingkatkan hitungan input
+        inputCount++;
+    });
+
+    $("#removeInputtanah").click(function() {
+        if (inputCount > 1) { // Pastikan selalu ada minimal satu input
+            // Hapus input terakhir dari "additionalInputstanah" div
+            $("#additionalInputstanah .newInput:last-child").remove();
+            inputCount--; // Kurangi hitungan input
+        }
+    });
+});
 </script>

@@ -13,6 +13,15 @@ if ($cek) {
     $kecamatan_tanah = $this->db->query("SELECT * FROM kecamatan WHERE id_kecamatan = '$data->kecamatan_tanah' ")->row();
 }
 ?>
+<style>
+  /* Ganti warna latar belakang (background) input menjadi abu-abu */
+  input[type="text"].form-control[readonly] {
+    background-color: #F0F0F0; /* Warna abu-abu */
+  }
+  textarea.form-control[readonly] {
+    background-color: #F0F0F0; /* Warna abu-abu */
+  }
+</style>
 <!--begin::details View-->
 <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
     <!--begin::Card header-->
@@ -44,10 +53,10 @@ if ($cek) {
                         </td>
                         <td class="text-center pe-0">
                             <?php if ($cek) { ?>
-                                <input type="text" name="nomor" class="form-control" value="<?= $data->nomor ?>">
+                                <input type="text" name="nomor" class="form-control" value="<?= $data->nomor ?>" readonly>
                                 <input type="hidden" name="id_permohonan" class="form-control" value="<?= $data->id_permohonan ?>">
                             <?php } else { ?>
-                                <input type="text" name="nomor" class="form-control" value="<?= '600.3.3.2 /00' . $data->id_kkpr_permohonan . '/ 35.07.111' ?>">
+                                <input type="text" name="nomor" class="form-control" value="<?= '600.3.3.2 /00' . $data->id_kkpr_permohonan . '/ 35.07.111' ?>" readonly>
                                 <input type="hidden" name="id_permohonan" class="form-control" value="<?= $data->id_kkpr_permohonan ?>">
 
                             <?php } ?>
@@ -62,9 +71,9 @@ if ($cek) {
                         </td>
                         <td class="text-center pe-0">
                             <?php if ($cek) { ?>
-                                <input type="text" name="nama_pemohon" class="form-control" value="<?= $data->nama_pemohon ?>">
+                                <input type="text" name="nama_pemohon" class="form-control" value="<?= $data->nama_pemohon ?>" readonly>
                             <?php } else { ?>
-                                <input type="text" name="nama_pemohon" class="form-control" value="<?= $data->nama_pemohon ?>">
+                                <input type="text" name="nama_pemohon" class="form-control" value="<?= $data->nama_pemohon ?>" readonly>
                             <?php } ?>
                         </td>
                     </tr>
@@ -77,9 +86,9 @@ if ($cek) {
                         </td>
                         <td class="text-center pe-0">
                             <?php if ($cek) { ?>
-                                <textarea class="form-control" name="alamat_pemohon" data-kt-autosize="true"><?php if ($data) echo $data->alamat_pemohon ?> </textarea>
+                                <textarea class="form-control" name="alamat_pemohon" data-kt-autosize="true" readonly><?php if ($data) echo $data->alamat_pemohon ?> </textarea>
                             <?php } else { ?>
-                                <textarea class="form-control" name="alamat_pemohon" data-kt-autosize="true"><?php if ($data) echo $data->alamat_pemohon ?> RT. <?php if ($data) echo $data->rt_pemohon ?> RW. <?php if ($data) echo $data->rw_pemohon ?> Kel. <?= $kelurahan->subdis_name ?> - Kec. <?= $kecamatan->dis_name ?> - Kota / Kab. <?= $kota->city_name ?> - Prov. <?= $provinsi->prov_name ?></textarea>
+                                <textarea class="form-control" name="alamat_pemohon" data-kt-autosize="true" readonly><?php if ($data) echo $data->alamat_pemohon ?> RT. <?php if ($data) echo $data->rt_pemohon ?> RW. <?php if ($data) echo $data->rw_pemohon ?> Kel. <?= $kelurahan->subdis_name ?> - Kec. <?= $kecamatan->dis_name ?> - Kota / Kab. <?= $kota->city_name ?> - Prov. <?= $provinsi->prov_name ?></textarea>
                             <?php } ?>
                         </td>
                     </tr>
@@ -92,9 +101,9 @@ if ($cek) {
                         </td>
                         <td class="text-center pe-0">
                             <?php if ($cek) { ?>
-                                <input type="text" name="nama_perusahaan" class="form-control" value="<?php if ($data->nama_perusahaan) echo $data->nama_perusahaan ?>">
+                                <input type="text" name="nama_perusahaan" class="form-control" value="<?php if ($data->nama_perusahaan) echo $data->nama_perusahaan ?>" readonly>
                             <?php } else { ?>
-                                <input type="text" name="nama_perusahaan" class="form-control" value="<?php if ($data->nama_perusahaan) echo $data->nama_perusahaan ?>">
+                                <input type="text" name="nama_perusahaan" class="form-control" value="<?php if ($data->nama_perusahaan) echo $data->nama_perusahaan ?>" readonly>
                             <?php } ?>
                         </td>
                     </tr>
@@ -107,10 +116,10 @@ if ($cek) {
                         </td>
                         <td class="text-center pe-0">
                             <?php if ($cek) { ?>
-                                <textarea class="form-control" name="alamat_perusahaan" data-kt-autosize="true"><?php if ($data->nama_perusahaan) echo $data->alamat_perusahaan ?> 
+                                <textarea class="form-control" name="alamat_perusahaan" data-kt-autosize="true" readonly><?php if ($data->nama_perusahaan) echo $data->alamat_perusahaan ?> 
                             </textarea>
                             <?php } else { ?>
-                                <textarea class="form-control" name="alamat_perusahaan" data-kt-autosize="true"><?php if ($data->nama_perusahaan) echo $data->alamat_perusahaan ?> <?php if ($data->nama_perusahaan) echo 'RT. ' . $data->rt_perusahaan . '' ?> <?php if ($data->nama_perusahaan) echo 'RW. ' . $data->rw_perusahaan . '' ?> <?php if ($data->nama_perusahaan) echo 'Kel. ' . $kelurahan_perusahaan->subdis_name . '' ?> <?php if ($data->nama_perusahaan) echo '- Kec. ' . $kecamatan_perusahaan->dis_name . '' ?> <?php if ($data->nama_perusahaan) echo '- Kota / Kab. ' . $kota_perusahaan->city_name . '' ?> <?php if ($data->nama_perusahaan) echo '- Prov. ' . $provinsi_perusahaan->prov_name . '' ?>
+                                <textarea class="form-control" name="alamat_perusahaan" data-kt-autosize="true" readonly><?php if ($data->nama_perusahaan) echo $data->alamat_perusahaan ?> <?php if ($data->nama_perusahaan) echo 'RT. ' . $data->rt_perusahaan . '' ?> <?php if ($data->nama_perusahaan) echo 'RW. ' . $data->rw_perusahaan . '' ?> <?php if ($data->nama_perusahaan) echo 'Kel. ' . $kelurahan_perusahaan->subdis_name . '' ?> <?php if ($data->nama_perusahaan) echo '- Kec. ' . $kecamatan_perusahaan->dis_name . '' ?> <?php if ($data->nama_perusahaan) echo '- Kota / Kab. ' . $kota_perusahaan->city_name . '' ?> <?php if ($data->nama_perusahaan) echo '- Prov. ' . $provinsi_perusahaan->prov_name . '' ?>
                                 </textarea>
                             <?php } ?>
                         </td>
@@ -124,9 +133,9 @@ if ($cek) {
                         </td>
                         <td class="text-center pe-0">
                             <?php if ($cek) { ?>
-                                <input type="text" name="nib_skala_usaha" class="form-control" value="<?php if ($data) echo $data->nib_skala_usaha ?>">
+                                <input type="text" name="nib_skala_usaha" class="form-control" value="<?php if ($data) echo $data->nib_skala_usaha ?>" readonly>
                             <?php } else { ?>
-                                <input type="text" name="nib_skala_usaha" class="form-control" value="<?php if ($data) echo $data->nib ?> / <?php if ($data) echo $data->skala_usaha ?>">
+                                <input type="text" name="nib_skala_usaha" class="form-control" value="<?php if ($data) echo $data->nib ?> / <?php if ($data) echo $data->skala_usaha ?>" readonly>
                             <?php } ?>
                         </td>
                     </tr>
@@ -135,20 +144,20 @@ if ($cek) {
                             <span class="fw-bold">7</span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">KBLI/Tingkat Resiko</span>
+                            <span class="fw-bold">KBLI diMohon/Tingkat Risiko</span>
                         </td>
                         <td class="text-center pe-0">
                             <?php if ($cek) {
                                 $kbli = json_decode($data->kbli_tingkat_resiko);
                                 foreach ($kbli as $k) {
                             ?>
-                                    <input type="text" name="kbli_tingkat_resiko[]" class="form-control" value="<?= $k->kbli ?>">
+                                    <input type="text" name="kbli_tingkat_resiko[]" class="form-control" value="<?= $k->kbli ?>" readonly>
                                 <?php }
                             } else {
                                 $kbli = json_decode($data->kbli);
                                 foreach ($kbli as $k) {
                                 ?>
-                                    <input type="text" name="kbli_tingkat_resiko[]" class="form-control" value="<?= $k->kbli ?> - <?php if ($data) echo $data->kategori ?> / <?php if ($data) echo $data->klasifikasi_resiko ?>">
+                                    <input type="text" name="kbli_tingkat_resiko[]" class="form-control" value="<?= $k->kbli ?> - <?php if ($data) echo $data->kategori ?> / <?php if ($data) echo $data->klasifikasi_resiko ?>" readonly>
                             <?php }
                             } ?>
                         </td>
@@ -162,9 +171,9 @@ if ($cek) {
                         </td>
                         <td class="text-center pe-0">
                             <?php if ($cek) { ?>
-                                <input type="text" name="peruntukan" class="form-control" value="<?= $data->peruntukan ?>">
+                                <input type="text" name="peruntukan" class="form-control" value="<?= $data->peruntukan ?>" readonly>
                             <?php } else { ?>
-                                <input type="text" name="peruntukan" class="form-control" value="<?= $data->peruntukan_tanah ?>">
+                                <input type="text" name="peruntukan" class="form-control" value="<?= $data->peruntukan_tanah ?>" readonly>
                             <?php } ?>
                         </td>
                     </tr>
@@ -177,9 +186,9 @@ if ($cek) {
                         </td>
                         <td class="text-center pe-0">
                             <?php if ($cek) { ?>
-                                <input type="text" name="lokasi" class="form-control" value="<?php if ($data) echo $data->lokasi ?> ">
+                                <input type="text" name="lokasi" class="form-control" value="<?php if ($data) echo $data->lokasi ?> "readonly>
                             <?php } else { ?>
-                                <input type="text" name="lokasi" class="form-control" value="<?php if ($data) echo $data->lokasi_tanah ?> Desa / Kel. <?= $kelurahan_tanah->nama_desa ?> - Kec. <?= $kecamatan_tanah->nama_kecamatan ?> ">
+                                <input type="text" name="lokasi" class="form-control" value="<?php if ($data) echo $data->lokasi_tanah ?> Desa / Kel. <?= $kelurahan_tanah->nama_desa ?> - Kec. <?= $kecamatan_tanah->nama_kecamatan ?> " readonly>
                             <?php } ?>
                         </td>
                     </tr>
@@ -193,12 +202,12 @@ if ($cek) {
                         <td class="text-center pe-0">
                             <?php if ($cek) { ?>
                                 <div class="d-flex">
-                                    <input type="text" name="luas_tanah" class="form-control flex-grow-1" value="<?= $data->luas_tanah ?>">
+                                    <input type="text" name="luas_tanah" class="form-control flex-grow-1" value="<?= $data->luas_tanah ?>" readonly>
                                     <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
                                 </div>
                             <?php } else { ?>
                                 <div class="d-flex">
-                                    <input type="text" name="luas_tanah" class="form-control flex-grow-1" value="<?= $data->luas_tanah ?>">
+                                    <input type="text" name="luas_tanah" class="form-control flex-grow-1" value="<?= $data->luas_tanah ?>" readonly>
                                     <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
                                 </div>
                             <?php } ?>
@@ -219,7 +228,7 @@ if ($cek) {
                                 foreach ($status as $s) {
                                 ?>
                                     <div class="mb-3 row">
-                                        <input type="text" name="status_tanah_" .<?= $no++; ?>."" class="form-control" value="<?= $s->status_tanah ?>">
+                                        <input type="text" name="status_tanah_" .<?= $no++; ?>."" class="form-control" value="<?= $s->status_tanah ?>"readonly>
                                     </div>
                                 <?php } ?>
                             <?php } else { ?>
@@ -315,17 +324,17 @@ if ($cek) {
                             </div>
                         </td>
                     </tr>
-                    <!-- <tr>
+                    <tr>
                         <td class="text-center pe-0">
                             <span class="fw-bold"></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"></span>
+                            <span class="fw-bold">Jumlah Koordinat</span>
                         </td>
                         <td class="text-center pe-0">                     
-                            <input type="number" name="jumlah_koordinat" class="form-control">
+                            <input type="number" name="jumlah_koordinat" id="jumlah_koordinat" class="form-control">
                         </td>
-                    </tr> -->
+                    </tr>                    
                     <tr>
                         <td class="text-center pe-0">
                             <span class="fw-bold">14</span>
@@ -337,32 +346,15 @@ if ($cek) {
                             <?php if ($cek) {
                                 $koordinat = json_decode($data->titik_koordinat);
                                 foreach ($koordinat as $k) {
-                            ?>
+                            ?>                                    
                                     <div class="mb-3 row">
-                                        <input type="text" name="koordinat_a" class="form-control" value="<?= $k->koordinat_a ?>">
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <input type="text" name="koordinat_b" class="form-control" value="<?= $k->koordinat_b ?>">
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <input type="text" name="koordinat_c" class="form-control" value="<?= $k->koordinat_c ?>">
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <input type="text" name="koordinat_d" class="form-control" value="<?= $k->koordinat_d ?>">
-                                    </div>
-                                <?php }
+                                        <input type="text" name="koordinat[]" class="form-control" value="<?= $k->koordinat ?>">
+                                    </div>      
+                                    <?php }?>                              
+                                    <div id="koor"></div>
+                            <?php 
                             } else { ?>
-                                <div class="mb-3 row">
-                                    <input type="text" name="koordinat_a" class="form-control" value="a.">
-                                </div>
-                                <div class="mb-3 row">
-                                    <input type="text" name="koordinat_b" class="form-control" value="b.">
-                                </div>
-                                <div class="mb-3 row">
-                                    <input type="text" name="koordinat_c" class="form-control" value="c.">
-                                </div>
-                                <div class="mb-3 row">
-                                    <input type="text" name="koordinat_d" class="form-control" value="d.">
+                                <div id="koor"></div>                                
                                 </div>
                             <?php } ?>
                         </td>
@@ -385,6 +377,9 @@ if ($cek) {
                                             <?php
                                             // Periksa apakah $l->id ada di dalam array $get
                                             $isChecked = in_array($k->id_ketentuan_lainya, array_column($get_ketentuan, 'ketentuan'));
+                                            // if ($k->id_ketentuan_lainya == 1) {
+                                            //     $isChecked = true;
+                                            // }
                                             ?>
                                             <input class="form-check-input" type="checkbox" value="<?= $k->id_ketentuan_lainya ?>" id="ketentuan[]" name="ketentuan[]" <?php if ($isChecked) echo 'checked' ?> />
                                             <label class="form-check-label" for="ketentuan<?= $k->id_ketentuan_lainya ?>" style="float: left;">
@@ -395,6 +390,10 @@ if ($cek) {
                                 <?php } else { ?>
                                     <?php
                                     foreach ($ketentuan as $k) {
+                                        // $isChecked = false;
+                                        // if ($k->id_ketentuan_lainya == 1) {
+                                        //         $isChecked = true;
+                                        //     }                                         
                                     ?>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="<?= $k->id_ketentuan_lainya ?>" id="ketentuan[]" name="ketentuan[]" />
@@ -568,6 +567,27 @@ if ($cek) {
                             <span class="fw-bold">21</span>
                         </td>
                         <td class="text-center pe-0">
+                            <span class="fw-bold">Luas Tanah Masuk Peta LSD</span>
+                        </td>
+                        <td class="text-center pe-0">
+                            <?php if ($cek) { ?>
+                                <div class="d-flex">
+                                    <input type="text" name="luas_tanah_lsd" class="form-control flex-grow-1" value="<?= $data->luas_tanah_lsd ?>">
+                                    <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
+                                </div>
+                            <?php } else { ?>
+                                <div class="d-flex">
+                                    <input type="text" name="luas_tanah_lsd" class="form-control flex-grow-1" value="">
+                                    <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
+                                </div>
+                            <?php } ?>
+                        </td>
+                    </tr>                    
+                    <tr>
+                        <td class="text-center pe-0">
+                            <span class="fw-bold">22</span>
+                        </td>
+                        <td class="text-center pe-0">
                             <span class="fw-bold">Masuk dalam KP2B</span>
                         </td>
                         <td class="text-center pe-0">
@@ -593,7 +613,28 @@ if ($cek) {
                     </tr>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">22</span>
+                            <span class="fw-bold">23</span>
+                        </td>
+                        <td class="text-center pe-0">
+                            <span class="fw-bold">Luas Tanah Masuk Peta KP2B</span>
+                        </td>
+                        <td class="text-center pe-0">
+                            <?php if ($cek) { ?>
+                                <div class="d-flex">
+                                    <input type="text" name="luas_tanah_kp2b" class="form-control flex-grow-1" value="<?= $data->luas_tanah_kp2b ?>">
+                                    <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
+                                </div>
+                            <?php } else { ?>
+                                <div class="d-flex">
+                                    <input type="text" name="luas_tanah_kp2b" class="form-control flex-grow-1" value="">
+                                    <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
+                                </div>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center pe-0">
+                            <span class="fw-bold">24</span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold">Diijinkan sebagian, seluas</span>
@@ -617,7 +658,7 @@ if ($cek) {
                     </tr>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">23</span>
+                            <span class="fw-bold">25</span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold">Blok (Kepanjen/RD Singosari)</span>
@@ -653,7 +694,7 @@ if ($cek) {
                     </tr>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">24</span>
+                            <span class="fw-bold">26</span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold">Kode Zona (Kepanjen/RD Singosari)(I)</span>
@@ -689,7 +730,7 @@ if ($cek) {
                     </tr>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">25</span>
+                            <span class="fw-bold">27</span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold">Kode Zona (Kepanjen/RD Singosari)(II)</span>
@@ -725,7 +766,7 @@ if ($cek) {
                     </tr>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">26</span>
+                            <span class="fw-bold">28</span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold">Kode Zona (Kepanjen/RD Singosari)(III)</span>
@@ -761,7 +802,7 @@ if ($cek) {
                     </tr>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">27</span>
+                            <span class="fw-bold">29</span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold">Indikasi Program Pemanfaatan Ruang</span>
@@ -779,7 +820,7 @@ if ($cek) {
                     </tr>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">28</span>
+                            <span class="fw-bold">30</span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold">Luas Tanah yang disetujui</span>
@@ -797,52 +838,10 @@ if ($cek) {
                                 </div>
                             <?php } ?>
                         </td>
-                    </tr>                   
+                    </tr>                    
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">29</span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold">Luas Tanah Masuk Peta LSD</span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <?php if ($cek) { ?>
-                                <div class="d-flex">
-                                    <input type="text" name="luas_tanah_lsd" class="form-control flex-grow-1" value="<?= $data->luas_tanah_lsd ?>">
-                                    <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
-                                </div>
-                            <?php } else { ?>
-                                <div class="d-flex">
-                                    <input type="text" name="luas_tanah_lsd" class="form-control flex-grow-1" value="">
-                                    <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
-                                </div>
-                            <?php } ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold">29</span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold">Luas Tanah Masuk Peta KP2B</span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <?php if ($cek) { ?>
-                                <div class="d-flex">
-                                    <input type="text" name="luas_tanah_kp2b" class="form-control flex-grow-1" value="<?= $data->luas_tanah_kp2b ?>">
-                                    <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
-                                </div>
-                            <?php } else { ?>
-                                <div class="d-flex">
-                                    <input type="text" name="luas_tanah_kp2b" class="form-control flex-grow-1" value="">
-                                    <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
-                                </div>
-                            <?php } ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold">30</span>
+                            <span class="fw-bold">31</span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold">Koefisien Dasar Bangunan Maks.</span>
@@ -863,7 +862,7 @@ if ($cek) {
                     </tr>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">31</span>
+                            <span class="fw-bold">32</span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold">Koefiien Dasar Hijau Minimal</span>
@@ -884,7 +883,7 @@ if ($cek) {
                     </tr>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">32</span>
+                            <span class="fw-bold">33</span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold">Fungsi Jalan (I)</span>
@@ -898,7 +897,7 @@ if ($cek) {
                                     $fj = $this->db->query("SELECT * FROM fungsi_jalan ")->result();
                                     foreach ($fj as $p) {
                                     ?>
-                                        <option value="<?= $p->kode ?>" <?php if ($cek->fungsi_jalan1 == $p->kode) echo "selected" ?>><?= $p->fungsi_jalan?></option>
+                                        <option value="<?= $p->kode ?>" <?php if ($cek->fungsi_jalan1 == $p->kode) echo "selected" ?>><?= $p->fungsi_jalan ?></option>
                                     <?php } ?>
                                 </select>
                             <?php } else {
@@ -909,17 +908,17 @@ if ($cek) {
                                     $fj = $this->db->query("SELECT * FROM fungsi_jalan ")->result();
                                     foreach ($fj as $p) {
                                     ?>
-                                        <option value="<?= $p->kode ?>"><?= $p->fungsi_jalan?></option>
+                                        <option value="<?= $p->kode ?>"><?= $p->fungsi_jalan ?></option>
                                     <?php } ?>
                                 </select>
                                 </select>
                             <?php }
                             ?>
                         </td>
-                    </tr>                    
+                    </tr>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">33</span>
+                            <span class="fw-bold">34</span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold">Kelas Jalan (I)</span>
@@ -945,10 +944,33 @@ if ($cek) {
                             <?php }
                             ?>
                         </td>
-                    </tr>                    
+                    </tr>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">34</span>
+                            <span class="fw-bold"></span>
+                        </td>
+                        <td class="text-center pe-0">
+                            <span class="fw-bold"></span>
+                        </td>
+                        <td class="text-center pe-0" style="float: right;">
+                            <a id="cek1" class="btn btn-light btn-sm">Cek</a>
+                            <a id="refresh1" class="btn btn-light btn-sm">Tutup</a>
+                        </td>
+                    </tr>
+                    <tr id="tr_gsp_1" style="display: none;">
+                        <td class="text-center pe-0">
+                            <span class="fw-bold"></span>
+                        </td>
+                        <td class="text-center pe-0">
+                            <span class="fw-bold">Hasil</span>
+                        </td>
+                        <td class="text-center pe-0">
+                            <input type="text" name="gsp_1" id="gsp_1" class="form-control mb-2" placeholder="Input Baru">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center pe-0">
+                            <span class="fw-bold">35</span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold">Fungsi Jalan (II)</span>
@@ -962,7 +984,7 @@ if ($cek) {
                                     $fj = $this->db->query("SELECT * FROM fungsi_jalan ")->result();
                                     foreach ($fj as $p) {
                                     ?>
-                                        <option value="<?= $p->kode ?>" <?php if ($cek->fungsi_jalan2 == $p->kode) echo "selected" ?>><?= $p->fungsi_jalan?></option>
+                                        <option value="<?= $p->kode ?>" <?php if ($cek->fungsi_jalan2 == $p->kode) echo "selected" ?>><?= $p->fungsi_jalan ?></option>
                                     <?php } ?>
                                 </select>
                             <?php } else {
@@ -973,17 +995,17 @@ if ($cek) {
                                     $fj = $this->db->query("SELECT * FROM fungsi_jalan ")->result();
                                     foreach ($fj as $p) {
                                     ?>
-                                        <option value="<?= $p->kode ?>"><?= $p->fungsi_jalan?></option>
+                                        <option value="<?= $p->kode ?>"><?= $p->fungsi_jalan ?></option>
                                     <?php } ?>
                                 </select>
                                 </select>
                             <?php }
                             ?>
                         </td>
-                    </tr>    
+                    </tr>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">35</span>
+                            <span class="fw-bold">36</span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold">Kelas Jalan (II)</span>
@@ -1009,10 +1031,33 @@ if ($cek) {
                             <?php }
                             ?>
                         </td>
-                    </tr>                 
+                    </tr>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">36</span>
+                            <span class="fw-bold"></span>
+                        </td>
+                        <td class="text-center pe-0">
+                            <span class="fw-bold"></span>
+                        </td>
+                        <td class="text-center pe-0" style="float: right;">
+                            <a id="cek2" class="btn btn-light btn-sm">Cek</a>
+                            <a id="refresh2" class="btn btn-light btn-sm">Tutup</a>
+                        </td>
+                    </tr>
+                    <tr id="tr_gsp_2" style="display: none;">
+                        <td class="text-center pe-0">
+                            <span class="fw-bold"></span>
+                        </td>
+                        <td class="text-center pe-0">
+                            <span class="fw-bold">Hasil</span>
+                        </td>
+                        <td class="text-center pe-0">
+                            <input type="text" name="gsp_2" id="gsp_2" class="form-control mb-2" placeholder="Input Baru">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center pe-0">
+                            <span class="fw-bold">37</span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold">Fungsi Jalan (III)</span>
@@ -1026,7 +1071,7 @@ if ($cek) {
                                     $fj = $this->db->query("SELECT * FROM fungsi_jalan ")->result();
                                     foreach ($fj as $p) {
                                     ?>
-                                        <option value="<?= $p->kode ?>" <?php if ($cek->fungsi_jalan3 == $p->kode) echo "selected" ?>><?= $p->fungsi_jalan?></option>
+                                        <option value="<?= $p->kode ?>" <?php if ($cek->fungsi_jalan3 == $p->kode) echo "selected" ?>><?= $p->fungsi_jalan ?></option>
                                     <?php } ?>
                                 </select>
                             <?php } else {
@@ -1037,17 +1082,17 @@ if ($cek) {
                                     $fj = $this->db->query("SELECT * FROM fungsi_jalan ")->result();
                                     foreach ($fj as $p) {
                                     ?>
-                                        <option value="<?= $p->kode ?>"><?= $p->fungsi_jalan?></option>
+                                        <option value="<?= $p->kode ?>"><?= $p->fungsi_jalan ?></option>
                                     <?php } ?>
                                 </select>
                                 </select>
                             <?php }
                             ?>
                         </td>
-                    </tr>    
+                    </tr>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">37</span>
+                            <span class="fw-bold">38</span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold">Kelas Jalan (III)</span>
@@ -1073,10 +1118,33 @@ if ($cek) {
                             <?php }
                             ?>
                         </td>
-                    </tr>                 
+                    </tr>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">38</span>
+                            <span class="fw-bold"></span>
+                        </td>
+                        <td class="text-center pe-0">
+                            <span class="fw-bold"></span>
+                        </td>
+                        <td class="text-center pe-0" style="float: right;">
+                            <a id="cek3" class="btn btn-light btn-sm">Cek</a>
+                            <a id="refresh3" class="btn btn-light btn-sm">Tutup</a>
+                        </td>
+                    </tr>
+                    <tr id="tr_gsp_3" style="display: none;">
+                        <td class="text-center pe-0">
+                            <span class="fw-bold"></span>
+                        </td>
+                        <td class="text-center pe-0">
+                            <span class="fw-bold">Hasil</span>
+                        </td>
+                        <td class="text-center pe-0">
+                            <input type="text" name="gsp_3" id="gsp_3" class="form-control mb-2" placeholder="Input Baru">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center pe-0">
+                            <span class="fw-bold">39</span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold">Fungsi Jalan (IV)</span>
@@ -1090,7 +1158,7 @@ if ($cek) {
                                     $fj = $this->db->query("SELECT * FROM fungsi_jalan ")->result();
                                     foreach ($fj as $p) {
                                     ?>
-                                        <option value="<?= $p->kode ?>" <?php if ($cek->fungsi_jalan4 == $p->kode) echo "selected" ?>><?= $p->fungsi_jalan?></option>
+                                        <option value="<?= $p->kode ?>" <?php if ($cek->fungsi_jalan4 == $p->kode) echo "selected" ?>><?= $p->fungsi_jalan ?></option>
                                     <?php } ?>
                                 </select>
                             <?php } else {
@@ -1101,17 +1169,17 @@ if ($cek) {
                                     $fj = $this->db->query("SELECT * FROM fungsi_jalan ")->result();
                                     foreach ($fj as $p) {
                                     ?>
-                                        <option value="<?= $p->kode ?>"><?= $p->fungsi_jalan?></option>
+                                        <option value="<?= $p->kode ?>"><?= $p->fungsi_jalan ?></option>
                                     <?php } ?>
                                 </select>
                                 </select>
                             <?php }
                             ?>
                         </td>
-                    </tr>     
+                    </tr>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">39</span>
+                            <span class="fw-bold">40</span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold">Kelas Jalan (IV)</span>
@@ -1137,25 +1205,42 @@ if ($cek) {
                             <?php }
                             ?>
                         </td>
-                    </tr>                
+                    </tr>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">40</span>
+                            <span class="fw-bold"></span>
+                        </td>
+                        <td class="text-center pe-0">
+                            <span class="fw-bold"></span>
+                        </td>
+                        <td class="text-center pe-0" style="float: right;">
+                            <a id="cek4" class="btn btn-light btn-sm">Cek</a>
+                            <a id="refresh4" class="btn btn-light btn-sm">Tutup</a>
+                        </td>
+                    </tr>
+                    <tr id="tr_gsp_4" style="display: none;">
+                        <td class="text-center pe-0">
+                            <span class="fw-bold"></span>
+                        </td>
+                        <td class="text-center pe-0">
+                            <span class="fw-bold">Hasil</span>
+                        </td>
+                        <td class="text-center pe-0">
+                            <input type="text" name="gsp_4" id="gsp_4" class="form-control mb-2" placeholder="Input Baru">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center pe-0">
+                            <span class="fw-bold">41</span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold">Koefisien Lantai Bangunan Maks.</span>
                         </td>
                         <td class="text-center pe-0">
                             <?php if ($cek) { ?>
-                                <div class="d-flex">
-                                    <input type="text" name="koefisien_lantai" class="form-control flex-grow-1" value="<?= $data->lantai_bangunan ?>">
-                                    <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
-                                </div>
+                                <input type="text" name="koefisien_lantai" class="form-control" value="<?= $data->lantai_bangunan ?>">
                             <?php } else { ?>
-                                <div class="d-flex">
-                                    <input type="text" name="koefisien_lantai" class="form-control flex-grow-1" value="">
-                                    <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
-                                </div>
+                                <input type="text" name="koefisien_lantai" class="form-control" value="">
                             <?php } ?>
                         </td>
                     </tr>

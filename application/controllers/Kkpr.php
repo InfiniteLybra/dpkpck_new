@@ -69,6 +69,7 @@ class Kkpr extends CI_Controller
         {
             $pengurusan = $this->input->post('pengurusan');
             $badan_hukum = $this->input->post('badan_hukum');
+            $kuasa = $this->input->post('kuasa');
             $pemilik_lahan_meninggal = $this->input->post('pemilik_lahan_meninggal');
             $pengajuan = $this->input->post('pengajuan');
             $isi_pengajuan = $this->input->post('isi_pengajuan');
@@ -76,18 +77,34 @@ class Kkpr extends CI_Controller
             $data['badan_hukum'] = $badan_hukum;
             $data['pemilik_lahan_meninggal'] = $pemilik_lahan_meninggal;
             $data['pengajuan'] = $pengajuan;
+            $data['kuasa'] = $kuasa;
             $data['isi_pengajuan'] = $isi_pengajuan;
             $data['provinsi'] = $this->db->query("SELECT * FROM indo_provinsi")->result();
             $data['kecamatan'] = $this->db->query("SELECT * FROM kecamatan")->result();
 
-            if($pengurusan == 'perusahaan')
+            if($pengurusan == 'perusahaan' AND $kuasa == '0')
             {
                 $this->load->view('templates/header');
                 $this->load->view('kkpr/filter/kkpr_perusahaan',$data);
                 $this->load->view('templates/footer');
                 $this->load->view('templates/footScript');
                 $this->load->view('kkpr/filter/script_perusahaan');
-            }else{
+            }else if($pengurusan == 'perusahaan' AND $kuasa == '1')
+            {
+                $this->load->view('templates/header');
+                $this->load->view('kkpr/filter/kkpr_perusahaan_kuasa',$data);
+                $this->load->view('templates/footer');
+                $this->load->view('templates/footScript');
+                $this->load->view('kkpr/filter/script_perusahaan_kuasa');
+            }else if($pengurusan == 'perorangan' AND $kuasa == '1')
+            {
+                $this->load->view('templates/header');
+                $this->load->view('kkpr/filter/kkpr_perorangan_kuasa',$data);
+                $this->load->view('templates/footer');
+                $this->load->view('templates/footScript');
+                $this->load->view('kkpr/filter/script_perorangan_kuasa');
+            }
+            else{
                 $this->load->view('templates/header');
                 $this->load->view('kkpr/filter/kkpr_perorangan',$data);
                 $this->load->view('templates/footer');
@@ -144,7 +161,16 @@ class Kkpr extends CI_Controller
         {
             $data['data'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_kkpr_permohonan = '$id'")->row(); 
         }
-        $data['ketentuan'] = $this->db->query("SELECT * FROM ketentuan_lainya WHERE type = 'kkpr'")->result();         
+        $data['ketentuan'] = $this->db->query(
+            "SELECT * FROM ketentuan_lainya 
+            WHERE 
+            id_ketentuan_lainya = '9' OR 
+            id_ketentuan_lainya = '11' OR 
+            id_ketentuan_lainya = '40' OR 
+            id_ketentuan_lainya = '42' OR 
+            id_ketentuan_lainya = '43' OR 
+            id_ketentuan_lainya = '44' 
+            ")->result();         
         // $data['legenda'] = $legenda; 
         $this->load->view('templates/header');
         $this->load->view('admin/kkpr/config_sertifikat/config_peta',$data);

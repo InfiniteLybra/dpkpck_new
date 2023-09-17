@@ -47,6 +47,7 @@
                                 <input type="hidden" class="form-control mb-2 " name="type_kategori" value="<?= $pengajuan ?>" required="required" />
                                 <!-- <input type="hidden" class="form-control mb-2 " name="pemilik_lahan_meninggal" value="<?= $pemilik_lahan_meninggal ?>" required="required" /> -->
                                 <input type="hidden" class="form-control mb-2 " name="badan_hukum" value="<?= $badan_hukum ?>" required="required" />
+                                <input type="hidden" class="form-control mb-2 " name="kuasa" value="<?= $kuasa ?>" required="required" />
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -137,7 +138,8 @@
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="file" id="alamat-pemohon" name="fotokopi_ktp" class="form-control ">
+                                <input type="file" id="alamat-pemohon" name="fotokopi_ktp" class="form-control "accept=".jpg, .pdf">
+                                <small>File yang diterima hanya .jpg dan .pdf</small>
                             </div>
                         </div>
                     </div>
@@ -159,7 +161,7 @@
                         </div>
                         <div class="mb-3 row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama-pemohon">
-                                NIB
+                            Nomor Induk Berusaha (NIB)
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
@@ -168,11 +170,12 @@
                         </div>
                         <div class="mb-3 row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
-                                NIB
+                            File Nomor Induk Berusaha (NIB)
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="file" id="alamat-pemohon" name="tdp_nib" class="form-control ">
+                                <input type="file" id="alamat-pemohon" name="tdp_nib" class="form-control "accept=".jpg, .pdf">
+                                <small>File yang diterima hanya .jpg dan .pdf</small>
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -195,7 +198,7 @@
                         </div>
                         <div class="mb-3 row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama-pemohon">
-                                Klasifikasi Resiko
+                                Klasifikasi Risiko
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
@@ -211,12 +214,25 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="mb-3 row">
+                        <!-- <div class="mb-3 row">
                             <label for="jumlah_kbli" class="col-form-label col-md-3 col-sm-3 label-align">Jumlah Surat KBLI<span class="required"></span></label>
                             <div class="col-md-9 col-sm-9 ">
                                 <input id="jumlah_kbli" class="form-control mb-2 col" type="number" value="0" min="0" max="100" name="jumlah_kbli" required>
                             </div>
-                        </div>
+                        </div> -->
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">KBLI diMohon
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 ">
+                                <input type="text" class="form-control mb-2" name="kbli_array[]" required />
+                                <div id="additionalInputs"></div>                                
+                                <div class="" style="float: right;">
+                                <button type="button" id="addInput" class="btn btn-light btn-sm">Tambah</button>
+                                <button type="button" id="removeInput" class="btn btn-light btn-sm">Kurang</button>
+                                </div>
+                            </div>
+                        </div> 
 
                         <div id="kbli_container"></div>
                         <!-- <div class="mb-3 row">
@@ -306,7 +322,8 @@
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="file" id="alamat-pemohon" name="dokumen_oss" class="form-control ">
+                                <input type="file" id="alamat-pemohon" name="dokumen_oss" class="form-control "accept=".jpg, .pdf">
+                                <small>File yang diterima hanya .jpg dan .pdf</small>
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -315,7 +332,8 @@
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="file" id="alamat-pemohon" name="fc_akta_perusahaan" class="form-control ">
+                                <input type="file" id="alamat-pemohon" name="fc_akta_perusahaan" class="form-control "accept=".jpg, .pdf">
+                                <small>File yang diterima hanya .jpg dan .pdf</small>
                             </div>
                         </div>                        
                     </div>
@@ -330,7 +348,7 @@
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <select name="status_tanah_sm" id="status_tanah_sm" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Status Tanah" <?php if ($pengajuan == 'perumahan' || $pengajuan == 'pergudangan') echo "disabled";  ?>>
+                                <select name="status_tanah_sm" id="status_tanah_sm" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Status Tanah" <?php //if ($pengajuan == 'perumahan' || $pengajuan == 'pergudangan') echo "disabled";  ?>>
                                     <option value="" selected></option>
                                     <option value="sewa">Sewa</option>
                                     <option value="milik_sendiri" <?php if ($pengajuan == 'perumahan' || $pengajuan == 'pergudangan') echo "selected";  ?>>Milik Sendiri</option>
@@ -346,7 +364,7 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Luas Tanah
+                            <label class="col-form-label col-md-3 col-sm-3 label-align">Luas Tanah (m2)
                                 <span class="ms-1" data-bs-toggle="tooltip" title="Luas tanah menggunakan m2, Inputkan angka saja">
                                     <i class="ki-duotone ki-information fs-7">
                                         <span class="path1"></span>
@@ -362,7 +380,7 @@
                         </div>
                         <div class="mb-3 row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama-pemohon">
-                                Perluasan
+                            Tipe Pengajuan
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
@@ -378,10 +396,38 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="mb-3 row">
+                        <!-- <div class="mb-3 row">
                             <label for="status_tanah" class="col-form-label col-md-3 col-sm-3 label-align">Jumlah Surat tanah<span class="required"></span></label>
                             <div class="col-md-9 col-sm-9 ">
                                 <input id="status_tanah" class="form-control mb-2 col" type="number" value="0" min="0" max="100" name="status_tanah" required>
+                            </div>
+                        </div> -->
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Status Tanah
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 ">                                                                                               
+                                <input type="text" class="form-control mb-2" name="status_tanah_array[]" required />
+                            </div>
+                        </div> 
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name"> Surat Tanah
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 ">                                                                                               
+                                <input type="file" name="file_status_tanah[]" class="form-control "accept=".jpg, .pdf">
+                                <small>File yang diterima hanya .jpg dan .pdf</small>
+                            </div>
+                        </div> 
+                        <div id="additionalInputstanah"></div> 
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">                                
+                            </label>
+                            <div class="col-md-9 col-sm-9 ">                                                                                               
+                                <div class="" style="float: right;">
+                                <button type="button" id="addInputtanah" class="btn btn-light btn-sm">Tambah Surat Tanah</button>
+                                <button type="button" id="removeInputtanah" class="btn btn-light btn-sm">Kurang Surat Tanah</button>
+                                </div>
                             </div>
                         </div>
 
@@ -417,7 +463,8 @@
                                     <span class="required"></span>
                                 </label>
                                 <div class="col-md-9 col-sm-9 ">
-                                    <input type="file" id="alamat-pemohon" name="surat_kematian" class="form-control ">
+                                    <input type="file" id="alamat-pemohon" name="surat_kematian" class="form-control "accept=".jpg, .pdf">
+                                    <small>File yang diterima hanya .jpg dan .pdf</small>
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -427,7 +474,8 @@
                                     <span class="required"></span>
                                 </label>
                                 <div class="col-md-9 col-sm-9 ">
-                                    <input type="file" id="alamat-pemohon" name="surat_kuasa_ahli_waris" class="form-control ">
+                                    <input type="file" id="alamat-pemohon" name="surat_kuasa_ahli_waris" class="form-control "accept=".jpg, .pdf">
+                                    <small>File yang diterima hanya .jpg dan .pdf</small>
                                 </div>
                             </div>
                         </div>
@@ -508,7 +556,8 @@
                                         <!-- <span class="required"></span> -->
                                     </label>
                                     <div class="col-md-9 col-sm-9 ">
-                                        <input type="file" id="alamat-pemohon" name="peta_bidang" class="form-control ">
+                                        <input type="file" id="alamat-pemohon" name="peta_bidang" class="form-control "accept=".jpg, .pdf">
+                                        <small>File yang diterima hanya .jpg dan .pdf</small>
                                     </div>
                                 </div>
                             <?php } else { ?>
@@ -520,7 +569,8 @@
                                         <span class="required"></span>
                                     </label>
                                     <div class="col-md-9 col-sm-9 ">
-                                        <input type="file" id="alamat-pemohon" name="peta_bidang" class="form-control ">
+                                        <input type="file" id="alamat-pemohon" name="peta_bidang" class="form-control "accept=".jpg, .pdf">
+                                        <small>File yang diterima hanya .jpg dan .pdf</small>
                                     </div>
                                 </div>
                             <?php } ?>                  
@@ -540,20 +590,22 @@
                                     <span class="required"></span>
                                 </label>
                                 <div class="col-md-9 col-sm-9 ">
-                                    <input type="file" id="alamat-pemohon" name="peta_bidang" class="form-control ">
+                                    <input type="file" id="alamat-pemohon" name="peta_bidang" class="form-control "accept=".jpg, .pdf">
+                                    <small>File yang diterima hanya .jpg dan .pdf</small>
                                 </div>
                             </div>
                         <?php } ?>
                         <?php if ($badan_hukum == '1') { ?>
                             <div class="mb-3 row">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
-                                    Fotokopi NPWP
+                                Fotokopi Nomor Pokok Wajib Pajak (NPWP)
                                     <br>
                                     <small>(jika berbadan hukum, dan wajib untuk permohonan Perumahan luas di atas 5.000 m2)</small>
                                     <span class="required"></span>
                                 </label>
                                 <div class="col-md-9 col-sm-9 ">
-                                    <input type="file" id="alamat-pemohon" name="npwp" class="form-control ">
+                                    <input type="file" id="alamat-pemohon" name="npwp" class="form-control "accept=".jpg, .pdf">
+                                    <small>File yang diterima hanya .jpg dan .pdf</small>
                                 </div>
                             </div>
                         <?php } ?>
@@ -572,7 +624,8 @@
                                 <!-- <span class="required"></span> -->
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="file" id="alamat-pemohon" name="shp" class="form-control ">
+                                <input type="file" id="alamat-pemohon" name="shp" class="form-control "accept=".zip">
+                                <small>File yang diterima hanya .zip</small>
                             </div>
                         </div>
                         <?php if ($pengajuan == 'tower') { ?>
@@ -582,7 +635,8 @@
                                     <span class="required"></span>
                                 </label>
                                 <div class="col-md-9 col-sm-9 ">
-                                    <input type="file" name="rekomendasi_dinas_komunikasi" class="form-control ">
+                                    <input type="file" name="rekomendasi_dinas_komunikasi" class="form-control "accept=".jpg, .pdf">
+                                    <small>File yang diterima hanya .jpg dan .pdf</small>
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -591,8 +645,9 @@
                                     <span class="required"></span>
                                 </label>
                                 <div class="col-md-9 col-sm-9 ">
-                                    <input type="file" name="rekomendasi_tni" class="form-control ">
+                                    <input type="file" name="rekomendasi_tni" class="form-control "accept=".jpg, .pdf">
                                     <small>(untuk lokasi pengajuan di Kec. Pakis, Kec. Jabung dan Kec. Singosari).</small>
+                                    <small>File yang diterima hanya .jpg dan .pdf</small>
                                 </div>
                             </div>
                         <?php } ?>
@@ -603,7 +658,8 @@
                                     <span class="required"></span>
                                 </label>
                                 <div class="col-md-9 col-sm-9 ">
-                                    <input type="file" name="surat_dinas_perdagangan" class="form-control ">
+                                    <input type="file" name="surat_dinas_perdagangan" class="form-control "accept=".jpg, .pdf">
+                                    <small>File yang diterima hanya .jpg dan .pdf</small>
                                 </div>
                             </div>
                         <?php } ?>
@@ -614,7 +670,8 @@
                                     <span class="required"></span>
                                 </label>
                                 <div class="col-md-9 col-sm-9 ">
-                                    <input type="file" name="surat_dinas_peternakan" class="form-control ">
+                                    <input type="file" name="surat_dinas_peternakan" class="form-control "accept=".jpg, .pdf">
+                                    <small>File yang diterima hanya .jpg dan .pdf</small>
                                 </div>
                             </div>
                         <?php } ?>
@@ -625,7 +682,8 @@
                                     <span class="required"></span>
                                 </label>
                                 <div class="col-md-9 col-sm-9 ">
-                                    <input type="file" name="surat_pertamina" class="form-control ">
+                                    <input type="file" name="surat_pertamina" class="form-control "accept=".jpg, .pdf">
+                                    <small>File yang diterima hanya .jpg dan .pdf</small>
                                 </div>
                             </div>
                         <?php } ?>
@@ -637,7 +695,8 @@
                                     <small>paling sedikit 90 orang dan daftar dukungan masyarakat sekitar paling sedikit 60 orang.</small>
                                 </label>
                                 <div class="col-md-9 col-sm-9 ">
-                                    <input type="file" name="daftar_nama_kk" class="form-control ">
+                                    <input type="file" name="daftar_nama_kk" class="form-control "accept=".pdf">
+                                    <small>File yang diterima hanya .pdf</small>
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -646,7 +705,8 @@
                                     <span class="required"></span>
                                 </label>
                                 <div class="col-md-9 col-sm-9 ">
-                                    <input type="file" name="surat_fkub" class="form-control ">
+                                    <input type="file" name="surat_fkub" class="form-control "accept=".jpg, .pdf">
+                                    <small>File yang diterima hanya .jpg dan .pdf</small>
                                 </div>
                             </div>
                         <?php } ?>

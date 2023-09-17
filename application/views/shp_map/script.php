@@ -65,6 +65,13 @@
                 }).join("<br />"), {
                     maxHeight: 200
                 });
+                layer.setStyle({
+                        fillColor: 'orange',
+                        color: 'red',
+                        weight: 2,
+                        opacity: 100,
+                        fillOpacity: 0.1
+                    });
             }
         }
     });

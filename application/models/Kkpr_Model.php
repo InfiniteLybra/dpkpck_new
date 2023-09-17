@@ -146,12 +146,26 @@ class Kkpr_Model extends CI_Model
                 $data18 = $this->upload->data();
                 $file18 = $data18['file_name'];
             }
+            //file19
+            if (!empty($_FILES['fotokopi_ktp_kuasa']['name'])) {
+                $this->upload->do_upload('fotokopi_ktp_kuasa');
+                $data19 = $this->upload->data();
+                $file19 = $data19['file_name'];
+            }
+            //file20
+            if (!empty($_FILES['shp']['name'])) {
+                $this->upload->do_upload('shp');
+                $data20 = $this->upload->data();
+                $file20 = $data20['file_name'];
+            }
 
             $id_user = $this->session->userdata('id_user');
             $type_isi_kategori = $this->input->post('type_isi_kategori');
             $type_kategori = $this->input->post('type_kategori');
             $pemilik_lahan_meninggal = $this->input->post('pemilik_lahan_meninggal');
             $badan_hukum = $this->input->post('badan_hukum');
+            $kuasa = $this->input->post('kuasa');
+
             $nama_pemohon = $this->input->post('nama_pemohon');
             $alamat_pemohon = $this->input->post('alamat_pemohon');
             $rt_pemohon = $this->input->post('rt_pemohon');
@@ -161,6 +175,16 @@ class Kkpr_Model extends CI_Model
             $kecamatan_pemohon = $this->input->post('kecamatan_pemohon');
             $kelurahan_pemohon = $this->input->post('kelurahan_pemohon');
             $telp_pemohon = $this->input->post('telp_pemohon');
+
+            $nama_kuasa = $this->input->post('nama_kuasa');
+            $alamat_kuasa = $this->input->post('alamat_kuasa');
+            $rt_kuasa = $this->input->post('rt_kuasa');
+            $rw_kuasa = $this->input->post('rw_kuasa');
+            $provinsi_kuasa = $this->input->post('provinsi_kuasa');
+            $kota_kuasa = $this->input->post('kota_kuasa');
+            $kecamatan_kuasa = $this->input->post('kecamatan_kuasa');
+            $kelurahan_kuasa = $this->input->post('kelurahan_kuasa');
+            $telp_kuasa = $this->input->post('telp_kuasa');
 
             $nama_perusahaan = $this->input->post('nama_perusahaan');
             $nib = $this->input->post('nib');
@@ -214,156 +238,351 @@ class Kkpr_Model extends CI_Model
             $kbli_Array = json_encode($dataArray_kbli);
             $tgl_reg = date('d-m-y');
 
-            $insert = "INSERT INTO kkpr_permohonan (
-                id_user,
-                type,
-                tgl_reg,
-
-                nama_pemohon,
-                alamat_pemohon,
-                rt_pemohon,
-                rw_pemohon,
-                provinsi_pemohon,
-                kota_pemohon,
-                kecamatan_pemohon,
-                kelurahan_pemohon,
-                telp_pemohon,
-
-                nama_perusahaan,
-                nib,
-                skala_usaha,
-                klasifikasi_resiko,
-                kbli,
-                alamat_perusahaan,
-                rt_perusahaan,
-                rw_perusahaan,
-                provinsi_perusahaan,
-                kota_perusahaan,
-                kecamatan_perusahaan,
-                kelurahan_perusahaan,                            
-
-                peruntukan_tanah,
-                luas_tanah,
-                kategori,
-                perluasan,
-                status_tanah,
-                lokasi_tanah,
-                rt_tanah,
-                rw_tanah,
-                kota_tanah,
-                kecamatan_tanah,
-                kelurahan_tanah,    
-
-                status_berkas,                            
-
-                dokumen_oss,
-                fotokopi_ktp,
-                akta_perusahaan,                
-                tdp,
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,surat_dinas_peternakan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,surat_dinas_peternakan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,surat_pertamina" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,surat_pertamina" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,daftar_nama_kk,surat_fkub" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,daftar_nama_kk,surat_fkub" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
-                ) 
-                VALUES(
-                    '$id_user',
-                    '$type_kategori',
-                    '$tgl_reg',
-
-                    '$nama_pemohon',
-                    '$alamat_pemohon',
-                    '$rt_pemohon',
-                    '$rw_pemohon',
-                    '$provinsi_pemohon',
-                    '$kota_pemohon',
-                    '$kecamatan_pemohon',
-                    '$kelurahan_pemohon',
-                    '$telp_pemohon',
-
-                    '$nama_perusahaan',
-                    '$nib',
-                    '$skala_usaha',
-                    '$klasifikasi_resiko',
-                    '$kbli_Array',
-                    '$alamat_perusahaan',
-                    '$rt_perusahaan',
-                    '$rw_perusahaan',
-                    '$provinsi_perusahaan',
-                    '$kota_perusahaan',
-                    '$kecamatan_perusahaan',
-                    '$kelurahan_perusahaan',
-
-                    '$peruntukan_tanah',
-                    '$luas_tanah',
-                    '$type_isi_kategori',
-                    '$perluasan',
-                    '$Tanah_Array',
-                    '$lokasi_tanah',
-                    '$rt_tanah',
-                    '$rw_tanah',
-                    'KAB Malang',
-                    '$kecamatan_tanah',
-                    '$kelurahan_tanah',
-
-                    '0',
-
-                    '$file1',
-                    '$file2',
-                    '$file3',                    
-                    '$file5',
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file7','$file8'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "'$file7','$file8'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "'$file6','$file7','$file8'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file10','$file11','$file12','$file13'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file7','$file8','$file12','$file13'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file12','$file13'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file7','$file8','$file10','$file11','$file12','$file13'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file10','$file11','$file14'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file14'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file14'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file10','$file11','$file14'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file10','$file11','$file15'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file15'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file15'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file10','$file11','$file15'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file10','$file11','$file16'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file7','$file8','$file16'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file16'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file7','$file8','$file10','$file11','$file16'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file17','$file18'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file17','$file18'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                                    
-                    )";
+            if ($kuasa == '1') {
+                $insert = "INSERT INTO kkpr_permohonan (
+                    id_user,
+                    type,
+                    tgl_reg,
+    
+                    nama_pemohon,
+                    alamat_pemohon,
+                    rt_pemohon,
+                    rw_pemohon,
+                    provinsi_pemohon,
+                    kota_pemohon,
+                    kecamatan_pemohon,
+                    kelurahan_pemohon,
+                    telp_pemohon,
+    
+                    nama_kuasa,
+                    alamat_kuasa,
+                    rt_kuasa,
+                    rw_kuasa,
+                    provinsi_kuasa,
+                    kota_kuasa,
+                    kecamatan_kuasa,
+                    kelurahan_kuasa,
+                    telp_kuasa,
+    
+                    nama_perusahaan,
+                    nib,
+                    skala_usaha,
+                    klasifikasi_resiko,
+                    kbli,
+                    alamat_perusahaan,
+                    rt_perusahaan,
+                    rw_perusahaan,
+                    provinsi_perusahaan,
+                    kota_perusahaan,
+                    kecamatan_perusahaan,
+                    kelurahan_perusahaan,                            
+    
+                    peruntukan_tanah,
+                    luas_tanah,
+                    kategori,
+                    perluasan,
+                    status_tanah,
+                    lokasi_tanah,
+                    rt_tanah,
+                    rw_tanah,
+                    kota_tanah,
+                    kecamatan_tanah,
+                    kelurahan_tanah,    
+    
+                    status_berkas,                            
+    
+                    dokumen_oss,
+                    fotokopi_ktp,
+                    fotokopi_ktp_kuasa,
+                    akta_perusahaan,                
+                    tdp,
+                    shp,
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,surat_dinas_peternakan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,surat_dinas_peternakan" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,surat_pertamina" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,surat_pertamina" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,daftar_nama_kk,surat_fkub" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,daftar_nama_kk,surat_fkub" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
+                    ) 
+                    VALUES(
+                        '$id_user',
+                        '$type_kategori',
+                        '$tgl_reg',
+    
+                        '$nama_pemohon',
+                        '$alamat_pemohon',
+                        '$rt_pemohon',
+                        '$rw_pemohon',
+                        '$provinsi_pemohon',
+                        '$kota_pemohon',
+                        '$kecamatan_pemohon',
+                        '$kelurahan_pemohon',
+                        '$telp_pemohon',
+    
+                        '$nama_kuasa',
+                        '$alamat_kuasa',
+                        '$rt_kuasa',
+                        '$rw_kuasa',
+                        '$provinsi_kuasa',
+                        '$kota_kuasa',
+                        '$kecamatan_kuasa',
+                        '$kelurahan_kuasa',
+                        '$telp_kuasa',
+    
+                        '$nama_perusahaan',
+                        '$nib',
+                        '$skala_usaha',
+                        '$klasifikasi_resiko',
+                        '$kbli_Array',
+                        '$alamat_perusahaan',
+                        '$rt_perusahaan',
+                        '$rw_perusahaan',
+                        '$provinsi_perusahaan',
+                        '$kota_perusahaan',
+                        '$kecamatan_perusahaan',
+                        '$kelurahan_perusahaan',
+    
+                        '$peruntukan_tanah',
+                        '$luas_tanah',
+                        '$type_isi_kategori',
+                        '$perluasan',
+                        '$Tanah_Array',
+                        '$lokasi_tanah',
+                        '$rt_tanah',
+                        '$rw_tanah',
+                        'KAB Malang',
+                        '$kecamatan_tanah',
+                        '$kelurahan_tanah',
+    
+                        '0',
+    
+                        '$file1',
+                        '$file2',
+                        '$file19',
+                        '$file3',                    
+                        '$file5',
+                        '$file20',
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "'$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "'$file6','$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "'$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "'$file6','$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file10','$file11','$file12','$file13'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file7','$file8','$file12','$file13'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file12','$file13'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file7','$file8','$file10','$file11','$file12','$file13'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file10','$file11','$file14'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file14'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file14'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file10','$file11','$file14'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file10','$file11','$file15'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file15'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file15'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file10','$file11','$file15'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file10','$file11','$file16'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file7','$file8','$file16'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file16'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file7','$file8','$file10','$file11','$file16'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file17','$file18'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file17','$file18'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                                    
+                        )";
+            } else {
+                $insert = "INSERT INTO kkpr_permohonan (
+                    id_user,
+                    type,
+                    tgl_reg,
+    
+                    nama_pemohon,
+                    alamat_pemohon,
+                    rt_pemohon,
+                    rw_pemohon,
+                    provinsi_pemohon,
+                    kota_pemohon,
+                    kecamatan_pemohon,
+                    kelurahan_pemohon,
+                    telp_pemohon,
+    
+                    nama_perusahaan,
+                    nib,
+                    skala_usaha,
+                    klasifikasi_resiko,
+                    kbli,
+                    alamat_perusahaan,
+                    rt_perusahaan,
+                    rw_perusahaan,
+                    provinsi_perusahaan,
+                    kota_perusahaan,
+                    kecamatan_perusahaan,
+                    kelurahan_perusahaan,                            
+    
+                    peruntukan_tanah,
+                    luas_tanah,
+                    kategori,
+                    perluasan,
+                    status_tanah,
+                    lokasi_tanah,
+                    rt_tanah,
+                    rw_tanah,
+                    kota_tanah,
+                    kecamatan_tanah,
+                    kelurahan_tanah,    
+    
+                    status_berkas,                            
+    
+                    dokumen_oss,
+                    fotokopi_ktp,                    
+                    akta_perusahaan,                
+                    tdp,
+                    shp,
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,surat_dinas_peternakan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,surat_dinas_peternakan" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,surat_pertamina" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,surat_pertamina" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,daftar_nama_kk,surat_fkub" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,daftar_nama_kk,surat_fkub" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
+                    ) 
+                    VALUES(
+                        '$id_user',
+                        '$type_kategori',
+                        '$tgl_reg',
+    
+                        '$nama_pemohon',
+                        '$alamat_pemohon',
+                        '$rt_pemohon',
+                        '$rw_pemohon',
+                        '$provinsi_pemohon',
+                        '$kota_pemohon',
+                        '$kecamatan_pemohon',
+                        '$kelurahan_pemohon',
+                        '$telp_pemohon',                       
+    
+                        '$nama_perusahaan',
+                        '$nib',
+                        '$skala_usaha',
+                        '$klasifikasi_resiko',
+                        '$kbli_Array',
+                        '$alamat_perusahaan',
+                        '$rt_perusahaan',
+                        '$rw_perusahaan',
+                        '$provinsi_perusahaan',
+                        '$kota_perusahaan',
+                        '$kecamatan_perusahaan',
+                        '$kelurahan_perusahaan',
+    
+                        '$peruntukan_tanah',
+                        '$luas_tanah',
+                        '$type_isi_kategori',
+                        '$perluasan',
+                        '$Tanah_Array',
+                        '$lokasi_tanah',
+                        '$rt_tanah',
+                        '$rw_tanah',
+                        'KAB Malang',
+                        '$kecamatan_tanah',
+                        '$kelurahan_tanah',
+    
+                        '0',
+    
+                        '$file1',
+                        '$file2',                    
+                        '$file3',                    
+                        '$file5',
+                        '$file20',
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "'$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "'$file6','$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "'$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "'$file6','$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file10','$file11','$file12','$file13'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file7','$file8','$file12','$file13'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file12','$file13'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file7','$file8','$file10','$file11','$file12','$file13'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file10','$file11','$file14'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file14'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file14'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file10','$file11','$file14'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file10','$file11','$file15'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file15'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file15'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file10','$file11','$file15'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file10','$file11','$file16'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file7','$file8','$file16'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file16'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file7','$file8','$file10','$file11','$file16'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file17','$file18'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file17','$file18'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                                    
+                        )";
+            }
 
             $query = $this->db->query($insert);
             // echo $insert;
@@ -502,12 +721,26 @@ class Kkpr_Model extends CI_Model
                 $data18 = $this->upload->data();
                 $file18 = $data18['file_name'];
             }
+            //file19
+            if (!empty($_FILES['fotokopi_ktp_kuasa']['name'])) {
+                $this->upload->do_upload('fotokopi_ktp_kuasa');
+                $data19 = $this->upload->data();
+                $file19 = $data19['file_name'];
+            }
+            //file20
+            if (!empty($_FILES['shp']['name'])) {
+                $this->upload->do_upload('shp');
+                $data20 = $this->upload->data();
+                $file20 = $data20['file_name'];
+            }
 
             $id_user = $this->session->userdata('id_user');
             $type_isi_kategori = $this->input->post('type_isi_kategori');
             $type_kategori = $this->input->post('type_kategori');
             $pemilik_lahan_meninggal = $this->input->post('pemilik_lahan_meninggal');
             $badan_hukum = $this->input->post('badan_hukum');
+            $kuasa = $this->input->post('kuasa');
+
             $nama_pemohon = $this->input->post('nama_pemohon');
             $alamat_pemohon = $this->input->post('alamat_pemohon');
             $rt_pemohon = $this->input->post('rt_pemohon');
@@ -517,6 +750,16 @@ class Kkpr_Model extends CI_Model
             $kecamatan_pemohon = $this->input->post('kecamatan_pemohon');
             $kelurahan_pemohon = $this->input->post('kelurahan_pemohon');
             $telp_pemohon = $this->input->post('telp_pemohon');
+
+            $nama_kuasa = $this->input->post('nama_kuasa');
+            $alamat_kuasa = $this->input->post('alamat_kuasa');
+            $rt_kuasa = $this->input->post('rt_kuasa');
+            $rw_kuasa = $this->input->post('rw_kuasa');
+            $provinsi_kuasa = $this->input->post('provinsi_kuasa');
+            $kota_kuasa = $this->input->post('kota_kuasa');
+            $kecamatan_kuasa = $this->input->post('kecamatan_kuasa');
+            $kelurahan_kuasa = $this->input->post('kelurahan_kuasa');
+            $telp_kuasa = $this->input->post('telp_kuasa');
 
             $nib = $this->input->post('nib');
             $skala_usaha = $this->input->post('skala_usaha');
@@ -560,142 +803,323 @@ class Kkpr_Model extends CI_Model
             $kbli_Array = json_encode($dataArray_kbli);
             $tgl_reg = date('d-m-y');
 
-            $insert = "INSERT INTO kkpr_permohonan (
-                id_user,
-                type,
-                tgl_reg,
-
-                nama_pemohon,
-                alamat_pemohon,
-                rt_pemohon,
-                rw_pemohon,
-                provinsi_pemohon,
-                kota_pemohon,
-                kecamatan_pemohon,
-                kelurahan_pemohon,
-                telp_pemohon,
-
-                nib,
-                skala_usaha,
-                klasifikasi_resiko,
-                kbli,
-
-                peruntukan_tanah,
-                luas_tanah,
-                kategori,
-                perluasan,
-                status_tanah,
-                lokasi_tanah,
-                rt_tanah,
-                rw_tanah,
-                kota_tanah,
-                kecamatan_tanah,
-                kelurahan_tanah,   
-
-                status_berkas,                         
-
-                dokumen_oss,
-                fotokopi_ktp,
-                tdp,
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,teknis_pertanahan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang,teknis_pertanahan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "surat_tanah,peta_bidang,teknis_pertanahan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,surat_dinas_peternakan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,surat_dinas_peternakan" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,surat_pertamina" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,surat_pertamina" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,daftar_nama_kk,surat_fkub" : "") . "                                            
-                " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,daftar_nama_kk,surat_fkub" : "") . "                                            
-                " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
-                ) 
-                VALUES(
-                    '$id_user',
-                    '$type_kategori',
-                    '$tgl_reg',
-
-                    '$nama_pemohon',
-                    '$alamat_pemohon',
-                    '$rt_pemohon',
-                    '$rw_pemohon',
-                    '$provinsi_pemohon',
-                    '$kota_pemohon',
-                    '$kecamatan_pemohon',
-                    '$kelurahan_pemohon',
-                    '$telp_pemohon',
-
-                    '$nib',
-                    '$skala_usaha',
-                    '$klasifikasi_resiko',
-                    '$kbli_Array',                    
-
-                    '$peruntukan_tanah',
-                    '$luas_tanah',
-                    '$type_isi_kategori',
-                    '$perluasan',
-                    '$Tanah_Array',
-                    '$lokasi_tanah',
-                    '$rt_tanah',
-                    '$rw_tanah',
-                    'KAB Malang',
-                    '$kecamatan_tanah',
-                    '$kelurahan_tanah',
-
-                    '0',
-
-                    '$file1',
-                    '$file2',              
-                    '$file5',
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file7','$file8'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "'$file7','$file8'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "'$file6','$file7','$file8'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file10','$file11','$file12','$file13'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file7','$file8','$file12','$file13'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file12','$file13'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file7','$file8','$file10','$file11','$file12','$file13'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file10','$file11','$file14'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file14'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file14'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file10','$file11','$file14'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file10','$file11','$file15'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file15'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file15'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file10','$file11','$file15'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file10','$file11','$file16'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file7','$file8','$file16'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file16'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file7','$file8','$file10','$file11','$file16'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file17','$file18'" : "") . "                                                
-                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file17','$file18'" : "") . "                                                
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                                    
-                    )";
+            if ($kuasa == '1') {
+                $insert = "INSERT INTO kkpr_permohonan (
+                    id_user,
+                    type,
+                    tgl_reg,
+    
+                    nama_pemohon,
+                    alamat_pemohon,
+                    rt_pemohon,
+                    rw_pemohon,
+                    provinsi_pemohon,
+                    kota_pemohon,
+                    kecamatan_pemohon,
+                    kelurahan_pemohon,
+                    telp_pemohon,
+    
+                    nama_kuasa,
+                    alamat_kuasa,
+                    rt_kuasa,
+                    rw_kuasa,
+                    provinsi_kuasa,
+                    kota_kuasa,
+                    kecamatan_kuasa,
+                    kelurahan_kuasa,
+                    telp_kuasa,
+    
+                    nib,
+                    skala_usaha,
+                    klasifikasi_resiko,
+                    kbli,
+    
+                    peruntukan_tanah,
+                    luas_tanah,
+                    kategori,
+                    perluasan,
+                    status_tanah,
+                    lokasi_tanah,
+                    rt_tanah,
+                    rw_tanah,
+                    kota_tanah,
+                    kecamatan_tanah,
+                    kelurahan_tanah,   
+    
+                    status_berkas,                         
+    
+                    dokumen_oss,
+                    fotokopi_ktp,
+                    fotokopi_ktp_kuasa,
+                    tdp,
+                    shp,
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,surat_dinas_peternakan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,surat_dinas_peternakan" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,surat_pertamina" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,surat_pertamina" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,daftar_nama_kk,surat_fkub" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,daftar_nama_kk,surat_fkub" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
+                    ) 
+                    VALUES(
+                        '$id_user',
+                        '$type_kategori',
+                        '$tgl_reg',
+    
+                        '$nama_pemohon',
+                        '$alamat_pemohon',
+                        '$rt_pemohon',
+                        '$rw_pemohon',
+                        '$provinsi_pemohon',
+                        '$kota_pemohon',
+                        '$kecamatan_pemohon',
+                        '$kelurahan_pemohon',
+                        '$telp_pemohon',
+    
+                        '$nama_kuasa',
+                        '$alamat_kuasa',
+                        '$rt_kuasa',
+                        '$rw_kuasa',
+                        '$provinsi_kuasa',
+                        '$kota_kuasa',
+                        '$kecamatan_kuasa',
+                        '$kelurahan_kuasa',
+                        '$telp_kuasa',
+    
+                        '$nib',
+                        '$skala_usaha',
+                        '$klasifikasi_resiko',
+                        '$kbli_Array',                    
+    
+                        '$peruntukan_tanah',
+                        '$luas_tanah',
+                        '$type_isi_kategori',
+                        '$perluasan',
+                        '$Tanah_Array',
+                        '$lokasi_tanah',
+                        '$rt_tanah',
+                        '$rw_tanah',
+                        'KAB Malang',
+                        '$kecamatan_tanah',
+                        '$kelurahan_tanah',
+    
+                        '0',
+    
+                        '$file1',
+                        '$file2',              
+                        '$file19',              
+                        '$file5',
+                        '$file20',
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "'$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "'$file6','$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "'$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "'$file6','$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file10','$file11','$file12','$file13'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file7','$file8','$file12','$file13'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file12','$file13'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file7','$file8','$file10','$file11','$file12','$file13'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file10','$file11','$file14'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file14'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file14'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file10','$file11','$file14'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file10','$file11','$file15'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file15'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file15'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file10','$file11','$file15'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file10','$file11','$file16'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file7','$file8','$file16'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file16'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file7','$file8','$file10','$file11','$file16'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file17','$file18'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file17','$file18'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                                    
+                        )";
+            }else{
+                $insert = "INSERT INTO kkpr_permohonan (
+                    id_user,
+                    type,
+                    tgl_reg,
+    
+                    nama_pemohon,
+                    alamat_pemohon,
+                    rt_pemohon,
+                    rw_pemohon,
+                    provinsi_pemohon,
+                    kota_pemohon,
+                    kecamatan_pemohon,
+                    kelurahan_pemohon,
+                    telp_pemohon,    
+    
+                    nib,
+                    skala_usaha,
+                    klasifikasi_resiko,
+                    kbli,
+    
+                    peruntukan_tanah,
+                    luas_tanah,
+                    kategori,
+                    perluasan,
+                    status_tanah,
+                    lokasi_tanah,
+                    rt_tanah,
+                    rw_tanah,
+                    kota_tanah,
+                    kecamatan_tanah,
+                    kelurahan_tanah,   
+    
+                    status_berkas,                         
+    
+                    dokumen_oss,
+                    fotokopi_ktp,                
+                    tdp,
+                    shp,
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "npwp,surat_tanah,peta_bidang,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,surat_dinas_peternakan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "npwp,surat_tanah,peta_bidang,surat_dinas_peternakan" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,surat_pertamina" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "npwp,surat_tanah,peta_bidang,surat_pertamina" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,daftar_nama_kk,surat_fkub" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "npwp,surat_tanah,peta_bidang,daftar_nama_kk,surat_fkub" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
+                    ) 
+                    VALUES(
+                        '$id_user',
+                        '$type_kategori',
+                        '$tgl_reg',
+    
+                        '$nama_pemohon',
+                        '$alamat_pemohon',
+                        '$rt_pemohon',
+                        '$rw_pemohon',
+                        '$provinsi_pemohon',
+                        '$kota_pemohon',
+                        '$kecamatan_pemohon',
+                        '$kelurahan_pemohon',
+                        '$telp_pemohon',                        
+    
+                        '$nib',
+                        '$skala_usaha',
+                        '$klasifikasi_resiko',
+                        '$kbli_Array',                    
+    
+                        '$peruntukan_tanah',
+                        '$luas_tanah',
+                        '$type_isi_kategori',
+                        '$perluasan',
+                        '$Tanah_Array',
+                        '$lokasi_tanah',
+                        '$rt_tanah',
+                        '$rw_tanah',
+                        'KAB Malang',
+                        '$kecamatan_tanah',
+                        '$kelurahan_tanah',
+    
+                        '0',
+    
+                        '$file1',
+                        '$file2',                                                  
+                        '$file5',
+                        '$file20',
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "'$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "'$file6','$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "'$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "'$file6','$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file10','$file11','$file12','$file13'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file7','$file8','$file12','$file13'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "'$file6','$file7','$file8','$file12','$file13'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "'$file7','$file8','$file10','$file11','$file12','$file13'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file10','$file11','$file14'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file14'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'minimarket') ? "'$file6','$file7','$file8','$file14'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'minimarket') ? "'$file7','$file8','$file10','$file11','$file14'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file10','$file11','$file15'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file15'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'peternakan') ? "'$file6','$file7','$file8','$file15'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'peternakan') ? "'$file7','$file8','$file10','$file11','$file15'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file10','$file11','$file16'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file7','$file8','$file16'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'spbu') ? "'$file6','$file7','$file8','$file16'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'spbu') ? "'$file7','$file8','$file10','$file11','$file16'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file17','$file18'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file17','$file18'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                                    
+                        )";
+            }
             // echo $insert;
             $query = $this->db->query($insert);
             if ($query) {
@@ -2516,7 +2940,7 @@ class Kkpr_Model extends CI_Model
                 akta_perusahaan = '$akta_perusahaan',
                 siup = '$siup',
                 tdp = '$tdp',
-                " . ($type == 'biasa' ? "npwp='$npwp',surat_tanah='$surat_tanah_array ',peta_bidang='$peta_bidang',teknis_pertanahan='$teknis_pertanahan',surat_kematian='$surat_kematian',surat_kuasa_ahli_waris='$surat_kuasa_ahli_waris'" : "") . "
+                " . ($type == 'biasa' ? "npwp='$npwp',surat_tanah='$surat_tanah_array ',peta_bidang='$peta_bidang'='$teknis_pertanahan',surat_kematian='$surat_kematian',surat_kuasa_ahli_waris='$surat_kuasa_ahli_waris'" : "") . "
                 " . ($type == 'perumahan' ? "npwp='$npwp',surat_tanah='$surat_tanah_array ',peta_bidang='$peta_bidang',teknis_pertanahan='$teknis_pertanahan',surat_kematian='$surat_kematian',surat_kuasa_ahli_waris='$surat_kuasa_ahli_waris'" : "") . "
                 " . ($type == 'tower' ? "npwp='$npwp',surat_tanah='$surat_tanah_array ',peta_bidang='$peta_bidang',teknis_pertanahan='$teknis_pertanahan',surat_kematian='$surat_kematian',surat_kuasa_ahli_waris='$surat_kuasa_ahli_waris',surat_dinas_komunikasi='$surat_dinas_komunikasi',surat_rekom_tni='$surat_rekom_tni'" : "") . "
                 " . ($type == 'minimarket' ? "npwp='$npwp',surat_tanah='$surat_tanah_array ',peta_bidang='$peta_bidang',teknis_pertanahan='$teknis_pertanahan',surat_kematian='$surat_kematian',surat_kuasa_ahli_waris='$surat_kuasa_ahli_waris',surat_dinas_perdagangan='$surat_dinas_perdagangan'" : "") . "
@@ -2626,9 +3050,9 @@ class Kkpr_Model extends CI_Model
         }
         $validasi = $this->db->query("SELECT * FROM validasi_formulir WHERE id_permohonan = '$id'")->row();
         $id_user = $this->session->userdata('id_user');
-        if($validasi){
+        if ($validasi) {
             $this->db->query("UPDATE validasi_formulir SET tolak_formulir = '$id_user' WHERE id_permohonan = '$id' ");
-        }else{
+        } else {
             $this->db->query("INSERT INTO validasi_formulir (id_permohonan,tolak_formulir) VALUES ('$id','$id_user')");
         }
 
@@ -2703,10 +3127,11 @@ class Kkpr_Model extends CI_Model
         $luas_tanah = $this->input->post('luas_tanah');
         // $status_tanah = $this->input->post('status_tanah');        
         $legenda = $this->input->post('legenda');
-        $koordinat_a = $this->input->post('koordinat_a');
-        $koordinat_b = $this->input->post('koordinat_b');
-        $koordinat_c = $this->input->post('koordinat_c');
-        $koordinat_d = $this->input->post('koordinat_d');
+        $koordinat = $this->input->post('koordinat');
+        // $koordinat_a = $this->input->post('koordinat_a');
+        // $koordinat_b = $this->input->post('koordinat_b');
+        // $koordinat_c = $this->input->post('koordinat_c');
+        // $koordinat_d = $this->input->post('koordinat_d');
         $ketentuan = $this->input->post('ketentuan');
         $pemanfaatan_ruang = $this->input->post('pemanfaatan_ruang');
         $luas_tanah_disetujui = $this->input->post('luas_tanah_disetujui');
@@ -2738,7 +3163,7 @@ class Kkpr_Model extends CI_Model
         $kelas_jalan3 = $this->input->post('kelas_jalan3');
         $kelas_jalan4 = $this->input->post('kelas_jalan4');
 
-        $titik_koordinat = '[{"koordinat_a":"' . $koordinat_a . '","koordinat_b":"' . $koordinat_b . '","koordinat_c":"' . $koordinat_c . '","koordinat_d":"' . $koordinat_d . '"}]';
+        // $titik_koordinat = '[{"koordinat_a":"' . $koordinat_a . '","koordinat_b":"' . $koordinat_b . '","koordinat_c":"' . $koordinat_c . '","koordinat_d":"' . $koordinat_d . '"}]';
         $legenda_array = array();
         if (!empty($legenda)) {
             foreach ($legenda as $input) {
@@ -2777,6 +3202,20 @@ class Kkpr_Model extends CI_Model
             }
         }
         $hasil_kbli = json_encode($kbli_array);
+        
+        $koordinat_array = array();
+        if (!empty($koordinat)) {
+            foreach ($koordinat as $input) {
+                if (!empty($input)) {
+                    $data = array(
+                        'koordinat' => $input
+                    );
+                    $koordinat_array[] = $data;
+                }
+            }
+        }
+        $titik_koordinat= json_encode($koordinat_array);
+
         if ($cek_data) {
             $query = "UPDATE data_sertifikat_peta SET
                 id_permohonan='$id_permohonan',
@@ -3191,6 +3630,7 @@ class Kkpr_Model extends CI_Model
         $keterangan6 = $this->input->post('keterangan6');
         $rencana_pola_ruang = $this->input->post('rencana_pola_ruang');
         $masuk_lsd = $this->input->post('masuk_lsd');
+        $masuk_kp2b = $this->input->post('masuk_kp2b');
         $radius_mata_air = $this->input->post('radius_mata_air');
         $pihak_lain = $this->input->post('pihak_lain');
 
@@ -3230,6 +3670,7 @@ class Kkpr_Model extends CI_Model
                 keterangan6='$keterangan6',                             
                 rencana_pola_ruang='$rencana_pola_ruang',                             
                 masuk_lsd='$masuk_lsd',                             
+                masuk_kp2b='$masuk_kp2b',                             
                 radius_mata_air='$radius_mata_air',                             
                 pihak_lain='$pihak_lain'                             
             WHERE
@@ -3272,6 +3713,7 @@ class Kkpr_Model extends CI_Model
             keterangan6,   
             rencana_pola_ruang,
             masuk_lsd,
+            masuk_kp2b,
             radius_mata_air,
             pihak_lain       
 
@@ -3310,6 +3752,7 @@ class Kkpr_Model extends CI_Model
             '$keterangan6',                      
             '$rencana_pola_ruang',                      
             '$masuk_lsd',                      
+            '$masuk_kp2b',                      
             '$radius_mata_air',                      
             '$pihak_lain'                      
         )";
@@ -3386,7 +3829,7 @@ class Kkpr_Model extends CI_Model
         if (!empty($_FILES['file_status_tanah']['name'])) {
             $jumlah_berkas = count($_FILES['file_status_tanah']['name']);
             $dataArray_surat_tanah = array();
-            
+
             for ($i = 0; $i < $jumlah_berkas; $i++) {
                 if (!empty($_FILES['file_status_tanah']['name'][$i])) {
                     $_FILES['file']['name'] = $_FILES['file_status_tanah']['name'][$i];
@@ -3515,13 +3958,13 @@ class Kkpr_Model extends CI_Model
             WHERE id_kkpr_permohonan = '$id'
             ";
             $surat_tanah_for = json_decode($cek_st);
-            foreach ($surat_tanah_for as $cst){
+            foreach ($surat_tanah_for as $cst) {
                 $query_st = "UPDATE kkpr_permohonan
                 SET surat_tanah = JSON_SET(surat_tanah, '$[$cst->no].surat_tanah', '$cst->surat_tanah')
                 WHERE id_kkpr_permohonan = '$id';
             ";
-            // echo $query_st.'<br>';
-            $this->db->query($query_st);
+                // echo $query_st.'<br>';
+                $this->db->query($query_st);
             }
         } else {
             $query = "UPDATE kkpr_permohonan SET

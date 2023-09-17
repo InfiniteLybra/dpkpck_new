@@ -11,18 +11,32 @@
                 <div class="current" data-kt-stepper-element="content">
                     <!--begin::Wrapper-->
                     <div class="w-100">
-
                         <div class="mb-3 row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">
-                                Type Formulir
+                                Umk dan Non Umk
                                 <!-- <span class="required"></span> -->
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <select name="formulir" id="formulir" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Type Pengurusan">
+                                <select name="umk" id="umk" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Type Pengurusan">
                                     <option value="" selected></option>
-                                    <option value="itr">Itr</option>
-                                    <option value="kkpr">Kkpr</option>
+                                    <option value="umk">Umk</option>
+                                    <option value="non_umk">Non Umk</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div id="pengajuan" style="display: none;">
+                            <div class="mb-3 row">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">
+                                    Type Formulir
+                                    <!-- <span class="required"></span> -->
+                                </label>
+                                <div class="col-md-9 col-sm-9 ">
+                                    <select name="formulir" id="formulir" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Type Pengurusan">
+                                        <option value="" selected></option>
+                                        <option value="itr">Itr</option>
+                                        <option value="kkpr">Kkpr</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <!-- <style type="text/css">
@@ -40,6 +54,24 @@
                                         <option value="perusahaan">Perusahaan</option>
                                         <option value="perorangan">Perorangan</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">
+                                    Dikuasakan?
+                                    <!-- <span class="required"></span> -->
+                                </label>
+                                <div class="col-md-9 col-sm-9 ">
+                                    <div class="form-check form-check-custom form-check-solid mb-5">
+                                        <input class="form-check-input mb-2" type="radio" value="1" name="kuasa" />
+                                        <label class="form-check-label" for="flexRadioDefault">
+                                            Ya
+                                        </label>&emsp;
+                                        <input class="form-check-input mb-2" type="radio" value="0" name="kuasa" />
+                                        <label class="form-check-label" for="flexRadioDefault">
+                                            Tidak
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -86,12 +118,12 @@
                                 <div class="col-md-9 col-sm-9 ">
                                     <select name="pengajuan" id="pengajuan" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Type Pengajuan">
                                         <option value="" selected></option>
-                                        <?php 
-                                            $kategori = $this->db->query("SELECT * FROM pilihan WHERE nama_pilihan = 'kategori_kkpr'")->row();
-                                            $isi = json_decode($kategori->pilihan);
-                                            foreach($isi as $i){ 
+                                        <?php
+                                        $kategori = $this->db->query("SELECT * FROM pilihan WHERE nama_pilihan = 'kategori_kkpr'")->row();
+                                        $isi = json_decode($kategori->pilihan);
+                                        foreach ($isi as $i) {
                                         ?>
-                                        <option value="<?= $i->value?>"> <?= $i->kategori?></option>
+                                            <option value="<?= $i->value ?>"> <?= $i->kategori ?></option>
                                         <?php } ?>
                                     </select>
                                     <input type="hidden" id="isi_pengajuan" name="isi_pengajuan">
@@ -129,7 +161,7 @@
                                         </label>
                                     </div>
                                 </div>
-                            </div>                                                       
+                            </div>
                         </div>
                     </div>
                     <!--end::Wrapper-->

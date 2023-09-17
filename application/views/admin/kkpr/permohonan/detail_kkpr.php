@@ -199,7 +199,7 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
             <!--begin::Input group-->
             <div class="row mb-4">
                 <!--begin::Label-->
-                <label class="col-lg-4 fw-semibold text-muted">NIB / Skala Usaha</label>
+                <label class="col-lg-4 fw-semibold text-muted">Nomor Induk Berusaha (NIB) / Skala Usaha</label>
                 <!--end::Label-->
                 <!--begin::Col-->
                 <div class="col-lg-8 fv-row">
@@ -211,7 +211,7 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
             <!--begin::Row-->
             <div class="row mb-4">
                 <!--begin::Label-->
-                <label class="col-lg-4 fw-semibold text-muted">NIB</label>
+                <label class="col-lg-4 fw-semibold text-muted">Nomor Induk Berusaha (NIB)</label>
                 <!--end::Label-->
                 <!--begin::Col-->
                 <div class="col-lg-8">
@@ -358,6 +358,41 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                             <td class="text-center pe-0 min-w-200px" style=" width: 200pc;">
                                 <!-- <input type="text" name="surat_tanah" class="form-control" value="<?php if ($keterangan) echo $keterangan->surat_tanah ?>"> -->
                                 <textarea class="form-control" name="peta_bidang" data-kt-autosize="true" data-preview="preview"><?php if ($keterangan) echo $keterangan->peta_bidang ?></textarea>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+                <!--end::Col-->
+            </div>
+            <div class="row mb-4">
+                <!--begin::Label-->
+                <label class="col-lg-4 fw-semibold text-muted">SHP</label>
+                <!--end::Label-->
+                <!--begin::Col-->
+                <div class="col-lg-8">
+                    <table align="left">
+                        <tr>
+                            <td class="min-w-100px" style=" width: 50pc;">
+                                <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->shp ?>" class="fw-bold" download>Download</a><br>
+                                <!-- <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->shp ?>" target="_blank" class="fw-bold">Lihat</a> -->
+                            </td>
+                            <td class="text-center pe-0 min-w-100px" style=" width: 100pc;">
+                                <?php if ($yn) { ?>
+                                    <select name="yn_peta_bidang" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1" <?php if ($yn->shp == '1') echo 'selected'; ?>>Ya</option>
+                                        <option value="0" <?php if ($yn->shp == '0') echo 'selected'; ?>>Tidak</option>
+                                    </select>
+                                <?php } else { ?>
+                                    <select name="yn_peta_bidang" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1">Ya</option>
+                                        <option value="0">Tidak</option>
+                                    </select>
+                                <?php } ?>
+                            </td>
+                            <td class="text-center pe-0 min-w-200px" style=" width: 200pc;">
+                                <!-- <input type="text" name="surat_tanah" class="form-control" value="<?php if ($keterangan) echo $keterangan->surat_tanah ?>"> -->
+                                <textarea class="form-control" name="peta_bidang" data-kt-autosize="true" data-preview="preview"><?php if ($keterangan) echo $keterangan->shp ?></textarea>
                             </td>
 
                         </tr>

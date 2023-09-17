@@ -105,7 +105,7 @@
                             <span class="fw-bold"><?= $i->surveyor2 ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->no_reg_terbit ?></span>
+                            <span class="fw-bold"><?= $i->id_kkpr_permohonan ?></span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold"><?= $i->tgl_verif_berkas ?></span>

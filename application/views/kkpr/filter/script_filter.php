@@ -21,6 +21,20 @@
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 <script>
     $(document).ready(function() {
+        $("#umk").on("change", function() {
+            var selectedOption = $(this).val();
+            var form = $("#pengajuan");        
+
+            // Sematikan form yang tidak dipilih
+            form.hide();
+
+            // Tampilkan form yang sesuai berdasarkan pilihan
+            if (selectedOption === "umk") {
+                form.show();
+            } else if (selectedOption === "non_umk") {
+                form.show();
+            }
+        });
         $("#formulir").on("change", function() {
             var selectedOption = $(this).val();
             var formKKPR = $("#form_kkpr");
