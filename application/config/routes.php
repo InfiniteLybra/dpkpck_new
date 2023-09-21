@@ -61,3 +61,6 @@ $route['info'] = 'firstcontroller/info';
 $route['Filter.html'] = 'Kkpr/filter';
 $route['Formulir.html'] = 'Kkpr/proses_filter';
 $route['Persiapan.html'] = 'Kkpr/persiapan';
+$route['NotifikasiFormulir.html'] = 'Kkpr/terimakasih_formulir';
+$route['NotifikasiPermohonan.html'] = 'Kkpr/terimakasih_admin_permohonan';
+$route['NotifikasiConfig.html'] = 'Kkpr/terimakasih_config';

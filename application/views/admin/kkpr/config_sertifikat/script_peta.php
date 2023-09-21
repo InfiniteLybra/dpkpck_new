@@ -393,4 +393,15 @@ $(document).ready(function() {
             }
         });
     });
+    $(document).ready(function() {
+        $(document).ready(function() {
+        $('#id_lainya').change(function() {
+            if ($(this).is(':checked')) {
+                $('#lainyaInput').show(); // Tampilkan input tambahan
+            } else {
+                $('#lainyaInput').hide(); // Sembunyikan input tambahan jika checkbox tidak dicentang
+            }
+        });
+    });
+    });
 </script>

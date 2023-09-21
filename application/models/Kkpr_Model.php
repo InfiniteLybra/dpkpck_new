@@ -158,6 +158,71 @@ class Kkpr_Model extends CI_Model
                 $data20 = $this->upload->data();
                 $file20 = $data20['file_name'];
             }
+            //file21
+            if (!empty($_FILES['file_surat_peralihan_sm']['name'])) {
+                $this->upload->do_upload('file_surat_peralihan_sm');
+                $data21 = $this->upload->data();
+                $file21 = $data21['file_name'];
+            }
+            //file23
+            if (!empty($_FILES['file_surat_peralihan_pk']['name'])) {
+                $this->upload->do_upload('file_surat_peralihan_pk');
+                $data23 = $this->upload->data();
+                $file23 = $data23['file_name'];
+            }
+            //file24
+            if (!empty($_FILES['file_surat_peralihan_ppjb']['name'])) {
+                $this->upload->do_upload('file_surat_peralihan_ppjb');
+                $data24 = $this->upload->data();
+                $file24 = $data24['file_name'];
+            }
+            //file25
+            if (!empty($_FILES['file_surat_peralihan_ajb']['name'])) {
+                $this->upload->do_upload('file_surat_peralihan_ajb');
+                $data25 = $this->upload->data();
+                $file25 = $data25['file_name'];
+            }
+            //file26
+            if (!empty($_FILES['file_surat_peralihan_ah']['name'])) {
+                $this->upload->do_upload('file_surat_peralihan_ah');
+                $data26 = $this->upload->data();
+                $file26 = $data26['file_name'];
+            }
+            //file27
+            if (!empty($_FILES['file_surat_peralihan_aph']['name'])) {
+                $this->upload->do_upload('file_surat_peralihan_aph');
+                $data27 = $this->upload->data();
+                $file27 = $data27['file_name'];
+            }
+            //file28
+            if (!empty($_FILES['file_surat_peralihan_kw']['name'])) {
+                $this->upload->do_upload('file_surat_peralihan_kw');
+                $data28 = $this->upload->data();
+                $file28 = $data28['file_name'];
+            }
+             //file22
+            $jumlah_berkas_peta_bidang = count($_FILES['file_peta_bidang']['name']);
+            $dataArray_peta_bidang = array();
+
+            for ($i = 0; $i < $jumlah_berkas_peta_bidang; $i++) {
+                if (!empty($_FILES['file_peta_bidang']['name'][$i])) {
+                    $_FILES['file']['name'] = $_FILES['file_peta_bidang']['name'][$i];
+                    $_FILES['file']['type'] = $_FILES['file_peta_bidang']['type'][$i];
+                    $_FILES['file']['tmp_name'] = $_FILES['file_peta_bidang']['tmp_name'][$i];
+                    $_FILES['file']['error'] = $_FILES['file_peta_bidang']['error'][$i];
+                    $_FILES['file']['size'] = $_FILES['file_peta_bidang']['size'][$i];
+
+                    if ($this->upload->do_upload('file')) {
+                        $uploadData = $this->upload->data();
+                        $data = array(
+                            'peta_bidang' => $uploadData['file_name']
+                        );
+                        $dataArray_peta_bidang[] = $data;
+                    }
+                }
+            }
+
+            $file22 = json_encode($dataArray_peta_bidang);
 
             $id_user = $this->session->userdata('id_user');
             $type_isi_kategori = $this->input->post('type_isi_kategori');
@@ -165,6 +230,7 @@ class Kkpr_Model extends CI_Model
             $pemilik_lahan_meninggal = $this->input->post('pemilik_lahan_meninggal');
             $badan_hukum = $this->input->post('badan_hukum');
             $kuasa = $this->input->post('kuasa');
+            $lainya = $this->input->post('lainya');
 
             $nama_pemohon = $this->input->post('nama_pemohon');
             $alamat_pemohon = $this->input->post('alamat_pemohon');
@@ -211,6 +277,17 @@ class Kkpr_Model extends CI_Model
             $kelurahan_tanah = $this->input->post('kelurahan_tanah');
             $kecamatan_tanah = $this->input->post('kecamatan_tanah');
 
+            $status_surat_tanah = $this->input->post('st_1');
+            $dasar_surat_tanah_pribadi = $this->input->post('st_2');
+            $surat_peralihan = $this->input->post('st_3');
+            $dasar_surat_tanah_sm = $this->input->post('st_sewa_menyewa');
+            $dasar_surat_tanah_pk = $this->input->post('st_perjanjian_kerjasama');
+            $dasar_surat_tanah_ppjb = $this->input->post('st_ppjb');
+            $dasar_surat_tanah_ajb = $this->input->post('st_ajb');
+            $dasar_surat_tanah_ah = $this->input->post('st_akta_hibah');
+            $dasar_surat_tanah_aph = $this->input->post('st_akta_pelepasan_hak');
+            $dasar_surat_tanah_kw = $this->input->post('st_keterangan_waris');
+
             $dataArray = array();
             if (!empty($status_tanah_array)) {
                 foreach ($status_tanah_array as $input) {
@@ -242,6 +319,7 @@ class Kkpr_Model extends CI_Model
                 $insert = "INSERT INTO kkpr_permohonan (
                     id_user,
                     type,
+                    type_lainya,
                     tgl_reg,
     
                     nama_pemohon,
@@ -297,10 +375,30 @@ class Kkpr_Model extends CI_Model
                     akta_perusahaan,                
                     tdp,
                     shp,
+                     " . (($status_surat_tanah == 'atas_nama_sendiri') ? "status_surat_tanah,dasar_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_sm == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_sm == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_pk == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_pk == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ppjb == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ppjb == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ajb == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ajb == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ah == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ah == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_aph == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_aph == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_kw == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_kw == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
@@ -333,6 +431,7 @@ class Kkpr_Model extends CI_Model
                     VALUES(
                         '$id_user',
                         '$type_kategori',
+                        '$lainya',
                         '$tgl_reg',
     
                         '$nama_pemohon',
@@ -388,10 +487,30 @@ class Kkpr_Model extends CI_Model
                         '$file3',                    
                         '$file5',
                         '$file20',
+                        " . (($status_surat_tanah == 'atas_nama_sendiri') ? "'$status_surat_tanah','$dasar_surat_tanah_pribadi'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_sm == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_sm','$surat_peralihan','$file21'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_sm == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_sm','$surat_peralihan','$file21','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_pk == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_pk','$surat_peralihan','$file23'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_pk == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_pk','$surat_peralihan','$file23','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ppjb == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_ppjb','$surat_peralihan','$file24'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ppjb == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_ppjb','$surat_peralihan','$file24','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ajb == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_ajb','$surat_peralihan','$file25'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ajb == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_ajb','$surat_peralihan','$file25','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ah == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_ah','$surat_peralihan','$file26'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ah == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_ah','$surat_peralihan','$file26','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_aph == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_aph','$surat_peralihan','$file27'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_aph == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_aph','$surat_peralihan','$file27','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_kw == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_kw','$surat_peralihan','$file28'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_kw == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_kw','$surat_peralihan','$file28','$file22'," : "") . " 
+
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
                         " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file7','$file8'" : "") . "                                                
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8'" : "") . "                                                
                         " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "'$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "'$file6','$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
                         " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "'$file7','$file8'" : "") . "                                                
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "'$file6','$file7','$file8'" : "") . "                                                
@@ -425,6 +544,7 @@ class Kkpr_Model extends CI_Model
                 $insert = "INSERT INTO kkpr_permohonan (
                     id_user,
                     type,
+                    type_lainya,
                     tgl_reg,
     
                     nama_pemohon,
@@ -469,10 +589,30 @@ class Kkpr_Model extends CI_Model
                     akta_perusahaan,                
                     tdp,
                     shp,
+                     " . (($status_surat_tanah == 'atas_nama_sendiri') ? "status_surat_tanah,dasar_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_sm == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_sm == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_pk == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_pk == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ppjb == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ppjb == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ajb == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ajb == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ah == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ah == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_aph == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_aph == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_kw == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_kw == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
@@ -505,6 +645,7 @@ class Kkpr_Model extends CI_Model
                     VALUES(
                         '$id_user',
                         '$type_kategori',
+                        '$lainya',
                         '$tgl_reg',
     
                         '$nama_pemohon',
@@ -549,10 +690,30 @@ class Kkpr_Model extends CI_Model
                         '$file3',                    
                         '$file5',
                         '$file20',
+                        " . (($status_surat_tanah == 'atas_nama_sendiri') ? "'$status_surat_tanah','$dasar_surat_tanah_pribadi'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_sm == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_sm','$surat_peralihan','$file21'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_sm == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_sm','$surat_peralihan','$file21','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_pk == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_pk','$surat_peralihan','$file23'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_pk == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_pk','$surat_peralihan','$file23','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ppjb == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_ppjb','$surat_peralihan','$file24'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ppjb == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_ppjb','$surat_peralihan','$file24','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ajb == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_ajb','$surat_peralihan','$file25'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ajb == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_ajb','$surat_peralihan','$file25','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ah == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_ah','$surat_peralihan','$file26'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ah == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_ah','$surat_peralihan','$file26','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_aph == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_aph','$surat_peralihan','$file27'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_aph == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_aph','$surat_peralihan','$file27','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_kw == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_kw','$surat_peralihan','$file28'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_kw == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_kw','$surat_peralihan','$file28','$file22'," : "") . " 
+                        
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
                         " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file7','$file8'" : "") . "                                                
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8'" : "") . "                                                
                         " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "'$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "'$file6','$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
                         " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "'$file7','$file8'" : "") . "                                                
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "'$file6','$file7','$file8'" : "") . "                                                
@@ -584,8 +745,8 @@ class Kkpr_Model extends CI_Model
                         )";
             }
 
-            $query = $this->db->query($insert);
             // echo $insert;
+            $query = $this->db->query($insert);
             if ($query) {
                 return true;
             } else {
@@ -733,6 +894,71 @@ class Kkpr_Model extends CI_Model
                 $data20 = $this->upload->data();
                 $file20 = $data20['file_name'];
             }
+            //file21
+            if (!empty($_FILES['file_surat_peralihan_sm']['name'])) {
+                $this->upload->do_upload('file_surat_peralihan_sm');
+                $data21 = $this->upload->data();
+                $file21 = $data21['file_name'];
+            }
+            //file23
+            if (!empty($_FILES['file_surat_peralihan_pk']['name'])) {
+                $this->upload->do_upload('file_surat_peralihan_pk');
+                $data23 = $this->upload->data();
+                $file23 = $data23['file_name'];
+            }
+            //file24
+            if (!empty($_FILES['file_surat_peralihan_ppjb']['name'])) {
+                $this->upload->do_upload('file_surat_peralihan_ppjb');
+                $data24 = $this->upload->data();
+                $file24 = $data24['file_name'];
+            }
+            //file25
+            if (!empty($_FILES['file_surat_peralihan_ajb']['name'])) {
+                $this->upload->do_upload('file_surat_peralihan_ajb');
+                $data25 = $this->upload->data();
+                $file25 = $data25['file_name'];
+            }
+            //file26
+            if (!empty($_FILES['file_surat_peralihan_ah']['name'])) {
+                $this->upload->do_upload('file_surat_peralihan_ah');
+                $data26 = $this->upload->data();
+                $file26 = $data26['file_name'];
+            }
+            //file27
+            if (!empty($_FILES['file_surat_peralihan_aph']['name'])) {
+                $this->upload->do_upload('file_surat_peralihan_aph');
+                $data27 = $this->upload->data();
+                $file27 = $data27['file_name'];
+            }
+            //file28
+            if (!empty($_FILES['file_surat_peralihan_kw']['name'])) {
+                $this->upload->do_upload('file_surat_peralihan_kw');
+                $data28 = $this->upload->data();
+                $file28 = $data28['file_name'];
+            }
+             //file22
+            $jumlah_berkas_peta_bidang = count($_FILES['file_peta_bidang']['name']);
+            $dataArray_peta_bidang = array();
+
+            for ($i = 0; $i < $jumlah_berkas_peta_bidang; $i++) {
+                if (!empty($_FILES['file_peta_bidang']['name'][$i])) {
+                    $_FILES['file']['name'] = $_FILES['file_peta_bidang']['name'][$i];
+                    $_FILES['file']['type'] = $_FILES['file_peta_bidang']['type'][$i];
+                    $_FILES['file']['tmp_name'] = $_FILES['file_peta_bidang']['tmp_name'][$i];
+                    $_FILES['file']['error'] = $_FILES['file_peta_bidang']['error'][$i];
+                    $_FILES['file']['size'] = $_FILES['file_peta_bidang']['size'][$i];
+
+                    if ($this->upload->do_upload('file')) {
+                        $uploadData = $this->upload->data();
+                        $data = array(
+                            'peta_bidang' => $uploadData['file_name']
+                        );
+                        $dataArray_peta_bidang[] = $data;
+                    }
+                }
+            }
+
+            $file22 = json_encode($dataArray_peta_bidang);
 
             $id_user = $this->session->userdata('id_user');
             $type_isi_kategori = $this->input->post('type_isi_kategori');
@@ -740,6 +966,7 @@ class Kkpr_Model extends CI_Model
             $pemilik_lahan_meninggal = $this->input->post('pemilik_lahan_meninggal');
             $badan_hukum = $this->input->post('badan_hukum');
             $kuasa = $this->input->post('kuasa');
+            $lainya = $this->input->post('lainya');
 
             $nama_pemohon = $this->input->post('nama_pemohon');
             $alamat_pemohon = $this->input->post('alamat_pemohon');
@@ -777,6 +1004,17 @@ class Kkpr_Model extends CI_Model
             $kelurahan_tanah = $this->input->post('kelurahan_tanah');
             $kecamatan_tanah = $this->input->post('kecamatan_tanah');
 
+            $status_surat_tanah = $this->input->post('st_1');
+            $dasar_surat_tanah_pribadi = $this->input->post('st_2');
+            $surat_peralihan = $this->input->post('st_3');
+            $dasar_surat_tanah_sm = $this->input->post('st_sewa_menyewa');
+            $dasar_surat_tanah_pk = $this->input->post('st_perjanjian_kerjasama');
+            $dasar_surat_tanah_ppjb = $this->input->post('st_ppjb');
+            $dasar_surat_tanah_ajb = $this->input->post('st_ajb');
+            $dasar_surat_tanah_ah = $this->input->post('st_akta_hibah');
+            $dasar_surat_tanah_aph = $this->input->post('st_akta_pelepasan_hak');
+            $dasar_surat_tanah_kw = $this->input->post('st_keterangan_waris');
+
             $dataArray = array();
             if (!empty($status_tanah_array)) {
                 foreach ($status_tanah_array as $input) {
@@ -807,6 +1045,7 @@ class Kkpr_Model extends CI_Model
                 $insert = "INSERT INTO kkpr_permohonan (
                     id_user,
                     type,
+                    type_lainya,
                     tgl_reg,
     
                     nama_pemohon,
@@ -853,10 +1092,30 @@ class Kkpr_Model extends CI_Model
                     fotokopi_ktp_kuasa,
                     tdp,
                     shp,
+                    " . (($status_surat_tanah == 'atas_nama_sendiri') ? "status_surat_tanah,dasar_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_sm == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_sm == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_pk == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_pk == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ppjb == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ppjb == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ajb == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ajb == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ah == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ah == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_aph == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_aph == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_kw == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_kw == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
@@ -893,6 +1152,7 @@ class Kkpr_Model extends CI_Model
                     VALUES(
                         '$id_user',
                         '$type_kategori',
+                        '$lainya',
                         '$tgl_reg',
     
                         '$nama_pemohon',
@@ -939,10 +1199,30 @@ class Kkpr_Model extends CI_Model
                         '$file19',              
                         '$file5',
                         '$file20',
+                        " . (($status_surat_tanah == 'atas_nama_sendiri') ? "'$status_surat_tanah','$dasar_surat_tanah_pribadi'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_sm == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_sm','$surat_peralihan','$file21'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_sm == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_sm','$surat_peralihan','$file21','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_pk == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_pk','$surat_peralihan','$file23'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_pk == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_pk','$surat_peralihan','$file23','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ppjb == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_ppjb','$surat_peralihan','$file24'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ppjb == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_ppjb','$surat_peralihan','$file24','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ajb == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_ajb','$surat_peralihan','$file25'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ajb == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_ajb','$surat_peralihan','$file25','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ah == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_ah','$surat_peralihan','$file26'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ah == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_ah','$surat_peralihan','$file26','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_aph == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_aph','$surat_peralihan','$file27'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_aph == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_aph','$surat_peralihan','$file27','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_kw == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_kw','$surat_peralihan','$file28'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_kw == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_kw','$surat_peralihan','$file28','$file22'," : "") . " 
+
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
                         " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file7','$file8'" : "") . "                                                
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8'" : "") . "                                                
                         " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "'$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "'$file6','$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
                         " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "'$file7','$file8'" : "") . "                                                
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "'$file6','$file7','$file8'" : "") . "                                                
@@ -976,6 +1256,7 @@ class Kkpr_Model extends CI_Model
                 $insert = "INSERT INTO kkpr_permohonan (
                     id_user,
                     type,
+                    type_lainya,
                     tgl_reg,
     
                     nama_pemohon,
@@ -1010,11 +1291,31 @@ class Kkpr_Model extends CI_Model
                     dokumen_oss,
                     fotokopi_ktp,                
                     tdp,
-                    shp,
+                    shp,                                                            
+                    " . (($status_surat_tanah == 'atas_nama_sendiri') ? "status_surat_tanah,dasar_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_sm == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_sm == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_pk == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_pk == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ppjb == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ppjb == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ajb == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ajb == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ah == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ah == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_aph == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_aph == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_kw == 'sertifikat') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan," : "") . " 
+                    " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_kw == 'letter') ? "status_surat_tanah,dasar_surat_tanah,type_surat_peralihan,surat_peralihan,peta_bidang_surat_tanah," : "") . " 
+
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
@@ -1051,6 +1352,7 @@ class Kkpr_Model extends CI_Model
                     VALUES(
                         '$id_user',
                         '$type_kategori',
+                        '$lainya',
                         '$tgl_reg',
     
                         '$nama_pemohon',
@@ -1086,10 +1388,30 @@ class Kkpr_Model extends CI_Model
                         '$file2',                                                  
                         '$file5',
                         '$file20',
+                        " . (($status_surat_tanah == 'atas_nama_sendiri') ? "'$status_surat_tanah','$dasar_surat_tanah_pribadi'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_sm == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_sm','$surat_peralihan','$file21'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_sm == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_sm','$surat_peralihan','$file21','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_pk == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_pk','$surat_peralihan','$file23'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_pk == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_pk','$surat_peralihan','$file23','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ppjb == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_ppjb','$surat_peralihan','$file24'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ppjb == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_ppjb','$surat_peralihan','$file24','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ajb == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_ajb','$surat_peralihan','$file25'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ajb == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_ajb','$surat_peralihan','$file25','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ah == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_ah','$surat_peralihan','$file26'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_ah == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_ah','$surat_peralihan','$file26','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_aph == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_aph','$surat_peralihan','$file27'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_aph == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_aph','$surat_peralihan','$file27','$file22'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_kw == 'sertifikat') ? "'$status_surat_tanah','$dasar_surat_tanah_kw','$surat_peralihan','$file28'," : "") . " 
+                        " . (($status_surat_tanah == 'atas_nama_orang_lain' && $dasar_surat_tanah_kw == 'letter') ? "'$status_surat_tanah','$dasar_surat_tanah_kw','$surat_peralihan','$file28','$file22'," : "") . " 
+
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
                         " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file7','$file8'" : "") . "                                                
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "'$file6','$file7','$file8'" : "") . "                                                
                         " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "'$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "'$file6','$file7','$file8'" : "") . "                                                
+                        " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "'$file7','$file8','$file10','$file11'" : "") . "                                                
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "'$file6','$file7','$file8','$file10','$file11'" : "") . "                                                
                         " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "'$file7','$file8'" : "") . "                                                
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "'$file6','$file7','$file8'" : "") . "                                                
@@ -2854,7 +3176,7 @@ class Kkpr_Model extends CI_Model
             return false;
         }
     }
-    public function tambah_keterangan()
+    public function tambah_keterangan_old()
     {
         $id = $this->input->post('id');
         $telp_pemohon = $this->input->post('telp_pemohon');
@@ -3087,6 +3409,290 @@ class Kkpr_Model extends CI_Model
             return false;
         }
     }
+    public function tambah_keterangan()
+    {
+        $id = $this->input->post('id');
+        $telp_pemohon = $this->input->post('telp_pemohon');
+        $type = $this->input->post('type');
+        $dokumen_oss = $this->input->post('dokumen_oss');
+        $fotokopi_ktp = $this->input->post('fotokopi_ktp');
+        $akta_perusahaan = $this->input->post('akta_perusahaan');
+        $siup = $this->input->post('siup');
+        $tdp = $this->input->post('tdp');
+        $npwp = $this->input->post('npwp');
+        $surat_tanah = $this->input->post('surat_tanah');
+        $peta_bidang = $this->input->post('peta_bidang');
+        $teknis_pertanahan = $this->input->post('teknis_pertanahan');
+
+        $surat_kematian = $this->input->post('surat_kematian');
+        $surat_kuasa_ahli_waris = $this->input->post('surat_kuasa_ahli_waris');
+
+        $surat_dinas_komunikasi = $this->input->post('surat_dinas_komunikasi');
+        $surat_rekom_tni = $this->input->post('surat_rekom_tni');
+
+        $surat_dinas_perdagangan = $this->input->post('surat_dinas_perdagangan');
+
+        $surat_dinas_peternakan = $this->input->post('surat_dinas_peternakan');
+
+        $surat_pertamina = $this->input->post('surat_pertamina');
+
+        $daftar_nama_kk = $this->input->post('daftar_nama_kk');
+        $surat_fkub = $this->input->post('surat_fkub');
+
+        $file_dokumen_oss = $this->input->post('file_dokumen_oss');
+        $file_fotokopi_ktp = $this->input->post('file_fotokopi_ktp');
+        $file_akta_perusahaan = $this->input->post('file_akta_perusahaan');
+        $file_siup = $this->input->post('file_siup');
+        $file_tdp = $this->input->post('file_tdp');
+        $file_npwp = $this->input->post('file_npwp');
+        $file_surat_tanah = $this->input->post('file_surat_tanah');
+        $file_peta_bidang_surat_tanah = $this->input->post('file_peta_bidang_surat_tanah');
+        $file_peta_bidang = $this->input->post('file_peta_bidang');
+        $file_teknis_pertanahan = $this->input->post('file_teknis_pertanahan');
+
+        $file_surat_kematian = $this->input->post('file_surat_kematian');
+        $file_surat_kuasa_ahli_waris = $this->input->post('file_surat_kuasa_ahli_waris');
+
+        $file_surat_dinas_komunikasi = $this->input->post('file_surat_dinas_komunikasi');
+        $file_surat_rekom_tni = $this->input->post('file_surat_rekom_tni');
+
+        $file_surat_dinas_perdagangan = $this->input->post('file_surat_dinas_perdagangan');
+
+        $file_surat_dinas_peternakan = $this->input->post('file_surat_dinas_peternakan');
+
+        $file_surat_pertamina = $this->input->post('file_surat_pertamina');
+
+        $file_daftar_nama_kk = $this->input->post('file_daftar_nama_kk');
+        $file_surat_fkub = $this->input->post('file_surat_fkub');
+
+        $yn_dokumen_oss = $this->input->post('yn_dokumen_oss');
+        $yn_fotokopi_ktp = $this->input->post('yn_fotokopi_ktp');
+        $yn_akta_perusahaan = $this->input->post('yn_akta_perusahaan');
+        $yn_siup = $this->input->post('yn_siup');
+        $yn_tdp = $this->input->post('yn_tdp');
+        $yn_npwp = $this->input->post('yn_npwp');
+        $yn_surat_tanah = $this->input->post('yn_surat_tanah');
+        $yn_peta_bidang = $this->input->post('yn_peta_bidang');
+        $yn_teknis_pertanahan = $this->input->post('yn_teknis_pertanahan');
+
+        $yn_surat_kematian = $this->input->post('yn_surat_kematian');
+        $yn_surat_kuasa_ahli_waris = $this->input->post('yn_surat_kuasa_ahli_waris');
+
+        $yn_surat_dinas_komunikasi = $this->input->post('yn_surat_dinas_komunikasi');
+        $yn_surat_rekom_tni = $this->input->post('yn_surat_rekom_tni');
+
+        $yn_surat_dinas_perdagangan = $this->input->post('yn_surat_dinas_perdagangan');
+
+        $yn_surat_dinas_peternakan = $this->input->post('yn_surat_dinas_peternakan');
+
+        $yn_surat_pertamina = $this->input->post('yn_surat_pertamina');
+
+        $yn_daftar_nama_kk = $this->input->post('yn_daftar_nama_kk');
+        $yn_surat_fkub = $this->input->post('yn_surat_fkub');
+
+        $preview = $this->input->post('preview');
+
+        $array_surat_tanah = array();
+        if (!empty($surat_tanah)) {
+            foreach ($surat_tanah as $input) {
+                if (!empty($input)) {
+                    $data = array(
+                        'surat_tanah' => $input
+                    );
+                    $array_surat_tanah[] = $data;
+                }
+            }
+        }
+        $surat_tanah_array = json_encode($array_surat_tanah);
+
+        $array_file_surat_tanah = array();
+        if (!empty($file_surat_tanah)) {
+            foreach ($file_surat_tanah as $input) {
+                if (!empty($input)) {
+                    $data = array(
+                        'surat_tanah' => $input
+                    );
+                    $array_file_surat_tanah[] = $data;
+                }
+            }
+        }
+        $file_surat_tanah_array = json_encode($array_file_surat_tanah);
+
+        $array_file_peta_bidang_surat_tanah = array();
+        if (!empty($file_peta_bidang_surat_tanah)) {
+            foreach ($file_peta_bidang_surat_tanah as $input) {
+                if (!empty($input)) {
+                    $data = array(
+                        'surat_tanah' => $input
+                    );
+                    $array_file_peta_bidang_surat_tanah[] = $data;
+                }
+            }
+        }
+        $file_peta_bidang_surat_tanah_array = json_encode($array_file_peta_bidang_surat_tanah);
+
+        $dataArray_tanah = array();
+        foreach ($yn_surat_tanah as $value) {
+            $data = array("surat_tanah" => $value);
+            $dataArray_tanah[] = $data;
+        }
+        $yn_surat_tanah_array = json_encode($dataArray_tanah);
+        // echo $yn_surat_tanah_array;
+
+        $get_keterangan = $this->db->query("SELECT * FROM pengembalian_kkpr_permohonan WHERE id_permohonan = '$id'")->row();
+        $get_yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE id_permohonan = '$id'")->row();
+            $insert_pengembalian = "INSERT INTO pengembalian_kkpr_permohonan (
+                id_permohonan,                                        
+                type,    
+    
+                dokumen_oss,
+                fotokopi_ktp,
+                akta_perusahaan,
+                siup,
+                tdp,
+                " . ($type == 'biasa' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                " . ($type == 'perumahan' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                " . ($type == 'tower' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                " . ($type == 'minimarket' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                " . ($type == 'peternakan' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
+                " . ($type == 'spbu' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
+                " . ($type == 'tempat_ibadah' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
+                ) 
+                VALUES(
+                    '$id',            
+                    '$type', 
+    
+                    '$dokumen_oss',
+                    '$fotokopi_ktp',
+                    '$akta_perusahaan',
+                    '$siup',
+                    '$tdp',
+                    " . ($type == 'biasa' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris'" : "") . "                                                
+                    " . ($type == 'perumahan' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris'" : "") . "                                                
+                    " . ($type == 'tower' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris','$surat_dinas_komunikasi','$surat_rekom_tni'" : "") . "                                                
+                    " . ($type == 'minimarket' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris','$surat_dinas_perdagangan'" : "") . "                                                
+                    " . ($type == 'peternakan' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris','$surat_dinas_peternakan'" : "") . "                                                
+                    " . ($type == 'spbu' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris','$surat_pertamina'" : "") . "                                                
+                    " . ($type == 'tempat_ibadah' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris','$daftar_nama_kk','$surat_fkub'" : "") . "                                                
+                    )";
+            echo $insert_pengembalian;
+            // $query1 = $this->db->query($insert_pengembalian);
+            // $this->db->query("UPDATE kkpr_permohonan SET status_berkas = '1' WHERE id_kkpr_permohonan = '$id'");
+
+            $insert_file_pengembalian = "INSERT INTO file_pengembalian_kkpr_permohonan (
+                id_permohonan,                                        
+                type,    
+    
+                dokumen_oss,
+                fotokopi_ktp,
+                akta_perusahaan,
+                siup,
+                tdp,
+                " . ($type == 'biasa' ? "npwp,surat_tanah,peta_bidang_surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                " . ($type == 'perumahan' ? "npwp,surat_tanah,peta_bidang_surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                " . ($type == 'tower' ? "npwp,surat_tanah,peta_bidang_surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                " . ($type == 'minimarket' ? "npwp,surat_tanah,peta_bidang_surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                " . ($type == 'peternakan' ? "npwp,surat_tanah,peta_bidang_surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
+                " . ($type == 'spbu' ? "npwp,surat_tanah,peta_bidang_surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
+                " . ($type == 'tempat_ibadah' ? "npwp,surat_tanah,peta_bidang_surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
+                ) 
+                VALUES(
+                    '$id',            
+                    '$type', 
+    
+                    '$file_dokumen_oss',
+                    '$file_fotokopi_ktp',
+                    '$file_akta_perusahaan',
+                    '$file_siup',
+                    '$file_tdp',
+                    " . ($type == 'biasa' ? "'$file_npwp','$file_surat_tanah_array ','$file_peta_bidang_surat_tanah_array','$file_peta_bidang','$file_teknis_pertanahan','$file_surat_kematian','$file_surat_kuasa_ahli_waris'" : "") . "                                                
+                    " . ($type == 'perumahan' ? "'$file_npwp','$file_surat_tanah_array ','$file_peta_bidang_surat_tanah_array','$file_peta_bidang','$file_teknis_pertanahan','$file_surat_kematian','$file_surat_kuasa_ahli_waris'" : "") . "                                                
+                    " . ($type == 'tower' ? "'$file_npwp','$file_surat_tanah_array ','$file_peta_bidang_surat_tanah_array','$file_peta_bidang','$file_teknis_pertanahan','$file_surat_kematian','$file_surat_kuasa_ahli_waris','$file_surat_dinas_komunikasi','$file_surat_rekom_tni'" : "") . "                                                
+                    " . ($type == 'minimarket' ? "'$file_npwp','$file_surat_tanah_array ','$file_peta_bidang_surat_tanah_array','$file_peta_bidang','$file_teknis_pertanahan','$file_surat_kematian','$file_surat_kuasa_ahli_waris','$file_surat_dinas_perdagangan'" : "") . "                                                
+                    " . ($type == 'peternakan' ? "'$file_npwp','$file_surat_tanah_array ','$file_peta_bidang_surat_tanah_array','$file_peta_bidang','$file_teknis_pertanahan','$file_surat_kematian','$file_surat_kuasa_ahli_waris','$file_surat_dinas_peternakan'" : "") . "                                                
+                    " . ($type == 'spbu' ? "'$file_npwp','$file_surat_tanah_array ','$file_peta_bidang_surat_tanah_array','$file_peta_bidang','$file_teknis_pertanahan','$file_surat_kematian','$file_surat_kuasa_ahli_waris','$file_surat_pertamina'" : "") . "                                                
+                    " . ($type == 'tempat_ibadah' ? "'$file_npwp','$file_surat_tanah_array ','$file_peta_bidang_surat_tanah_array','$file_peta_bidang','$file_teknis_pertanahan','$file_surat_kematian','$file_surat_kuasa_ahli_waris','$file_daftar_nama_kk','$file_surat_fkub'" : "") . "                                                
+                    )";
+            echo $insert_file_pengembalian;
+            // $query2 = $this->db->query($insert_file_pengembalian);
+
+            $insert_yn = "INSERT INTO action_pengembalian_kkpr_permohonan (
+                id_permohonan,                                        
+                type,    
+    
+                dokumen_oss,
+                fotokopi_ktp,
+                akta_perusahaan,
+                siup,
+                tdp,
+                " . ($type == 'biasa' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                " . ($type == 'perumahan' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                " . ($type == 'tower' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                " . ($type == 'minimarket' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_perdagangan" : "") . "                                            
+                " . ($type == 'peternakan' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_peternakan" : "") . "                                            
+                " . ($type == 'spbu' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_pertamina" : "") . "                                            
+                " . ($type == 'tempat_ibadah' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
+                ) 
+                VALUES(
+                    '$id',            
+                    '$type', 
+    
+                    '$yn_dokumen_oss',
+                    '$yn_fotokopi_ktp',
+                    '$yn_akta_perusahaan',
+                    '$yn_siup',
+                    '$yn_tdp',
+                    " . ($type == 'biasa' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris'" : "") . "                                                
+                    " . ($type == 'perumahan' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris'" : "") . "                                                
+                    " . ($type == 'tower' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris','$yn_surat_dinas_komunikasi','$yn_surat_rekom_tni'" : "") . "                                                
+                    " . ($type == 'minimarket' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris','$yn_surat_dinas_perdagangan'" : "") . "                                                
+                    " . ($type == 'peternakan' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris','$yn_surat_dinas_peternakan'" : "") . "                                                
+                    " . ($type == 'spbu' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris','$yn_surat_pertamina'" : "") . "                                                
+                    " . ($type == 'tempat_ibadah' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris','$yn_daftar_nama_kk','$yn_surat_fkub'" : "") . "                                                
+                    )";
+            echo $insert_yn;
+            // $this->db->query($insert_yn);
+            // $this->db->query("UPDATE kkpr_permohonan SET status_berkas = '1' WHERE id_kkpr_permohonan = '$id'");   
+
+        $validasi = $this->db->query("SELECT * FROM validasi_formulir WHERE id_permohonan = '$id'")->row();
+        $id_user = $this->session->userdata('id_user');
+        if ($validasi) {
+            $this->db->query("UPDATE validasi_formulir SET tolak_formulir = '$id_user' WHERE id_permohonan = '$id' ");
+        } else {
+            $this->db->query("INSERT INTO validasi_formulir (id_permohonan,tolak_formulir) VALUES ('$id','$id_user')");
+        }
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'target' => $telp_pemohon,
+                'message' => $preview,
+                'countryCode' => '62', //optional
+            ),
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: 5@6!I4e2eSKYewSZSFhD' //change TOKEN to your actual token
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo $response;
+        // if ($query1) {
+        //     return true;
+        // } else {
+        //     return false;
+        // }
+    }
     public function terima_berkas($id)
     {
         $query = $this->db->query("UPDATE kkpr_permohonan SET status_berkas = '2' WHERE id_kkpr_permohonan = '$id'");
@@ -3133,6 +3739,7 @@ class Kkpr_Model extends CI_Model
         // $koordinat_c = $this->input->post('koordinat_c');
         // $koordinat_d = $this->input->post('koordinat_d');
         $ketentuan = $this->input->post('ketentuan');
+        $lainya = $this->input->post('lainya');
         $pemanfaatan_ruang = $this->input->post('pemanfaatan_ruang');
         $luas_tanah_disetujui = $this->input->post('luas_tanah_disetujui');
         // $pola_ruang = $this->input->post('pola_ruang');
@@ -3234,6 +3841,7 @@ class Kkpr_Model extends CI_Model
                 legenda='$hasil_legenda',
                 titik_koordinat='$titik_koordinat',
                 ketentuan_lainya='$hasil_ketentuan',
+                lainya_ketentuan='$lainya',
                 pemanfaatan_ruang='$pemanfaatan_ruang',
                 luas_disetujui='$luas_tanah_disetujui',
                 luas_tanah_lsd='$luas_tanah_lsd',
@@ -3283,6 +3891,7 @@ class Kkpr_Model extends CI_Model
             legenda,
             titik_koordinat,
             ketentuan_lainya,
+            lainya_ketentuan,
             pemanfaatan_ruang,
             luas_disetujui,
             luas_tanah_lsd,
@@ -3327,6 +3936,7 @@ class Kkpr_Model extends CI_Model
             '$hasil_legenda',
             '$titik_koordinat',
             '$hasil_ketentuan',
+            '$lainya',
             '$pemanfaatan_ruang',
             '$luas_tanah_disetujui',
             '$luas_tanah_lsd',

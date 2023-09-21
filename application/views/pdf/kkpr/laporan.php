@@ -167,8 +167,14 @@
                 $kkpr = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_kkpr_permohonan ='$data->id_permohonan' ")->row();
                 if ($kkpr->type == 'biasa') {
                 ?>
+                    <?php 
+                        if($data->lainya_ketentuan)
+                        {
+                            echo "1.".$data->lainya_ketentuan."<br>";
+                        }
+                    ?>
                     <?php
-                    $no = 1;
+                    $no = 2;
                     $ketentuan = json_decode($data->ketentuan_lainya);
                     foreach ($ketentuan as $k) {
                         $get = $this->db->query("SELECT * FROM ketentuan_lainya WHERE id_ketentuan_lainya = '$k->ketentuan'")->row();
@@ -191,8 +197,14 @@
                     7.Mematuhi dan melaksanakan ketentuan-ketentuan yang tertuang dalam surat pernyataan pada sistem Online Single Submission (OSS) berkoordinasi dengan Organisasi Perangkat Daerah (OPD) / Instansi terkait.<br>
                     8.Informasi KKPR ini berlaku sejauh ketentuan rencana tata ruang dan pemanfaatan ruang dari lokasi yang dimohon serta kawasan sekitarnya tidak berubah dan menjadi batal / dicabut / ditinjau kembali apabila dalam permohonannya didapatkan unsur kelalaian, pemalsuan, penipuan, paksaan, penyesatan dalam memberikan informasi, difungsikan tidak sesuai permohonan dan pemanfaatannya menimbulkan keresahan di masyarakat.
                     <br>
+                    <?php 
+                        if($data->lainya_ketentuan)
+                        {
+                            echo "9.".$data->lainya_ketentuan."<br>";
+                        }
+                    ?>
                     <?php
-                    $no = 9;
+                    $no = 10;
                     $ketentuan = json_decode($data->ketentuan_lainya);
                     foreach ($ketentuan as $k) {
                         $get = $this->db->query("SELECT * FROM ketentuan_lainya WHERE id_ketentuan_lainya = '$k->ketentuan'")->row();
@@ -211,8 +223,14 @@
                     3.Menyediakan alat pemadam kebakaran sebagai upaya pencegahan bahaya kebakaran.<br>
                     4.Mematuhi dan melaksanakan ketentuan-ketentuan yang tertuang dalam surat pernyataan pada sistem Online Single Submission (OSS) berkoordinasi dengan Organisasi Perangkat Daerah (OPD) / Instansi terkait.<br>
                     5.Informasi KKPR ini berlaku sejauh ketentuan rencana tata ruang dan pemanfaatan ruang dari lokasi yang dimohon serta kawasan sekitarnya tidak berubah dan menjadi batal / dicabut / ditinjau kembali apabila dalam permohonannya didapatkan unsur kelalaian, pemalsuan, penipuan, paksaan, penyesatan dalam memberikan informasi, difungsikan tidak sesuai permohonan dan pemanfaatannya menimbulkan keresahan di masyarakat.<br>
+                    <?php 
+                        if($data->lainya_ketentuan)
+                        {
+                            echo "6.".$data->lainya_ketentuan."<br>";
+                        }
+                    ?>
                     <?php
-                    $no = 6;
+                    $no = 7;
                     $ketentuan = json_decode($data->ketentuan_lainya);
                     foreach ($ketentuan as $k) {
                         $get = $this->db->query("SELECT * FROM ketentuan_lainya WHERE id_ketentuan_lainya = '$k->ketentuan'")->row();
@@ -232,8 +250,14 @@
                     4.Mematuhi dan melaksanakan ketentuan-ketentuan yang tertuang dalam surat pernyataan pada sistem Online Single Submission (OSS) berkoordinasi dengan Organisasi Perangkat Daerah (OPD) / Instansi terkait.<br>
                     5.Dilarang melakukan aktifitas pembangunan sebelum memperoleh PBG dan izin-izin terkait lainnya.<br>
                     6.Informasi KKPR ini berlaku sejauh ketentuan rencana tata ruang dan pemanfaatan ruang dari lokasi yang dimohon serta kawasan sekitarnya tidak berubah dan menjadi batal / dicabut / ditinjau kembali apabila dalam permohonannya didapatkan unsur kelalaian, pemalsuan, penipuan, paksaan, penyesatan dalam memberikan informasi, difungsikan tidak sesuai permohonan dan pemanfaatannya menimbulkan keresahan di masyarakat.<br>
+                    <?php 
+                        if($data->lainya_ketentuan)
+                        {
+                            echo "7.".$data->lainya_ketentuan."<br>";
+                        }
+                    ?>
                     <?php
-                    $no = 7;
+                    $no = 8;
                     $ketentuan = json_decode($data->ketentuan_lainya);
                     foreach ($ketentuan as $k) {
                         $get = $this->db->query("SELECT * FROM ketentuan_lainya WHERE id_ketentuan_lainya = '$k->ketentuan'")->row();
@@ -259,8 +283,14 @@
                     10.Dilarang menutup akses jalan bagi warga sekitar dan pembangunan perumahan ditata sedemikian rupa sehingga tidak mengakibatkan dampak lingkungan maupun dampak sosial bagi masyarakat sekitar.<br>
                     11.Mematuhi dan melaksanakan ketentuan-ketentuan yang tertuang dalam surat pernyataan pada sistem Online Single Submission (OSS) berkoordinasi dengan Organisasi Perangkat Daerah (OPD) / Instansi terkait.<br>
                     12.Informasi KKPR ini berlaku sejauh ketentuan rencana tata ruang dan pemanfaatan ruang dari lokasi yang dimohon serta kawasan sekitarnya tidak berubah dan menjadi batal / dicabut / ditinjau kembali apabila dalam permohonannya didapatkan unsur kelalaian, pemalsuan, penipuan, paksaan, penyesatan dalam memberikan informasi, difungsikan tidak sesuai permohonan dan pemanfaatannya menimbulkan keresahan di masyarakat.<br>
+                    <?php 
+                        if($data->lainya_ketentuan)
+                        {
+                            echo "13.".$data->lainya_ketentuan."<br>";
+                        }
+                    ?>
                     <?php
-                    $no = 13;
+                    $no = 14;
                     $ketentuan = json_decode($data->ketentuan_lainya);
                     foreach ($ketentuan as $k) {
                         $get = $this->db->query("SELECT * FROM ketentuan_lainya WHERE id_ketentuan_lainya = '$k->ketentuan'")->row();
@@ -282,8 +312,14 @@
                     b.Surat dari Pjs Executive GM MOR V  PT. Pertamina Patra Regional Jatimbalinus No.2994 / PND800000 / 2022-S3 tanggal 28 Desember 2022 perihal Izin Pengoperasian Sementara Pertashop No.5P.651.54 Type Gold Skema DODO an. Koperasi Primer TNI AU Walet di Desa Tamanharjo Kecamatan Singosari Kabupaten Malang Provinsi Jawa Timur.<br>
                     c.Surat pernyataan pada sistem Online Single Submission (OSS) berkoordinasi dengan Organisasi Perangkat Daerah (OPD) / Instansi terkait.<br>
                     6.Informasi KKPR ini berlaku sejauh ketentuan rencana tata ruang dan pemanfaatan ruang dari lokasi yang dimohon serta kawasan sekitarnya tidak berubah dan menjadi batal / dicabut / ditinjau kembali apabila dalam permohonannya didapatkan unsur kelalaian, pemalsuan, penipuan, paksaan, penyesatan dalam memberikan informasi, difungsikan tidak sesuai permohonan dan pemanfaatannya menimbulkan keresahan di masyarakat.<br>
+                    <?php 
+                        if($data->lainya_ketentuan)
+                        {
+                            echo "7.".$data->lainya_ketentuan."<br>";
+                        }
+                    ?>
                     <?php
-                    $no = 7;
+                    $no = 8;
                     $ketentuan = json_decode($data->ketentuan_lainya);
                     foreach ($ketentuan as $k) {
                         $get = $this->db->query("SELECT * FROM ketentuan_lainya WHERE id_ketentuan_lainya = '$k->ketentuan'")->row();
@@ -303,8 +339,14 @@
                     4.Melakukan pengawasan secara berkala mengenai kekuatan konstruksi dan aspek-aspek lain untuk keamanan bagi lingkungan sekitar.<br>
                     5.Berkoordinasi dengan Dinas Lingkungan Hidup Kabupaten Malang terkait  Dokumen Pengelolaan Lingkungan Hidup.<br>
                     6.Informasi KKPR ini berlaku sejauh ketentuan rencana tata ruang dan pemanfaatan ruang dari lokasi yang dimohon serta kawasan sekitarnya tidak berubah dan menjadi batal / dicabut / ditinjau kembali apabila dalam permohonannya didapatkan unsur kelalaian, pemalsuan, penipuan, paksaan, penyesatan dalam memberikan informasi, difungsikan tidak sesuai permohonan dan pemanfaatannya menimbulkan keresahan di masyarakat.<br>
+                    <?php 
+                        if($data->lainya_ketentuan)
+                        {
+                            echo "7.".$data->lainya_ketentuan."<br>";
+                        }
+                    ?>
                     <?php
-                    $no = 7;
+                    $no = 8;
                     $ketentuan = json_decode($data->ketentuan_lainya);
                     foreach ($ketentuan as $k) {
                         $get = $this->db->query("SELECT * FROM ketentuan_lainya WHERE id_ketentuan_lainya = '$k->ketentuan'")->row();

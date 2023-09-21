@@ -58,4 +58,20 @@
             $("#isi_pengajuan").val(selectedText);
         });
     });
+    $(document).ready(function() {
+        $("#id_pengajuan").on("change", function() {
+            var selectedOption = $(this).val();
+            var form = $("#lainyaInput");           
+
+            // Sematikan form yang tidak dipilih
+            form.hide();            
+
+            // Tampilkan form yang sesuai berdasarkan pilihan
+            if (selectedOption === "lainya") {
+                form.show();
+            } else{
+                form.hide();
+            }
+        });
+    });
 </script>

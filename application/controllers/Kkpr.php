@@ -73,12 +73,14 @@ class Kkpr extends CI_Controller
             $pemilik_lahan_meninggal = $this->input->post('pemilik_lahan_meninggal');
             $pengajuan = $this->input->post('pengajuan');
             $isi_pengajuan = $this->input->post('isi_pengajuan');
+            $lainya = $this->input->post('lainya');
             $data['pengurusan'] = $pengurusan;
             $data['badan_hukum'] = $badan_hukum;
             $data['pemilik_lahan_meninggal'] = $pemilik_lahan_meninggal;
             $data['pengajuan'] = $pengajuan;
             $data['kuasa'] = $kuasa;
             $data['isi_pengajuan'] = $isi_pengajuan;
+            $data['lainya'] = $lainya;
             $data['provinsi'] = $this->db->query("SELECT * FROM indo_provinsi")->result();
             $data['kecamatan'] = $this->db->query("SELECT * FROM kecamatan")->result();
 
@@ -124,7 +126,7 @@ class Kkpr extends CI_Controller
             $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
             redirect('Filter.html');
         }
-        redirect('User');
+        redirect('NotifikasiFormulir.html');
     }
     public function proses_terima($id)
     {
@@ -138,7 +140,7 @@ class Kkpr extends CI_Controller
             $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
             redirect('Kkpr/admin_kkpr');
         }
-        redirect('Kkpr/admin_kkpr');
+        redirect('NotifikasiPermohonan.html');
     }
     public function config()
     {   
@@ -191,13 +193,14 @@ class Kkpr extends CI_Controller
             $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
             redirect('Kkpr/config');
         }
-        $previousPage = $this->session->userdata('detail_config');
+        redirect('NotifikasiConfig.html');
+        // $previousPage = $this->session->userdata('detail_config');
 
-        if ($previousPage && filter_var($previousPage, FILTER_VALIDATE_URL)) {
-            redirect($previousPage);
-        } else {
-            redirect('Kkpr/config');
-        }
+        // if ($previousPage && filter_var($previousPage, FILTER_VALIDATE_URL)) {
+        //     redirect($previousPage);
+        // } else {
+        //     redirect('Kkpr/config');
+        // }
     }
     public function detail_config_draft($id)
     {     
@@ -229,13 +232,14 @@ class Kkpr extends CI_Controller
             $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
             redirect('Kkpr/config');
         }
-        $previousPage = $this->session->userdata('detail_config_draft');
+        redirect('NotifikasiConfig.html');
+        // $previousPage = $this->session->userdata('detail_config_draft');
 
-        if ($previousPage && filter_var($previousPage, FILTER_VALIDATE_URL)) {
-            redirect($previousPage);
-        } else {
-            redirect('Kkpr/config');
-        }
+        // if ($previousPage && filter_var($previousPage, FILTER_VALIDATE_URL)) {
+        //     redirect($previousPage);
+        // } else {
+        //     redirect('Kkpr/config');
+        // }
     }
     public function detail_config_lhs($id)
     {     
@@ -267,13 +271,14 @@ class Kkpr extends CI_Controller
             $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
             redirect('Kkpr/config');
         }
-        $previousPage = $this->session->userdata('detail_config_draft');
+        redirect('NotifikasiConfig.html');
+        // $previousPage = $this->session->userdata('detail_config_draft');
 
-        if ($previousPage && filter_var($previousPage, FILTER_VALIDATE_URL)) {
-            redirect($previousPage);
-        } else {
-            redirect('Kkpr/config');
-        }
+        // if ($previousPage && filter_var($previousPage, FILTER_VALIDATE_URL)) {
+        //     redirect($previousPage);
+        // } else {
+        //     redirect('Kkpr/config');
+        // }
     }
     public function status_selesai($id)
     {
@@ -543,19 +548,19 @@ class Kkpr extends CI_Controller
         $this->load->view('admin/kkpr/permohonan/detail_kkpr',$data);
         $this->load->view('templates/footer');
         $this->load->view('templates/footScript');
-        $this->load->view('admin/kkpr/permohonan/script_kkpr');
+        $this->load->view('admin/kkpr/permohonan/script_detail');
     }
     function proses_keterangan()
     {
         $query = $this->Kkpr_Model->tambah_keterangan();
-        if ($query == true) {
-            $this->session->set_flashdata('success', 'Data berhasil disimpan');
-            $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');
-        } else {
-            $this->session->set_flashdata('error', 'Data gagal disimpan');
-            $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
-        }
-        redirect('Kkpr/admin_kkpr');
+        // if ($query == true) {
+        //     $this->session->set_flashdata('success', 'Data berhasil disimpan');
+        //     $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');
+        // } else {
+        //     $this->session->set_flashdata('error', 'Data gagal disimpan');
+        //     $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
+        // }
+        // redirect('Kkpr/admin_kkpr');
     }
     public function admin_kkpr_kuasa()
     {
@@ -645,6 +650,18 @@ class Kkpr extends CI_Controller
     {
         $data['kkpr'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE status_berkas = '0' OR status_berkas = '2' OR status_berkas = '3' ")->result();
         $this->load->view('admin/kkpr/monitoring_berkas/export_monitoring_excel',$data);        
+    }
+    public function terimakasih_formulir()
+    {
+        $this->load->view('templates/terimakasih/terimakasih_formulir');
+    }
+    public function terimakasih_admin_permohonan()
+    {
+        $this->load->view('templates/terimakasih/terimakasih_admin_permohonan');
+    }
+    public function terimakasih_config()
+    {
+        $this->load->view('templates/terimakasih/terimakasih_config');
     }
 
 }

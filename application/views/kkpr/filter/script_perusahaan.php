@@ -272,7 +272,7 @@
                                 }
                             }
                         },
-                        surat_tanah: {
+                        file_status_tanah: {
                             validators: {
                                 notEmpty: {
                                     message: "Harus Diisi!"
@@ -659,39 +659,870 @@
       $("#additionalInputs input:last-child").remove();
     });
   });
+  //ATAS NAMA SENDIRI
   $(document).ready(function() {
-    var inputCount = 1; // Untuk melacak jumlah input yang ada
-    $("#addInputtanah").click(function() {
-        // Buat input baru dengan ID yang unik
-        var newInput = '<div class="newInput" id="input' + inputCount + '">';
-        newInput += '<div class="mb-3 row">';
-        newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Status Tanah <span class="required"></span></label>';
-        newInput += '<div class="col-md-9 col-sm-9">';
-        newInput += '<input type="text" class="form-control mb-2" name="status_tanah_array[]" required />';
-        newInput += '</div>';
-        newInput += '</div>';
-        newInput += '<div class="mb-3 row">';
-        newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah <span class="required"></span></label>';
-        newInput += '<div class="col-md-9 col-sm-9">';
-        newInput += '<input type="file" name="file_status_tanah[]" class="form-control" accept=".jpg, .pdf">';
-        newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
-        newInput += '</div>';
-        newInput += '</div>';
-        newInput += '</div>';
+        $("#id_st_1").on("change", function() {
+            var selectedOption = $(this).val();
+            var formANS = $("#dasar_surat_tanah");
+            var formANOL = $("#surat_peralihan");
+            var formS = $("#file_sertifikat");
+            var formL = $("#file_letter");
 
-        // Tambahkan input baru ke dalam "additionalInputstanah" div
-        $("#additionalInputstanah").append(newInput);
+            var formSM = $("#sewa_menyewa");
+            var formFSSM = $("#file_sertifikat_sewa_menyewa");
+            var formFLSM = $("#file_letter_sewa_menyewa");
+            
+            var formPK = $("#perjanjian_kerjasama");
+            var formFSPK = $("#file_sertifikat_perjanjian_kerjasama");
+            var formFLPK = $("#file_letter_perjanjian_kerjasama");
 
-        // Tingkatkan hitungan input
-        inputCount++;
+            var formPPJB = $("#ppjb");
+            var formFSPPJB = $("#file_sertifikat_ppjb");
+            var formFLPPJB = $("#file_letter_ppjb");
+
+            var formAJB = $("#ajb");
+            var formFSAJB = $("#file_sertifikat_ajb");
+            var formFLAJB = $("#file_letter_ajb");
+
+            var formAH = $("#akta_hibah");
+            var formFSAH = $("#file_sertifikat_akta_hibah");
+            var formFLAH = $("#file_letter_akta_hibah");
+
+            var formAPH = $("#akta_pelepasan_hak");
+            var formFSAPH = $("#file_sertifikat_akta_pelepasan_hak");
+            var formFLAPH = $("#file_letter_akta_pelepasan_hak");
+
+            var formKW = $("#keterangan_waris");
+            var formFSKW = $("#file_sertifikat_keterangan_waris");
+            var formFLKW = $("#file_letter_keterangan_waris");
+
+            formANS.hide();
+            formANOL.hide();
+            // Tampilkan atau sembunyikan form berdasarkan pilihan
+            if (selectedOption === "atas_nama_sendiri") {
+                formANS.show();
+
+                formSM.hide();
+                formFSSM.hide();
+                formFLSM.hide();
+
+                formPK.hide();
+                formFSPK.hide();
+                formFLPK.hide();
+
+                formPPJB.hide();
+                formFSPPJB.hide();
+                formFLPPJB.hide();
+
+                formAJB.hide();
+                formFSAJB.hide();
+                formFLAJB.hide();
+
+                formAH.hide();
+                formFSAH.hide();
+                formFLAH.hide();
+
+                formAPH.hide();
+                formFSAPH.hide();
+                formFLAPH.hide();
+
+                formKW.hide();
+                formFSKW.hide();
+                formFLKW.hide();
+            }else if (selectedOption === "atas_nama_orang_lain") {
+                formANOL.show();
+                formS.hide();
+                formL.hide();
+            } 
+            else {
+                formS.hide();
+                formL.hide();
+            }
+        });
     });
+    $(document).ready(function() {
+        $("#id_st_2").on("change", function() {
+            var selectedOption = $(this).val();
+            var formS = $("#file_sertifikat");
+            var formL = $("#file_letter");
 
-    $("#removeInputtanah").click(function() {
-        if (inputCount > 1) { // Pastikan selalu ada minimal satu input
-            // Hapus input terakhir dari "additionalInputstanah" div
-            $("#additionalInputstanah .newInput:last-child").remove();
-            inputCount--; // Kurangi hitungan input
-        }
+            formS.hide();
+            formL.hide();
+            // Tampilkan atau sembunyikan form berdasarkan pilihan
+            if (selectedOption === "sertifikat") {
+                formS.show();
+            } else {
+                formL.show();
+            }
+        });
     });
-});
+    $(document).ready(function() {
+        var inputCount = 1; // Untuk melacak jumlah input yang ada
+        $("#addInputtanah").click(function() {
+            // Buat input baru dengan ID yang unik
+            var newInput = '<div class="newInput" id="input' + inputCount + '">';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Status Tanah <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="text" class="form-control mb-2" name="status_tanah_array[]" required />';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah SHM/SHGB <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_status_tanah[]" class="form-control" accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '</div>';
+
+            // Tambahkan input baru ke dalam "additionalInputstanah" div
+            $("#additionalInputstanah").append(newInput);
+
+            // Tingkatkan hitungan input
+            inputCount++;
+        });
+
+        $("#removeInputtanah").click(function() {
+            if (inputCount > 1) { // Pastikan selalu ada minimal satu input
+                // Hapus input terakhir dari "additionalInputstanah" div
+                $("#additionalInputstanah .newInput:last-child").remove();
+                inputCount--; // Kurangi hitungan input
+            }
+        });
+    });
+    $(document).ready(function() {
+        var inputCount = 1; // Untuk melacak jumlah input yang ada
+        $("#addInputtanahL").click(function() {
+            // Buat input baru dengan ID yang unik
+            var newInput = '<div class="newInput" id="input' + inputCount + '">';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Status Tanah <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="text" class="form-control mb-2" name="status_tanah_array[]" required />';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah Letter C / Petok D <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_status_tanah[]" class="form-control" accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '</div>';
+
+            // Tambahkan input baru ke dalam "additionalInputstanah" div
+            $("#additionalInputstanahL").append(newInput);
+
+            // Tingkatkan hitungan input
+            inputCount++;
+        });
+
+        $("#removeInputtanahL").click(function() {
+            if (inputCount > 1) { // Pastikan selalu ada minimal satu input
+                // Hapus input terakhir dari "additionalInputstanah" div
+                $("#additionalInputstanahL .newInput:last-child").remove();
+                inputCount--; // Kurangi hitungan input
+            }
+        });
+    });
+//ATAS NAMA ORANG LAIN
+    $(document).ready(function() {
+        $("#id_st_3").on("change", function() {
+            var selectedOption = $(this).val();
+            var formSM = $("#sewa_menyewa");
+            var formPK = $("#perjanjian_kerjasama");
+            var formPPJB = $("#ppjb");
+            var formAJB = $("#ajb");
+            var formAH = $("#akta_hibah");
+            var formAPH = $("#akta_pelepasan_hak");
+            var formKW = $("#keterangan_waris");
+
+            formSM.hide();
+            formPK.hide();
+            formPPJB.hide();
+            formAJB.hide();
+            formAH.hide();
+            formAPH.hide();
+            formKW.hide();
+            // Tampilkan atau sembunyikan form berdasarkan pilihan
+            if (selectedOption === "sewa_menyewa") {
+                formSM.show();
+            }else if (selectedOption === "perjanjian_kerjasama") {
+                formPK.show();
+            }else if (selectedOption === "ppjb") {
+                formPPJB.show();
+            }else if (selectedOption === "ajb") {
+                formAJB.show();
+            }else if (selectedOption === "akta_hibah") {
+                formAH.show();
+            }else if (selectedOption === "akta_pelepasan_hak") {
+                formAPH.show();
+            }else if (selectedOption === "keterangan_waris") {
+                formKW.show();
+            }
+             else {
+                formLPK.show();
+            }
+        });
+    });
+//SEWA_MENYEWA
+    $(document).ready(function() {
+        $("#id_st_sewa_menyewa").on("change", function() {
+            var selectedOption = $(this).val();
+            var formS = $("#file_sertifikat_sewa_menyewa");
+            var formL = $("#file_letter_sewa_menyewa");
+
+            formS.hide();
+            formL.hide();
+            // Tampilkan atau sembunyikan form berdasarkan pilihan
+            if (selectedOption === "sertifikat") {
+                formS.show();
+            } else {
+                formL.show();
+            }
+        });
+    });
+    $(document).ready(function() {
+        var inputCount = 1; // Untuk melacak jumlah input yang ada
+        $("#addInputtanahSM").click(function() {
+            // Buat input baru dengan ID yang unik
+            var newInput = '<div class="newInput" id="input' + inputCount + '">';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Status Tanah <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="text" class="form-control mb-2" name="status_tanah_array[]" required />';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah SHM/SHGB <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_status_tanah[]" class="form-control" accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '</div>';
+
+            // Tambahkan input baru ke dalam "additionalInputstanah" div
+            $("#additionalInputstanahSM").append(newInput);
+
+            // Tingkatkan hitungan input
+            inputCount++;
+        });
+
+        $("#removeInputtanahSM").click(function() {
+            if (inputCount > 1) { // Pastikan selalu ada minimal satu input
+                // Hapus input terakhir dari "additionalInputstanah" div
+                $("#additionalInputstanahSM .newInput:last-child").remove();
+                inputCount--; // Kurangi hitungan input
+            }
+        });
+    });
+    $(document).ready(function() {
+        var inputCount = 1; // Untuk melacak jumlah input yang ada
+        $("#addInputtanahLSM").click(function() {
+            // Buat input baru dengan ID yang unik
+            var newInput = '<div class="newInput" id="input' + inputCount + '">';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Status Tanah <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="text" class="form-control mb-2" name="status_tanah_array[]" required />';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah Letter C / Petok D <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_status_tanah[]" class="form-control" accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name"> Peta Bidang <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_peta_bidang[]" class="form-control " accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '</div>';
+
+            // Tambahkan input baru ke dalam "additionalInputstanah" div
+            $("#additionalInputstanahLSM").append(newInput);
+
+            // Tingkatkan hitungan input
+            inputCount++;
+        });
+
+        $("#removeInputtanahLSM").click(function() {
+            if (inputCount > 1) { // Pastikan selalu ada minimal satu input
+                // Hapus input terakhir dari "additionalInputstanah" div
+                $("#additionalInputstanahLSM .newInput:last-child").remove();
+                inputCount--; // Kurangi hitungan input
+            }
+        });
+    });
+//PERJANJIAN KERJASAMA    
+    $(document).ready(function() {
+        $("#id_st_perjanjian_kerjasama").on("change", function() {
+            var selectedOption = $(this).val();
+            var formS = $("#file_sertifikat_perjanjian_kerjasama");
+            var formL = $("#file_letter_perjanjian_kerjasama");
+
+            formS.hide();
+            formL.hide();
+            // Tampilkan atau sembunyikan form berdasarkan pilihan
+            if (selectedOption === "sertifikat") {
+                formS.show();
+            } else {
+                formL.show();
+            }
+        });
+    });
+    $(document).ready(function() {
+        var inputCount = 1; // Untuk melacak jumlah input yang ada
+        $("#addInputtanahPK").click(function() {
+            // Buat input baru dengan ID yang unik
+            var newInput = '<div class="newInput" id="input' + inputCount + '">';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Status Tanah <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="text" class="form-control mb-2" name="status_tanah_array[]" required />';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah SHM/SHGB <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_status_tanah[]" class="form-control" accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '</div>';
+
+            // Tambahkan input baru ke dalam "additionalInputstanah" div
+            $("#additionalInputstanahPK").append(newInput);
+
+            // Tingkatkan hitungan input
+            inputCount++;
+        });
+
+        $("#removeInputtanahPK").click(function() {
+            if (inputCount > 1) { // Pastikan selalu ada minimal satu input
+                // Hapus input terakhir dari "additionalInputstanah" div
+                $("#additionalInputstanahPK .newInput:last-child").remove();
+                inputCount--; // Kurangi hitungan input
+            }
+        });
+    });
+    $(document).ready(function() {
+        var inputCount = 1; // Untuk melacak jumlah input yang ada
+        $("#addInputtanahLPK").click(function() {
+            // Buat input baru dengan ID yang unik
+            var newInput = '<div class="newInput" id="input' + inputCount + '">';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Status Tanah <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="text" class="form-control mb-2" name="status_tanah_array[]" required />';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah Letter C / Petok D <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_status_tanah[]" class="form-control" accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name"> Peta Bidang <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_peta_bidang[]" class="form-control " accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '</div>';
+
+            // Tambahkan input baru ke dalam "additionalInputstanah" div
+            $("#additionalInputstanahLPK").append(newInput);
+
+            // Tingkatkan hitungan input
+            inputCount++;
+        });
+
+        $("#removeInputtanahLPK").click(function() {
+            if (inputCount > 1) { // Pastikan selalu ada minimal satu input
+                // Hapus input terakhir dari "additionalInputstanah" div
+                $("#additionalInputstanahLPK .newInput:last-child").remove();
+                inputCount--; // Kurangi hitungan input
+            }
+        });
+    });
+//PPJB
+    $(document).ready(function() {
+        $("#id_st_ppjb").on("change", function() {
+            var selectedOption = $(this).val();
+            var formS = $("#file_sertifikat_ppjb");
+            var formL = $("#file_letter_ppjb");
+
+            formS.hide();
+            formL.hide();
+            // Tampilkan atau sembunyikan form berdasarkan pilihan
+            if (selectedOption === "sertifikat") {
+                formS.show();
+            } else {
+                formL.show();
+            }
+        });
+    });
+    $(document).ready(function() {
+        var inputCount = 1; // Untuk melacak jumlah input yang ada
+        $("#addInputtanahPPJB").click(function() {
+            // Buat input baru dengan ID yang unik
+            var newInput = '<div class="newInput" id="input' + inputCount + '">';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Status Tanah <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="text" class="form-control mb-2" name="status_tanah_array[]" required />';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah SHM/SHGB <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_status_tanah[]" class="form-control" accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '</div>';
+
+            // Tambahkan input baru ke dalam "additionalInputstanah" div
+            $("#additionalInputstanahPPJB").append(newInput);
+
+            // Tingkatkan hitungan input
+            inputCount++;
+        });
+
+        $("#removeInputtanahPPJB").click(function() {
+            if (inputCount > 1) { // Pastikan selalu ada minimal satu input
+                // Hapus input terakhir dari "additionalInputstanah" div
+                $("#additionalInputstanahPPJB .newInput:last-child").remove();
+                inputCount--; // Kurangi hitungan input
+            }
+        });
+    });
+    $(document).ready(function() {
+        var inputCount = 1; // Untuk melacak jumlah input yang ada
+        $("#addInputtanahLPPJB").click(function() {
+            // Buat input baru dengan ID yang unik
+            var newInput = '<div class="newInput" id="input' + inputCount + '">';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Status Tanah <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="text" class="form-control mb-2" name="status_tanah_array[]" required />';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah Letter C / Petok D <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_status_tanah[]" class="form-control" accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name"> Peta Bidang <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_peta_bidang[]" class="form-control " accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '</div>';
+
+            // Tambahkan input baru ke dalam "additionalInputstanah" div
+            $("#additionalInputstanahLPPJB").append(newInput);
+
+            // Tingkatkan hitungan input
+            inputCount++;
+        });
+
+        $("#removeInputtanahLPPJB").click(function() {
+            if (inputCount > 1) { // Pastikan selalu ada minimal satu input
+                // Hapus input terakhir dari "additionalInputstanah" div
+                $("#additionalInputstanahLPPJB .newInput:last-child").remove();
+                inputCount--; // Kurangi hitungan input
+            }
+        });
+    });
+//AJB
+    $(document).ready(function() {
+        $("#id_st_ajb").on("change", function() {
+            var selectedOption = $(this).val();
+            var formS = $("#file_sertifikat_ajb");
+            var formL = $("#file_letter_ajb");
+
+            formS.hide();
+            formL.hide();
+            // Tampilkan atau sembunyikan form berdasarkan pilihan
+            if (selectedOption === "sertifikat") {
+                formS.show();
+            } else {
+                formL.show();
+            }
+        });
+    });
+    $(document).ready(function() {
+        var inputCount = 1; // Untuk melacak jumlah input yang ada
+        $("#addInputtanahAJB").click(function() {
+            // Buat input baru dengan ID yang unik
+            var newInput = '<div class="newInput" id="input' + inputCount + '">';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Status Tanah <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="text" class="form-control mb-2" name="status_tanah_array[]" required />';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah SHM/SHGB <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_status_tanah[]" class="form-control" accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '</div>';
+
+            // Tambahkan input baru ke dalam "additionalInputstanah" div
+            $("#additionalInputstanahAJB").append(newInput);
+
+            // Tingkatkan hitungan input
+            inputCount++;
+        });
+
+        $("#removeInputtanahAJB").click(function() {
+            if (inputCount > 1) { // Pastikan selalu ada minimal satu input
+                // Hapus input terakhir dari "additionalInputstanah" div
+                $("#additionalInputstanahAJB .newInput:last-child").remove();
+                inputCount--; // Kurangi hitungan input
+            }
+        });
+    });
+    $(document).ready(function() {
+        var inputCount = 1; // Untuk melacak jumlah input yang ada
+        $("#addInputtanahLAJB").click(function() {
+            // Buat input baru dengan ID yang unik
+            var newInput = '<div class="newInput" id="input' + inputCount + '">';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Status Tanah <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="text" class="form-control mb-2" name="status_tanah_array[]" required />';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah Letter C / Petok D <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_status_tanah[]" class="form-control" accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name"> Peta Bidang <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_peta_bidang[]" class="form-control " accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '</div>';
+
+            // Tambahkan input baru ke dalam "additionalInputstanah" div
+            $("#additionalInputstanahLAJB").append(newInput);
+
+            // Tingkatkan hitungan input
+            inputCount++;
+        });
+
+        $("#removeInputtanahLAJB").click(function() {
+            if (inputCount > 1) { // Pastikan selalu ada minimal satu input
+                // Hapus input terakhir dari "additionalInputstanah" div
+                $("#additionalInputstanahLAJB .newInput:last-child").remove();
+                inputCount--; // Kurangi hitungan input
+            }
+        });
+    });
+//AKTA HIBAH
+    $(document).ready(function() {
+        $("#id_st_akta_hibah").on("change", function() {
+            var selectedOption = $(this).val();
+            var formS = $("#file_sertifikat_akta_hibah");
+            var formL = $("#file_letter_akta_hibah");
+
+            formS.hide();
+            formL.hide();
+            // Tampilkan atau sembunyikan form berdasarkan pilihan
+            if (selectedOption === "sertifikat") {
+                formS.show();
+            } else {
+                formL.show();
+            }
+        });
+    });
+    $(document).ready(function() {
+        var inputCount = 1; // Untuk melacak jumlah input yang ada
+        $("#addInputtanahAH").click(function() {
+            // Buat input baru dengan ID yang unik
+            var newInput = '<div class="newInput" id="input' + inputCount + '">';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Status Tanah <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="text" class="form-control mb-2" name="status_tanah_array[]" required />';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah SHM/SHGB <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_status_tanah[]" class="form-control" accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '</div>';
+
+            // Tambahkan input baru ke dalam "additionalInputstanah" div
+            $("#additionalInputstanahAH").append(newInput);
+
+            // Tingkatkan hitungan input
+            inputCount++;
+        });
+
+        $("#removeInputtanahAH").click(function() {
+            if (inputCount > 1) { // Pastikan selalu ada minimal satu input
+                // Hapus input terakhir dari "additionalInputstanah" div
+                $("#additionalInputstanahAH .newInput:last-child").remove();
+                inputCount--; // Kurangi hitungan input
+            }
+        });
+    });
+    $(document).ready(function() {
+        var inputCount = 1; // Untuk melacak jumlah input yang ada
+        $("#addInputtanahLAH").click(function() {
+            // Buat input baru dengan ID yang unik
+            var newInput = '<div class="newInput" id="input' + inputCount + '">';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Status Tanah <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="text" class="form-control mb-2" name="status_tanah_array[]" required />';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah Letter C / Petok D <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_status_tanah[]" class="form-control" accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name"> Peta Bidang <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_peta_bidang[]" class="form-control " accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '</div>';
+
+            // Tambahkan input baru ke dalam "additionalInputstanah" div
+            $("#additionalInputstanahLAH").append(newInput);
+
+            // Tingkatkan hitungan input
+            inputCount++;
+        });
+
+        $("#removeInputtanahLAH").click(function() {
+            if (inputCount > 1) { // Pastikan selalu ada minimal satu input
+                // Hapus input terakhir dari "additionalInputstanah" div
+                $("#additionalInputstanahLAH .newInput:last-child").remove();
+                inputCount--; // Kurangi hitungan input
+            }
+        });
+    });
+//AKTA PELEPASAN HAK
+    $(document).ready(function() {
+        $("#id_st_akta_pelepasan_hak").on("change", function() {
+            var selectedOption = $(this).val();
+            var formS = $("#file_sertifikat_akta_pelepasan_hak");
+            var formL = $("#file_letter_akta_pelepasan_hak");
+
+            formS.hide();
+            formL.hide();
+            // Tampilkan atau sembunyikan form berdasarkan pilihan
+            if (selectedOption === "sertifikat") {
+                formS.show();
+            } else {
+                formL.show();
+            }
+        });
+    });
+    $(document).ready(function() {
+        var inputCount = 1; // Untuk melacak jumlah input yang ada
+        $("#addInputtanahAPH").click(function() {
+            // Buat input baru dengan ID yang unik
+            var newInput = '<div class="newInput" id="input' + inputCount + '">';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Status Tanah <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="text" class="form-control mb-2" name="status_tanah_array[]" required />';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah SHM/SHGB <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_status_tanah[]" class="form-control" accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '</div>';
+
+            // Tambahkan input baru ke dalam "additionalInputstanah" div
+            $("#additionalInputstanahAPH").append(newInput);
+
+            // Tingkatkan hitungan input
+            inputCount++;
+        });
+
+        $("#removeInputtanahAPH").click(function() {
+            if (inputCount > 1) { // Pastikan selalu ada minimal satu input
+                // Hapus input terakhir dari "additionalInputstanah" div
+                $("#additionalInputstanahAPH .newInput:last-child").remove();
+                inputCount--; // Kurangi hitungan input
+            }
+        });
+    });
+    $(document).ready(function() {
+        var inputCount = 1; // Untuk melacak jumlah input yang ada
+        $("#addInputtanahLAPH").click(function() {
+            // Buat input baru dengan ID yang unik
+            var newInput = '<div class="newInput" id="input' + inputCount + '">';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Status Tanah <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="text" class="form-control mb-2" name="status_tanah_array[]" required />';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah Letter C / Petok D <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_status_tanah[]" class="form-control" accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name"> Peta Bidang <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_peta_bidang[]" class="form-control " accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '</div>';
+
+            // Tambahkan input baru ke dalam "additionalInputstanah" div
+            $("#additionalInputstanahLAPH").append(newInput);
+
+            // Tingkatkan hitungan input
+            inputCount++;
+        });
+
+        $("#removeInputtanahLAPH").click(function() {
+            if (inputCount > 1) { // Pastikan selalu ada minimal satu input
+                // Hapus input terakhir dari "additionalInputstanah" div
+                $("#additionalInputstanahLAPH .newInput:last-child").remove();
+                inputCount--; // Kurangi hitungan input
+            }
+        });
+    });
+//KETERANGAN WARIS
+    $(document).ready(function() {
+        $("#id_st_keterangan_waris").on("change", function() {
+            var selectedOption = $(this).val();
+            var formS = $("#file_sertifikat_keterangan_waris");
+            var formL = $("#file_letter_keterangan_waris");
+
+            formS.hide();
+            formL.hide();
+            // Tampilkan atau sembunyikan form berdasarkan pilihan
+            if (selectedOption === "sertifikat") {
+                formS.show();
+            } else {
+                formL.show();
+            }
+        });
+    });
+    $(document).ready(function() {
+        var inputCount = 1; // Untuk melacak jumlah input yang ada
+        $("#addInputtanahKW").click(function() {
+            // Buat input baru dengan ID yang unik
+            var newInput = '<div class="newInput" id="input' + inputCount + '">';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Status Tanah <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="text" class="form-control mb-2" name="status_tanah_array[]" required />';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah SHM/SHGB <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_status_tanah[]" class="form-control" accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '</div>';
+
+            // Tambahkan input baru ke dalam "additionalInputstanah" div
+            $("#additionalInputstanahKW").append(newInput);
+
+            // Tingkatkan hitungan input
+            inputCount++;
+        });
+
+        $("#removeInputtanahKW").click(function() {
+            if (inputCount > 1) { // Pastikan selalu ada minimal satu input
+                // Hapus input terakhir dari "additionalInputstanah" div
+                $("#additionalInputstanahKW .newInput:last-child").remove();
+                inputCount--; // Kurangi hitungan input
+            }
+        });
+    });
+    $(document).ready(function() {
+        var inputCount = 1; // Untuk melacak jumlah input yang ada
+        $("#addInputtanahLKW").click(function() {
+            // Buat input baru dengan ID yang unik
+            var newInput = '<div class="newInput" id="input' + inputCount + '">';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Status Tanah <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="text" class="form-control mb-2" name="status_tanah_array[]" required />';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Surat Tanah Letter C / Petok D <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_status_tanah[]" class="form-control" accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '<div class="mb-3 row">';
+            newInput += '<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name"> Peta Bidang <span class="required"></span></label>';
+            newInput += '<div class="col-md-9 col-sm-9">';
+            newInput += '<input type="file" name="file_peta_bidang[]" class="form-control " accept=".jpg, .pdf">';
+            newInput += '<small>File yang diterima hanya .jpg dan .pdf</small>';
+            newInput += '</div>';
+            newInput += '</div>';
+            newInput += '</div>';
+
+            // Tambahkan input baru ke dalam "additionalInputstanah" div
+            $("#additionalInputstanahLKW").append(newInput);
+
+            // Tingkatkan hitungan input
+            inputCount++;
+        });
+
+        $("#removeInputtanahLKW").click(function() {
+            if (inputCount > 1) { // Pastikan selalu ada minimal satu input
+                // Hapus input terakhir dari "additionalInputstanah" div
+                $("#additionalInputstanahLKW .newInput:last-child").remove();
+                inputCount--; // Kurangi hitungan input
+            }
+        });
+    });
+//
 </script>
