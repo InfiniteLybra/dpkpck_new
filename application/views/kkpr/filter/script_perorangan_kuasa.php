@@ -798,6 +798,39 @@
     });
 </script>
 <script>
+    // Fungsi untuk menyimpan draft otomatis saat perubahan input
+    function saveDraft() {
+        const draftForm = document.getElementById('kt_create_account_form');
+        const formData = new FormData(draftForm);
+
+        // Kirim data draft ke server
+        fetch('<?= base_url('Kkpr/save_draft') ?>', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Draft saved successfully.');
+                } else {
+                    console.error('Failed to save draft.');
+                }
+            })
+            .catch(error => {
+                console.error('An error occurred:', error);
+            });
+    }
+
+    // Tambahkan event listener untuk input
+    const inputElements = document.querySelectorAll('#nama_pemohon, #alamat_pemohon, #rt_pemohon, #rw_pemohon, #telp_pemohon,  #nama_kuasa, #alamat_kuasa, #rt_kuasa, #rw_kuasa, #telp_kuasa,  #nib, #peruntukan_tanah,#luas_tanah,#lokasi_tanah,#rt_tanah,#rw_tanah');
+    inputElements.forEach(input => {
+        input.addEventListener('input', saveDraft);
+    });
+    const selectElements = document.querySelectorAll('#kelamin,#provinsi_pemohon, #kota_pemohon, #kecamatan_pemohon, #kelurahan_pemohon,#provinsi_kuasa, #kota_kuasa, #kecamatan_kuasa, #kelurahan_kuasa,#skala_usaha,#klasifikasi_resiko, #status_tanah_sm,#perluasan,#kota_tanah,#kecamatan_tanah,#kelurahan_tanah'); // Gantilah 'your_select_id_here' dengan ID elemen select Anda
+    selectElements.forEach(select => {
+        select.addEventListener('change', saveDraft); // Gunakan event 'change' untuk select
+    });
+</script>
+<script>
     $(document).ready(function() {
         $("#addInput").click(function() {
             // Buat input baru dan tambahkan ke dalam "additionalInputs" div

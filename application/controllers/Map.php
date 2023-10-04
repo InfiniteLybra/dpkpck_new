@@ -111,6 +111,14 @@ class Map extends CI_Controller
         $this->load->view('templates/footScript');
         $this->load->view('polygon_map/script');
     } 
+    public function polygon_new()
+    {
+        $this->load->view('templates/header');
+        $this->load->view('polygon_map_new/index');
+        $this->load->view('templates/footer');
+        $this->load->view('templates/footScript');
+        $this->load->view('polygon_map_new/script');
+    } 
     public function polygon_baru()
     {
         $data['shp'] = $this->db->query("SELECT * FROM shp WHERE id = '0'")->row();

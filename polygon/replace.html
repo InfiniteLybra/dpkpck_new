@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // Teks dengan format LatLng
+    let inputText = "LatLng(-7.940226, 112.696665),LatLng(-7.940445, 112.697176),LatLng(-7.940688, 112.697072),LatLng(-7.940474, 112.696572)";
+
+    // Menghilangkan "LatLng(" dari teks
+    let textTanpaLatLng = inputText.replace(/LatLng\(/g, '');
+    console.log(textTanpaLatLng);
+
+    let newString = textTanpaLatLng.replace(/\)/g, '|');
+    console.log(newString);
+
+    // Memisahkan koordinat menjadi array dengan membagi string berdasarkan koma dan menghapus spasi
+    const coordinatesArray = newString.split('|');
+
+    console.log(coordinatesArray);
+</script>
+
+</html>

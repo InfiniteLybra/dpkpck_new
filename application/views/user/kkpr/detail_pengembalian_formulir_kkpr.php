@@ -7,9 +7,9 @@ $provinsi = $this->db->query("SELECT * FROM indo_provinsi WHERE prov_id = '$kkpr
 $kelurahan_tanah = $this->db->query("SELECT * FROM desa WHERE id_desa = '$kkpr->kelurahan_tanah' ")->row();
 $kecamatan_tanah = $this->db->query("SELECT * FROM kecamatan WHERE id_kecamatan = '$kkpr->kecamatan_tanah' ")->row();
 
-$keterangan = $this->db->query("SELECT * FROM pengembalian_kkpr_permohonan WHERE id_permohonan = '$kkpr->id_kkpr_permohonan' ")->row();
+$keterangan = $this->db->query("SELECT * FROM pengembalian_kkpr_permohonan WHERE id_permohonan = '$kkpr->id_kkpr_permohonan' ORDER BY id_pengembalian DESC LIMIT 1")->row();
 $pmlk_meinggal = $this->db->query("SELECT surat_kematian FROM kkpr_permohonan WHERE id_kkpr_permohonan = '$kkpr->id_kkpr_permohonan' ")->row();
-$yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE id_permohonan = '$kkpr->id_kkpr_permohonan' ")->row();
+$yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE id_permohonan = '$kkpr->id_kkpr_permohonan' ORDER BY id_action DESC LIMIT 1")->row();
 ?>
 <!--begin::details View-->
 <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
@@ -55,11 +55,11 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                             <td class="text-center pe-0">
                                 <!-- <input type="text" name="dokumen_oss" class="form-control" value="<?php if ($keterangan) echo $keterangan->dokumen_oss ?>"> -->
                                 <textarea class="form-control" name="dokumen_oss" data-kt-autosize="true" data-preview="preview" readonly><?php if ($keterangan) echo $keterangan->dokumen_oss ?></textarea>
-                                <input type="hidden" name="type" class="form-control" value="<?php if ($kkpr) echo $kkpr->type ?>">                                
+                                <input type="hidden" name="type" class="form-control" value="<?php if ($kkpr) echo $kkpr->type ?>">
                                 <input type="hidden" name="telp_pemohon" class="form-control" value="<?php if ($kkpr) echo $kkpr->telp_pemohon ?>">
                             </td>
                             <td class="text-center pe-0">
-                                <input type="file" name="file_dokumen_oss" class="form-file form-control">
+                                <input type="file" name="file_dokumen_oss" class="form-file form-control" accept=".jpg, .pdf">
                             </td>
                         </tr>
                     <?php } ?>
@@ -80,7 +80,7 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                 <textarea class="form-control" name="fotokopi_ktp" data-kt-autosize="true" data-preview="preview" readonly><?php if ($keterangan) echo $keterangan->fotokopi_ktp ?></textarea>
                             </td>
                             <td class="text-center pe-0">
-                                <input type="file" name="file_fotokopi_ktp" class="form-file form-control">
+                                <input type="file" name="file_fotokopi_ktp" class="form-file form-control" accept=".jpg, .pdf">
                             </td>
                         </tr>
                     <?php } ?>
@@ -102,7 +102,7 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                     <textarea class="form-control" name="akta_perusahaan" data-kt-autosize="true" data-preview="preview" readonly><?php if ($keterangan) echo $keterangan->akta_perusahaan ?></textarea>
                                 </td>
                                 <td class="text-center pe-0">
-                                    <input type="file" name="file_akta_perusahaan" class="form-file form-control">
+                                    <input type="file" name="file_akta_perusahaan" class="form-file form-control" accept=".jpg, .pdf">
                                 </td>
                             </tr>
                         <?php } ?>
@@ -124,7 +124,7 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                 <textarea class="form-control" name="tdp" data-kt-autosize="true" data-preview="preview" readonly><?php if ($keterangan) echo $keterangan->tdp ?></textarea>
                             </td>
                             <td class="text-center pe-0">
-                                <input type="file" name="file_tdp" class="form-file form-control">
+                                <input type="file" name="file_tdp" class="form-file form-control" accept=".jpg, .pdf">
                             </td>
                         </tr>
                     <?php } ?>
@@ -146,41 +146,93 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                     <textarea class="form-control" name="npwp" data-kt-autosize="true" data-preview="preview" readonly><?php if ($keterangan) echo $keterangan->npwp ?></textarea>
                                 </td>
                                 <td class="text-center pe-0">
-                                    <input type="file" name="file_npwp" class="form-file form-control">
+                                    <input type="file" name="file_npwp" class="form-file form-control" accept=".jpg, .pdf">
                                 </td>
                             </tr>
                         <?php } ?>
                     <?php } ?>
                     <?php
                     if ($yn->surat_tanah) {
+                        if ($kkpr->dasar_surat_tanah == 'letter' && $kkpr->status_surat_tanah == 'atas_nama_orang_lain') {
+
+                            $surat_tanah = json_decode($kkpr->surat_tanah);
+                            $keterangan_st = json_decode($keterangan->surat_tanah, true); // Ubah menjadi array PHP
+                            $yn_surat_tanah = json_decode($yn->surat_tanah, true); // Ubah menjadi array PHP
+                            $peta_bidang = json_decode($kkpr->peta_bidang_surat_tanah, true);
+                            $no = 0;
+                            foreach ($surat_tanah as $index => $st) {
+                                $surat_tanah_value = isset($keterangan_st[$index]['surat_tanah']) ? $keterangan_st[$index]['surat_tanah'] : '';
+                                $action_value = isset($yn_surat_tanah[$index]['surat_tanah']) ? $yn_surat_tanah[$index]['surat_tanah'] : '';
+                                $peta_bidang_value = isset($peta_bidang[$index]['peta_bidang']) ? $peta_bidang[$index]['peta_bidang'] : '';
+                                if ($action_value == 0) {
+                    ?>
+                                    <tr>
+                                        <td class="text-center pe-0">
+                                            <span class="fw-bold">Surat Tanah dan Peta bidang</span>
+                                        </td>
+                                        <td class="text-center pe-0">
+                                            <a href="<?php echo base_url('assets_dokumen/kkpr/') . $st->surat_tanah ?>" class="fw-bold" download>Download</a><br>
+                                            <a href="<?php echo base_url('assets_dokumen/kkpr/') . $st->surat_tanah ?>" target="_blank" class="fw-bold">Lihat</a>
+                                        </td>
+                                        <td class="text-center pe-0">
+                                            <input type="hidden" name="index[]" value="<?= $index ?>">
+                                            <textarea class="form-control" name="surat_tanah[]" data-kt-autosize="true" data-preview="preview" readonly><?php echo $surat_tanah_value ?></textarea>
+                                        </td>
+                                        <td class="text-center pe-0">
+                                            <input type="file" name="file_status_tanah[]" class="form-file form-control" accept=".jpg, .pdf">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center pe-0">
+                                            <span class="fw-bold"></span>
+                                        </td>
+                                        <td class="text-center pe-0">
+                                            <a href="<?php echo base_url('assets_dokumen/kkpr/') . $peta_bidang_value ?>" class="fw-bold" download>Download</a><br>
+                                            <a href="<?php echo base_url('assets_dokumen/kkpr/') . $peta_bidang_value ?>" target="_blank" class="fw-bold">Lihat</a>
+                                        </td>
+                                        <td class="text-center pe-0">
+                                            <input type="hidden" name="index[]" value="<?= $index ?>">
+                                            <!-- <textarea class="form-control" name="surat_tanah[]" data-kt-autosize="true" data-preview="preview" readonly><?php echo $surat_tanah_value ?></textarea> -->
+                                        </td>
+                                        <td class="text-center pe-0">
+                                            <input type="file" name="file_peta_bidang_status_tanah[]" class="form-file form-control" accept=".jpg, .pdf">
+                                        </td>
+                                    </tr>
+                                <?php
+                                }
+                            }
+                        }else {
                         $surat_tanah = json_decode($kkpr->surat_tanah);
                         $keterangan_st = json_decode($keterangan->surat_tanah, true); // Ubah menjadi array PHP
                         $yn_surat_tanah = json_decode($yn->surat_tanah, true); // Ubah menjadi array PHP
+                        $peta_bidang = json_decode($kkpr->peta_bidang_surat_tanah, true);
                         $no = 0;
                         foreach ($surat_tanah as $index => $st) {
-                            $surat_tanah_value = isset($keterangan_st[$index]['surat_tanah']) ? $keterangan_st[$index]['surat_tanah'] : '';                            
-                            $action_value = isset($yn_surat_tanah[$index]['surat_tanah']) ? $yn_surat_tanah[$index]['surat_tanah'] : '';                            
-                            if($action_value == 0){
-                    ?>
-                            <tr>
-                                <td class="text-center pe-0">
-                                    <span class="fw-bold">Fotokopi surat tanah</span>
-                                </td>
-                                <td class="text-center pe-0">
-                                    <a href="<?php echo base_url('assets_dokumen/kkpr/') . $st->surat_tanah ?>" class="fw-bold" download>Download</a><br>
-                                    <a href="<?php echo base_url('assets_dokumen/kkpr/') . $st->surat_tanah ?>" target="_blank" class="fw-bold">Lihat</a>
-                                </td>
-                                <td class="text-center pe-0">
-                                    <input type="hidden" name="index[]" value="<?= $index?>">
-                                    <textarea class="form-control" name="surat_tanah[]" data-kt-autosize="true" data-preview="preview" readonly><?php echo $surat_tanah_value ?></textarea>
-                                </td>
-                                <td class="text-center pe-0">
-                                    <input type="file" name="file_status_tanah[]" class="form-file form-control">
-                                </td>
-                            </tr>
+                            $surat_tanah_value = isset($keterangan_st[$index]['surat_tanah']) ? $keterangan_st[$index]['surat_tanah'] : '';
+                            $action_value = isset($yn_surat_tanah[$index]['surat_tanah']) ? $yn_surat_tanah[$index]['surat_tanah'] : '';
+                            $peta_bidang_value = isset($peta_bidang[$index]['peta_bidang']) ? $peta_bidang[$index]['peta_bidang'] : '';
+                            if ($action_value == 0) {
+                                ?>
+                                <tr>
+                                    <td class="text-center pe-0">
+                                        <span class="fw-bold">Surat Tanah</span>
+                                    </td>
+                                    <td class="text-center pe-0">
+                                        <a href="<?php echo base_url('assets_dokumen/kkpr/') . $st->surat_tanah ?>" class="fw-bold" download>Download</a><br>
+                                        <a href="<?php echo base_url('assets_dokumen/kkpr/') . $st->surat_tanah ?>" target="_blank" class="fw-bold">Lihat</a>
+                                    </td>
+                                    <td class="text-center pe-0">
+                                        <input type="hidden" name="index[]" value="<?= $index ?>">
+                                        <textarea class="form-control" name="surat_tanah[]" data-kt-autosize="true" data-preview="preview" readonly><?php echo $surat_tanah_value ?></textarea>
+                                    </td>
+                                    <td class="text-center pe-0">
+                                        <input type="file" name="file_status_tanah[]" class="form-file form-control" accept=".jpg, .pdf">
+                                    </td>
+                                </tr>
                     <?php
-                        }    
-                    }                
+                            }
+                        }
+                    }
                     }
                     ?>
                     <?php if ($yn->peta_bidang == '0') { ?>
@@ -200,7 +252,28 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                 <textarea class="form-control" name="peta_bidang" data-kt-autosize="true" data-preview="preview" readonly><?php if ($keterangan) echo $keterangan->peta_bidang ?></textarea>
                             </td>
                             <td class="text-center pe-0">
-                                <input type="file" name="file_peta_bidang" class="form-file form-control">
+                                <input type="file" name="file_peta_bidang" class="form-file form-control" accept=".jpg, .pdf">
+                            </td>
+                        </tr>
+                    <?php } ?>
+                    <?php if ($yn->shp == '0') { ?>
+                        <tr>
+                            <!-- <td class="text-center pe-0">
+                                <span class="fw-bold">9</span>
+                            </td> -->
+                            <td class="text-center pe-0">
+                                <span class="fw-bold">SHP</span>
+                            </td>
+                            <td class="text-center pe-0">
+                                <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->shp ?>" class="fw-bold" download>Download</a><br>
+                                <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->shp ?>" target="_blank" class="fw-bold">Lihat</a>
+                            </td>
+                            <td class="text-center pe-0">
+                                <!-- <input type="text" name="peta_bidang" class="form-control" value="<?php if ($keterangan) echo $keterangan->peta_bidang ?>"> -->
+                                <textarea class="form-control" name="shp" data-kt-autosize="true" data-preview="preview" readonly><?php if ($keterangan) echo $keterangan->shp ?></textarea>
+                            </td>
+                            <td class="text-center pe-0">
+                                <input type="file" name="file_shp" class="form-file form-control" accept=".zip">
                             </td>
                         </tr>
                     <?php } ?>
@@ -222,7 +295,7 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                     <textarea class="form-control" name="surat_kematian" data-kt-autosize="true" data-preview="preview" readonly><?php if ($keterangan) echo $keterangan->surat_kematian ?></textarea>
                                 </td>
                                 <td class="text-center pe-0">
-                                    <input type="file" name="file_surat_kematian" class="form-file form-control">
+                                    <input type="file" name="file_surat_kematian" class="form-file form-control" accept=".jpg, .pdf">
                                 </td>
                             </tr>
                         <?php } ?>
@@ -243,7 +316,7 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                     <textarea class="form-control" name="surat_kuasa_ahli_waris" data-kt-autosize="true" data-preview="preview" readonly><?php if ($keterangan) echo $keterangan->surat_kuasa_ahli_waris ?></textarea>
                                 </td>
                                 <td class="text-center pe-0">
-                                    <input type="file" name="file_surat_kuasa_ahli_waris" class="form-file form-control">
+                                    <input type="file" name="file_surat_kuasa_ahli_waris" class="form-file form-control" accept=".jpg, .pdf">
                                 </td>
                             </tr>
                         <?php } ?>
@@ -266,7 +339,7 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                     <textarea class="form-control" name="surat_dinas_komunikasi" data-kt-autosize="true" data-preview="preview" readonly><?php if ($keterangan) echo $keterangan->surat_dinas_komunikasi ?></textarea>
                                 </td>
                                 <td class="text-center pe-0">
-                                    <input type="file" name="file_surat_dinas_komunikasi" class="form-file form-control">
+                                    <input type="file" name="file_surat_dinas_komunikasi" class="form-file form-control" accept=".jpg, .pdf">
                                 </td>
                             </tr>
                         <?php } ?>
@@ -287,7 +360,7 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                     <textarea class="form-control" name="surat_rekom_tni" data-kt-autosize="true" data-preview="preview" readonly><?php if ($keterangan) echo $keterangan->surat_rekom_tni ?></textarea>
                                 </td>
                                 <td class="text-center pe-0">
-                                    <input type="file" name="file_surat_rekom_tni" class="form-file form-control">
+                                    <input type="file" name="file_surat_rekom_tni" class="form-file form-control" accept=".jpg, .pdf">
                                 </td>
                             </tr>
                         <?php } ?>
@@ -310,7 +383,7 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                     <textarea class="form-control" name="surat_dinas_perdagangan" data-kt-autosize="true" data-preview="preview" readonly><?php if ($keterangan) echo $keterangan->surat_dinas_perdagangan ?></textarea>
                                 </td>
                                 <td class="text-center pe-0">
-                                    <input type="file" name="file_surat_dinas_perdagangan" class="form-file form-control">
+                                    <input type="file" name="file_surat_dinas_perdagangan" class="form-file form-control" accept=".jpg, .pdf">
                                 </td>
                             </tr>
                         <?php } ?>
@@ -333,7 +406,7 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                     <textarea class="form-control" name="surat_dinas_peternakan" data-kt-autosize="true" data-preview="preview" readonly><?php if ($keterangan) echo $keterangan->surat_dinas_peternakan ?></textarea>
                                 </td>
                                 <td class="text-center pe-0">
-                                    <input type="file" name="surat_dinas_peternakan" class="form-file form-control">
+                                    <input type="file" name="file_surat_dinas_peternakan" class="form-file form-control" accept=".jpg, .pdf">
                                 </td>
                             </tr>
                         <?php } ?>
@@ -356,7 +429,7 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                     <textarea class="form-control" name="surat_pertamina" data-kt-autosize="true" data-preview="preview" readonly><?php if ($keterangan) echo $keterangan->surat_pertamina ?></textarea>
                                 </td>
                                 <td class="text-center pe-0">
-                                    <input type="file" name="file_surat_pertamina" class="form-file form-control">
+                                    <input type="file" name="file_surat_pertamina" class="form-file form-control" accept=".jpg, .pdf">
                                 </td>
                             </tr>
                         <?php } ?>
@@ -379,7 +452,7 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                     <textarea class="form-control" name="daftar_nama_kk" data-kt-autosize="true" data-preview="preview" readonly><?php if ($keterangan) echo $keterangan->daftar_nama_kk ?></textarea>
                                 </td>
                                 <td class="text-center pe-0">
-                                    <input type="file" name="file_daftar_nama_kk" class="form-file form-control">
+                                    <input type="file" name="file_daftar_nama_kk" class="form-file form-control" accept=".jpg, .pdf">
                                 </td>
                             </tr>
                         <?php } ?>
@@ -400,7 +473,7 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                     <textarea class="form-control" name="fkub" data-kt-autosize="true" data-preview="preview" readonly><?php if ($keterangan) echo $keterangan->fkub ?></textarea>
                                 </td>
                                 <td class="text-center pe-0">
-                                    <input type="file" name="file_fkub" class="form-file form-control">
+                                    <input type="file" name="file_fkub" class="form-file form-control" accept=".jpg, .pdf">
                                 </td>
                             </tr>
                         <?php } ?>
@@ -420,4 +493,3 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
     </div>
     <!--end::Card body-->
 </div>
-<!--end::details View-->

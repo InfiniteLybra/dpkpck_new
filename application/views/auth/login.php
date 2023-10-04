@@ -58,8 +58,8 @@
                 <!--begin::Content-->
                 <div class="d-flex flex-column flex-center pb-0 pb-lg-10 p-10 w-100">
                     <!--begin::Image-->
-                    <img class="theme-light-show mx-auto mw-100 w-200px w-lg-550px mb-10 mb-lg-20" src="<?= base_url('assets/') ?>image/logo_dpkcpk.png" alt="" />
-                    <img class="theme-dark-show mx-auto mw-100 w-200px w-lg-550px mb-10 mb-lg-20" src="<?= base_url('assets/') ?>image/logo_dpkcpk.png" alt="" />
+                    <img class="theme-light-show mx-auto mw-100 w-200px w-lg-250px mb-10 mb-lg-20" src="<?= base_url('assets/landing/') ?>logokabupaten.png" alt="" />
+                    <img class="theme-dark-show mx-auto mw-100 w-200px w-lg-250px mb-10 mb-lg-20" src="<?= base_url('assets/landing/') ?>logokabupaten.png" alt="" />
                     <!--end::Image-->
                     <!--begin::Title-->
                     <h1 class="text-gray-800 fs-2qx fw-bold text-center mb-7">Dinas Perumahan, Kawasan Permukiman dan Cipta Karya</h1>

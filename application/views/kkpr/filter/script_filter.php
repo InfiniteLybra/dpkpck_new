@@ -53,7 +53,7 @@
         });
     });
     $(document).ready(function() {
-        $("#pengajuan").on("change", function() {
+        $("#id_pengajuan").on("change", function() {
             var selectedText = $(this).find("option:selected").text();
             $("#isi_pengajuan").val(selectedText);
         });

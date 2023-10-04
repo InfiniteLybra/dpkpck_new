@@ -11,6 +11,63 @@ $keterangan = $this->db->query("SELECT * FROM pengembalian_kkpr_permohonan WHERE
 $pmlk_meinggal = $this->db->query("SELECT surat_kematian FROM kkpr_permohonan WHERE id_kkpr_permohonan = '$kkpr->id_kkpr_permohonan' ")->row();
 $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE id_permohonan = '$kkpr->id_kkpr_permohonan' ")->row();
 ?>
+<?php
+    $no = 1;
+    foreach ($revisi as $r) {
+        $ynfkp = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE id_permohonan = '$r->id_permohonan'")->row();
+        $keteranganfkp = $this->db->query("SELECT * FROM pengembalian_kkpr_permohonan WHERE id_permohonan = '$r->id_permohonan'")->row();
+        if ($revisi && $yn->fotokopi_ktp == '0') {
+?>
+<?php }
+} ?>
+
+<?php
+ // $surat_tanah = json_decode($r->surat_tanah);
+                                // $yn_surat_tanah = json_decode($ynst->surat_tanah);
+                                // $kt_surat_tanah = json_decode($keteranganst->surat_tanah);
+                                // $pb_surat_tanah = json_decode($r->peta_bidang_surat_tanah);
+
+                                // $total_surat_tanah = count($surat_tanah);
+
+                                // $total_yn_surat_tanah = count($yn_surat_tanah);
+                                // $total_kt_surat_tanah = count($kt_surat_tanah);
+                                // $total_pb_surat_tanah = count($pb_surat_tanah);
+
+                                // $total_baris = max($total_surat_tanah, $total_yn_surat_tanah, $total_kt_surat_tanah, $total_pb_surat_tanah);
+
+                                // for ($i = 0; $i < $total_baris; $i++) {
+                                    
+?>
+ <!-- <tr>
+                                        <td class="text-center pe-0">
+                                            <span class="fw-bold"><?= $nomer++; ?></span>
+                                        </td>
+                                        <td class="text-center pe-0">
+                                            <span class="fw-bold"><?= $kkpr->status_surat_tanah ?></span>
+                                        </td>
+                                        <td class="text-center pe-0">
+                                            <span class="fw-bold"><?= $kkpr->dasar_surat_tanah ?></span>
+                                        </td>
+                                        <td class="text-center pe-0">
+                                            <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $surat_tanah[$i]->surat_tanah ?>" class="fw-bold" download>Download</a><br>
+                                            <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $surat_tanah[$i]->surat_tanah ?>" target="_blank" class="fw-bold">Lihat</a>
+                                        </td>
+                                        <td class="text-center pe-0">
+                                            <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $pb_surat_tanah[$i]->surat_tanah ?>" class="fw-bold" download>Download</a><br>
+                                            <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $pb_surat_tanah[$i]->surat_tanah ?>" target="_blank" class="fw-bold">Lihat</a>
+                                        </td>
+                                        <td class="text-center pe-0">
+                                            <select name="yn_surat_tanah_revisi[]" id="" class="form-select form-control" style="width: 100px;" disabled>
+                                                <option value="1" <?php if ($yn_surat_tanah[$i]->surat_tanah  == '1') echo 'selected'; ?>>Ya</option>
+                                                <option value="0" <?php if ($yn_surat_tanah[$i]->surat_tanah  == '0') echo 'selected'; ?>>Tidak</option>
+                                            </select>
+                                        </td>
+                                        <td class="text-center pe-0">
+                                            <textarea class="form-control" name="surat_tanah_revisi[]" data-kt-autosize="true"disabled><?php if ($kt_surat_tanah[$i]) echo $kt_surat_tanah[$i]->surat_tanah ?></textarea>
+                                        </td>
+                                    </tr> -->
+
+
 <!--begin::details View-->
 <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
     <!--begin::Card header-->
@@ -59,24 +116,24 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
             <!--begin::Col-->
             <div class="col-lg-8">
                 <table align="left">
-                <tr>
+                    <tr>
                         <!-- <td class="text-center pe-0">
                             <span class="fw-bold">1</span>
-                        </td> -->                        
+                        </td> -->
                         <td class="text-center pe-0 min-w-100px" style=" width: 50pc;">
                             <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->fotokopi_ktp ?>" class="fw-bold" download>Download</a><br>
                             <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->fotokopi_ktp ?>" target="_blank" class="fw-bold">Lihat</a>
                         </td>
                         <td class="text-center pe-0 min-w-100px" style=" width: 100pc;">
-                           <?php if($yn){ ?>
-                            <select name="yn_fotokopi_ktp" id="" class="form-select form-control" style="width: 100px;">
-                                <option value="1" <?php if($yn->fotokopi_ktp == '1') echo 'selected'; ?>>Ya</option>
-                                <option value="0" <?php if($yn->fotokopi_ktp == '0') echo 'selected'; ?>>Tidak</option>
-                            </select>
-                            <?php }else{ ?>
+                            <?php if ($yn) { ?>
                                 <select name="yn_fotokopi_ktp" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" >Ya</option>
-                                    <option value="0" >Tidak</option>
+                                    <option value="1" <?php if ($yn->fotokopi_ktp == '1') echo 'selected'; ?>>Ya</option>
+                                    <option value="0" <?php if ($yn->fotokopi_ktp == '0') echo 'selected'; ?>>Tidak</option>
+                                </select>
+                            <?php } else { ?>
+                                <select name="yn_fotokopi_ktp" id="" class="form-select form-control" style="width: 100px;">
+                                    <option value="1">Ya</option>
+                                    <option value="0">Tidak</option>
                                 </select>
                             <?php } ?>
                         </td>
@@ -203,14 +260,14 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                             <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->dokumen_oss ?>" target="_blank" class="fw-bold">Lihat</a>
                         </td>
                         <td class="text-center pe-0">
-                            <?php if($yn){ ?>
+                            <?php if ($yn) { ?>
                                 <select name="yn_dokumen_oss" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" <?php if($yn->dokumen_oss == '1') echo 'selected'; ?>>Ya</option>
-                                    <option value="0"<?php if($yn->dokumen_oss == '0') echo 'selected'; ?>>Tidak</option>
+                                    <option value="1" <?php if ($yn->dokumen_oss == '1') echo 'selected'; ?>>Ya</option>
+                                    <option value="0" <?php if ($yn->dokumen_oss == '0') echo 'selected'; ?>>Tidak</option>
                                 </select>
-                            <?php }else{ ?>
+                            <?php } else { ?>
                                 <select name="yn_dokumen_oss" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" >Ya</option>
+                                    <option value="1">Ya</option>
                                     <option value="0">Tidak</option>
                                 </select>
                             <?php } ?>
@@ -235,15 +292,15 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                             <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->fotokopi_ktp ?>" target="_blank" class="fw-bold">Lihat</a>
                         </td>
                         <td class="text-center pe-0">
-                        <?php if($yn){ ?>
-                            <select name="yn_fotokopi_ktp" id="" class="form-select form-control" style="width: 100px;">
-                                <option value="1" <?php if($yn->fotokopi_ktp == '1') echo 'selected'; ?>>Ya</option>
-                                <option value="0" <?php if($yn->fotokopi_ktp == '0') echo 'selected'; ?>>Tidak</option>
-                            </select>
-                            <?php }else{ ?>
+                            <?php if ($yn) { ?>
                                 <select name="yn_fotokopi_ktp" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" >Ya</option>
-                                    <option value="0" >Tidak</option>
+                                    <option value="1" <?php if ($yn->fotokopi_ktp == '1') echo 'selected'; ?>>Ya</option>
+                                    <option value="0" <?php if ($yn->fotokopi_ktp == '0') echo 'selected'; ?>>Tidak</option>
+                                </select>
+                            <?php } else { ?>
+                                <select name="yn_fotokopi_ktp" id="" class="form-select form-control" style="width: 100px;">
+                                    <option value="1">Ya</option>
+                                    <option value="0">Tidak</option>
                                 </select>
                             <?php } ?>
                         </td>
@@ -266,17 +323,17 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                 <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->akta_perusahaan ?>" target="_blank" class="fw-bold">Lihat</a>
                             </td>
                             <td class="text-center pe-0">
-                            <?php if($yn){ ?>
-                                <select name="yn_akta_perusahaan" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" <?php if($yn->akta_perusahaan == '1') echo 'selected'; ?>>Ya</option>
-                                    <option value="0" <?php if($yn->akta_perusahaan == '0') echo 'selected'; ?>>Tidak</option>
-                                </select>
-                            <?php }else{ ?>
-                                <select name="yn_akta_perusahaan" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" >Ya</option>
-                                    <option value="0" >Tidak</option>
-                                </select>
-                            <?php } ?>
+                                <?php if ($yn) { ?>
+                                    <select name="yn_akta_perusahaan" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1" <?php if ($yn->akta_perusahaan == '1') echo 'selected'; ?>>Ya</option>
+                                        <option value="0" <?php if ($yn->akta_perusahaan == '0') echo 'selected'; ?>>Tidak</option>
+                                    </select>
+                                <?php } else { ?>
+                                    <select name="yn_akta_perusahaan" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1">Ya</option>
+                                        <option value="0">Tidak</option>
+                                    </select>
+                                <?php } ?>
                             </td>
                             <td class="text-center pe-0">
                                 <!-- <input type="text" name="akta_perusahaan" class="form-control" value="<?php if ($keterangan) echo $keterangan->akta_perusahaan ?>"> -->
@@ -297,14 +354,14 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                             <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->siup ?>" target="_blank" class="fw-bold">Lihat</a>
                         </td>
                         <td class="text-center pe-0">
-                        <?php if($yn){ ?>
-                            <select name="yn_siup" id="" class="form-select form-control" style="width: 100px;">
-                                <option value="1" <?php if($yn->siup == '1') echo 'selected'; ?>>Ya</option>
-                                <option value="0" <?php if($yn->siup == '0') echo 'selected'; ?>>Tidak</option>
-                            </select>
-                            <?php }else{ ?>
+                            <?php if ($yn) { ?>
                                 <select name="yn_siup" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" >Ya</option>
+                                    <option value="1" <?php if ($yn->siup == '1') echo 'selected'; ?>>Ya</option>
+                                    <option value="0" <?php if ($yn->siup == '0') echo 'selected'; ?>>Tidak</option>
+                                </select>
+                            <?php } else { ?>
+                                <select name="yn_siup" id="" class="form-select form-control" style="width: 100px;">
+                                    <option value="1">Ya</option>
                                     <option value="0">Tidak</option>
                                 </select>
                             <?php } ?>
@@ -327,12 +384,12 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                             <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->tdp ?>" target="_blank" class="fw-bold">Lihat</a>
                         </td>
                         <td class="text-center pe-0">
-                        <?php if($yn){ ?>
-                            <select name="yn_tdp" id="" class="form-select form-control" style="width: 100px;">
-                                <option value="1" <?php if($yn->tdp == '1') echo 'selected'; ?>>Ya</option>
-                                <option value="0" <?php if($yn->tdp == '0') echo 'selected'; ?>>Tidak</option>
-                            </select>
-                            <?php }else{ ?>
+                            <?php if ($yn) { ?>
+                                <select name="yn_tdp" id="" class="form-select form-control" style="width: 100px;">
+                                    <option value="1" <?php if ($yn->tdp == '1') echo 'selected'; ?>>Ya</option>
+                                    <option value="0" <?php if ($yn->tdp == '0') echo 'selected'; ?>>Tidak</option>
+                                </select>
+                            <?php } else { ?>
                                 <select name="yn_tdp" id="" class="form-select form-control" style="width: 100px;">
                                     <option value="1">Ya</option>
                                     <option value="0">Tidak</option>
@@ -358,17 +415,17 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                 <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->npwp ?>" target="_blank" class="fw-bold">Lihat</a>
                             </td>
                             <td class="text-center pe-0">
-                            <?php if($yn){ ?>
-                                <select name="yn_npwp" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" <?php if($yn->npwp == '1') echo 'selected'; ?>>Ya</option>
-                                    <option value="0"<?php if($yn->npwp == '0') echo 'selected'; ?>>Tidak</option>
-                                </select>
-                            <?php }else{ ?>
-                                <select name="yn_npwp" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" >Ya</option>
-                                    <option value="0">Tidak</option>
-                                </select>
-                            <?php } ?>
+                                <?php if ($yn) { ?>
+                                    <select name="yn_npwp" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1" <?php if ($yn->npwp == '1') echo 'selected'; ?>>Ya</option>
+                                        <option value="0" <?php if ($yn->npwp == '0') echo 'selected'; ?>>Tidak</option>
+                                    </select>
+                                <?php } else { ?>
+                                    <select name="yn_npwp" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1">Ya</option>
+                                        <option value="0">Tidak</option>
+                                    </select>
+                                <?php } ?>
                             </td>
                             <td class="text-center pe-0">
                                 <!-- <input type="text" name="npwp" class="form-control" value="<?php if ($keterangan) echo $keterangan->npwp ?>"> -->
@@ -390,8 +447,8 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                         </td>
                         <td class="text-center pe-0">
                             <select name="yn_surat_tanah" id="" class="form-select form-control" style="width: 100px;">
-                                <option value="1" >Ya</option>
-                                <option value="0" >Tidak</option>
+                                <option value="1">Ya</option>
+                                <option value="0">Tidak</option>
                             </select>
                         </td>
                         <td class="text-center pe-0">
@@ -412,15 +469,15 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                             <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->peta_bidang ?>" target="_blank" class="fw-bold">Lihat</a>
                         </td>
                         <td class="text-center pe-0">
-                        <?php if($yn){ ?>
-                            <select name="yn_peta_bidang" id="" class="form-select form-control" style="width: 100px;">
-                                <option value="1" <?php if($yn->peta_bidang == '1') echo 'selected'; ?>>Ya</option>
-                                <option value="0" <?php if($yn->peta_bidang == '0') echo 'selected'; ?>>Tidak</option>
-                            </select>
-                            <?php }else{ ?>
+                            <?php if ($yn) { ?>
                                 <select name="yn_peta_bidang" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" >Ya</option>
-                                    <option value="0" >Tidak</option>
+                                    <option value="1" <?php if ($yn->peta_bidang == '1') echo 'selected'; ?>>Ya</option>
+                                    <option value="0" <?php if ($yn->peta_bidang == '0') echo 'selected'; ?>>Tidak</option>
+                                </select>
+                            <?php } else { ?>
+                                <select name="yn_peta_bidang" id="" class="form-select form-control" style="width: 100px;">
+                                    <option value="1">Ya</option>
+                                    <option value="0">Tidak</option>
                                 </select>
                             <?php } ?>
                         </td>
@@ -442,14 +499,14 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                             <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->teknis_pertanahan ?>" target="_blank" class="fw-bold">Lihat</a>
                         </td>
                         <td class="text-center pe-0">
-                        <?php if($yn){ ?>
-                            <select name="yn_teknis_pertanahan" id="" class="form-select form-control" style="width: 100px;">
-                                <option value="1" <?php if($yn->teknis_pertanahan == '1') echo 'selected'; ?>>Ya</option>
-                                <option value="0" <?php if($yn->teknis_pertanahan == '0') echo 'selected'; ?>>Tidak</option>
-                            </select>
-                            <?php }else{ ?>
+                            <?php if ($yn) { ?>
                                 <select name="yn_teknis_pertanahan" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" >Ya</option>
+                                    <option value="1" <?php if ($yn->teknis_pertanahan == '1') echo 'selected'; ?>>Ya</option>
+                                    <option value="0" <?php if ($yn->teknis_pertanahan == '0') echo 'selected'; ?>>Tidak</option>
+                                </select>
+                            <?php } else { ?>
+                                <select name="yn_teknis_pertanahan" id="" class="form-select form-control" style="width: 100px;">
+                                    <option value="1">Ya</option>
                                     <option value="0">Tidak</option>
                                 </select>
                             <?php } ?>
@@ -473,17 +530,17 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                 <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->surat_kematian ?>" target="_blank" class="fw-bold">Lihat</a>
                             </td>
                             <td class="text-center pe-0">
-                            <?php if($yn){ ?>
-                                <select name="yn_surat_kematian" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" <?php if($yn->surat_kematian == '1') echo 'selected'; ?>>Ya</option>
-                                    <option value="0" <?php if($yn->surat_kematian == '0') echo 'selected'; ?>>Tidak</option>
-                                </select>
-                            <?php }else{ ?>
-                                <select name="yn_surat_kematian" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" >Ya</option>
-                                    <option value="0" >Tidak</option>
-                                </select>
-                            <?php } ?>
+                                <?php if ($yn) { ?>
+                                    <select name="yn_surat_kematian" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1" <?php if ($yn->surat_kematian == '1') echo 'selected'; ?>>Ya</option>
+                                        <option value="0" <?php if ($yn->surat_kematian == '0') echo 'selected'; ?>>Tidak</option>
+                                    </select>
+                                <?php } else { ?>
+                                    <select name="yn_surat_kematian" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1">Ya</option>
+                                        <option value="0">Tidak</option>
+                                    </select>
+                                <?php } ?>
                             </td>
                             <td class="text-center pe-0">
                                 <!-- <input type="text" name="surat_kematian" class="form-control" value="<?php if ($keterangan) echo $keterangan->surat_kematian ?>"> -->
@@ -503,17 +560,17 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                 <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->surat_kuasa_ahli_waris ?>" target="_blank" class="fw-bold">Lihat</a>
                             </td>
                             <td class="text-center pe-0">
-                            <?php if($yn){ ?>
-                                <select name="yn_surat_kuasa_ahli_waris" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" <?php if($yn->surat_kuasa_ahli_waris == '1') echo 'selected'; ?>>Ya</option>
-                                    <option value="0" <?php if($yn->surat_kuasa_ahli_waris == '0') echo 'selected'; ?>>Tidak</option>
-                                </select>
-                            <?php }else{ ?>
-                                <select name="yn_surat_kuasa_ahli_waris" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" >Ya</option>
-                                    <option value="0" >Tidak</option>
-                                </select>
-                            <?php } ?>
+                                <?php if ($yn) { ?>
+                                    <select name="yn_surat_kuasa_ahli_waris" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1" <?php if ($yn->surat_kuasa_ahli_waris == '1') echo 'selected'; ?>>Ya</option>
+                                        <option value="0" <?php if ($yn->surat_kuasa_ahli_waris == '0') echo 'selected'; ?>>Tidak</option>
+                                    </select>
+                                <?php } else { ?>
+                                    <select name="yn_surat_kuasa_ahli_waris" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1">Ya</option>
+                                        <option value="0">Tidak</option>
+                                    </select>
+                                <?php } ?>
                             </td>
                             <td class="text-center pe-0">
                                 <!-- <input type="text" name="surat_kuasa_ahli_waris" class="form-control" value="<?php if ($keterangan) echo $keterangan->surat_kuasa_ahli_waris ?>"> -->
@@ -535,17 +592,17 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                 <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->surat_dinas_komunikasi ?>" target="_blank" class="fw-bold">Lihat</a>
                             </td>
                             <td class="text-center pe-0">
-                            <?php if($yn){ ?>
-                                <select name="yn_surat_dinas_komunikasi" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" <?php if($yn->surat_dinas_komunikasi == '1') echo 'selected'; ?>>Ya</option>
-                                    <option value="0" <?php if($yn->surat_dinas_komunikasi == '0') echo 'selected'; ?>>Tidak</option>
-                                </select>
-                            <?php }else{ ?>
-                                <select name="yn_surat_dinas_komunikasi" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" >Ya</option>
-                                    <option value="0" >Tidak</option>
-                                </select>
-                            <?php } ?>
+                                <?php if ($yn) { ?>
+                                    <select name="yn_surat_dinas_komunikasi" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1" <?php if ($yn->surat_dinas_komunikasi == '1') echo 'selected'; ?>>Ya</option>
+                                        <option value="0" <?php if ($yn->surat_dinas_komunikasi == '0') echo 'selected'; ?>>Tidak</option>
+                                    </select>
+                                <?php } else { ?>
+                                    <select name="yn_surat_dinas_komunikasi" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1">Ya</option>
+                                        <option value="0">Tidak</option>
+                                    </select>
+                                <?php } ?>
                             </td>
                             <td class="text-center pe-0">
                                 <!-- <input type="text" name="surat_dinas_komunikasi" class="form-control" value="<?php if ($keterangan) echo $keterangan->surat_dinas_komunikasi ?>"> -->
@@ -565,17 +622,17 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                 <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->surat_rekom_tni ?>" target="_blank" class="fw-bold">Lihat</a>
                             </td>
                             <td class="text-center pe-0">
-                            <?php if($yn){ ?>
-                                <select name="yn_surat_rekom_tni" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" <?php if($yn->surat_rekom_tni == '1') echo 'selected'; ?>>Ya</option>
-                                    <option value="0" <?php if($yn->surat_rekom_tni == '0') echo 'selected'; ?>>Tidak</option>
-                                </select>
-                            <?php }else{ ?>
-                                <select name="yn_surat_rekom_tni" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" >Ya</option>
-                                    <option value="0" >Tidak</option>
-                                </select>
-                            <?php } ?>
+                                <?php if ($yn) { ?>
+                                    <select name="yn_surat_rekom_tni" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1" <?php if ($yn->surat_rekom_tni == '1') echo 'selected'; ?>>Ya</option>
+                                        <option value="0" <?php if ($yn->surat_rekom_tni == '0') echo 'selected'; ?>>Tidak</option>
+                                    </select>
+                                <?php } else { ?>
+                                    <select name="yn_surat_rekom_tni" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1">Ya</option>
+                                        <option value="0">Tidak</option>
+                                    </select>
+                                <?php } ?>
                             </td>
                             <td class="text-center pe-0">
                                 <!-- <input type="text" name="surat_rekom_tni" class="form-control" value="<?php if ($keterangan) echo $keterangan->surat_rekom_tni ?>"> -->
@@ -597,17 +654,17 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                 <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->surat_dinas_perdagangan ?>" target="_blank" class="fw-bold">Lihat</a>
                             </td>
                             <td class="text-center pe-0">
-                            <?php if($yn){ ?>
-                                <select name="yn_surat_dinas_perdagagan" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" <?php if($yn->surat_dinas_perdagangan == '1') echo 'selected'; ?>>Ya</option>
-                                    <option value="0" <?php if($yn->surat_dinas_perdagangan == '0') echo 'selected'; ?>>Tidak</option>
-                                </select>
-                            <?php }else{ ?>
-                                <select name="yn_surat_dinas_perdagagan" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" >Ya</option>
-                                    <option value="0" >Tidak</option>
-                                </select>
-                            <?php } ?>
+                                <?php if ($yn) { ?>
+                                    <select name="yn_surat_dinas_perdagagan" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1" <?php if ($yn->surat_dinas_perdagangan == '1') echo 'selected'; ?>>Ya</option>
+                                        <option value="0" <?php if ($yn->surat_dinas_perdagangan == '0') echo 'selected'; ?>>Tidak</option>
+                                    </select>
+                                <?php } else { ?>
+                                    <select name="yn_surat_dinas_perdagagan" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1">Ya</option>
+                                        <option value="0">Tidak</option>
+                                    </select>
+                                <?php } ?>
                             </td>
                             <td class="text-center pe-0">
                                 <!-- <input type="text" name="surat_dinas_perdagangan" class="form-control" value="<?php if ($keterangan) echo $keterangan->surat_dinas_perdagangan ?>"> -->
@@ -629,17 +686,17 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                 <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->surat_dinas_peternakan ?>" target="_blank" class="fw-bold">Lihat</a>
                             </td>
                             <td class="text-center pe-0">
-                            <?php if($yn){ ?>
-                                <select name="yn_surat_dinas_peternakan" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" <?php if($yn->surat_dinas_peternakan == '1') echo 'selected'; ?>>Ya</option>
-                                    <option value="0" <?php if($yn->surat_dinas_peternakan == '0') echo 'selected'; ?>>Tidak</option>
-                                </select>
-                            <?php }else{ ?>
-                                <select name="yn_surat_dinas_peternakan" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" >Ya</option>
-                                    <option value="0" >Tidak</option>
-                                </select>
-                            <?php } ?>
+                                <?php if ($yn) { ?>
+                                    <select name="yn_surat_dinas_peternakan" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1" <?php if ($yn->surat_dinas_peternakan == '1') echo 'selected'; ?>>Ya</option>
+                                        <option value="0" <?php if ($yn->surat_dinas_peternakan == '0') echo 'selected'; ?>>Tidak</option>
+                                    </select>
+                                <?php } else { ?>
+                                    <select name="yn_surat_dinas_peternakan" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1">Ya</option>
+                                        <option value="0">Tidak</option>
+                                    </select>
+                                <?php } ?>
                             </td>
                             <td class="text-center pe-0">
                                 <!-- <input type="text" name="surat_dinas_peternakan" class="form-control" value="<?php if ($keterangan) echo $keterangan->surat_dinas_peternakan ?>"> -->
@@ -661,17 +718,17 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                 <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->surat_pertamina ?>" target="_blank" class="fw-bold">Lihat</a>
                             </td>
                             <td class="text-center pe-0">
-                            <?php if($yn){ ?>
-                                <select name="yn_surat_pertamina" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" <?php if($yn->surat_pertamina == '1') echo 'selected'; ?>>Ya</option>
-                                    <option value="0" <?php if($yn->surat_pertamina == '0') echo 'selected'; ?>>Tidak</option>
-                                </select>
-                            <?php }else{ ?>
-                                <select name="yn_surat_pertamina" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" >Ya</option>
-                                    <option value="0" >Tidak</option>
-                                </select>
-                            <?php } ?>
+                                <?php if ($yn) { ?>
+                                    <select name="yn_surat_pertamina" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1" <?php if ($yn->surat_pertamina == '1') echo 'selected'; ?>>Ya</option>
+                                        <option value="0" <?php if ($yn->surat_pertamina == '0') echo 'selected'; ?>>Tidak</option>
+                                    </select>
+                                <?php } else { ?>
+                                    <select name="yn_surat_pertamina" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1">Ya</option>
+                                        <option value="0">Tidak</option>
+                                    </select>
+                                <?php } ?>
                             </td>
                             <td class="text-center pe-0">
                                 <!-- <input type="text" name="surat_pertamina" class="form-control" value="<?php if ($keterangan) echo $keterangan->surat_pertamina ?>"> -->
@@ -693,17 +750,17 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                 <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->daftar_nama_kk ?>" target="_blank" class="fw-bold">Lihat</a>
                             </td>
                             <td class="text-center pe-0">
-                            <?php if($yn){ ?>
-                                <select name="yn_daftar_nama_kk" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" <?php if($yn->daftar_nama_kk == '1') echo 'selected'; ?>>Ya</option>
-                                    <option value="0" <?php if($yn->daftar_nama_kk == '0') echo 'selected'; ?>>Tidak</option>
-                                </select>
-                            <?php }else{ ?>
-                                <select name="yn_daftar_nama_kk" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" >Ya</option>
-                                    <option value="0" >Tidak</option>
-                                </select>
-                            <?php } ?>
+                                <?php if ($yn) { ?>
+                                    <select name="yn_daftar_nama_kk" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1" <?php if ($yn->daftar_nama_kk == '1') echo 'selected'; ?>>Ya</option>
+                                        <option value="0" <?php if ($yn->daftar_nama_kk == '0') echo 'selected'; ?>>Tidak</option>
+                                    </select>
+                                <?php } else { ?>
+                                    <select name="yn_daftar_nama_kk" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1">Ya</option>
+                                        <option value="0">Tidak</option>
+                                    </select>
+                                <?php } ?>
                             </td>
                             <td class="text-center pe-0">
                                 <!-- <input type="text" name="daftar_nama_kk" class="form-control" value="<?php if ($keterangan) echo $keterangan->daftar_nama_kk ?>"> -->
@@ -723,17 +780,17 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                 <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->surat_fkub ?>" target="_blank" class="fw-bold">Lihat</a>
                             </td>
                             <td class="text-center pe-0">
-                            <?php if($yn){ ?>
-                                <select name="yn_surat_fkub" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" <?php if($yn->surat_fkub == '1') echo 'selected'; ?>>Ya</option>
-                                    <option value="0" <?php if($yn->surat_fkub == '0') echo 'selected'; ?>>Tidak</option>
-                                </select>
-                            <?php }else{ ?>
-                                <select name="yn_surat_fkub" id="" class="form-select form-control" style="width: 100px;">
-                                    <option value="1" >Ya</option>
-                                    <option value="0" >Tidak</option>
-                                </select>
-                            <?php } ?>
+                                <?php if ($yn) { ?>
+                                    <select name="yn_surat_fkub" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1" <?php if ($yn->surat_fkub == '1') echo 'selected'; ?>>Ya</option>
+                                        <option value="0" <?php if ($yn->surat_fkub == '0') echo 'selected'; ?>>Tidak</option>
+                                    </select>
+                                <?php } else { ?>
+                                    <select name="yn_surat_fkub" id="" class="form-select form-control" style="width: 100px;">
+                                        <option value="1">Ya</option>
+                                        <option value="0">Tidak</option>
+                                    </select>
+                                <?php } ?>
                             </td>
                             <td class="text-center pe-0">
                                 <!-- <input type="text" name="surat_fkub" class="form-control" value="<?php if ($keterangan) echo $keterangan->surat_fkub ?>"> -->
@@ -750,7 +807,7 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                         <td class="text-center pe-0">
                             <a href="<?php echo base_url('kkpr/admin_kkpr'); ?>" class="btn btn-light">Kembali</a>
                             <button class="btn btn-danger" type="submit">Tolak</button>
-                            <a href="<?php echo base_url('Kkpr/proses_terima/');?><?= $kkpr->id_kkpr_permohonan?>" class="btn btn-success" >Terima</a>
+                            <a href="<?php echo base_url('Kkpr/proses_terima/'); ?><?= $kkpr->id_kkpr_permohonan ?>" class="btn btn-success">Terima</a>
                         </td>
                     </tr>
                 </tbody>

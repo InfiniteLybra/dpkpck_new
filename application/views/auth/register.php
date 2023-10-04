@@ -69,8 +69,8 @@
                 <!--begin::Content-->
                 <div class="d-flex flex-column flex-center pb-0 pb-lg-10 p-10 w-100">
                     <!--begin::Image-->
-                    <img class="theme-light-show mx-auto mw-100 w-200px w-lg-550px mb-10 mb-lg-20" src="<?= base_url('assets/') ?>image/logo_dpkcpk.png" alt="" />
-                    <img class="theme-dark-show mx-auto mw-100 w-200px w-lg-550px mb-10 mb-lg-20" src="<?= base_url('assets/') ?>image/logo_dpkcpk.png" alt="" />
+                    <img class="theme-light-show mx-auto mw-100 w-200px w-lg-250px mb-10 mb-lg-20" src="<?= base_url('assets/landing/') ?>logokabupaten.png" alt="" />
+                    <img class="theme-dark-show mx-auto mw-100 w-200px w-lg-250px mb-10 mb-lg-20" src="<?= base_url('assets/landing/') ?>logokabupaten.png" alt="" />
                     <!--end::Image-->
                     <!--begin::Title-->
                     <h1 class="text-gray-800 fs-2qx fw-bold text-center mb-7">Dinas Perumahan, Kawasan Permukiman dan Cipta Karya</h1>
@@ -124,6 +124,12 @@
                                     <input type="text" id="username" placeholder="masukkan username minimal 8 karakter" name="username" autocomplete class="form-control bg-transparent" required />
                                     <!--end::Email-->
                                 </div>
+                                <div class="fv-row mb-8">
+                                    <!--begin::Email-->
+                                    <div class="text-gray">Nomor Hp</div>
+                                    <input type="text" id="nomor" placeholder="masukkan nomor hp" name="nomor" autocomplete class="form-control bg-transparent" required />
+                                    <!--end::Email-->
+                                </div>
                                 <!--begin::Input group-->
                                 <div class="fv-row mb-8">
                                     <!--begin::Wrapper-->
@@ -157,7 +163,7 @@
                                         }
                                         ?>
                                     </div>
-                                    <button type="submit" id="submitButton" class="btn btn-primary" disabled>
+                                    <button type="submit" id="submitButton" name="submitButton" class="btn btn-primary" disabled>
                                         <!--begin::Indicator label-->
                                         <span class="indicator-label">Sign up</span>
                                         <!--end::Indicator label-->
@@ -166,7 +172,7 @@
                                 <!--end::Submit button-->
                                 <!--begin::Sign up-->
                                 <div class="text-gray-500 text-center fw-semibold fs-6">Sudah punya akun?
-                                    <a href="<?php echo base_url('Auth');?>" class="link-primary fw-semibold">Sign in</a>
+                                    <a href="<?php echo base_url('Auth'); ?>" class="link-primary fw-semibold">Sign in</a>
                                 </div>
                                 <!--end::Sign up-->
                             </form>
@@ -189,17 +195,19 @@
         const passwordInput = document.getElementById('password');
         const confirmPasswordInput = document.getElementById('confirmPassword');
         const submitButton = document.getElementById('submitButton');
+        const nomorInput = document.getElementById('nomor');
 
         const statusView = document.getElementById('status');
 
         function validatePassword() {
             const nama_lengkap = nama_lengkapInput.value;
             const username = usernameInput.value;
+            const nomor = nomorInput.value;
             const password = passwordInput.value;
             const confirmPassword = confirmPasswordInput.value;
 
 
-            if (password === confirmPassword && password.length > 7 && username.length > 7 && nama_lengkap.length > 7) {
+            if (password === confirmPassword && password.length > 7 && username.length > 7 && nomor.length > 7 && nama_lengkap.length > 7) {
                 submitButton.disabled = false;
 
 
@@ -215,6 +223,7 @@
         usernameInput.addEventListener('input', validatePassword);
         passwordInput.addEventListener('input', validatePassword);
         confirmPasswordInput.addEventListener('input', validatePassword);
+        nomorInput.addEventListener('input', validatePassword);
     </script>
     <script src=" <?= base_url('assets/') ?>assets/plugins/global/plugins.bundle.js "></script>
     <script src=" <?= base_url('assets/') ?>assets/js/scripts.bundle.js "></script>

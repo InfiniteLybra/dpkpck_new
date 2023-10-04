@@ -47,7 +47,7 @@
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="text" id="nama_pemohon" class="form-control mb-2 " name="nama_pemohon" placeholder="Ex. Dr. Sarah Wijayanto, Esq." required="required" />
+                                <input type="text" id="nama_pemohon" value="<?php if($kkpr){echo $kkpr->nama_pemohon;}else{echo isset($draft_data['nama_pemohon']) ? $draft_data['nama_pemohon'] : '';} ?>" class="form-control mb-2 " name="nama_pemohon" placeholder="Ex. Dr. Sarah Wijayanto, Esq." required="required" />
                                 <input type="hidden" class="form-control mb-2 " name="type_pengurusan" value="<?= $pengurusan ?>" required="required" />
                                 <input type="hidden" class="form-control mb-2 " name="type_isi_kategori" value="<?= $isi_pengajuan ?>" required="required" />
                                 <input type="hidden" class="form-control mb-2 " name="type_kategori" value="<?= $pengajuan ?>" required="required" />
@@ -69,19 +69,19 @@
                                 <br><small>Sesuai KTP</small> <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="text" id="alamat_pemohon" name="alamat_pemohon" required="required" class="form-control mb-2 " placeholder="Ex. Jl.Kebon Raya blok 3A No.01">
+                                <input type="text" id="alamat_pemohon" value="<?php if($kkpr){echo $kkpr->alamat_pemohon;}else{echo  isset($draft_data['alamat_pemohon']) ? $draft_data['alamat_pemohon'] : '';} ?>" name="alamat_pemohon" required="required" class="form-control mb-2 " placeholder="Ex. Jl.Kebon Raya blok 3A No.01">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">RT<span class="required"></span></label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input id="middle-name" class="form-control mb-2 col" type="number" placeholder="Ex. 001" min="1" max="20" name="rt_pemohon" required>
+                                <input id="rt_pemohon" value="<?php if($kkpr){echo $kkpr->rt_pemohon;}else{echo  isset($draft_data['rt_pemohon']) ? $draft_data['rt_pemohon'] : '';} ?>" class="form-control mb-2 col" type="number" placeholder="Ex. 001" min="1" max="20" name="rt_pemohon" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">RW<span class="required"></span></label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input id="middle-name" class="form-control mb-2 col" type="number" placeholder="Ex. 001" min="1" max="20" name="rw_pemohon" required>
+                                <input id="rw_pemohon" value="<?php if($kkpr){echo $kkpr->rw_pemohon;}else{echo  isset($draft_data['rw_pemohon']) ? $draft_data['rw_pemohon'] : '';} ?>" class="form-control mb-2 col" type="number" placeholder="Ex. 001" min="1" max="20" name="rw_pemohon" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -141,7 +141,7 @@
                                 </span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input id="birthday" class="date-picker form-control mb-2" type="text" name="telp_pemohon" placeholder="Ex. 08998989809">
+                                <input id="telp_pemohon" value="<?php if($kkpr){echo $kkpr->telp_pemohon;}else{echo  isset($draft_data['telp_pemohon']) ? $draft_data['telp_pemohon'] : '';} ?>" class="date-picker form-control mb-2" type="text" name="telp_pemohon" placeholder="Ex. 08998989809">
                                 <small>(Cantumkan No Telp. / HP / WA Pemohon <b>Bukan</b> Kuasa
                                     pengurusan)</small>
                             </div>
@@ -168,7 +168,7 @@
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="text" id="" class="form-control " required="required" data-validate-length-range="6" name="nib">
+                                <input type="text" id="nib" value="<?php if($kkpr){echo $kkpr->nib;}else{echo  isset($draft_data['nib']) ? $draft_data['nib'] : '';} ?>" class="form-control " required="required" data-validate-length-range="6" name="nib">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -286,7 +286,7 @@
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input id="birthday" class="date-picker form-control" required="required" type="text" name="peruntukan_tanah" placeholder="Ex. Gudang Kosmetik">
+                                <input id="peruntukan_tanah" value="<?php if($kkpr){echo $kkpr->peruntukan_tanah;}else{echo  isset($draft_data['peruntukan_tanah']) ? $draft_data['peruntukan_tanah'] : '';} ?>" class="date-picker form-control" required="required" type="text" name="peruntukan_tanah" placeholder="Ex. Gudang Kosmetik">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -301,7 +301,7 @@
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input id="birthday" class="date-picker form-control" required="required" type="number" name="luas_tanah" placeholder="Ex. 500">
+                                <input id="luas_tanah" value="<?php if($kkpr){echo $kkpr->luas_tanah;}else{echo  isset($draft_data['luas_tanah']) ? $draft_data['luas_tanah'] : '';} ?>" class="date-picker form-control" required="required" type="number" name="luas_tanah" placeholder="Ex. 500">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -1146,19 +1146,19 @@
 
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="text" id="alamat-pemohon" name="lokasi_tanah" required="required" class="form-control ">
+                                <input type="text" id="lokasi_tanah" value="<?php if($kkpr){echo $kkpr->lokasi_tanah;}else{echo  isset($draft_data['lokasi_tanah']) ? $draft_data['lokasi_tanah'] : '';} ?>" name="lokasi_tanah" required="required" class="form-control ">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">RT</label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input id="middle-name" class="form-control col" type="number" placeholder="Ex. 001" min="1" max="20" name="rt_tanah" required>
+                                <input id="rt_tanah" value="<?php if($kkpr){echo $kkpr->rt_pemohon;}else{echo  isset($draft_data['rt_tanah']) ? $draft_data['rt_tanah'] : '';} ?>" class="form-control col" type="number" placeholder="Ex. 001" min="1" max="20" name="rt_tanah" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">RW</label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input id="middle-name" class="form-control col" type="number" placeholder="Ex. 001" min="1" max="20" name="rw_tanah" required>
+                                <input id="rw_tanah" value="<?php if($kkpr){echo $kkpr->rw_pemohon;}else{echo  isset($draft_data['rw_tanah']) ? $draft_data['rw_tanah'] : '';} ?>" class="form-control col" type="number" placeholder="Ex. 001" min="1" max="20" name="rw_tanah" required>
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -1263,7 +1263,8 @@
                                     </i>
                                 </span>
                                 <br>
-                                <small><a href="<?php echo base_url('Map/polygon'); ?>" target="_blank">Polygon Map</a></small>
+                                <small><a href="<?php echo base_url('polygon/create_new.html'); ?>" target="_blank">Polygon Map</a></small>
+                                <!-- <small><a href="<?php echo base_url('Map/polygon'); ?>" target="_blank">Polygon Map</a></small> -->
                                 <!-- <span class="required"></span> -->
                             </label>
                             <div class="col-md-9 col-sm-9 ">

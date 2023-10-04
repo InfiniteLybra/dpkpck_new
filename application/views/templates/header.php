@@ -83,7 +83,7 @@
                     <!--begin::Mobile logo-->
                     <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
                         <a href="../../demo1/dist/index.html" class="d-lg-none">
-                            <img alt="Logo" src="<?= base_url('assets/') ?>assets/media/logos/default-small.svg" class="h-30px" />
+                            <img alt="Logo" src="<?= base_url('assets/landing/') ?>logokabupaten.png" class="h-30px" />
                         </a>
                     </div>
                     <!--end::Mobile logo-->
@@ -403,8 +403,8 @@
                     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
                         <!--begin::Logo image-->
                         <a href="../../demo1/dist/index.html">
-                            <img alt="Logo" src="<?= base_url('assets/') ?>assets/media/logos/default-dark.svg" class="h-25px app-sidebar-logo-default" />
-                            <img alt="Logo" src="<?= base_url('assets/') ?>assets/media/logos/default-small.svg" class="h-20px app-sidebar-logo-minimize" />
+                            <img alt="Logo" src="<?= base_url('assets/landing/') ?>logo-text-dpk.png" class="h-75px app-sidebar-logo-default" />
+                            <img alt="Logo" src="<?= base_url('assets/landing/') ?>logokabupaten.png" class="h-55px app-sidebar-logo-minimize" />
                         </a>
                         <!--end::Logo image-->
                         <!--begin::Sidebar toggle-->
@@ -647,6 +647,16 @@
                                         </a>
                                         <!--end:Menu link-->
                                     </div>
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('polygon/create_new.html') ?>">
+                                            <span class="menu-icon">
+                                                <i class="fa-solid fa-map-location-dot fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Polygon Map New</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
                                     <div class="menu-item pt-5">
                                         <!--begin:Menu content-->
                                         <div class="menu-content">
@@ -734,6 +744,62 @@
                                             <div class="menu-sub menu-sub-accordion">
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/monitoring_berkas') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Monitoring Berkas</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/rekap') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Monitoring Berkas</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/daftar_pengembalian') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Daftar Pemohon diTolak</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/getAllKkpr') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Laporan Tahunan</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
                                                     <a class="menu-link" href="<?= base_url('Kkpr/admin_kkpr_kuasa') ?>">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
@@ -746,6 +812,17 @@
                                             <!--end:Menu sub-->
                                         </div>
                                     </div>
+                                    <!--begin:Menu item-->
+                                    <div class="menu-item">
+                                            <!--begin:Menu link-->
+                                            <a class="menu-link" href="<?= base_url('Log') ?>">
+                                                <span class="menu-icon">
+                                                    <i class="fa-solid fa-file fa-2xl"></i>
+                                                </span>
+                                                <span class="menu-title">Log</span>
+                                            </a>
+                                            <!--end:Menu link-->
+                                        </div>
                                     <div class="menu-item pt-5">
                                         <!--begin:Menu content-->
                                         <div class="menu-content">
@@ -834,6 +911,16 @@
                                         </a>
                                         <!--end:Menu link-->
                                     </div>
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('polygon/create_new.html') ?>">
+                                            <span class="menu-icon">
+                                                <i class="fa-solid fa-map-location-dot fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Polygon Map New</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
                                     <div class="menu-item pt-5">
                                         <!--begin:Menu content-->
                                         <div class="menu-content">
@@ -903,7 +990,73 @@
                                                 </div>
                                             </div>
                                             <!--end:Menu sub-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/monitoring_berkas') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Monitoring Berkas</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/rekap') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Rekap Berkas</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/daftar_pengembalian') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Daftar Pemohon diTolak</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->
+                                             <!--begin:Menu sub-->
+                                             <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/getAllKkpr') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Laporan Tahunan</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->
                                         </div>
+                                        <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('Log') ?>">
+                                            <span class="menu-icon">
+                                                <i class="fa-solid fa-map-location-dot fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Log</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
                                     </div>
                                 </div>
 
@@ -975,6 +1128,16 @@
                                         </a>
                                         <!--end:Menu link-->
                                     </div>
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('polygon/create_new.html') ?>">
+                                            <span class="menu-icon">
+                                                <i class="fa-solid fa-map-location-dot fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Polygon Map New</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
                                     <div class="menu-item pt-5">
                                         <!--begin:Menu content-->
                                         <div class="menu-content">
@@ -1058,7 +1221,71 @@
                                                 </div>
                                             </div>
                                             <!--end:Menu sub-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/monitoring_berkas') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Monitoring Berkas</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/rekap') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Rekap Berkas</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/daftar_pengembalian') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Daftar Pemohon diTolak</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/getAllKkpr') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Laporan Tahunan</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->
                                         </div>
+                                          <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('Log') ?>">
+                                            <span class="menu-icon">
+                                                <i class="fa-solid fa-map-location-dot fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Log</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
                                     </div>
                                 </div>
 
@@ -1130,6 +1357,16 @@
                                         </a>
                                         <!--end:Menu link-->
                                     </div>
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('polygon/create_new.html') ?>">
+                                            <span class="menu-icon">
+                                                <i class="fa-solid fa-map-location-dot fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Polygon Map New</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
                                     <div class="menu-item pt-5">
                                         <!--begin:Menu content-->
                                         <div class="menu-content">
@@ -1213,6 +1450,60 @@
                                                 </div>
                                             </div>
                                             <!--end:Menu sub-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/monitoring_berkas') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Monitoring Berkas</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/rekap') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Rekap Berkas</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/daftar_pengembalian') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Daftar Pemohon diTolak</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/getAllKkpr') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Laporan Tahunan</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1285,6 +1576,16 @@
                                         </a>
                                         <!--end:Menu link-->
                                     </div>
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('polygon/create_new.html') ?>">
+                                            <span class="menu-icon">
+                                                <i class="fa-solid fa-map-location-dot fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Polygon Map New</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
                                     <div class="menu-item pt-5">
                                         <!--begin:Menu content-->
                                         <div class="menu-content">
@@ -1340,6 +1641,60 @@
                                                 </div>
                                             </div>
                                             <!--end:Menu sub-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/monitoring_berkas') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Monitoring Berkas</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/rekap') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Rekap Berkas</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/daftar_pengembalian') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Daftar Pemohon diTolak</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <!--end:Menu sub-->
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/getAllKkpr') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Laporan Tahunan</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

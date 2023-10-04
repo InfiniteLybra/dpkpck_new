@@ -16,11 +16,17 @@ class Auth_model extends CI_Model
         $this->db->where('password',  $password);
         return $this->db->get()->row();
     }
-    public function register($username, $nama_lengkap, $password)
+    public function register($username, $nama_lengkap, $password, $nomor, $otp, $waktu)
     {
         $this->db->from($this->table_user);
         $this->db->where('username',  $username);
-        $jml_user = count($this->db->get()->result());
+        $jml_user = $this->db->get()->num_rows();
+        // $jml_user = $this->db->get()->result();
+
+
+        // var_dump($username);
+        // var_dump($jml_user);
+        // die;
 
         if ($jml_user == 0) {
 
@@ -28,6 +34,9 @@ class Auth_model extends CI_Model
                 "username" => $username,
                 "nama_lengkap" => $nama_lengkap,
                 "password" => $password,
+                "nomor" => $nomor,
+                "otp" => $otp,
+                "waktu" => $waktu,
                 "level" => '1'
             );
 

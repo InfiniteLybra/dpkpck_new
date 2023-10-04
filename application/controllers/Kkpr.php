@@ -49,6 +49,7 @@ class Kkpr extends CI_Controller
             $data['badan_hukum'] = $badan_hukum_itr;
             $data['provinsi'] = $this->db->query("SELECT * FROM indo_provinsi")->result();
             $data['kecamatan'] = $this->db->query("SELECT * FROM kecamatan")->result();
+            $data['draft_data'] = $this->session->userdata('draft_data');
 
             if($pengurusan_itr == 'perusahaan')
             {
@@ -74,6 +75,7 @@ class Kkpr extends CI_Controller
             $pengajuan = $this->input->post('pengajuan');
             $isi_pengajuan = $this->input->post('isi_pengajuan');
             $lainya = $this->input->post('lainya');
+            $id_user = $this->session->userdata('id_user');
             $data['pengurusan'] = $pengurusan;
             $data['badan_hukum'] = $badan_hukum;
             $data['pemilik_lahan_meninggal'] = $pemilik_lahan_meninggal;
@@ -83,6 +85,8 @@ class Kkpr extends CI_Controller
             $data['lainya'] = $lainya;
             $data['provinsi'] = $this->db->query("SELECT * FROM indo_provinsi")->result();
             $data['kecamatan'] = $this->db->query("SELECT * FROM kecamatan")->result();
+            $data['draft_data'] = $this->session->userdata('draft_data');
+            $data['kkpr'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_user = '$id_user' AND status_berkas = '99' ORDER BY id_kkpr_permohonan ASC")->row();
 
             if($pengurusan == 'perusahaan' AND $kuasa == '0')
             {
@@ -553,14 +557,14 @@ class Kkpr extends CI_Controller
     function proses_keterangan()
     {
         $query = $this->Kkpr_Model->tambah_keterangan();
-        // if ($query == true) {
-        //     $this->session->set_flashdata('success', 'Data berhasil disimpan');
-        //     $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');
-        // } else {
-        //     $this->session->set_flashdata('error', 'Data gagal disimpan');
-        //     $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
-        // }
-        // redirect('Kkpr/admin_kkpr');
+        if ($query == true) {
+            $this->session->set_flashdata('success', 'Data berhasil disimpan');
+            $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');
+        } else {
+            $this->session->set_flashdata('error', 'Data gagal disimpan');
+            $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
+        }
+        redirect('Kkpr/admin_kkpr');
     }
     public function admin_kkpr_kuasa()
     {
@@ -580,6 +584,29 @@ class Kkpr extends CI_Controller
         $this->load->view('templates/footScript');
         $this->load->view('admin/kkpr/kuasa/script_admin_kkpr_kuasa');
     }
+    public function daftar_pengembalian()
+    {       
+        $data['kkpr'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE status_berkas = '1' OR status_berkas = '98' ")->result();
+        $this->load->view('templates/header');
+        $this->load->view('admin/kkpr/daftar_pengembalian_formulir/index',$data);
+        $this->load->view('templates/footer');
+        $this->load->view('templates/footScript');
+        $this->load->view('admin/kkpr/daftar_pengembalian_formulir/script');
+    }
+    public function proses_tolak_notif($id,$notif)
+    {
+        $query = $this->Kkpr_Model->tolak_dan_kirim_notif($id,$notif);
+        if ($query == true) {
+            $this->session->set_flashdata('success', 'Data berhasil disimpan');
+            $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');
+        } else {
+            $this->session->set_flashdata('error', 'Data gagal disimpan');
+            $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
+        }
+        redirect('Kkpr/daftar_pengembalian');
+    }
+
+
     public function get_kota()
     {
         $id_provinsi = $this->input->post('id',TRUE);
@@ -663,6 +690,64 @@ class Kkpr extends CI_Controller
     {
         $this->load->view('templates/terimakasih/terimakasih_config');
     }
+
+    public function draft()
+    {
+        $data['draft_data'] = $this->session->userdata('draft_data');
+        $this->load->view('templates/header');
+        $this->load->view('kkpr/draft/draft',$data);
+        $this->load->view('templates/footer');
+        $this->load->view('templates/footScript');
+        $this->load->view('kkpr/draft/script');
+    }
+    public function save_draft()
+    {
+        // Simpan data draft ke session
+        $draft_data = $this->input->post(); // Ambil data dari formulir
+        $this->session->set_userdata('draft_data', $draft_data);
+
+        // Redirect kembali ke halaman formulir
+        redirect('Kkpr/draft');
+    }
+    public function export_laporan_berkas()
+    {
+        $tahun = $this->input->get('tahun');
+        // var_dump($tahun);die;
+        $data['kkpr'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE YEAR(tgl_survei) = $tahun ")->result();
+        $this->load->view('admin/kkpr/laporan/export_laporan_excel',$data);        
+    }
+    public function export_laporan_berkas_all()
+    {
+        $data['kkpr'] = $this->db->query("SELECT * FROM kkpr_permohonan ")->result();
+        $this->load->view('admin/kkpr/laporan/export_laporan_excel',$data);        
+    }
+
+    public function getAllKkpr()
+    {
+        $data['kkpr'] = $this->db->query("SELECT * FROM kkpr_permohonan ")->result();
+        $this->load->view('templates/header');
+        $this->load->view('admin/kkpr/laporan/index', $data);
+        $this->load->view('templates/footer');
+        $this->load->view('templates/footScript');
+        $this->load->view('admin/kkpr/laporan/script');
+    }
+
+    public function filterDataByYear() {
+        // Tangkap tahun dari URL
+        $tahun = $this->input->get('tahun');
+
+        // Panggil model untuk mengambil data berdasarkan tahun
+        $data['KKPR'] = $this->Kkpr_Model->getDataByYear($tahun);
+        // var_dump($data);die;
+
+        // Tampilkan data ke view
+        $this->load->view('templates/header');
+        $this->load->view('admin/kkpr/laporan/index_filter', $data);
+        $this->load->view('templates/footer');
+        $this->load->view('templates/footScript');
+        $this->load->view('admin/kkpr/laporan/script');
+    }
+
 
 }
 ?>

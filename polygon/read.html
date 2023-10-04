@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://unpkg.com/shapefile@1.6.0/dist/shapefile.js"></script>
+</head>
+
+<body>
+    <input type="file" id="shpFileInput">
+    <div id="output"></div>
+
+</body>
+<!-- <script src="script.js"></script> -->
+<script>
+    // Get references to HTML elements
+    const shpFileInput = document.getElementById('shpFileInput');
+    const outputDiv = document.getElementById('output');
+
+    shpFileInput.addEventListener('change', handleFile);
+
+    function handleFile(event) {
+        const file = event.target.files[0];
+
+        if (file) {
+            // Read the Shapefile using the shapefile library
+            shapefile.open(file)
+                .then(source => source.read()
+                    .then(function log(result) {
+                        if (result.done) return;
+
+                        // Process the shape data here
+                        // Example: Append the data to the outputDiv
+                        outputDiv.innerHTML += JSON.stringify(result.value) + '<br>';
+
+                        return source.read().then(log);
+                    }))
+                .catch(error => console.error(error));
+        }
+    }
+</script>
+
+</html>

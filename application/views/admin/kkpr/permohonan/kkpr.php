@@ -9,7 +9,7 @@
                     <span class="path1"></span>
                     <span class="path2"></span>
                 </i>
-                <input type="text" data-kt-ecommerce-category-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="Search Category" />
+                <input type="text" data-kt-ecommerce-category-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="Search..." />
             </div>
             <!--end::Search-->
         </div>
