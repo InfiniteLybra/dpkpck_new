@@ -97,7 +97,7 @@
                                 <select name="provinsi_pemohon" id="provinsi_pemohon" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Provinsi">
                                     <option value="" selected></option>
                                     <?php foreach ($provinsi as $k) { ?>
-                                        <option value="<?= $k->prov_id ?>" <?php if($kkpr->provinsi_pemohon == $k->prov_id){echo 'selected';}?>><?= $k->prov_name ?></option>
+                                        <option value="<?= $k->prov_id ?>"><?= $k->prov_name ?></option>
                                     <?php } ?>
                                 </select>
                             </div>

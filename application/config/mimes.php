@@ -117,6 +117,7 @@ return array(
 	'xl'	=>	'application/excel',
 	'eml'	=>	'message/rfc822',
 	'json'  =>	array('application/json', 'text/json'),
+	'geojson'  =>	array('application/json'),
 	'pem'   =>	array('application/x-x509-user-cert', 'application/x-pem-file', 'application/octet-stream'),
 	'p10'   =>	array('application/x-pkcs10', 'application/pkcs10'),
 	'p12'   =>	'application/x-pkcs12',

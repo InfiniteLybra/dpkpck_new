@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
 
-    <script src="Control.FullScreen.js"></script>
+    <link rel="stylesheet" href="Control.FullScreen.css" />
 
     <style type="text/css">
         #map {
@@ -26,13 +26,53 @@
             border: none;
             color: #f8d5e4;
         }
+
+        .button_blue {
+            /* Atur properti CSS sesuai kebutuhan Anda */
+            display: inline-block;
+            background-color: #4ba2ff;
+            color: #000000;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 2px;
+            cursor: pointer;
+            border: 2px solid black;
+        }
+        .button_green {
+            /* Atur properti CSS sesuai kebutuhan Anda */
+            display: inline-block;
+            background-color: #27f37c;
+            color: #000000;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+        .button_yellow {
+            /* Atur properti CSS sesuai kebutuhan Anda */
+            display: inline-block;
+            background-color: #f9ec58;
+            color: #000000;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 
 <body>
-    <div id="map"></div>
-    <button class="button" id="reloadButton">Klik untuk Perubahan</button>
-    <button id="export" class="btn btn-light-success">Expor</button>
+    <div id="map"></div><br>
+    <button class="button_yellow" id="reloadButton">Klik untuk Perubahan</button>
+    <button id="export" class="button_green">Expor</button>
+    <a href="http://localhost/project/dpkpck/Geojson" class="button_blue" target="_blank">Convert SHP</a>
 
 </body>
 <!-- <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script> -->

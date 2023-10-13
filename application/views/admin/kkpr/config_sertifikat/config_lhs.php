@@ -531,7 +531,7 @@ if ($cek) {
                     </tr>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold">27</span>
+                            <span class="fw-bold">28</span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold">Masuk KP2B</span>

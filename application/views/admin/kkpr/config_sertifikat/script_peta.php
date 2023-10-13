@@ -49,332 +49,332 @@
     });
 </script> -->
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    var fungsiJalanSelect = document.getElementById("fungsi_jalan1");
-    var kelasJalanSelect = document.getElementById("kelas_jalan1");
-    var inputBaruRow = document.getElementById("tr_gsp_1");
-    var tombolTampilkanInput = document.getElementById("cek1");
-    var tombolRefreshInput = document.getElementById("refresh1");
+    document.addEventListener("DOMContentLoaded", function() {
+        var fungsiJalanSelect = document.getElementById("fungsi_jalan1");
+        var kelasJalanSelect = document.getElementById("kelas_jalan1");
+        var inputBaruRow = document.getElementById("tr_gsp_1");
+        var tombolTampilkanInput = document.getElementById("cek1");
+        var tombolRefreshInput = document.getElementById("refresh1");
 
-    // Event listener untuk tombol "Tampilkan Input Baru"
-    tombolTampilkanInput.addEventListener("click", function () {
-        var nilaiFungsiJalan = fungsiJalanSelect.value;
-        var nilaiKelasJalan = kelasJalanSelect.value;
+        // Event listener untuk tombol "Tampilkan Input Baru"
+        tombolTampilkanInput.addEventListener("click", function() {
+            var nilaiFungsiJalan = fungsiJalanSelect.value;
+            var nilaiKelasJalan = kelasJalanSelect.value;
 
-        if (nilaiFungsiJalan == 'ap' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row"; 
-            document.getElementById("gsp_1").value = '12,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'ap' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_1").value = '7,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'kp' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_1").value = '12,5 m & 10 m';
-        }else if (nilaiFungsiJalan == 'kp' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_1").value = '7,5 m & 10 m';
-        }else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_1").value = '12,5 m & 7 m';
-        }else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_1").value = '7,5 m & 7 m';
-        }else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 'k') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_1").value = '5,5 m & 7 m';
-        }else if (nilaiFungsiJalan == 'lip' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_1").value = '7,5 m & 5 m';
-        }else if (nilaiFungsiJalan == 'lip' && nilaiKelasJalan == 'k') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_1").value = '5,5 m & 5 m';
-        }else if (nilaiFungsiJalan == 'as' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_1").value = '12,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'as' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_1").value = '7,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'ks' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_1").value = '12,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'ks' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_1").value = '7,5 m & 5 m';
-        }else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_1").value = '12,5 m & 3 m';
-        }else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_1").value = '7,5 m & 3 m';
-        }else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 'k') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_1").value = '5,5 m & 10 m';
-        }else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_1").value = '12,5 m & 2 m';
-        }else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_1").value = '7,5 m & 2 m';
-        }else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 'k') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_1").value = '5,5 m & 2 m';
-        }else {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_1").value = 'tidak ada';
-        }
+            if (nilaiFungsiJalan == 'ap' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = '12,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'ap' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = '7,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'kp' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = '12,5 m & 10 m';
+            } else if (nilaiFungsiJalan == 'kp' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = '7,5 m & 10 m';
+            } else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = '12,5 m & 7 m';
+            } else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = '7,5 m & 7 m';
+            } else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 'k') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = '5,5 m & 7 m';
+            } else if (nilaiFungsiJalan == 'lip' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = '7,5 m & 5 m';
+            } else if (nilaiFungsiJalan == 'lip' && nilaiKelasJalan == 'k') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = '5,5 m & 5 m';
+            } else if (nilaiFungsiJalan == 'as' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = '12,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'as' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = '7,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'ks' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = '12,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'ks' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = '7,5 m & 5 m';
+            } else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = '12,5 m & 3 m';
+            } else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = '7,5 m & 3 m';
+            } else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 'k') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = '5,5 m & 10 m';
+            } else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = '12,5 m & 2 m';
+            } else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = '7,5 m & 2 m';
+            } else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 'k') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = '5,5 m & 2 m';
+            } else {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_1").value = 'tidak ada';
+            }
+        });
+        // Event listener untuk tombol "Refresh"
+        tombolRefreshInput.addEventListener("click", function() {
+            // Mengosongkan nilai dari inputan baru
+            inputBaruRow.style.display = "none"; // Menyembunyikan elemen input baru
+            inputBaru.value = ''; // Mengosongkan nilai input
+        });
     });
-    // Event listener untuk tombol "Refresh"
-    tombolRefreshInput.addEventListener("click", function () {
-        // Mengosongkan nilai dari inputan baru
-        inputBaruRow.style.display = "none"; // Menyembunyikan elemen input baru
-        inputBaru.value = ''; // Mengosongkan nilai input
-    });
-});
-document.addEventListener("DOMContentLoaded", function () {
-    var fungsiJalanSelect = document.getElementById("fungsi_jalan2");
-    var kelasJalanSelect = document.getElementById("kelas_jalan2");
-    var inputBaruRow = document.getElementById("tr_gsp_2");
-    var tombolTampilkanInput = document.getElementById("cek2");
-    var tombolRefreshInput = document.getElementById("refresh2");
+    document.addEventListener("DOMContentLoaded", function() {
+        var fungsiJalanSelect = document.getElementById("fungsi_jalan2");
+        var kelasJalanSelect = document.getElementById("kelas_jalan2");
+        var inputBaruRow = document.getElementById("tr_gsp_2");
+        var tombolTampilkanInput = document.getElementById("cek2");
+        var tombolRefreshInput = document.getElementById("refresh2");
 
-    // Event listener untuk tombol "Tampilkan Input Baru"
-    tombolTampilkanInput.addEventListener("click", function () {
-        var nilaiFungsiJalan = fungsiJalanSelect.value;
-        var nilaiKelasJalan = kelasJalanSelect.value;
+        // Event listener untuk tombol "Tampilkan Input Baru"
+        tombolTampilkanInput.addEventListener("click", function() {
+            var nilaiFungsiJalan = fungsiJalanSelect.value;
+            var nilaiKelasJalan = kelasJalanSelect.value;
 
-        if (nilaiFungsiJalan == 'ap' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row"; 
-            document.getElementById("gsp_2").value = '12,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'ap' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_2").value = '7,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'kp' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_2").value = '12,5 m & 10 m';
-        }else if (nilaiFungsiJalan == 'kp' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_2").value = '7,5 m & 10 m';
-        }else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_2").value = '12,5 m & 7 m';
-        }else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_2").value = '7,5 m & 7 m';
-        }else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 'k') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_2").value = '5,5 m & 7 m';
-        }else if (nilaiFungsiJalan == 'lip' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_2").value = '7,5 m & 5 m';
-        }else if (nilaiFungsiJalan == 'lip' && nilaiKelasJalan == 'k') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_2").value = '5,5 m & 5 m';
-        }else if (nilaiFungsiJalan == 'as' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_2").value = '12,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'as' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_2").value = '7,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'ks' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_2").value = '12,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'ks' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_2").value = '7,5 m & 5 m';
-        }else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_2").value = '12,5 m & 3 m';
-        }else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_2").value = '7,5 m & 3 m';
-        }else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 'k') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_2").value = '5,5 m & 10 m';
-        }else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_2").value = '12,5 m & 2 m';
-        }else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_2").value = '7,5 m & 2 m';
-        }else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 'k') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_2").value = '5,5 m & 2 m';
-        }else {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_2").value = 'tidak ada';
-        }
+            if (nilaiFungsiJalan == 'ap' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = '12,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'ap' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = '7,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'kp' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = '12,5 m & 10 m';
+            } else if (nilaiFungsiJalan == 'kp' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = '7,5 m & 10 m';
+            } else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = '12,5 m & 7 m';
+            } else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = '7,5 m & 7 m';
+            } else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 'k') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = '5,5 m & 7 m';
+            } else if (nilaiFungsiJalan == 'lip' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = '7,5 m & 5 m';
+            } else if (nilaiFungsiJalan == 'lip' && nilaiKelasJalan == 'k') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = '5,5 m & 5 m';
+            } else if (nilaiFungsiJalan == 'as' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = '12,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'as' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = '7,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'ks' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = '12,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'ks' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = '7,5 m & 5 m';
+            } else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = '12,5 m & 3 m';
+            } else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = '7,5 m & 3 m';
+            } else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 'k') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = '5,5 m & 10 m';
+            } else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = '12,5 m & 2 m';
+            } else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = '7,5 m & 2 m';
+            } else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 'k') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = '5,5 m & 2 m';
+            } else {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_2").value = 'tidak ada';
+            }
+        });
+        // Event listener untuk tombol "Refresh"
+        tombolRefreshInput.addEventListener("click", function() {
+            // Mengosongkan nilai dari inputan baru
+            inputBaruRow.style.display = "none"; // Menyembunyikan elemen input baru
+            inputBaru.value = ''; // Mengosongkan nilai input
+        });
     });
-    // Event listener untuk tombol "Refresh"
-    tombolRefreshInput.addEventListener("click", function () {
-        // Mengosongkan nilai dari inputan baru
-        inputBaruRow.style.display = "none"; // Menyembunyikan elemen input baru
-        inputBaru.value = ''; // Mengosongkan nilai input
-    });
-});
-document.addEventListener("DOMContentLoaded", function () {
-    var fungsiJalanSelect = document.getElementById("fungsi_jalan3");
-    var kelasJalanSelect = document.getElementById("kelas_jalan3");
-    var inputBaruRow = document.getElementById("tr_gsp_3");
-    var tombolTampilkanInput = document.getElementById("cek3");
-    var tombolRefreshInput = document.getElementById("refresh3");
+    document.addEventListener("DOMContentLoaded", function() {
+        var fungsiJalanSelect = document.getElementById("fungsi_jalan3");
+        var kelasJalanSelect = document.getElementById("kelas_jalan3");
+        var inputBaruRow = document.getElementById("tr_gsp_3");
+        var tombolTampilkanInput = document.getElementById("cek3");
+        var tombolRefreshInput = document.getElementById("refresh3");
 
-    // Event listener untuk tombol "Tampilkan Input Baru"
-    tombolTampilkanInput.addEventListener("click", function () {
-        var nilaiFungsiJalan = fungsiJalanSelect.value;
-        var nilaiKelasJalan = kelasJalanSelect.value;
+        // Event listener untuk tombol "Tampilkan Input Baru"
+        tombolTampilkanInput.addEventListener("click", function() {
+            var nilaiFungsiJalan = fungsiJalanSelect.value;
+            var nilaiKelasJalan = kelasJalanSelect.value;
 
-        if (nilaiFungsiJalan == 'ap' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row"; 
-            document.getElementById("gsp_3").value = '12,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'ap' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_3").value = '7,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'kp' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_3").value = '12,5 m & 10 m';
-        }else if (nilaiFungsiJalan == 'kp' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_3").value = '7,5 m & 10 m';
-        }else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_3").value = '12,5 m & 7 m';
-        }else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_3").value = '7,5 m & 7 m';
-        }else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 'k') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_3").value = '5,5 m & 7 m';
-        }else if (nilaiFungsiJalan == 'lip' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_3").value = '7,5 m & 5 m';
-        }else if (nilaiFungsiJalan == 'lip' && nilaiKelasJalan == 'k') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_3").value = '5,5 m & 5 m';
-        }else if (nilaiFungsiJalan == 'as' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_3").value = '12,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'as' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_3").value = '7,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'ks' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_3").value = '12,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'ks' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_3").value = '7,5 m & 5 m';
-        }else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_3").value = '12,5 m & 3 m';
-        }else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_3").value = '7,5 m & 3 m';
-        }else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 'k') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_3").value = '5,5 m & 10 m';
-        }else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_3").value = '12,5 m & 2 m';
-        }else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_3").value = '7,5 m & 2 m';
-        }else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 'k') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_3").value = '5,5 m & 2 m';
-        }else {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_3").value = 'tidak ada';
-        }
+            if (nilaiFungsiJalan == 'ap' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = '12,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'ap' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = '7,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'kp' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = '12,5 m & 10 m';
+            } else if (nilaiFungsiJalan == 'kp' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = '7,5 m & 10 m';
+            } else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = '12,5 m & 7 m';
+            } else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = '7,5 m & 7 m';
+            } else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 'k') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = '5,5 m & 7 m';
+            } else if (nilaiFungsiJalan == 'lip' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = '7,5 m & 5 m';
+            } else if (nilaiFungsiJalan == 'lip' && nilaiKelasJalan == 'k') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = '5,5 m & 5 m';
+            } else if (nilaiFungsiJalan == 'as' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = '12,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'as' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = '7,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'ks' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = '12,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'ks' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = '7,5 m & 5 m';
+            } else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = '12,5 m & 3 m';
+            } else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = '7,5 m & 3 m';
+            } else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 'k') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = '5,5 m & 10 m';
+            } else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = '12,5 m & 2 m';
+            } else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = '7,5 m & 2 m';
+            } else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 'k') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = '5,5 m & 2 m';
+            } else {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_3").value = 'tidak ada';
+            }
+        });
+        // Event listener untuk tombol "Refresh"
+        tombolRefreshInput.addEventListener("click", function() {
+            // Mengosongkan nilai dari inputan baru
+            inputBaruRow.style.display = "none"; // Menyembunyikan elemen input baru
+            inputBaru.value = ''; // Mengosongkan nilai input
+        });
     });
-    // Event listener untuk tombol "Refresh"
-    tombolRefreshInput.addEventListener("click", function () {
-        // Mengosongkan nilai dari inputan baru
-        inputBaruRow.style.display = "none"; // Menyembunyikan elemen input baru
-        inputBaru.value = ''; // Mengosongkan nilai input
-    });
-});
-document.addEventListener("DOMContentLoaded", function () {
-    var fungsiJalanSelect = document.getElementById("fungsi_jalan4");
-    var kelasJalanSelect = document.getElementById("kelas_jalan4");
-    var inputBaruRow = document.getElementById("tr_gsp_4");
-    var tombolTampilkanInput = document.getElementById("cek4");
-    var tombolRefreshInput = document.getElementById("refresh4");
+    document.addEventListener("DOMContentLoaded", function() {
+        var fungsiJalanSelect = document.getElementById("fungsi_jalan4");
+        var kelasJalanSelect = document.getElementById("kelas_jalan4");
+        var inputBaruRow = document.getElementById("tr_gsp_4");
+        var tombolTampilkanInput = document.getElementById("cek4");
+        var tombolRefreshInput = document.getElementById("refresh4");
 
-    // Event listener untuk tombol "Tampilkan Input Baru"
-    tombolTampilkanInput.addEventListener("click", function () {
-        var nilaiFungsiJalan = fungsiJalanSelect.value;
-        var nilaiKelasJalan = kelasJalanSelect.value;
+        // Event listener untuk tombol "Tampilkan Input Baru"
+        tombolTampilkanInput.addEventListener("click", function() {
+            var nilaiFungsiJalan = fungsiJalanSelect.value;
+            var nilaiKelasJalan = kelasJalanSelect.value;
 
-        if (nilaiFungsiJalan == 'ap' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row"; 
-            document.getElementById("gsp_4").value = '12,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'ap' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_4").value = '7,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'kp' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_4").value = '12,5 m & 10 m';
-        }else if (nilaiFungsiJalan == 'kp' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_4").value = '7,5 m & 10 m';
-        }else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_4").value = '12,5 m & 7 m';
-        }else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_4").value = '7,5 m & 7 m';
-        }else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 'k') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_4").value = '5,5 m & 7 m';
-        }else if (nilaiFungsiJalan == 'lip' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_4").value = '7,5 m & 5 m';
-        }else if (nilaiFungsiJalan == 'lip' && nilaiKelasJalan == 'k') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_4").value = '5,5 m & 5 m';
-        }else if (nilaiFungsiJalan == 'as' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_4").value = '12,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'as' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_4").value = '7,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'ks' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_4").value = '12,5 m & 15 m';
-        }else if (nilaiFungsiJalan == 'ks' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_4").value = '7,5 m & 5 m';
-        }else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_4").value = '12,5 m & 3 m';
-        }else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_4").value = '7,5 m & 3 m';
-        }else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 'k') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_4").value = '5,5 m & 10 m';
-        }else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 'r') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_4").value = '12,5 m & 2 m';
-        }else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 's') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_4").value = '7,5 m & 2 m';
-        }else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 'k') {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_4").value = '5,5 m & 2 m';
-        }else {
-            inputBaruRow.style.display = "table-row";
-            document.getElementById("gsp_4").value = 'tidak ada';
-        }
+            if (nilaiFungsiJalan == 'ap' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = '12,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'ap' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = '7,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'kp' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = '12,5 m & 10 m';
+            } else if (nilaiFungsiJalan == 'kp' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = '7,5 m & 10 m';
+            } else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = '12,5 m & 7 m';
+            } else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = '7,5 m & 7 m';
+            } else if (nilaiFungsiJalan == 'lp' && nilaiKelasJalan == 'k') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = '5,5 m & 7 m';
+            } else if (nilaiFungsiJalan == 'lip' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = '7,5 m & 5 m';
+            } else if (nilaiFungsiJalan == 'lip' && nilaiKelasJalan == 'k') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = '5,5 m & 5 m';
+            } else if (nilaiFungsiJalan == 'as' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = '12,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'as' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = '7,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'ks' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = '12,5 m & 15 m';
+            } else if (nilaiFungsiJalan == 'ks' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = '7,5 m & 5 m';
+            } else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = '12,5 m & 3 m';
+            } else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = '7,5 m & 3 m';
+            } else if (nilaiFungsiJalan == 'ls' && nilaiKelasJalan == 'k') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = '5,5 m & 10 m';
+            } else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 'r') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = '12,5 m & 2 m';
+            } else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 's') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = '7,5 m & 2 m';
+            } else if (nilaiFungsiJalan == 'lis' && nilaiKelasJalan == 'k') {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = '5,5 m & 2 m';
+            } else {
+                inputBaruRow.style.display = "table-row";
+                document.getElementById("gsp_4").value = 'tidak ada';
+            }
+        });
+        // Event listener untuk tombol "Refresh"
+        tombolRefreshInput.addEventListener("click", function() {
+            // Mengosongkan nilai dari inputan baru
+            inputBaruRow.style.display = "none"; // Menyembunyikan elemen input baru
+            inputBaru.value = ''; // Mengosongkan nilai input
+        });
     });
-    // Event listener untuk tombol "Refresh"
-    tombolRefreshInput.addEventListener("click", function () {
-        // Mengosongkan nilai dari inputan baru
-        inputBaruRow.style.display = "none"; // Menyembunyikan elemen input baru
-        inputBaru.value = ''; // Mengosongkan nilai input
-    });
-});
 
-$(document).ready(function() {
+    $(document).ready(function() {
         $("#jumlah_koordinat").on("input", function() {
             var rtValue = $(this).val();
             var namaPemohonContainer = $("#koor");
@@ -386,7 +386,7 @@ $(document).ready(function() {
             for (var i = 0; i < rtValue; i++) {
                 var karakter = String.fromCharCode('a'.charCodeAt(0) + i + jumlahInputSebelumnya);
                 var formNamaPemohon = '<div class="mb-3 row">' +
-                    '<input type="text" name="koordinat[]" class="form-control" value="'+ karakter +'.">' +               
+                    '<input type="text" name="koordinat[]" class="form-control" value="' + karakter + '.">' +
                     '</div>';
 
                 namaPemohonContainer.append(formNamaPemohon);
@@ -394,14 +394,38 @@ $(document).ready(function() {
         });
     });
     $(document).ready(function() {
-        $(document).ready(function() {
-        $('#id_lainya').change(function() {
-            if ($(this).is(':checked')) {
-                $('#lainyaInput').show(); // Tampilkan input tambahan
-            } else {
-                $('#lainyaInput').hide(); // Sembunyikan input tambahan jika checkbox tidak dicentang
+        var inputCount = $("input[name='koordinat[]']").length;
+        const characters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']; // Atur karakter yang ingin digunakan
+
+        $("#addInput").click(function() {
+            if (inputCount < characters.length) {
+                // Buat input baru dan tambahkan ke dalam "additionalInputs" div
+                var newInput = '<div class="newInput" id="input' + inputCount + '">' +
+                    '<div class="mb-3 row">' +
+                    '<input type="text" name="koordinat[]" class="form-control" value="' + characters[inputCount] + '.">' +
+                    '</div>' +
+                    '</div>';
+                $("#additionalInputs").append(newInput);
+                inputCount++;
+            }
+        });
+        $("#removeInput").click(function() {
+            if (inputCount > 1) { // Pastikan selalu ada minimal satu input
+                // Hapus input terakhir dari "additionalInputstanah" div
+                $("#additionalInputs .newInput:last-child").remove();
+                inputCount--; // Kurangi hitungan input
             }
         });
     });
+    $(document).ready(function() {
+        $(document).ready(function() {
+            $('#id_lainya').change(function() {
+                if ($(this).is(':checked')) {
+                    $('#lainyaInput').show(); // Tampilkan input tambahan
+                } else {
+                    $('#lainyaInput').hide(); // Sembunyikan input tambahan jika checkbox tidak dicentang
+                }
+            });
+        });
     });
 </script>

@@ -646,7 +646,7 @@
                                             <span class="menu-title">Polygon Map</span>
                                         </a>
                                         <!--end:Menu link-->
-                                    </div>
+                                    </div>                                     
                                     <div class="menu-item">
                                         <!--begin:Menu link-->
                                         <a class="menu-link" href="<?= base_url('polygon/create_new.html') ?>">
@@ -654,6 +654,16 @@
                                                 <i class="fa-solid fa-map-location-dot fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Polygon Map New</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('Geojson') ?>">
+                                            <span class="menu-icon">
+                                            <i class="fa-sharp fa-solid fa-repeat fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Converter GeoJson</span>
                                         </a>
                                         <!--end:Menu link-->
                                     </div>
@@ -725,6 +735,18 @@
                                                     <!--end:Menu link-->
                                                 </div>
                                             </div>
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/pembagian_berkas') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Pembagian Berkas</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
                                             <!--end:Menu sub-->
                                             <!--begin:Menu sub-->
                                             <div class="menu-sub menu-sub-accordion">
@@ -762,7 +784,7 @@
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
-                                                        <span class="menu-title">Monitoring Berkas</span>
+                                                        <span class="menu-title">Rekap Berkas</span>
                                                     </a>
                                                     <!--end:Menu link-->
                                                 </div>
@@ -817,7 +839,7 @@
                                             <!--begin:Menu link-->
                                             <a class="menu-link" href="<?= base_url('Log') ?>">
                                                 <span class="menu-icon">
-                                                    <i class="fa-solid fa-file fa-2xl"></i>
+                                                <i class="fa-solid fa-scroll"></i>
                                                 </span>
                                                 <span class="menu-title">Log</span>
                                             </a>
@@ -921,6 +943,16 @@
                                         </a>
                                         <!--end:Menu link-->
                                     </div>
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('Geojson') ?>">
+                                            <span class="menu-icon">
+                                            <i class="fa-sharp fa-solid fa-repeat fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Converter GeoJson</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
                                     <div class="menu-item pt-5">
                                         <!--begin:Menu content-->
                                         <div class="menu-content">
@@ -971,6 +1003,18 @@
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
                                                         <span class="menu-title">Admin Permohonan</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/pembagian_berkas') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Pembagian Berkas</span>
                                                     </a>
                                                     <!--end:Menu link-->
                                                 </div>
@@ -1138,6 +1182,16 @@
                                         </a>
                                         <!--end:Menu link-->
                                     </div>
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('Geojson') ?>">
+                                            <span class="menu-icon">
+                                            <i class="fa-sharp fa-solid fa-repeat fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Converter GeoJson</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
                                     <div class="menu-item pt-5">
                                         <!--begin:Menu content-->
                                         <div class="menu-content">
@@ -1167,6 +1221,7 @@
                                                     <!--end:Menu link-->
                                                 </div>
                                             </div>
+                                            
                                             <!--end:Menu sub-->
                                             <!--begin:Menu sub-->
                                             <div class="menu-sub menu-sub-accordion">
@@ -1202,6 +1257,18 @@
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
                                                         <span class="menu-title">Admin Permohonan</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                            </div>
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link" href="<?= base_url('Kkpr/pembagian_berkas') ?>">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Pembagian Berkas</span>
                                                     </a>
                                                     <!--end:Menu link-->
                                                 </div>
@@ -1364,6 +1431,16 @@
                                                 <i class="fa-solid fa-map-location-dot fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Polygon Map New</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('Geojson') ?>">
+                                            <span class="menu-icon">
+                                            <i class="fa-sharp fa-solid fa-repeat fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Converter GeoJson</span>
                                         </a>
                                         <!--end:Menu link-->
                                     </div>
@@ -1583,6 +1660,16 @@
                                                 <i class="fa-solid fa-map-location-dot fa-2xl"></i>
                                             </span>
                                             <span class="menu-title">Polygon Map New</span>
+                                        </a>
+                                        <!--end:Menu link-->
+                                    </div>
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link" href="<?= base_url('Geojson') ?>">
+                                            <span class="menu-icon">
+                                            <i class="fa-sharp fa-solid fa-repeat fa-2xl"></i>
+                                            </span>
+                                            <span class="menu-title">Converter GeoJson</span>
                                         </a>
                                         <!--end:Menu link-->
                                     </div>

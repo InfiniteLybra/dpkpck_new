@@ -107,10 +107,9 @@
     <div class="card-body pt-0">
         <!-- begin::Table -->
         <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_category_table">
-            <thead>
+            <thead>                
                 <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                    <th class="text-center min-w-50px">Id Kkpr Permohonan</th>
-                    <th class="text-center min-w-150px">Id User</th>
+                    <th class="text-center min-w-150px">No</th>
                     <th class="text-center min-w-150px">Tgl Veriv Berkas</th>
                     <th class="text-center min-w-150px">Tgl Survei</th>
                     <th class="text-center min-w-150px">No. Reg Terbit</th>
@@ -177,191 +176,209 @@
             <tbody class="text-center">
                 <?php
                 $no = 1;
-                foreach ($KKPR as $kkpr) :
+                foreach ($KKPR as $i) {
                 ?>
+                    <?php
+                    $kelurahan = $this->db->query("SELECT * FROM indo_kelurahan WHERE subdis_id = '$i->kelurahan_pemohon' ")->row();
+                    $kecamatan = $this->db->query("SELECT * FROM indo_kecamatan WHERE dis_id = '$i->kecamatan_pemohon' ")->row();
+                    $kota = $this->db->query("SELECT * FROM indo_kota WHERE city_id = '$i->kota_pemohon' ")->row();
+                    $provinsi = $this->db->query("SELECT * FROM indo_provinsi WHERE prov_id = '$i->provinsi_pemohon' ")->row();
+                    $peta = $this->db->query("SELECT * FROM data_sertifikat_peta WHERE id_permohonan = '$i->id_kkpr_permohonan'")->row();
+                    $lhs = $this->db->query("SELECT * FROM data_sertifikat_lhs WHERE id_permohonan = '$i->id_kkpr_permohonan'")->row();
+                    $draft = $this->db->query("SELECT * FROM data_sertifikat_draft_peta WHERE id_permohonan = '$i->id_kkpr_permohonan'")->row();
+                    $kelurahan_tanah = $this->db->query("SELECT * FROM desa WHERE id_desa = '$i->kelurahan_tanah' ")->row();
+                    $kecamatan_tanah = $this->db->query("SELECT * FROM kecamatan WHERE id_kecamatan = '$i->kecamatan_tanah' ")->row();
+                    ?>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->id_kkpr_permohonan; ?></span>
+                            <span class="fw-bold"><?= $no++ ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->id_user; ?></span>
+                            <span class="fw-bold"><?= $i->tgl_verif_berkas ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->tgl_verif_berkas; ?></span>
+                            <span class="fw-bold"><?= $i->tgl_survei ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->tgl_survei; ?></span>
+                            <span class="fw-bold"><?= $i->no_reg_terbit ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->no_reg_terbit; ?></span>
+                            <span class="fw-bold"><?= $i->tgl_reg ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->tgl_reg; ?></span>
+                            <span class="fw-bold"><?= $i->surveyor1 ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->surveyor1; ?></span>
+                            <span class="fw-bold"><?= $i->surveyor2 ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->surveyor2; ?></span>
+                            <span class="fw-bold"><?= $i->type ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->type; ?></span>
+                            <span class="fw-bold"><?= $i->nama_pemohon ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->nama_pemohon; ?></span>
+                            <span class="fw-bold"><?php if ($peta) echo $peta->alamat_pemohon ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->alamat_pemohon; ?></span>
+                            <span class="fw-bold"><?= '00' . $i->rt_pemohon ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->rt_pemohon; ?></span>
+                            <span class="fw-bold"><?= "00" . $i->rw_pemohon ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->rw_pemohon; ?></span>
+                            <span class="fw-bold"><?= $provinsi->prov_name ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->provinsi_pemohon; ?></span>
+                            <span class="fw-bold"><?= $kota->city_name ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->kota_pemohon; ?></span>
+                            <span class="fw-bold"><?= $kecamatan->dis_name ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->kecamatan_pemohon; ?></span>
+                            <span class="fw-bold"><?= $kelurahan->subdis_name ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->kelurahan_pemohon; ?></span>
+                            <span class="fw-bold"><?= $i->telp_pemohon ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->telp_pemohon; ?></span>
+                            <span class="fw-bold"><?= $i->nama_perusahaan ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->nama_perusahaan; ?></span>
+                            <span class="fw-bold"><?= $i->nib ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->nib; ?></span>
+                            <span class="fw-bold"><?= $i->skala_usaha ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->skala_usaha; ?></span>
+                            <span class="fw-bold"><?= $i->klasifikasi_resiko ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->klasifikasi_resiko; ?></span>
+                            <?php
+                            $kbli = json_decode($i->kbli);
+                            foreach ($kbli as $k) {
+                                echo '<span class="fw-bold">' . $k->kbli . '</span>';
+                            }
+                            ?>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->kbli; ?></span>
+                            <span class="fw-bold"><?= $i->alamat_perusahaan ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->alamat_perusahaan; ?></span>
+                            <span class="fw-bold"><?= "00" . $i->rt_perusahaan ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->rt_perusahaan; ?></span>
+                            <span class="fw-bold"><?= "00" . $i->rw_perusahaan ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->rw_perusahaan; ?></span>
+                            <span class="fw-bold"><?= $provinsi->prov_name ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->provinsi_perusahaan; ?></span>
+                            <span class="fw-bold"><?= $kota->city_name ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->kota_perusahaan; ?></span>
+                            <span class="fw-bold"><?= $kecamatan->dis_name ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->kecamatan_perusahaan; ?></span>
+                            <span class="fw-bold"><?= $kelurahan->subdis_name ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->kelurahan_perusahaan; ?></span>
+                            <span class="fw-bold"><?= $i->peruntukan_tanah ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->peruntukan_tanah; ?></span>
+                            <span class="fw-bold"><?= $i->luas_tanah ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->luas_tanah; ?></span>
+                            <span class="fw-bold"><?= $i->kategori ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->kategori; ?></span>
+                            <span class="fw-bold"><?= $i->perluasan ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->perluasan; ?></span>
+                            <?php
+                            $status_tanah = json_decode($i->status_tanah);
+                            foreach ($status_tanah as $s) {
+                                echo '<span class="fw-bold">' . $s->status_tanah . '</span>';
+                            }
+                            ?>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->status_tanah; ?></span>
+                            <span class="fw-bold"><?= $i->lokasi_tanah ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->lokasi_tanah; ?></span>
+                            <span class="fw-bold"><?= "00" . $i->rt_tanah ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->rt_tanah; ?></span>
+                            <span class="fw-bold"><?= "00" . $i->rw_tanah ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->rw_tanah; ?></span>
+                            <span class="fw-bold"><?= $i->kota_tanah ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->kota_tanah; ?></span>
+                            <span class="fw-bold"><?= $kecamatan_tanah->nama_kecamatan ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->kecamatan_tanah; ?></span>
+                            <span class="fw-bold"><?= $kelurahan_tanah->nama_desa ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->kelurahan_tanah; ?></span>
+                            <span class="fw-bold"><?= $i->dokumen_oss ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->dokumen_oss; ?></span>
+                            <span class="fw-bold"><?= $i->fotokopi_ktp ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->fotokopi_ktp; ?></span>
+                            <span class="fw-bold"><?= $i->akta_perusahaan ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->akta_perusahaan; ?></span>
+                            <span class="fw-bold"><?= $i->siup ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->siup; ?></span>
+                            <span class="fw-bold"><?= $i->tdp ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->tdp; ?></span>
+                            <span class="fw-bold"><?= $i->npwp ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->npwp; ?></span>
+                            <span class="fw-bold"><?= $i->surat_tanah ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->surat_tanah; ?></span>
+                            <span class="fw-bold"><?= $i->peta_bidang ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->peta_bidang; ?></span>
+                            <span class="fw-bold"><?= $i->teknis_pertanahan ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->teknis_pertanahan; ?></span>
+                            <span class="fw-bold"><?= $i->surat_kematian ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->surat_kematian; ?></span>
+                            <span class="fw-bold"><?= $i->surat_kuasa_ahli_waris ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->surat_kuasa_ahli_waris; ?></span>
+                            <span class="fw-bold"><?= $i->surat_dinas_komunikasi ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->surat_dinas_komunikasi; ?></span>
+                            <span class="fw-bold"><?= $i->surat_rekom_tni ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->surat_rekom_tni; ?></span>
+                            <span class="fw-bold"><?= $i->surat_dinas_perdagangan ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->surat_dinas_perdagangan; ?></span>
+                            <span class="fw-bold"><?= $i->surat_dinas_peternakan ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->surat_dinas_peternakan; ?></span>
+                            <span class="fw-bold"><?= $i->surat_pertamina ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->surat_pertamina; ?></span>
+                            <span class="fw-bold"><?= $i->daftar_nama_kk ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->daftar_nama_kk; ?></span>
+                            <span class="fw-bold"><?= $i->surat_fkub ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->surat_fkub; ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $kkpr->status_berkas; ?></span>
+                            <span class="fw-bold"><?= $i->status_berkas ?></span>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+                <?php } ?>
             </tbody>
         </table>
         <!--end::Table-->

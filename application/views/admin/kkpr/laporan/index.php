@@ -81,6 +81,9 @@
                         </a>
                     </div>
                     <!--end::Menu item-->
+                    <!--begin::Menu item-->
+
+                    <!--end::Menu item-->
 
                     <!--begin::Menu item-->
                     <div class="menu-item px-3">
@@ -102,10 +105,9 @@
     <div class="card-body pt-0">
         <!-- begin::Table -->
         <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_category_table">
-            <thead>
+            <thead>                
                 <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                    <th class="text-center min-w-50px">Id Kkpr Permohonan</th>
-                    <th class="text-center min-w-150px">Id User</th>
+                    <th class="text-center min-w-150px">No</th>
                     <th class="text-center min-w-150px">Tgl Veriv Berkas</th>
                     <th class="text-center min-w-150px">Tgl Survei</th>
                     <th class="text-center min-w-150px">No. Reg Terbit</th>
@@ -175,6 +177,10 @@
                 foreach ($kkpr as $i) {
                 ?>
                     <?php
+                    $kelurahan = $this->db->query("SELECT * FROM indo_kelurahan WHERE subdis_id = '$i->kelurahan_pemohon' ")->row();
+                    $kecamatan = $this->db->query("SELECT * FROM indo_kecamatan WHERE dis_id = '$i->kecamatan_pemohon' ")->row();
+                    $kota = $this->db->query("SELECT * FROM indo_kota WHERE city_id = '$i->kota_pemohon' ")->row();
+                    $provinsi = $this->db->query("SELECT * FROM indo_provinsi WHERE prov_id = '$i->provinsi_pemohon' ")->row();
                     $peta = $this->db->query("SELECT * FROM data_sertifikat_peta WHERE id_permohonan = '$i->id_kkpr_permohonan'")->row();
                     $lhs = $this->db->query("SELECT * FROM data_sertifikat_lhs WHERE id_permohonan = '$i->id_kkpr_permohonan'")->row();
                     $draft = $this->db->query("SELECT * FROM data_sertifikat_draft_peta WHERE id_permohonan = '$i->id_kkpr_permohonan'")->row();
@@ -183,10 +189,7 @@
                     ?>
                     <tr>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->id_kkpr_permohonan ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->id_user ?></span>
+                            <span class="fw-bold"><?= $no++ ?></span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold"><?= $i->tgl_verif_berkas ?></span>
@@ -213,7 +216,7 @@
                             <span class="fw-bold"><?= $i->nama_pemohon ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->alamat_pemohon ?></span>
+                            <span class="fw-bold"><?php if ($peta) echo $peta->alamat_pemohon ?></span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold"><?= '00' . $i->rt_pemohon ?></span>
@@ -222,16 +225,16 @@
                             <span class="fw-bold"><?= "00" . $i->rw_pemohon ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->provinsi_pemohon ?></span>
+                            <span class="fw-bold"><?= $provinsi->prov_name ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->kota_pemohon ?></span>
+                            <span class="fw-bold"><?= $kota->city_name ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->kecamatan_pemohon ?></span>
+                            <span class="fw-bold"><?= $kecamatan->dis_name ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->kelurahan_pemohon ?></span>
+                            <span class="fw-bold"><?= $kelurahan->subdis_name ?></span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold"><?= $i->telp_pemohon ?></span>
@@ -266,16 +269,16 @@
                             <span class="fw-bold"><?= "00" . $i->rw_perusahaan ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->provinsi_perusahaan ?></span>
+                            <span class="fw-bold"><?= $provinsi->prov_name ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->kota_perusahaan ?></span>
+                            <span class="fw-bold"><?= $kota->city_name ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->kecamatan_perusahaan ?></span>
+                            <span class="fw-bold"><?= $kecamatan->dis_name ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->kelurahan_perusahaan ?></span>
+                            <span class="fw-bold"><?= $kelurahan->subdis_name ?></span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold"><?= $i->peruntukan_tanah ?></span>

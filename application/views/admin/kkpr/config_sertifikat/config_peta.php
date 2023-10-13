@@ -327,7 +327,7 @@ if ($cek) {
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td class="text-center pe-0">
                             <span class="fw-bold"></span>
                         </td>
@@ -337,7 +337,7 @@ if ($cek) {
                         <td class="text-center pe-0">
                             <input type="number" name="jumlah_koordinat" id="jumlah_koordinat" class="form-control">
                         </td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td class="text-center pe-0">
                             <span class="fw-bold">14</span>
@@ -354,10 +354,23 @@ if ($cek) {
                                         <input type="text" name="koordinat[]" class="form-control" value="<?= $k->koordinat ?>">
                                     </div>
                                 <?php } ?>
-                                <div id="koor"></div>
+                                <div id="additionalInputs"></div>
+                                <small style="float: left;"><a href="http://localhost/project/dpkpck/last_map_new/form_shp.php" target="_blank">Koordinat Otomatis</a></small>
+                                <div class="" style="float: right;">
+                                    <button type="button" id="addInput" class="btn btn-light btn-sm">Tambah</button>
+                                    <button type="button" id="removeInput" class="btn btn-light btn-sm">Kurang</button>
+                                </div>
                             <?php
                             } else { ?>
-                                <div id="koor"></div>
+                                <div class="mb-3 row">
+                                    <input type="text" name="koordinat[]" class="form-control" value="a.">
+                                </div>
+                                <div id="additionalInputs"></div>
+                                <small style="float: left;"><a href="http://localhost/project/dpkpck/last_map_new/form_shp.php" target="_blank">Koordinat Otomatis</a></small>
+                                <div class="" style="float: right;">
+                                    <button type="button" id="addInput" class="btn btn-light btn-sm">Tambah</button>
+                                    <button type="button" id="removeInput" class="btn btn-light btn-sm">Kurang</button>
+                                </div>
     </div>
 <?php } ?>
 </td>
@@ -391,7 +404,7 @@ if ($cek) {
                     </div>
                 <?php } ?>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="lainya" id="id_lainya" name="lainya" <?php if($cek->lainya_ketentuan) echo 'checked'; ?>/>
+                    <input class="form-check-input" type="checkbox" value="lainya" id="id_lainya" name="lainya" <?php if ($cek->lainya_ketentuan) echo 'checked'; ?> />
                     <label class="form-check-label" for="ketentuanLainya" style="float: left;">
                         Lainya
                     </label>
@@ -412,7 +425,7 @@ if ($cek) {
                     </div>
                 <?php } ?>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="lainya" id="id_lainya" name="lainya"  />
+                    <input class="form-check-input" type="checkbox" value="lainya" id="id_lainya" name="lainya" />
                     <label class="form-check-label" for="ketentuanLainya" style="float: left;">
                         Lainya
                     </label>
@@ -422,7 +435,7 @@ if ($cek) {
     </td>
 </tr>
 <div class="">
-    <tr id="lainyaInput" style="display: <?php if(!isset($cek->lainya_ketentuan)) echo 'none'; ?>;">
+    <tr id="lainyaInput" style="display: <?php if (!isset($cek->lainya_ketentuan)) echo 'none'; ?>;">
         <td class="text-center pe-0">
             <span class="fw-bold"></span>
         </td>
@@ -431,7 +444,7 @@ if ($cek) {
         </td>
         <td class="text-center pe-0">
             <?php if ($cek) { ?>
-                <textarea name="lainya" class="form-control" cols="10" rows="5"><?php if($cek->lainya_ketentuan) echo $cek->lainya_ketentuan; ?></textarea>
+                <textarea name="lainya" class="form-control" cols="10" rows="5"><?php if ($cek->lainya_ketentuan) echo $cek->lainya_ketentuan; ?></textarea>
             <?php } else { ?>
                 <textarea name="lainya" class="form-control" cols="10" rows="5"></textarea>
             <?php } ?>

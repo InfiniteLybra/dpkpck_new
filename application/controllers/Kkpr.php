@@ -148,7 +148,8 @@ class Kkpr extends CI_Controller
     }
     public function config()
     {   
-        $data['data'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE status_berkas = '2' OR status_berkas = '3'")->result();
+        $id_user = $this->session->userdata('id_user');
+        $data['data'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_petugas = '$id_user' AND status_berkas = '2' OR status_berkas = '3'")->result();
         $this->load->view('templates/header');
         $this->load->view('admin/kkpr/config_sertifikat/list_data',$data);
         $this->load->view('templates/footer');
@@ -747,7 +748,27 @@ class Kkpr extends CI_Controller
         $this->load->view('templates/footScript');
         $this->load->view('admin/kkpr/laporan/script');
     }
-
+    public function pembagian_berkas()
+    {
+        $data['data'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE status_berkas = '2' OR status_berkas = '3'")->result();
+        $this->load->view('templates/header');
+        $this->load->view('admin/kkpr/pembagian_berkas/index',$data);
+        $this->load->view('templates/footer');
+        $this->load->view('templates/footScript');
+        $this->load->view('admin/kkpr/pembagian_berkas/script');
+    }
+    public function proses_pembagian_berkas($id_kkpr,$id_user)
+    {
+        $query = $this->Kkpr_Model->pembagian_berkas($id_kkpr,$id_user);
+        if ($query == true) {
+            $this->session->set_flashdata('success', 'Formulir berhasil diserahkan ke petugas');
+            $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');
+        } else {
+            $this->session->set_flashdata('error', 'Data gagal disimpan');
+            $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
+        }
+        redirect('Kkpr/pembagian_berkas');
+    }
 
 }
 ?>
