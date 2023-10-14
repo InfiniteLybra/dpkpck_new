@@ -12,13 +12,13 @@ class User extends CI_Controller
     }
     public function index()
     {
-        $data['itr'] = $this->db->query("SELECT * FROM itr_kuasa")->result();
-        $data['kkpr'] = $this->db->query("SELECT * FROM kkpr_kuasa")->result();
+        // $data['itr'] = $this->db->query("SELECT * FROM itr_kuasa")->result();
+        // $data['kkpr'] = $this->db->query("SELECT * FROM kkpr_kuasa")->result();
         $this->load->view('templates/header');
-        $this->load->view('user/dashboard/dashboard',$data);
+        $this->load->view('user/dashboard/dashboard');
         $this->load->view('templates/footer');
         $this->load->view('templates/footScript');
-        // $this->load->view('itr/permohonan/script_itr_tambah');
+        $this->load->view('user/dashboard/script');
     }
 }
 ?>

@@ -33,8 +33,7 @@
                 <!--begin::Step 1-->
                 <div class="current" data-kt-stepper-element="content">
                     <!--begin::Wrapper-->
-                    <div class="w-100">
-
+                    <div class="w-100">                        
                         <div class="mb-3 row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">Nama Pemohon
                                 <span class="ms-1" data-bs-toggle="tooltip" title="Ex. Dr. Sarah Wijayanto, Esq.">
@@ -187,7 +186,7 @@
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <select name="skala_usaha" id="skala_usaha" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Skala Usaha">
+                                <select name="skala_usaha" id="skala_usaha" class="form-select form-control mb-2">
                                     <option value="" selected></option>
                                     <?php
                                     $kategori_skala = $this->db->query("SELECT * FROM pilihan WHERE nama_pilihan = 'skala_usaha_kkpr'")->row();
@@ -205,7 +204,7 @@
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <select name="klasifikasi_resiko" id="klasifikasi_resiko" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Klasifikasi Resiko">
+                                <select name="klasifikasi_resiko" id="klasifikasi_resiko" class="form-select form-control mb-2">
                                     <option value="" selected></option>
                                     <?php
                                     $kategori_resiko = $this->db->query("SELECT * FROM pilihan WHERE nama_pilihan = 'klasifikasi_resiko_kkpr'")->row();
@@ -273,8 +272,7 @@
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <select name="status_tanah_sm" id="status_tanah_sm" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Status Tanah" <?php //if ($pengajuan == 'perumahan' || $pengajuan == 'pergudangan') echo"disabled";  
-                                                                                                                                                                                        ?>>
+                                <select name="status_tanah_sm" id="status_tanah_sm" class="form-select form-control mb-2">
                                     <option value="" selected></option>
                                     <option value="sewa">Sewa</option>
                                     <option value="milik_sendiri" <?php if ($pengajuan == 'perumahan' || $pengajuan == 'pergudangan') echo "selected";  ?>>Milik Sendiri</option>
@@ -310,7 +308,7 @@
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <select name="perluasan" id="perluasan" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Perluasan">
+                                <select name="perluasan" id="perluasan" class="form-select form-control mb-2" >
                                     <option value="" selected></option>
                                     <?php
                                     $kategori_perluasan = $this->db->query("SELECT * FROM pilihan WHERE nama_pilihan = 'perluasan_kkpr'")->row();

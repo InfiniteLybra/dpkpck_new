@@ -1,5 +1,5 @@
-<div class="row gy-5 g-xl-10">
-    <!--begin::Col-->
+<!--begin::Row-->
+<div class="row g-5 g-xl-8">
     <div class="col-xl-12">
         <!--begin::Charts Widget 1-->
         <div class="card card-xl-stretch mb-xl-8">
@@ -23,8 +23,9 @@
         </div>
         <!--end::Charts Widget 1-->
     </div>
-    <!--end::Col-->
-    <!--begin::Col-->
+</div>
+<!--end::Row-->
+<div class="row g-5 g-xl-8">
     <div class="col-xl-4">
         <!--begin: Statistics Widget 6-->
         <div class="card bg-light-success card-xl-stretch mb-xl-8">
@@ -79,5 +80,6 @@
         </div>
         <!--end: Statistics Widget 6-->
     </div>
-    <!--end::Col-->
 </div>
+<!--end::Row-->
+<!--end::Row-->

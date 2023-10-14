@@ -11,4 +11,12 @@ class Grafik extends CI_Controller
         $this->load->view('templates/footScript');
         $this->load->view('admin/grafik/script');
     }
+    public function sts()
+    {
+        $this->load->view('templates/header');
+        $this->load->view('admin/grafik/statistik');
+        $this->load->view('templates/footer');
+        $this->load->view('templates/footScript');
+        $this->load->view('admin/grafik/script_sts');
+    }
 }

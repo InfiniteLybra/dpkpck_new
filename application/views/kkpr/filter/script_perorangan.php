@@ -677,7 +677,7 @@
         input.addEventListener('input', saveDraft);
     });
     // const selectElements = document.querySelectorAll('#provinsi_pemohon, #kota_pemohon, #kecamatan_pemohon, #kelurahan_pemohon,#provinsi_kuasa, #kota_kuasa, #kecamatan_kuasa, #kelurahan_kuasa,#skala_usaha,#klasifikasi_resiko, #status_tanah_sm,#perluasan,#kota_tanah,#kecamatan_tanah,#kelurahan_tanah'); // Gantilah 'your_select_id_here' dengan ID elemen select Anda
-    const selectElements = document.querySelectorAll('#skala_usaha'); // Gantilah 'your_select_id_here' dengan ID elemen select Anda
+    const selectElements = document.querySelectorAll('#skala_usaha,#klasifikasi_resiko,#status_tanah_sm,#perluasan,#id_st_1'); // Gantilah 'your_select_id_here' dengan ID elemen select Anda
     selectElements.forEach(select => {
         select.addEventListener('change', saveDraft); // Gunakan event 'change' untuk select
     });
