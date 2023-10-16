@@ -4852,5 +4852,96 @@ class Kkpr_Model extends CI_Model
             return false;
         }
     }
+    public function get_permohonan_by_status($status_array)
+    {
+        return $this->db->where_in('status_berkas', $status_array)->get('kkpr_permohonan')->result();
+    }
+
+    public function kirim_pesan_whatsapp($permohonan)
+    {
+        // Implementasikan logika pengiriman pesan WhatsApp
+        $curl = curl_init();
+        $telp_pemohon = $permohonan->telp_pemohon;
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'target' => $telp_pemohon,
+                'message' => 'Mohon perbaiki berkas Anda pada halaman Pengembalian Berkas, Jika tidak di perbaiki pada kurun waktu 7 hari setelah ditolak maka berkas Anda akan kami tolak',
+                'countryCode' => '62', //optional
+            ),
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: 5@6!I4e2eSKYewSZSFhD' //change TOKEN to your actual token
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        // Cek apakah pengiriman berhasil
+        if ($response !== false) {
+            // Pengiriman berhasil, set status berkas ke 98
+            $this->db->set('status_berkas', '98');
+            $this->db->where('id_kkpr_permohonan', $permohonan->id_kkpr_permohonan);
+            $this->db->update('kkpr_permohonan');
+        } else {
+            echo "Gagal mengirim pesan WhatsApp.";
+        }
+
+        curl_close($curl);
+        echo $response;
+    }
+
+    public function kirim_pesan_tolak_whatsapp($permohonan)
+    {
+        $curl = curl_init();
+
+        // Ambil nomor telepon pemohon dari data permohonan
+        $telp_pemohon = $permohonan->telp_pemohon;
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'target' => $telp_pemohon,
+                'message' => 'Berkas Anda Tertolak karena tidak memperbaiki formulir selama 7 hari',
+                'countryCode' => '62', // optional
+            ),
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: 5@6!I4e2eSKYewSZSFhD' // change TOKEN to your actual token
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        if ($response !== false) {
+            // Lakukan penolakan permohonan
+            $this->db->set('status_berkas', '99');
+            $this->db->where('id_kkpr_permohonan', $permohonan->id_kkpr_permohonan);
+            $this->db->update('kkpr_permohonan');
+        } else {
+            echo "Gagal mengirim pesan WhatsApp.";
+        }
+
+        curl_close($curl);
+        echo $response;
+    }
+
+
+    public function get_user_data($user_id)
+    {
+        return $this->db->where('id_user', $user_id)->get('users')->row();
+    }
 
 }

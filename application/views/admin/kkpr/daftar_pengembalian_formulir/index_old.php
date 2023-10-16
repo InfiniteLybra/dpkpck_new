@@ -31,7 +31,6 @@
                 </tr>
             </thead>
             <tbody class="text-center">
-                <a href="<?php echo base_url('Kkpr/proses_otomatis'); ?>" class="btn btn-success btn-sm">Proses Otomatis</a>
                 <?php
                 $no = 1;
                 foreach ($kkpr as $i) {
@@ -67,16 +66,12 @@
                             </td>
                             <td class="text-center pe-0">
                                 <?php if ($i->status_berkas == 98) { ?>
-                                    <?php if ($selisih_hari > 6) { ?>
-                                        <a class="btn btn-danger btn-sm">Siap Ditolak</a>
-                                    <?php } else { ?>
-                                        <a class="btn btn-light btn-sm">Pesan Sudah Dikirim</a>
-                                    <?php } ?>
+
                                 <?php } else { ?>
                                     <?php if ($selisih_hari <= 6) { ?>
-                                        <a class="btn btn-primary btn-sm">Beri Peringatan</a>
+                                        <a href="<?php echo base_url('Kkpr/proses_tolak_notif/' . $i->id_kkpr_permohonan . '/' . 'wa'); ?>" class="btn btn-success btn-sm">Kirim Notif WA</a>
                                     <?php } else { ?>
-                                        <a class="btn btn-danger btn-sm">Siap Ditolak</a>
+                                        <a href="<?php echo base_url('Kkpr/proses_tolak_notif/' . $i->id_kkpr_permohonan . '/' . 'tlkwa'); ?>" class="btn btn-success btn-sm">Tolak & Kirim Notif WA</a>
                                 <?php }
                                 } ?>
                             </td>

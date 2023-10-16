@@ -606,6 +606,32 @@ class Kkpr extends CI_Controller
         }
         redirect('Kkpr/daftar_pengembalian');
     }
+    public function proses_otomatis()
+    {
+        // Ambil permohonan dengan status 1 atau 98
+        $permohonan_data = $this->Kkpr_Model->get_permohonan_by_status(array(1, 98));
+
+        foreach ($permohonan_data as $permohonan) {
+            $tgl_tolak = strtotime($permohonan->tgl_tolak);
+            $tgl_saat_ini = strtotime(date('Y-m-d'));
+            $selisih_hari = floor(($tgl_saat_ini - $tgl_tolak) / (60 * 60 * 24));
+
+            if ($permohonan->status_berkas == 1 && $selisih_hari <= 6) {
+                // Kirim notifikasi WhatsApp
+                $this->Kkpr_Model->kirim_pesan_whatsapp($permohonan);
+                $this->session->set_flashdata('success', 'Pesan telah dikirim');
+            } elseif ($permohonan->status_berkas == 1 && $selisih_hari > 6) {
+                // Tolak dan kirim notifikasi WhatsApp
+                $this->Kkpr_Model->kirim_pesan_tolak_whatsapp($permohonan);
+                $this->session->set_flashdata('success', 'Pesan telah dikirim');
+            } elseif ($permohonan->status_berkas == 98 && $selisih_hari > 6) {
+                // Tolak dan kirim notifikasi WhatsApp
+                $this->Kkpr_Model->kirim_pesan_tolak_whatsapp($permohonan);
+                $this->session->set_flashdata('success', 'Pesan telah dikirim');
+            }
+        }
+        redirect('Kkpr/daftar_pengembalian');
+    }
 
 
     public function get_kota()
