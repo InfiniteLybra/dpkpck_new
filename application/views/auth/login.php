@@ -1,205 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--begin::Head-->
-
 <head>
-    <!-- <base href="../../../" /> -->
-    <title>Dinas Perumahan, Kawasan Permukiman dan CIpta Karya</title>
-    <meta charset="utf-8" />
-    <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-    <link rel="shortcut icon" href="<?= base_url('assets/') ?>assets/media/logos/favicon.ico" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
-    <link href="<?= base_url('assets/') ?>assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="<?= base_url('assets/') ?>assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
-    <!--end::Global Stylesheets Bundle-->
+	<title>Daftar</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="<?php echo base_url('assets/login/');?> images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/login/');?>vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/login/');?>fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/login/');?>vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/login/');?>vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/login/');?>vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/login/');?>css/util.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/login/');?>css/main.css">
+	<link href="<?php echo base_url('assets/login/');?>assets/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+<!--===============================================================================================-->
 </head>
-<!--end::Head-->
-<!--begin::Body-->
+<body>
+	
+	<!-- Section: Design Block -->
+<section class="background-radial-gradient overflow-hidden align-middle">
+	<style>
+		* {
+			vertical-align: middle;
+			font-family: 'Poppins', sans-serif;
+		}
 
-<body id="kt_body" class="app-blank bgi-size-cover bgi-attachment-fixed bgi-position-center">
-    <!--begin::Theme mode setup on page load-->
-    <script>
-        var defaultThemeMode = "light";
-        var themeMode;
-        if (document.documentElement) {
-            if (document.documentElement.hasAttribute("data-bs-theme-mode")) {
-                themeMode = document.documentElement.getAttribute("data-bs-theme-mode");
-            } else {
-                if (localStorage.getItem("data-bs-theme") !== null) {
-                    themeMode = localStorage.getItem("data-bs-theme");
-                } else {
-                    themeMode = defaultThemeMode;
-                }
-            }
-            if (themeMode === "system") {
-                themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-            }
-            document.documentElement.setAttribute("data-bs-theme", themeMode);
-        }
-    </script>
-    <!--end::Theme mode setup on page load-->
-    <!--begin::Root-->
-    <div class="d-flex flex-column flex-root" id="kt_app_root">
-        <!--begin::Page bg image-->
-        <style>
-            body {
-                background-image: url('<?= base_url('assets/') ?>assets/media/auth/bg10.jpeg');
-            }
+		section {
+			height: 100vh;
+		}
 
-            [data-bs-theme="dark"] body {
-                background-image: url('<?= base_url('assets/') ?>assets/media/auth/bg10-dark.jpeg');
-            }
-        </style>
-        <!--end::Page bg image-->
-        <!--begin::Authentication - Sign-in -->
-        <div class="d-flex flex-column flex-lg-row flex-column-fluid">
-            <!--begin::Aside-->
-            <div class="d-flex flex-lg-row-fluid">
-                <!--begin::Content-->
-                <div class="d-flex flex-column flex-center pb-0 pb-lg-10 p-10 w-100">
-                    <!--begin::Image-->
-                    <img class="theme-light-show mx-auto mw-100 w-200px w-lg-250px mb-10 mb-lg-20" src="<?= base_url('assets/landing/') ?>logokabupaten.png" alt="" />
-                    <img class="theme-dark-show mx-auto mw-100 w-200px w-lg-250px mb-10 mb-lg-20" src="<?= base_url('assets/landing/') ?>logokabupaten.png" alt="" />
-                    <!--end::Image-->
-                    <!--begin::Title-->
-                    <h1 class="text-gray-800 fs-2qx fw-bold text-center mb-7">Dinas Perumahan, Kawasan Permukiman dan Cipta Karya</h1>
-                    <!--end::Title-->
-                    <!--begin::Text-->
-                    <div class="text-gray-600 fs-base text-center fw-semibold">
-                        Pelaksanaan kebijakan teknis perencanaan, pembangunan, operasi dan pemeliharaan, pemantauan dan evaluasi pengelolaan prasarana, sarana dan utilitas umum perumahan dan kawasan permukiman sesuai luasan wilayah yang ditetapkan
-                    </div>
-                    <!--end::Text-->
-                </div>
-                <!--end::Content-->
-            </div>
-            <!--begin::Aside-->
-            <!--begin::Body-->
-            <div class="d-flex flex-column-fluid flex-lg-row-auto justify-content-center justify-content-lg-end p-12">
-                <!--begin::Wrapper-->
-                <div class="bg-body d-flex flex-column flex-center rounded-4 w-md-600px p-10 border border-<?php if ($this->session->flashdata('error')) {
-                                                                                                                echo 'danger';
-                                                                                                            } else {
-                                                                                                                echo 'dark';
-                                                                                                            } ?> shadow">
-                    <!--begin::Content-->
-                    <div class="d-flex flex-center flex-column align-items-stretch h-lg-100 w-md-400px">
-                        <!--begin::Wrapper-->
-                        <div class="d-flex flex-center flex-column flex-column-fluid pb-15 pb-lg-20">
-                            <!--begin::Form-->
-                            <form class="form w-100" action=" <?= base_url('auth/proses_log') ?>" method="post">
-                                <!--begin::Heading-->
-                                <div class="text-center mb-11">
-                                    <!--begin::Title-->
-                                    <h1 class="text-dark fw-bolder mb-3">Sign In</h1>
-                                    <!--end::Title-->
-                                    <!--begin::Subtitle-->
-                                    <div class="text-gray-500 fw-semibold fs-6">Your Social Campaigns</div>
-                                    <!--end::Subtitle=-->
-                                </div>
-                                <!--begin::Heading-->
-                                <!--begin::Input group=-->
-                                <div class="fv-row mb-8">
-                                    <!--begin::Email-->
-                                    <div class="text-gray">Username</div>
-                                    <input type="text" placeholder="masukkan username" name="username" autocomplete="off" class="form-control bg-transparent" />
-                                    <!--end::Email-->
-                                </div>
-                                <!--end::Input group=-->
-                                <div class="fv-row mb-8">
-                                    <!--begin::Password-->
-                                    <div class="text-gray">Password</div>
-                                    <input type="password" placeholder="masukkan password" name="password" autocomplete="off" class="form-control bg-transparent" />
-                                    <!--end::Password-->
-                                </div>
-                                <!--end::Input group=-->
-                                <!--begin::Submit button-->
-                                <div class="d-grid mb-10">
-                                    <?php
-                                    if ($this->session->flashdata('error')) {
-                                        echo '<div class="text-danger text-center">Kesalahan, username atau password salah</div>';
-                                    }
-                                    ?>
-                                    <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
-                                        <!--begin::Indicator label-->
-                                        <span class="indicator-label">Sign In</span>
-                                    </button>
-                                </div>
-                                <!--end::Submit button-->
-                                <!--begin::Sign up-->
-                                <div class="text-gray-500 text-center fw-semibold fs-6">Belum punya akun?
-                                    <a href="<?= base_url('auth/register') ?>" class="link-primary">Sign up</a>
-                                </div>
-                                <!--end::Sign up-->
-                            </form>
-                            <!--end::Form-->
-                        </div>
-                        <!--end::Wrapper-->
-                    </div>
-                    <!--end::Content-->
-                </div>
-                <!--end::Wrapper-->
-            </div>
-            <!--end::Body-->
-        </div>
-        <!--end::Authentication - Sign-in-->
-    </div>
-    <!--end::Root-->
-    <!--begin::Javascript-->
-    <script>
-        var hostUrl = "<?= base_url('assets/') ?>assets/";
-    </script>
-    <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="<?= base_url('assets/') ?>assets/plugins/global/plugins.bundle.js"></script>
-    <script src="<?= base_url('assets/') ?>assets/js/scripts.bundle.js"></script>
-    <!--end::Javascript-->
-    <script>
-        toastr.options = {
-            "closeButton": true,
-            "debug": true,
-            "newestOnTop": true,
-            "progressBar": true,
-            "positionClass": "toastr-top-right",
-            "preventDuplicates": false,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        };
+	  .background-radial-gradient {
+		min-height: 100%;
+		background-color: hsla(238.868, 98%, 32%, 0.91);
+		background-image: radial-gradient(650px circle at 0% 0%,
+			hsla(239, 88%, 22%, 0.91),
+			hsla(239, 85%, 16%, 0.91),
+			hsla(239, 52%, 20%, 0.91),
+			hsla(239, 71%, 33%, 0.91),
+			transparent 100%),	
+		  radial-gradient(1250px circle at 100% 100%,
+		    hsla(238.868, 98%, 32%, 0.91),
+			hsla(239, 85%, 16%, 0.91),
+			hsla(239, 52%, 20%, 0.91),
+			hsla(239, 71%, 33%, 0.91),
+			transparent 100%);
+	  }
+  
+	  #radius-shape-1 {
+		height: 220px;
+		width: 220px;
+		top: -60px;
+		left: -130px;
+		background: radial-gradient(#228cbd, #50b9e9);
+		overflow: hidden;
+	  }
+  
+	  #radius-shape-2 {
+		border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+		bottom: -60px;	
+		right: -110px;
+		width: 300px;
+		height: 300px;
+		background: radial-gradient(#228cbd, #50b9e9);
+		overflow: hidden;
+	  }
+  
+	  .bg-glass {
+		background-color: hsla(0, 0%, 100%, 0.7) !important;
+		backdrop-filter: saturate(200%) blur(25px);
+	  }
+	  
+	</style>
+  
+	<div class="container px-4 px-md-5 text-center text-lg-start align-middle">
+	  <div class="row gx-lg-5 align-items-center mb-5">
+		<div class="col-lg-6 mb-3 mb-lg-0 hahaha" style="z-index: 10">
+		  <h1 class="my-3 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+			Dinas Perumahan, Kawasan Permukiman<br />
+			<span class="text-ijo">dan Cipta Karya</span>
+		  </h1>
+		  <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+			Kabupaten Malang, Jawa Timur
+		  </p>
+		</div>
+  
+		<div class="col-lg-6 mb-5 mb-lg-0 position-relative hahaha">
+		  <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong mt-5 ms-5"></div>
+		  <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+  
+		  <div class="card bg-glass rounded-4">
+			<div class="card-body px-4 py-5 px-md-5">
+				<div class="mb-4 text-center">
+					<img src="<?php echo base_url('assets/login/');?>logokabupaten.png" class="img-thumbnaill" alt="...">
+				</div>
+			  <form action=" <?= base_url('auth/proses_log') ?>" method="post">
+				<!-- Email input -->
+				<div class="form-outline mb-4 text-start">
+					<label class="form-label" for="form3Example3">Username</label>
+				  <input type="text" id="form3Example3" name = "username" class="form-control" />
+				</div>
+  
+				<!-- Password input -->
+				<div class="row">
+					<div class="col-md-12 mb-2">
+					  <div class="form-outline text-start">
+				  		<label class="form-label" for="form3Example4">Kata Sandi</label>
+						<input type="password" id="form3Example4" name="password" class="form-control" />
+					  </div>
+					</div>
+				</div>
+  
+				<!-- Submit button -->
+				<button type="submit" class="btn btn-block mt-4 rounded btn-success">
+				  Log In
+				</button>
 
-        // toastr.success("I do not think that means what you think it means.");
-        <?php
-        if ($this->session->flashdata('success')) {
-        ?>
-            // toastr.success("I do not think that means what you think it means.");
-            toastr.success("<?= $this->session->flashdata('success'); ?>");
-        <?php
-            // echo $this->session->flashdata();
-        } elseif ($this->session->flashdata('error')) {
-        ?>
-            // toastr.success("I do not think that means what you think it means.");
-            toastr.error("<?= $this->session->flashdata('error'); ?>");
-        <?php
-            // echo $this->session->flashdata();
-        } elseif ($this->session->flashdata('warning')) {
-        ?>
-            // toastr.success("I do not think that means what you think it means.");
-            toastr.warning("<?= $this->session->flashdata('warning'); ?>");
-        <?php
-            // echo $this->session->flashdata();
-        } elseif ($this->session->flashdata('info')) {
-        ?>
-            // toastr.success("I do not think that means what you think it means.");
-            toastr.info("<?= $this->session->flashdata('info'); ?>");
-        <?php
-            // echo $this->session->flashdata();
-        }
-        ?>
-    </script>
+				<div class="mt-4 mb-0 py-0 text-center">
+					<div class="text-black" >
+						Belum memiliki akun? <a href="daftar.html" class="ms-1 hahahaha">Daftar sekarang!</a>
+					</div>
+				</div>
+  
+				<!-- Register buttons -->
+			  </form>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </section>
+  <!-- Section: Design Block -->
+	
+
+	
+<!--===============================================================================================-->	
+	<script src="<?php echo base_url('assets/login/');?>vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="<?php echo base_url('assets/login/');?>vendor/bootstrap/js/popper.js"></script>
+	<script src="<?php echo base_url('assets/login/');?>vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="<?php echo base_url('assets/login/');?>vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="<?php echo base_url('assets/login/');?>vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="<?php echo base_url('assets/login/');?>js/main.js"></script>
+
 </body>
-<!--end::Body-->
-
 </html>

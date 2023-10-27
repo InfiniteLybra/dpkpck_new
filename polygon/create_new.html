@@ -39,6 +39,7 @@
             cursor: pointer;
             border: 2px solid black;
         }
+
         .button_green {
             /* Atur properti CSS sesuai kebutuhan Anda */
             display: inline-block;
@@ -50,6 +51,7 @@
             border-radius: 2px;
             cursor: pointer;
         }
+
         .button_yellow {
             /* Atur properti CSS sesuai kebutuhan Anda */
             display: inline-block;
@@ -72,7 +74,7 @@
     <div id="map"></div><br>
     <button class="button_yellow" id="reloadButton">Klik untuk Perubahan</button>
     <button id="export" class="button_green">Expor</button>
-    <a href="http://localhost/project/dpkpck/Geojson" class="button_blue" target="_blank">Convert SHP</a>
+    <a href="http://localhost/project/dpkpck_new/Geojson" class="button_blue" target="_blank">Convert SHP</a>
 
 </body>
 <!-- <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script> -->
@@ -89,12 +91,26 @@
 <script src="leaflet.shpfile.js"></script>
 
 <script>
+    var boundary = L.polygon([
+        [-8.476526, 112.975311],
+        [-7.923313, 112.947845],
+        [-7.756714, 112.587792],
+        [-7.752253, 112.285789],
+        [-8.443661, 112.321731]
+    ], {
+        color: 'white',       
+        opacity: 0.0,        
+        fillColor: 'white',   
+        fillOpacity: 0.0     
+    });
     // var map = L.map('map').setView([51.505, -0.09], 13);
     var map = L.map('map', {
-        // layers: [base],
         tap: false, // ref https://github.com/Leaflet/Leaflet/issues/7255
-        center: new L.LatLng(51.505, -0.09),
+        center: new L.LatLng(-8.133063, 112.568680),
         zoom: 15,
+        minZoom: 13, // Set zoom level minimum
+        maxZoom: 19, // Set zoom level maximum
+        maxBounds: boundary.getBounds(),
         fullscreenControl: true,
         fullscreenControlOptions: { // optional
             title: "Show me the fullscreen !",
@@ -106,41 +122,22 @@
         attribution: '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // var polygon = L.polygon([
-    //     [51.509, -0.08],
-    //     [51.503, -0.06],
-    //     [51.51, -0.047]
-    // ]).addTo(map);
-
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
         maxZoom: 19,
     }).addTo(map);
 
-    map.locate({
-        setView: true,
-        maxZoom: 22
-    });
+    // map.locate({
+    //     setView: true,
+    //     maxZoom: 22
+    // });
 
     L.control.scale({
         imperial: true,
         metric: true,
         position: 'bottomright'
     }).addTo(map);
-    // open street map
-    var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    });
-    osm.addTo(map);
-
-    // watercolor
-    var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 19
-    });
-    CartoDB_DarkMatter.addTo(map);
-
+    
     // google street
     googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
         maxZoom: 20,
@@ -156,20 +153,9 @@
     googleSat.addTo(map);
 
 
-    var Stamen_Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
-        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        subdomains: 'abcd',
-        minZoom: 1,
-        maxZoom: 16,
-        ext: 'jpg'
-    });
-    Stamen_Watercolor.addTo(map);
-
     var baseLayers = {
         "Satellite": googleSat,
         "Google Map": googleStreets,
-        "Water Color": Stamen_Watercolor,
-        "OpenStreetMap": osm,
     };
 
 

@@ -4944,4 +4944,15 @@ class Kkpr_Model extends CI_Model
         return $this->db->where('id_user', $user_id)->get('users')->row();
     }
 
+    public function simpan_koordinat($id, $koordinat)
+    {
+        // Menyimpan koordinat ke dalam tabel data_sertifikat_peta
+        $data = array(
+            'titik_koordinat' => $koordinat
+        );
+
+        $this->db->where('id_permohonan', $id); // Menggunakan kolom 'id_permohonan' yang sesuai
+        $this->db->update('data_sertifikat_peta', $data);
+    }
+
 }

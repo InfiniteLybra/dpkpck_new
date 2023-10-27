@@ -154,7 +154,7 @@ class Kkpr extends CI_Controller
         $this->load->view('admin/kkpr/config_sertifikat/list_data',$data);
         $this->load->view('templates/footer');
         $this->load->view('templates/footScript');
-        $this->load->view('admin/kkpr/config_sertifikat/script_config');
+        // $this->load->view('admin/kkpr/config_sertifikat/script_config');
     }
     public function detail_config_peta($id)
     {     
@@ -304,7 +304,7 @@ class Kkpr extends CI_Controller
         $this->load->view('admin/kkpr/rekap/rekap',$data);
         $this->load->view('templates/footer');
         $this->load->view('templates/footScript');
-        $this->load->view('admin/kkpr/rekap/script_rekap');
+        // $this->load->view('admin/kkpr/rekap/script_rekap');
     }
     public function export_rekap()
     {       
@@ -544,7 +544,7 @@ class Kkpr extends CI_Controller
         $this->load->view('admin/kkpr/permohonan/kkpr',$data);
         $this->load->view('templates/footer');
         $this->load->view('templates/footScript');
-        $this->load->view('admin/kkpr/permohonan/script_kkpr');
+        // $this->load->view('admin/kkpr/permohonan/script_kkpr');
     }
     public function detail_kkpr($id)
     {
@@ -592,7 +592,7 @@ class Kkpr extends CI_Controller
         $this->load->view('admin/kkpr/daftar_pengembalian_formulir/index',$data);
         $this->load->view('templates/footer');
         $this->load->view('templates/footScript');
-        $this->load->view('admin/kkpr/daftar_pengembalian_formulir/script');
+        // $this->load->view('admin/kkpr/daftar_pengembalian_formulir/script');
     }
     public function proses_tolak_notif($id,$notif)
     {
@@ -698,7 +698,7 @@ class Kkpr extends CI_Controller
         $this->load->view('admin/kkpr/monitoring_berkas/monitoring_berkas',$data);
         $this->load->view('templates/footer');
         $this->load->view('templates/footScript');
-        $this->load->view('admin/kkpr/monitoring_berkas/script');
+        // $this->load->view('admin/kkpr/monitoring_berkas/script');
     }
     public function export_monitoring_berkas()
     {
@@ -794,6 +794,70 @@ class Kkpr extends CI_Controller
             $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
         }
         redirect('Kkpr/pembagian_berkas');
+    }
+
+    public function viewupload($id)
+    {
+        $data['id'] = $id;
+        $this->load->view('templates/header');
+        $this->load->view('admin/kkpr/config_sertifikat/view_upload', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function upload_zip_file($id)
+    {
+        $data['id'] = $id;
+        $config['upload_path'] = 'save_upload';
+        $config['allowed_types'] = 'zip';
+        $config['max_size'] = 2048;
+
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('zip_file')) {
+            $data = $this->upload->data();
+            $zip_file_path = $data['full_path'];
+            $command = 'python python_scripts\convert.py ' . $zip_file_path;
+            $output = shell_exec($command);
+            $output = trim($output, "[]");
+            $output = rtrim($output, "\n");
+            $coordinate_strings = explode(", ", $output);
+            $coordinates = [];
+
+            for ($i = 0; $i < count($coordinate_strings); $i += 2) {
+                $lat = trim($coordinate_strings[$i], "()");
+                $lng = trim($coordinate_strings[$i + 1], "()");
+
+                $lng = rtrim($lng, ')');
+                $formatted_coordinate = [
+                    'koordinat' => $lat . ', ' . $lng
+                ];
+                $coordinates[] = $formatted_coordinate;
+            }
+
+            $last_coordinate = end($coordinates);
+            if ($last_coordinate !== false) {
+                $last_coordinate['koordinat'] = rtrim($last_coordinate['koordinat'], ')');
+            }
+
+            $formatted_coordinates = [];
+            $index = 'a';
+
+            foreach ($coordinates as $coordinate) {
+                $formatted_coordinates[] = [
+                    'koordinat' => $index . '.' . $coordinate['koordinat']
+                ];
+                $index++;
+            }
+            $koordinat_string = json_encode($formatted_coordinates);
+            $koordinat_string = str_replace(')]', '', $koordinat_string);
+            $this->load->model('Kkpr_model');
+            $this->Kkpr_model->simpan_koordinat($id, $koordinat_string);
+            unlink($zip_file_path);
+            $this->session->set_flashdata('success', 'Data Berhasil Di Convert');
+            redirect('Kkpr/detail_config_peta/' . $id);
+        } else {
+            $error = $this->upload->display_errors();
+            echo "Upload error: " . $error;
+        }
     }
 
 }

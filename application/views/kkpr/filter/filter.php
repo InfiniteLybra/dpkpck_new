@@ -1,122 +1,127 @@
-<!--begin::Card-->
-<div class="card">
-    <!--begin::Card body-->
-    <div class="card-body">
-        <!--begin::Stepper-->
-        <div class="stepper stepper-links d-flex flex-column pt-15" id="kt_create_account_stepper">
-            <h2 class="text-center">Jenis Permohonan</h2>
-            <!--begin::Form-->
-            <form class="mx-auto mw-800px w-100 pt-15 pb-10" id="kt_create_account_form" method="POST" action="<?php echo base_url('Formulir.html'); ?>" enctype="multipart/form-data">
-                <!--begin::Step 1-->
-                <div class="current" data-kt-stepper-element="content">
-                    <!--begin::Wrapper-->
-                    <div class="w-100">
-                        <div class="mb-3 row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">
-                                Umk dan Non Umk
-                                <!-- <span class="required"></span> -->
-                            </label>
-                            <div class="col-md-9 col-sm-9 ">
-                                <select name="umk" id="umk" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Type Pengurusan">
+<!-- Content -->
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Master /</span> Formulir</h4>
+
+    <div class="row">
+        <div class="col mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">Jenis Permohonan</h5>
+                    <form id="kt_create_account_form" method="POST" action="<?php echo base_url('Formulir.html'); ?>" enctype="multipart/form-data">
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="umk">Umk dan Non Umk</label>
+                        <div class="col-sm-10">
+                        <select name="umk" id="umk" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Type Pengurusan">
                                     <option value="" selected></option>
                                     <option value="umk">Umk</option>
                                     <option value="non_umk">Non Umk</option>
                                 </select>
-                            </div>
                         </div>
-                        <div id="pengajuan" style="display: none;">
-                            <div class="mb-3 row">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">
-                                    Type Formulir
-                                    <!-- <span class="required"></span> -->
-                                </label>
-                                <div class="col-md-9 col-sm-9 ">
-                                    <select name="formulir" id="formulir" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Type Pengurusan">
+                    </div>
+                    <div id="pengajuan" style="display: none;">
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="formulir">
+                                Tipe Formulir
+                            </label>
+                            <div class="col-sm-10">
+                            <select name="formulir" id="formulir" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Type Pengurusan">
                                         <option value="" selected></option>
                                         <option value="itr">Itr</option>
                                         <option value="kkpr">Kkpr</option>
                                     </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="form_itr" style="display: none;">
+                        <div class="row mb-3 ">
+                            <label class="col-sm-2 col-form-label" for="pengurusan_itr">
+                                Tipe Pengurusan
+                            </label>
+                            <div class="col-sm-10">
+                            <select name="pengurusan_itr" id="pengurusan_itr" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Type Pengurusan">
+                                    <option value="" selected></option>
+                                    <option value="perusahaan">Perusahaan</option>
+                                    <option value="perorangan">Perorangan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="badan_hukum_itr">
+                                Berbadan Hukum
+                            </label>
+                            <div class="col-sm-10">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input mb-2" type="radio" value="1" name="badan_hukum_itr" />
+                                    <label class="form-check-label" for="flexRadioDefault">
+                                        Ya
+                                        </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input mb-2" type="radio" value="0" name="badan_hukum_itr" />
+                                    <label class="form-check-label" for="flexRadioDefault">
+                                    Tidak
+                                        </label>
                                 </div>
                             </div>
                         </div>
-                        <!-- <style type="text/css">
-                            div.kkpr { display:none; }
-                        </style> -->
-                        <div id="form_kkpr" style="display: none;">
-                            <div class="mb-3 row">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">
-                                    Type Pengurusan
-                                    <!-- <span class="required"></span> -->
-                                </label>
-                                <div class="col-md-9 col-sm-9 ">
-                                    <select name="pengurusan" id="pengurusan" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Type Pengurusan">
+                    </div>
+
+                    <div id="form_kkpr" style="display: none;">
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="pengurusan">
+                                Tipe Pengurusan
+                            </label>
+                            <div class="col-sm-10">
+                            <select name="pengurusan" id="pengurusan" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Type Pengurusan">
                                         <option value="" selected></option>
                                         <option value="perusahaan">Perusahaan</option>
                                         <option value="perorangan">Perorangan</option>
                                     </select>
-                                </div>
                             </div>
-                            <div class="mb-3 row">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">
-                                    Dikuasakan?
-                                    <!-- <span class="required"></span> -->
-                                </label>
-                                <div class="col-md-9 col-sm-9 ">
-                                    <div class="form-check form-check-custom form-check-solid mb-5">
-                                        <input class="form-check-input mb-2" type="radio" value="1" name="kuasa" />
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="kuasa">
+                                Dikuasakan?
+                            </label>
+                            <div class="col-sm-10">
+                                <div class="form-check form-check-inline">
+                                <input class="form-check-input mb-2" type="radio" value="1" name="kuasa" />
                                         <label class="form-check-label" for="flexRadioDefault">
                                             Ya
-                                        </label>&emsp;
-                                        <input class="form-check-input mb-2" type="radio" value="0" name="kuasa" />
+                                        </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                <input class="form-check-input mb-2" type="radio" value="0" name="kuasa" />
                                         <label class="form-check-label" for="flexRadioDefault">
                                             Tidak
                                         </label>
-                                    </div>
                                 </div>
                             </div>
-                            <div class="mb-3 row">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">
-                                    Berbadan Hukum
-                                    <!-- <span class="required"></span> -->
-                                </label>
-                                <div class="col-md-9 col-sm-9 ">
-                                    <div class="form-check form-check-custom form-check-solid mb-5">
-                                        <input class="form-check-input mb-2" type="radio" value="1" name="badan_hukum" />
-                                        <label class="form-check-label" for="flexRadioDefault">
-                                            Ya
-                                        </label>&emsp;
-                                        <input class="form-check-input mb-2" type="radio" value="0" name="badan_hukum" />
-                                        <label class="form-check-label" for="flexRadioDefault">
-                                            Tidak
-                                        </label>
-                                    </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="badan_hukum">
+                                Berbadan Hukum
+                            </label>
+                            <div class="col-sm-10">
+                                <div class="form-check form-check-inline">
+                                <input class="form-check-input mb-2" type="radio" value="1" name="badan_hukum" />
+                                    <label class="form-check-label" for="badan_hukum_yes">Ya</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                <input class="form-check-input mb-2" type="radio" value="0" name="badan_hukum" />
+                                    <label class="form-check-label" for="badan_hukum_no">Tidak</label>
                                 </div>
                             </div>
-                            <!-- <div class="mb-3 row">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">
-                                    Apakah Pemilik Lahan Meninggal ?
-                                    
-                                </label>
-                                <div class="col-md-9 col-sm-9 ">
-                                    <div class="form-check form-check-custom form-check-solid mb-5">
-                                        <input class="form-check-input mb-2" type="radio" value="1" name="pemilik_lahan_meninggal" />
-                                        <label class="form-check-label" for="flexRadioDefault">
-                                            Ya
-                                        </label>&emsp;
-                                        <input class="form-check-input mb-2" type="radio" value="0" name="pemilik_lahan_meninggal" />
-                                        <label class="form-check-label" for="flexRadioDefault">
-                                            Tidak
-                                        </label>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <div class="mb-3 row">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">
-                                    Type Pengajuan
-                                    <!-- <span class="required"></span> -->
-                                </label>
-                                <div class="col-md-9 col-sm-9 ">
-                                    <select name="pengajuan" id="id_pengajuan" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Type Pengajuan">
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="pengajuan">
+                                Tipe Pengajuan
+                            </label>
+                            <div class="col-sm-10">
+                            <select name="pengajuan" id="id_pengajuan" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Type Pengajuan">
                                         <option value="" selected></option>
                                         <?php
                                         $kategori = $this->db->query("SELECT * FROM pilihan WHERE nama_pilihan = 'kategori_kkpr'")->row();
@@ -128,93 +133,112 @@
                                         <option value="lainya">Lainya</option>
                                     </select>
                                     <input type="hidden" id="isi_pengajuan" name="isi_pengajuan">
-                                </div>
-                            </div>
-                        </div>
-                        <div id="lainyaInput" style="display: none;">
-                            <div class="mb-3 row">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">
-                                    Lainya
-                                    <!-- <span class="required"></span> -->
-                                </label>
-                                <div class="col-md-9 col-sm-9 ">
-                                    <input type="text" class="form-control mb-2" name="lainya" placeholder="Lainya" value="">
-                                </div>
-                            </div>
-                        </div>                   
-                    <div id="form_itr" style="display: none;">
-                        <div class="mb-3 row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">
-                                Type Pengurusan
-                                <!-- <span class="required"></span> -->
-                            </label>
-                            <div class="col-md-9 col-sm-9 ">
-                                <select name="pengurusan_itr" id="pengurusan_itr" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Type Pengurusan">
-                                    <option value="" selected></option>
-                                    <option value="perusahaan">Perusahaan</option>
-                                    <option value="perorangan">Perorangan</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_perusahaan">
-                                Berbadan Hukum
-                                <!-- <span class="required"></span> -->
-                            </label>
-                            <div class="col-md-9 col-sm-9 ">
-                                <div class="form-check form-check-custom form-check-solid mb-5">
-                                    <input class="form-check-input mb-2" type="radio" value="1" name="badan_hukum_itr" />
-                                    <label class="form-check-label" for="flexRadioDefault">
-                                        Ya
-                                    </label>&emsp;
-                                    <input class="form-check-input mb-2" type="radio" value="0" name="badan_hukum_itr" />
-                                    <label class="form-check-label" for="flexRadioDefault">
-                                        Tidak
-                                    </label>
-                                </div>
                             </div>
                         </div>
                     </div>
+                    <div id="lainnyaInput" style="display: none;">
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="lainnya">
+                                Lainnya
+                            </label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control mb-2" name="lainya" placeholder="Lainya" value="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="next action-button btn btn-primary" style="float: right;">
+                        Submit
+                    </button>
+
+                    </form>
                 </div>
-                <!--end::Wrapper-->
-        </div>
-        <!--end::Step 1-->
-        <!--begin::Actions-->
-        <div class="d-flex flex-stack pt-15">
-            <!--begin::Wrapper-->
-            <div class="mr-2">
-                <button type="button" class="btn btn-lg btn-light-primary me-3" data-kt-stepper-action="previous">
-                    <i class="ki-duotone ki-arrow-left fs-4 me-1">
-                        <span class="path1"></span>
-                        <span class="path2"></span>
-                    </i>Back</button>
             </div>
-            <!--end::Wrapper-->
-            <!--begin::Wrapper-->
-            <div class="">
-                <!-- <button type="button" class="btn btn-lg btn-primary me-3" data-kt-stepper-action="submit">
-                    <span class="indicator-label">Submit
-                        <i class="ki-duotone ki-arrow-right fs-3 ms-2 me-0">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i></span>
-                    <span class="indicator-progress">Please wait...
-                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                </button> -->
-                <button type="submit" class="btn btn-lg btn-primary">Submit
-                    <i class="ki-duotone ki-arrow-right fs-4 ms-1 me-0">
-                        <span class="path1"></span>
-                        <span class="path2"></span>
-                    </i></button>
-            </div>
-            <!--end::Wrapper-->
         </div>
-        <!--end::Actions-->
-        </form>
-        <!--end::Form-->
     </div>
-    <!--end::Stepper-->
 </div>
-<!--end::Card body-->
+<!-- / Content -->
+
+<!-- Modal Persiapan Pengisian Form -->
+<div class="modal fade" id="modalPersiapan" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalPersiapan">Persiapan Pengisian Form</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-2">
+                    <div class="col">
+                        <h5>Lampiran/Persyaratan KKPR</h5>
+                        <p>1. Dokumen yang diunduh pada Oss</p>
+                        <p>2. Foto/fotokopi KTP Pemohon</p>
+                        <p>3. Fotokopi akta pendirian perusahaan yang di legalisir (jika mengurus atas nama perusahaan)
+                        </p>
+                        <p>4. SIUP</p>
+                        <p>5. TDP/NIB</p>
+                        <p>6. Foto/fotokopi Surat Tanah</p>
+                        <p>7. Gambar Peta Bidang dengan tipe file .jpg</p>
+                        <p>8. Shape File dengan tipe file .zip</p>
+                        <p>9. Pertimbangan Teknis pertanahan dari BPN</p>
+                        <p>10. Foto/Fotocopy NPWP (jika berbadan hukum)</p>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <h6>Persyaratan Tambahan Jika Pemilik Lahan telah Meninggal</h6>
+                        <p>1. Surat Kematian</p>
+                        <p>2. Surat Kuasa dari semua ahli waris (jika ahli waris lebih dari 1)</p>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <h6>Persyaratan Tambahan Jika Pengurusan Tower</h6>
+                        <p>1. Surat Rekomendasi dari Dinas Komunikasi dan Informatika</p>
+                        <p>2. Surat Rekomendasi dari Komando Operasi TNI Angkatan Udara II Pangkalan TNI AU Abdulrachman
+                            Saleh (untuk lokasi pengajuan di Kec. Pakis, Kec. Jabung, dan Kec. Singosari)</p>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <h6>Persyaratan Tambahan Jika Pengurusan Minimarket/Toko Modern</h6>
+                        <p>1. Surat rekomendasi dinas perdagangan dan perindustrian</p>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <h6>Persyaratan Tambahan Jika Pegurusan Peternakan</h6>
+                        <p>1. Surat rekomendasi dinas peternakan dan kesehatan hewan</p>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <h6>Persyaratan Tambahan Jika Pengurusan SPBU/SPBU MINI/Sejenisnya</h6>
+                        <p>1. Surat Rekomendasi dari PT. Pertamina (Persero) Marketing Operation Region (MOR) V</p>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <h6>Persyaratan Tambahan Jika Pengurusan Tempat Ibadah</h6>
+                        <p>1. Daftar nama dan fotokopi Kartu Tanda Penduduk (KTP) (paling sedikit 90 orang dan daftar
+                            dukungan masyarakat sekitar paling sedikit 60 orang.)</p>
+                        <p>2. Surat dari Forum Komunikasi Umat Beragama (FKUB)</p>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <h5>Lampiran ITR</h5>
+                        <p>1. </p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer pt-4">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                    Selanjutnya
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
-<!--end::Card-->
+<!-- End Modal -->

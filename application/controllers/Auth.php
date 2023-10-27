@@ -27,7 +27,7 @@ class Auth extends CI_Controller
             if($cek_log->level == 1){
                 redirect('Dashboard/user');
             }else{
-                redirect('User');
+                redirect('Dashboard/admin');
             }
         } else {
             $this->session->set_flashdata('error', 'Terjadi kesalahan');

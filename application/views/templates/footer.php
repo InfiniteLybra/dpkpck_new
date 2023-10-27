@@ -1,48 +1,30 @@
-</div>
-<!--end::Content container-->
-</div>
-<!--end::Content-->
-</div>
-<!--end::Content wrapper-->
-<!--begin::Footer-->
-<div id=" kt_app_footer " class=" app-footer ">
-    <!--begin::Footer container-->
-    <div class=" app-container container-fluid d-flex flex-column flex-md-row flex-center
-                                                        flex-md-stack py-3 ">
-        <!--begin::Copyright-->
-        <div class=" text-dark order-2 order-md-1 ">
-            <span class=" text-muted fw-semibold me-1 ">2023&copy;</span>
-            <a href=" https://keenthemes.com " target=" _blank " class=" text-gray-800 text-hover-primary ">Keenthemes</a>
+<!-- Modal Detail -->
+
+
+<!-- Footer -->
+<footer class="content-footer footer bg-footer-theme">
+    <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+        <div class="mb-2 mb-md-0">
+            ©
+            <script>
+                document.write(new Date().getFullYear());
+            </script>
         </div>
-        <!--end::Copyright-->
-        <!--begin::Menu-->
-        <ul class=" menu menu-gray-600 menu-hover-primary fw-semibold order-1 ">
-            <li class=" menu-item ">
-                <a href=" https://keenthemes.com " target=" _blank " class=" menu-link px-2 ">About</a>
-            </li>
-            <li class=" menu-item ">
-                <a href=" https://devs.keenthemes.com " target=" _blank " class=" menu-link px-2 ">Support</a>
-            </li>
-            <li class=" menu-item ">
-                <a href=" https://1.envato.market/EA4JP " target=" _blank " class=" menu-link px-2 ">Purchase</a>
-            </li>
-        </ul>
-        <!--end::Menu-->
     </div>
-    <!--end::Footer container-->
+</footer>
+<!-- / Footer -->
+
+<div class="content-backdrop fade"></div>
 </div>
-<!--end::Footer-->
+<!-- Content wrapper -->
 </div>
-<!--end:::Main-->
+<!-- / Layout page -->
 </div>
-<!--end::Wrapper-->
+
+<!-- Overlay -->
+<div class="layout-overlay layout-menu-toggle"></div>
 </div>
-<!--end::Page-->
-</div>
-<!--end::App-->
-<!--begin::Drawers-->
-<!--end::Drawers-->
-<!--begin::Scrolltop-->
+<!-- / Layout wrapper -->
 <div id=" kt_scrolltop " class=" scrolltop " data-kt-scrolltop=" true ">
     <i class=" ki-duotone ki-arrow-up ">
         <span class=" path1 "></span>

@@ -20,5 +20,13 @@ class User extends CI_Controller
         $this->load->view('templates/footScript');
         $this->load->view('user/dashboard/script');
     }
+    public function kelola_user()
+    {        
+        $this->load->view('templates/header');
+        $this->load->view('admin/kelola_user/index');
+        $this->load->view('templates/footer');
+        $this->load->view('templates/footScript');
+        // $this->load->view('user/dashboard/script');
+    }
 }
 ?>

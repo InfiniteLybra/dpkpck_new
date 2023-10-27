@@ -136,7 +136,7 @@
         }
     }
 
-    var shpfile = new L.Shapefile('http://localhost/project/dpkpck/assets_dokumen/shp/real_shp.zip', {
+    var shpfile = new L.Shapefile('http://localhost/project/dpkpck_new/assets_dokumen/shp/real_shp.zip', {
         onEachFeature: function (feature, layer) {
             if (feature.properties) {
                 // layer.bindPopup(Object.keys(feature.properties).map(function (k) {
