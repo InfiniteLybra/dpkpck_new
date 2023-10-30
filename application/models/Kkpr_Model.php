@@ -394,19 +394,19 @@ class Kkpr_Model extends CI_Model
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
@@ -608,19 +608,19 @@ class Kkpr_Model extends CI_Model
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tower') ? "npwp,surat_tanah,peta_bidang,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
@@ -1111,19 +1111,19 @@ class Kkpr_Model extends CI_Model
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
@@ -1315,19 +1315,19 @@ class Kkpr_Model extends CI_Model
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'biasa') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'biasa') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'lainya') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'lainya') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'klinik') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'klinik') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'pergudangan') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
-                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
+                    " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'pergudangan') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'perumahan') ? "npwp,surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "surat_tanah,peta_bidang" : "") . "                                            
                     " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'perumahan') ? "npwp,surat_tanah,peta_bidang" : "") . "                                            
@@ -1451,6 +1451,7 @@ class Kkpr_Model extends CI_Model
                         )";
             }
             // echo $insert;
+            // echo "MASUK GA ANNING";
             $query = $this->db->query($insert);
             if ($query) {
                 return true;
@@ -3701,7 +3702,7 @@ class Kkpr_Model extends CI_Model
             
             $admin = $this->session->userdata('id_user');
             $waktu = date('Y-m-d H:i:s');
-            $this->db->query("INSERT INTO log_admin (type,id_user,keterangan,waktu) VALUES('insert dan update','$admin','Tambah Keterangan dan tolak berkas di halaman admin permohonan','$waktu')");
+            $this->db->query("INSERT INTO log_admin (type,id_user,id_permohonan,keterangan,waktu) VALUES('insert dan update','$admin','$id','Tambah Keterangan dan tolak berkas di halaman admin permohonan','$waktu')");
 
         $validasi = $this->db->query("SELECT * FROM validasi_formulir WHERE id_permohonan = '$id'")->row();
         $id_user = $this->session->userdata('id_user');
@@ -3747,7 +3748,7 @@ class Kkpr_Model extends CI_Model
         $query = $this->db->query("UPDATE kkpr_permohonan SET status_berkas = '2' WHERE id_kkpr_permohonan = '$id'");
         $admin = $this->session->userdata('id_user');
         $waktu = date('Y-m-d H:i:s');
-        $this->db->query("INSERT INTO log_admin (type,id_user,keterangan,waktu) VALUES('insert dan update','$admin','Terima berkas di halaman admin permohonan','$waktu')");
+        $this->db->query("INSERT INTO log_admin (type,id_user,id_permohonan,keterangan,waktu) VALUES('insert dan update','$admin','$id','Terima berkas di halaman admin permohonan','$waktu')");
         $data = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_kkpr_permohonan = '$id'")->row();
         $curl = curl_init();
 
@@ -4047,7 +4048,7 @@ class Kkpr_Model extends CI_Model
 
         $admin = $this->session->userdata('id_user');
             $waktu = date('Y-m-d H:i:s');
-            $this->db->query("INSERT INTO log_admin (type,id_user,keterangan,waktu) VALUES('insert atau update','$admin','Tambah atau Update pada config peta','$waktu')");
+            $this->db->query("INSERT INTO log_admin (type,id_user,id_permohonan,keterangan,waktu) VALUES('insert atau update','$admin','$id_permohonan','Tambah atau Update pada config peta','$waktu')");
         // echo $query;
         $query1 = $this->db->query($query);
         if ($query1) {
@@ -4231,7 +4232,7 @@ class Kkpr_Model extends CI_Model
         }
         $admin = $this->session->userdata('id_user');
             $waktu = date('Y-m-d H:i:s');
-            $this->db->query("INSERT INTO log_admin (type,id_user,keterangan,waktu) VALUES('insert dan update','$admin','Insert atau Update data pada config draft peta','$waktu')");
+            $this->db->query("INSERT INTO log_admin (type,id_user,id_permohonan,keterangan,waktu) VALUES('insert dan update','$admin','$id_permohonan','Insert atau Update data pada config draft peta','$waktu')");
         // echo $query;
         $query1 = $this->db->query($query);
         if ($query1) {
@@ -4461,7 +4462,7 @@ class Kkpr_Model extends CI_Model
         ");
         $admin = $this->session->userdata('id_user');
         $waktu = date('Y-m-d H:i:s');
-        $this->db->query("INSERT INTO log_admin (type,id_user,keterangan,waktu) VALUES('insert dan update','$admin','Insert atau Update data pada config lhs','$waktu')");
+        $this->db->query("INSERT INTO log_admin (type,id_user,id_permohonan,keterangan,waktu) VALUES('insert dan update','$admin','$id_permohonan','Insert atau Update data pada config lhs','$waktu')");
         // echo $query;
         $query1 = $this->db->query($query);
         if ($query1) {

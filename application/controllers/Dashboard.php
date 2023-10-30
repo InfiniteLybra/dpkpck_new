@@ -19,6 +19,10 @@ class Dashboard extends CI_Controller
         $this->load->view('templates/footScript');
         // $this->load->view('kkpr/filter/script_filter');
     }
+    public function landing()
+    {       
+        $this->load->view('templates/landing');        
+    }
     public function user()
     {       
         $this->load->view('templates/header');

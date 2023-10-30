@@ -74,3 +74,27 @@
         });
     });
     });
+
+    const logoutButtons = document.querySelectorAll(".logout-button");
+    logoutButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+        Swal.fire({
+        title: "Apakah Anda Yakin?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#e6381a",
+        cancelButtonColor: "#9a9de4",
+        confirmButtonText: "Log Out",
+        cancelButtonText: "Batal",
+        }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+            icon: "success",
+            title: "Berhasil Log Out!",
+            showConfirmButton: false,
+            timer: 1200,
+            });
+        }
+        });
+    });
+    });

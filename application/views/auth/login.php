@@ -4,6 +4,7 @@
 	<title>Daftar</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="<?php echo base_url('assets/');?>assets/img/Logosaja_E-Pora.png" />
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="<?php echo base_url('assets/login/');?> images/icons/favicon.ico"/>
 <!--===============================================================================================-->

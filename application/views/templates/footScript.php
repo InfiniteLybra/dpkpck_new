@@ -19,9 +19,10 @@
 
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>    
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>     -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+   
     <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
@@ -33,21 +34,11 @@
     <script src="<?php echo base_url('assets/');?>libs/datatables/datatablesjquery.min.js"></script>
     <script src="<?php echo base_url('assets/');?>libs/datatables/datatablesbootstrap5.min.js"></script>
     <script src="<?php echo base_url('assets/');?>libs/datatables/fixedColumns.js"></script>
-    <script src="<?php echo base_url('assets/');?>libs/datatables/datatables.js"></script>
+    <script src="<?php echo base_url('assets/');?>libs/datatables/datatables.js"></script> 
 
-    <!-- <script src="<?php echo base_url('assets/');?>libs/datatables/datatablesjquery.js"></script>
-    <script src="<?php echo base_url('assets/');?>libs/datatables/datatablesjquery.min.js"></script>
-    <script src="<?php echo base_url('assets/');?>libs/datatables/datatablesbootstrap5.min.js"></script>
-    <script src="<?php echo base_url('assets/');?>libs/datatables/fixedColumns.js"></script>
-    <script src="<?php echo base_url('assets/');?>libs/datatables/dataTables.buttons.min.js"></script>
-    <script src="<?php echo base_url('assets/');?>libs/datatables/buttons.bootstrap5.min.js"></script>
-    <script src="<?php echo base_url('assets/');?>libs/datatables/jszip.min.js"></script>
-    <script src="<?php echo base_url('assets/');?>libs/datatables/pdfmake.min.js"></script>
-    <script src="<?php echo base_url('assets/');?>libs/datatables/0.1.53.vfs_fonts.js"></script>
-    <script src="<?php echo base_url('assets/');?>libs/datatbles/buttons.html5.min.js"></script>
-    <script src="<?php echo base_url('assets/');?>libs/datatables/buttons.print.min.js"></script>
-    <script src="<?php echo base_url('assets/');?>libs/datatables/buttons.colVis.min.js"></script>
-    <script src="<?php echo base_url('assets/');?>libs/datatables/datatables.js"></script> -->
+     <!-- Sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>   
+    <!-- <script src="<?php echo base_url('assets/');?>js/sweetalert.js"></script> -->
 
     <script src="<?php echo base_url('assets/');?>js/form.js"></script>
     <!-- <script>

@@ -20,7 +20,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="" />
+    <link rel="icon" type="image/x-icon" href="<?php echo base_url('assets/');?>assets/img/Logosaja_E-Pora.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -302,7 +302,7 @@
                   </a>
               </li>
               <li class="menu-item">
-                  <a href="<?php echo base_url('assets/');?>views/admin/kelola_user/index.html" class="menu-link">
+                  <a href="<?php echo base_url('User/kelola_user');?>" class="menu-link">
                     <i class="menu-icon tf-icons bx bxs-user-account"></i>
                     <div data-i18n="Kelola User">Kelola User</div>
                   </a>
@@ -426,7 +426,7 @@
                   </a>
               </li>
               <li class="menu-item">
-                  <a href="<?php echo base_url('assets/');?>views/admin/kelola_user/index.html" class="menu-link">
+                  <a href="<?php echo base_url('User/kelola_user');?>" class="menu-link">
                     <i class="menu-icon tf-icons bx bxs-user-account"></i>
                     <div data-i18n="Kelola User">Kelola User</div>
                   </a>
@@ -535,7 +535,7 @@
                   </a>
               </li>
               <li class="menu-item">
-                  <a href="<?php echo base_url('assets/');?>views/admin/kelola_user/index.html" class="menu-link">
+                  <a href="<?php echo base_url('User/kelola_user');?>" class="menu-link">
                     <i class="menu-icon tf-icons bx bxs-user-account"></i>
                     <div data-i18n="Kelola User">Kelola User</div>
                   </a>
@@ -639,7 +639,7 @@
                   </a>
               </li>
               <li class="menu-item">
-                  <a href="<?php echo base_url('assets/');?>views/admin/kelola_user/index.html" class="menu-link">
+                  <a href="<?php echo base_url('User/kelola_user');?>" class="menu-link">
                     <i class="menu-icon tf-icons bx bxs-user-account"></i>
                     <div data-i18n="Kelola User">Kelola User</div>
                   </a>
@@ -743,7 +743,7 @@
                   </a>
               </li>
               <li class="menu-item">
-                  <a href="<?php echo base_url('assets/');?>views/admin/kelola_user/index.html" class="menu-link">
+                  <a href="<?php echo base_url('User/kelola_user');?>" class="menu-link">
                     <i class="menu-icon tf-icons bx bxs-user-account"></i>
                     <div data-i18n="Kelola User">Kelola User</div>
                   </a>

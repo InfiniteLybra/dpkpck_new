@@ -43,23 +43,24 @@
                                         </td>
                                         <td>
                                             <span><?php if ($d) echo $d->kategori ?></span>
-                                        </td>                                   
-                                        <td class="text-center">                                           
+                                        </td>
+                                        <td class="text-center">
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown">
                                                     Pilih Petugas
                                                 </button>
-                                            <!--begin::Menu-->
-                                                <?php
-                                                $petugas = $this->db->query("SELECT * FROM user WHERE level = '2' OR level = '3' ")->result();
-                                                foreach ($petugas as $p) {
-                                                ?>
-                                                        <ul class="dropdown-menu">
-                                                            <li><a href="<?php echo base_url('Kkpr/proses_pembagian_berkas/' . $d->id_kkpr_permohonan . '/' . $p->id); ?>" class="dropdown-item"><?= $p->nama_lengkap ?></a></li>
-                                                            <li>
-                                                                <hr class="dropdown-divider" />                                                            
-                                                        </ul>
-                                                <?php } ?>
+                                                <!--begin::Menu-->
+                                                <ul class="dropdown-menu">
+                                                    <?php
+                                                    $petugas = $this->db->query("SELECT * FROM user WHERE level = '2' OR level = '3' ")->result();
+                                                    foreach ($petugas as $p) {
+                                                    ?>
+
+                                                        <li><a href="<?php echo base_url('Kkpr/proses_pembagian_berkas/' . $d->id_kkpr_permohonan . '/' . $p->id); ?>" class="dropdown-item"><?= $p->nama_lengkap ?></a></li>
+                                                        <li>
+                                                            <hr class="dropdown-divider" />
+                                                        <?php } ?>
+                                                </ul>
                                             </div>
                                             <!--end::Menu-->
                                         </td>
