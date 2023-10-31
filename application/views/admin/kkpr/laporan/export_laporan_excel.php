@@ -19,6 +19,7 @@ header("Content-Disposition: attachment; filename= Laporan_Monitoring_KKPR_" . d
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
     <!-- <link href="<?php echo base_url('assets/'); ?>assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
 	<script src="<?php echo base_url('assets/'); ?>assets/js/scripts.bundle.js"></script> -->
+    <style> .str{ mso-number-format:\@; } </style>
     <style>
         .export-table {
             border-collapse: collapse;
@@ -67,68 +68,50 @@ header("Content-Disposition: attachment; filename= Laporan_Monitoring_KKPR_" . d
         <hr>
     </center>
     <div class="separator mb-3 opacity-75"></div>
-    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_category_table">
+    <table class="export-table" align="text-center" border="1">
             <thead>                
-                <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                    <th class="text-center min-w-150px">No</th>
-                    <th class="text-center min-w-150px">Tgl Veriv Berkas</th>
-                    <th class="text-center min-w-150px">Tgl Survei</th>
-                    <th class="text-center min-w-150px">No. Reg Terbit</th>
-                    <th class="text-center min-w-150px">Tanggal Reg</th>
-                    <th class="text-center min-w-150px">Surveyor 1</th>
-                    <th class="text-center min-w-150px">Surveyor 2</th>
-                    <th class="text-center min-w-150px">Type</th>
-                    <th class="text-center min-w-150px">Nama Pemohon</th>
-                    <th class="text-center min-w-150px">Alamat Pemohon</th>
-                    <th class="text-center min-w-150px">Rt Pemohon</th>
-                    <th class="text-center min-w-150px">Rw Pemohon</th>
-                    <th class="text-center min-w-150px">Provinsi Pemohon</th>
-                    <th class="text-center min-w-150px">Kota Pemohon</th>
-                    <th class="text-center min-w-150px">Kecamatan Pemohon</th>
-                    <th class="text-center min-w-150px">Kelurahan Pemohon</th>
-                    <th class="text-center min-w-150px">Telp Pemohon</th>
-                    <th class="text-center min-w-150px">Nama Perusahaan</th>
-                    <th class="text-center min-w-150px">NIB</th>
-                    <th class="text-center min-w-150px">Skala Usaha</th>
-                    <th class="text-center min-w-150px">Klasifikasi Resiko</th>
-                    <th class="text-center min-w-150px">KBLI</th>
-                    <th class="text-center min-w-150px">Alamat Perusahaan</th>
-                    <th class="text-center min-w-150px">RT Perusahaan</th>
-                    <th class="text-center min-w-150px">RW Perusahaan</th>
-                    <th class="text-center min-w-150px">Provinsi Perusahaan</th>
-                    <th class="text-center min-w-150px">Kota Perusahaan</th>
-                    <th class="text-center min-w-150px">Kecamatan Perusahaan</th>
-                    <th class="text-center min-w-150px">Kelurahan Perusahaan</th>
-                    <th class="text-center min-w-150px">Peruntukan Tanah</th>
-                    <th class="text-center min-w-150px">Luas Tanah</th>
-                    <th class="text-center min-w-150px">Kategori</th>
-                    <th class="text-center min-w-150px">Perluasan</th>
-                    <th class="text-center min-w-800px">Status Tanah</th>
-                    <th class="text-center min-w-150px">Lokasi Tanah</th>
-                    <th class="text-center min-w-150px">RT Tanah</th>
-                    <th class="text-center min-w-150px">RW Tanah</th>
-                    <th class="text-center min-w-150px">Kota Tanah</th>
-                    <th class="text-center min-w-150px">Kecamatan Tanah</th>
-                    <th class="text-center min-w-150px">Kelurahan Tanah</th>
-                    <th class="text-center min-w-150px">Dokumen Oss</th>
-                    <th class="text-center min-w-150px">Fotokopi KTP</th>
-                    <th class="text-center min-w-150px">Akta Perusahaan</th>
-                    <th class="text-center min-w-150px">SIUP</th>
-                    <th class="text-center min-w-150px">TDP</th>
-                    <th class="text-center min-w-150px">NPWP</th>
-                    <th class="text-center min-w-150px">Surat Tanah</th>
-                    <th class="text-center min-w-150px">Peta Bidang</th>
-                    <th class="text-center min-w-150px">Teknis Pertanahan</th>
-                    <th class="text-center min-w-150px">Surat Kematian</th>
-                    <th class="text-center min-w-150px">Surat Kuasa Ahli Waris</th>
-                    <th class="text-center min-w-150px">Surat Dinas Komunikasi</th>
-                    <th class="text-center min-w-150px">Surat Rekom TNI</th>
-                    <th class="text-center min-w-150px">Surat Dinas Perdagangan</th>
-                    <th class="text-center min-w-150px">Surat Dinas Peternakan</th>
-                    <th class="text-center min-w-150px">Surat Pertamina</th>
-                    <th class="text-center min-w-150px">Daftar Nama KK</th>
-                    <th class="text-center min-w-150px">Surat FKUB</th>
-                    <th class="text-center min-w-150px">Status Berkas</th>
+            <tr style="text-transform: uppercase;">
+                    <th>No</th>
+                    <th>Tgl Veriv Berkas</th>
+                    <th>Tgl Survei</th>
+                    <th>No. Reg Terbit</th>
+                    <th>Tanggal Reg</th>
+                    <th>Surveyor 1</th>
+                    <th>Surveyor 2</th>
+                    <th>Type</th>
+                    <th>Nama Pemohon</th>
+                    <th>Alamat Pemohon</th>
+                    <th>Rt Pemohon</th>
+                    <th>Rw Pemohon</th>
+                    <th>Provinsi Pemohon</th>
+                    <th>Kota Pemohon</th>
+                    <th>Kecamatan Pemohon</th>
+                    <th>Kelurahan Pemohon</th>
+                    <th>Telp Pemohon</th>
+                    <th>Nama Perusahaan</th>
+                    <th>NIB</th>
+                    <th>Skala Usaha</th>
+                    <th>Klasifikasi Resiko</th>
+                    <th>KBLI</th>
+                    <th>Alamat Perusahaan</th>
+                    <th>RT Perusahaan</th>
+                    <th>RW Perusahaan</th>
+                    <th>Provinsi Perusahaan</th>
+                    <th>Kota Perusahaan</th>
+                    <th>Kecamatan Perusahaan</th>
+                    <th>Kelurahan Perusahaan</th>
+                    <th>Peruntukan Tanah</th>
+                    <th>Luas Tanah</th>
+                    <th>Kategori</th>
+                    <th>Perluasan</th>
+                    <th>Status Tanah</th>
+                    <th>Lokasi Tanah</th>
+                    <th>RT Tanah</th>
+                    <th>RW Tanah</th>
+                    <th>Kota Tanah</th>
+                    <th>Kecamatan Tanah</th>
+                    <th>Kelurahan Tanah</th>                    
+                    <th>Status Berkas</th>
 
                     <!-- <th class="text-center min-w-100px">Type</th> -->
                     <!-- <th class="text-center min-w-70px">Actions</th> -->
@@ -182,10 +165,10 @@ header("Content-Disposition: attachment; filename= Laporan_Monitoring_KKPR_" . d
                             <span class="fw-bold"><?php if ($peta) echo $peta->alamat_pemohon ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= '00' . $i->rt_pemohon ?></span>
+                            <span class="str"><?= '00' . $i->rt_pemohon ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= "00" . $i->rw_pemohon ?></span>
+                            <span class="str"><?= "00" . $i->rw_pemohon ?></span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold"><?= $provinsi->prov_name ?></span>
@@ -200,13 +183,13 @@ header("Content-Disposition: attachment; filename= Laporan_Monitoring_KKPR_" . d
                             <span class="fw-bold"><?= $kelurahan->subdis_name ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->telp_pemohon ?></span>
+                            <span class="str"><?= $i->telp_pemohon ?></span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold"><?= $i->nama_perusahaan ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->nib ?></span>
+                            <span class="str"><?= $i->nib ?></span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold"><?= $i->skala_usaha ?></span>
@@ -226,10 +209,10 @@ header("Content-Disposition: attachment; filename= Laporan_Monitoring_KKPR_" . d
                             <span class="fw-bold"><?= $i->alamat_perusahaan ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= "00" . $i->rt_perusahaan ?></span>
+                            <span class="fw-bold str"><?= "00" . $i->rt_perusahaan ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= "00" . $i->rw_perusahaan ?></span>
+                            <span class="fw-bold str"><?= "00" . $i->rw_perusahaan ?></span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold"><?= $provinsi->prov_name ?></span>
@@ -267,10 +250,10 @@ header("Content-Disposition: attachment; filename= Laporan_Monitoring_KKPR_" . d
                             <span class="fw-bold"><?= $i->lokasi_tanah ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= "00" . $i->rt_tanah ?></span>
+                            <span class="fw-bold str"><?= "00" . $i->rt_tanah ?></span>
                         </td>
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= "00" . $i->rw_tanah ?></span>
+                            <span class="fw-bold str"><?= "00" . $i->rw_tanah ?></span>
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold"><?= $i->kota_tanah ?></span>
@@ -280,63 +263,20 @@ header("Content-Disposition: attachment; filename= Laporan_Monitoring_KKPR_" . d
                         </td>
                         <td class="text-center pe-0">
                             <span class="fw-bold"><?= $kelurahan_tanah->nama_desa ?></span>
-                        </td>
+                        </td>                        
                         <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->dokumen_oss ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->fotokopi_ktp ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->akta_perusahaan ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->siup ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->tdp ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->npwp ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->surat_tanah ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->peta_bidang ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->teknis_pertanahan ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->surat_kematian ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->surat_kuasa_ahli_waris ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->surat_dinas_komunikasi ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->surat_rekom_tni ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->surat_dinas_perdagangan ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->surat_dinas_peternakan ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->surat_pertamina ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->daftar_nama_kk ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->surat_fkub ?></span>
-                        </td>
-                        <td class="text-center pe-0">
-                            <span class="fw-bold"><?= $i->status_berkas ?></span>
+                            <span class="fw-bold"><?php
+                            $progres = $i->status_berkas;
+                            if ($progres == 0) {
+                                echo "Disposisi";
+                            } elseif ($progres == 2) {
+                                echo "Siap Survei";
+                            } elseif ($progres == 3) {
+                                echo "Pengerjaan Laporan";
+                            } else {
+                                echo "";
+                            }
+                            ?></span>
                         </td>
                     </tr>
                 <?php } ?>

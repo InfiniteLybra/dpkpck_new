@@ -11,6 +11,7 @@
                         <h4 class="fw-bold">Data Anda berhasil disimpan.</h4>
                         <p class="px-5">Anda dapat menunggu informasi lebih lanjut mengenai formulir permohonan Anda di situs web ini atau melalui pesan di WhatsApp Anda. </p>
                         <a href="<?php echo base_url('Dashboard/user');?>" class="btn btn-primary">Kembali ke Beranda</a>
+                        <a href="<?php echo base_url('Pdf/tanda_terima');?>" class="btn btn-secondary" download>Download Tanda Terima</a>
                     </div>
                 </div>
             </div>

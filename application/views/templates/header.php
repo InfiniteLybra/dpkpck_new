@@ -59,12 +59,13 @@
 
     <!-- Page CSS -->
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <link rel="stylesheet" href="<?= base_url('assets/map/') ?>gh-pages.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="<?php echo base_url('assets/map');?>Control.FullScreen.css" />
     <!-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script> -->
   </head>
@@ -108,7 +109,7 @@
               </li>
   
               <li class="menu-item">
-                  <a href="<?= base_url('Persiapan.html') ?>" class="menu-link">
+                  <a href="<?= base_url('Filter.html') ?>" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-file"></i>
                     <div data-i18n="Formulir">Formulir</div>
                   </a>

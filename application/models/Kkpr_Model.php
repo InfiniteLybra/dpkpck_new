@@ -224,6 +224,10 @@ class Kkpr_Model extends CI_Model
 
             $file22 = json_encode($dataArray_peta_bidang);
 
+            $id_kkpr_query = $this->db->query("SELECT MAX(id_kkpr_permohonan) AS hasil FROM kkpr_permohonan")->row();
+            $id_kkpr = $id_kkpr_query->hasil + 1;
+            $this->session->set_userdata('id_kkpr_permohonan', $id_kkpr);
+
             $id_user = $this->session->userdata('id_user');
             $type_isi_kategori = $this->input->post('type_isi_kategori');
             $type_kategori = $this->input->post('type_kategori');
@@ -317,6 +321,7 @@ class Kkpr_Model extends CI_Model
 
             if ($kuasa == '1') {
                 $insert = "INSERT INTO kkpr_permohonan (
+                    id_kkpr_permohonan,
                     id_user,
                     type,
                     type_lainya,
@@ -429,6 +434,7 @@ class Kkpr_Model extends CI_Model
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
                     ) 
                     VALUES(
+                        '$id_kkpr',
                         '$id_user',
                         '$type_kategori',
                         '$lainya',
@@ -542,6 +548,7 @@ class Kkpr_Model extends CI_Model
                         )";
             } else {
                 $insert = "INSERT INTO kkpr_permohonan (
+                    id_kkpr_permohonan,
                     id_user,
                     type,
                     type_lainya,
@@ -643,6 +650,7 @@ class Kkpr_Model extends CI_Model
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
                     ) 
                     VALUES(
+                        '$id_kkpr',
                         '$id_user',
                         '$type_kategori',
                         '$lainya',
@@ -960,6 +968,10 @@ class Kkpr_Model extends CI_Model
 
             $file22 = json_encode($dataArray_peta_bidang);
 
+            $id_kkpr_query = $this->db->query("SELECT MAX(id_kkpr_permohonan) AS hasil FROM kkpr_permohonan")->row();
+            $id_kkpr = $id_kkpr_query->hasil + 1;
+            $this->session->set_userdata('id_kkpr_permohonan', $id_kkpr);
+
             $id_user = $this->session->userdata('id_user');
             $type_isi_kategori = $this->input->post('type_isi_kategori');
             $type_kategori = $this->input->post('type_kategori');
@@ -1043,6 +1055,7 @@ class Kkpr_Model extends CI_Model
 
             if ($kuasa == '1') {
                 $insert = "INSERT INTO kkpr_permohonan (
+                    id_kkpr_permohonan,
                     id_user,
                     type,
                     type_lainya,
@@ -1150,6 +1163,7 @@ class Kkpr_Model extends CI_Model
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
                     ) 
                     VALUES(
+                        '$id_kkpr',
                         '$id_user',
                         '$type_kategori',
                         '$lainya',
@@ -1258,6 +1272,7 @@ class Kkpr_Model extends CI_Model
                         )";
             }else{
                 $insert = "INSERT INTO kkpr_permohonan (
+                    id_kkpr_permohonan,
                     id_user,
                     type,
                     type_lainya,
@@ -1354,6 +1369,7 @@ class Kkpr_Model extends CI_Model
                     " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "surat_tanah,peta_bidang,surat_kematian,surat_kuasa_ahli_waris,daftar_nama_kk,surat_fkub" : "") . "                                            
                     ) 
                     VALUES(
+                        '$id_kkpr',
                         '$id_user',
                         '$type_kategori',
                         '$lainya',
@@ -1451,7 +1467,6 @@ class Kkpr_Model extends CI_Model
                         )";
             }
             // echo $insert;
-            // echo "MASUK GA ANNING";
             $query = $this->db->query($insert);
             if ($query) {
                 return true;

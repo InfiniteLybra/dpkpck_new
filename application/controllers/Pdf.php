@@ -79,4 +79,15 @@ class pdf extends CI_Controller
         $mpdf->WriteHTML($html);
         $mpdf->Output('pdf.pdf', \Mpdf\Output\Destination::INLINE);
     }
+    public function tanda_terima()
+    {
+        $id = $this->session->userdata('id_kkpr_permohonan');
+        $data['kkpr'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_kkpr_permohonan = '$id'")->row();
+        $data['array_pilihan'] = '';
+        $mpdf = new \Mpdf\Mpdf();
+        $html = $this->load->view('pdf/tanda_terima', $data, TRUE);
+        $mpdf->AddPage("P", "", "", "", "", "10", "10", "10", "10", "", "", "", "", "", "", "", "", "", "", "", "Folio");
+        $mpdf->WriteHTML($html);
+        $mpdf->Output('pdf.pdf', \Mpdf\Output\Destination::INLINE);
+    }
 }

@@ -19,6 +19,7 @@ header("Content-Disposition: attachment; filename= Laporan_Monitoring_KKPR_" . d
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
     <!-- <link href="<?php echo base_url('assets/'); ?>assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
 	<script src="<?php echo base_url('assets/'); ?>assets/js/scripts.bundle.js"></script> -->
+    <style> .str{ mso-number-format:\@; } </style>
     <style>
         .export-table {
             border-collapse: collapse;
