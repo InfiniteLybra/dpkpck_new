@@ -69,8 +69,8 @@
                 <!--begin::Content-->
                 <div class="d-flex flex-column flex-center pb-0 pb-lg-10 p-10 w-100">
                     <!--begin::Image-->
-                    <img class="theme-light-show mx-auto mw-100 w-200px w-lg-250px mb-10 mb-lg-20" src="<?= base_url('assets/landing/') ?>logokabupaten.png" alt="" />
-                    <img class="theme-dark-show mx-auto mw-100 w-200px w-lg-250px mb-10 mb-lg-20" src="<?= base_url('assets/landing/') ?>logokabupaten.png" alt="" />
+                    <img class="theme-light-show mx-auto mw-100 w-200px w-lg-550px mb-10 mb-lg-20" src="<?= base_url('assets/') ?>image/logo_dpkcpk.png" alt="" />
+                    <img class="theme-dark-show mx-auto mw-100 w-200px w-lg-550px mb-10 mb-lg-20" src="<?= base_url('assets/') ?>image/logo_dpkcpk.png" alt="" />
                     <!--end::Image-->
                     <!--begin::Title-->
                     <h1 class="text-gray-800 fs-2qx fw-bold text-center mb-7">Dinas Perumahan, Kawasan Permukiman dan Cipta Karya</h1>
@@ -124,12 +124,6 @@
                                     <input type="text" id="username" placeholder="masukkan username minimal 8 karakter" name="username" autocomplete class="form-control bg-transparent" required />
                                     <!--end::Email-->
                                 </div>
-                                <div class="fv-row mb-8">
-                                    <!--begin::Email-->
-                                    <div class="text-gray">Nomor Hp</div>
-                                    <input type="text" id="nomor" placeholder="masukkan nomor hp" name="nomor" autocomplete class="form-control bg-transparent" required />
-                                    <!--end::Email-->
-                                </div>
                                 <!--begin::Input group-->
                                 <div class="fv-row mb-8">
                                     <!--begin::Wrapper-->
@@ -153,6 +147,19 @@
                                     <input id="confirmPassword" placeholder="ulangi password" name="confirmPassword" type="password" autocomplete class="form-control bg-transparent" />
                                     <!--end::Repeat Password-->
                                 </div>
+
+                                <div class="fv-row mb-8">
+                                    <!--begin::Repeat Password-->
+                                    <div class="text-gray">NIK</div>
+                                    <input id="nik" placeholder="masukkan nik" name="nik" type="text" autocomplete class="form-control bg-transparent" pattern="[0-9]*" maxlength="16" required oninput="validasiAngka(this)" />
+                                    <!--end::Repeat Password-->
+                                </div>
+                                <div class="fv-row mb-8">
+                                    <!--begin::Repeat Password-->
+                                    <div class="text-gray">No Telp. WA</div>
+                                    <input id="no_telp" placeholder="masukkan nomor whatapps" name="no_telp" type="text" autocomplete class="form-control bg-transparent" pattern="[0-9]*" maxlength="13" required oninput="validasiAngka(this)" />
+                                    <!--end::Repeat Password-->
+                                </div>
                                 <!--end::Input group=-->
                                 <!--begin::Submit button-->
                                 <div class="d-grid mb-10">
@@ -163,7 +170,7 @@
                                         }
                                         ?>
                                     </div>
-                                    <button type="submit" id="submitButton" name="submitButton" class="btn btn-primary" disabled>
+                                    <button type="submit" id="submitButton" class="btn btn-primary" disabled>
                                         <!--begin::Indicator label-->
                                         <span class="indicator-label">Sign up</span>
                                         <!--end::Indicator label-->
@@ -172,7 +179,7 @@
                                 <!--end::Submit button-->
                                 <!--begin::Sign up-->
                                 <div class="text-gray-500 text-center fw-semibold fs-6">Sudah punya akun?
-                                    <a href="<?php echo base_url('Auth'); ?>" class="link-primary fw-semibold">Sign in</a>
+                                    <a href="../../demo1/dist/authentication/layouts/overlay/sign-in.html" class="link-primary fw-semibold">Sign in</a>
                                 </div>
                                 <!--end::Sign up-->
                             </form>
@@ -194,20 +201,22 @@
         const usernameInput = document.getElementById('username');
         const passwordInput = document.getElementById('password');
         const confirmPasswordInput = document.getElementById('confirmPassword');
+        const nikInput = document.getElementById('nik');
+        const no_telpInput = document.getElementById('no_telp');
         const submitButton = document.getElementById('submitButton');
-        const nomorInput = document.getElementById('nomor');
 
         const statusView = document.getElementById('status');
 
         function validatePassword() {
             const nama_lengkap = nama_lengkapInput.value;
             const username = usernameInput.value;
-            const nomor = nomorInput.value;
             const password = passwordInput.value;
             const confirmPassword = confirmPasswordInput.value;
+            const nik = nikInput.value;
+            const no_telp = no_telpInput.value;
 
 
-            if (password === confirmPassword && password.length > 7 && username.length > 7 && nomor.length > 7 && nama_lengkap.length > 7) {
+            if (password === confirmPassword && password.length > 7 && username.length > 7 && nama_lengkap.length > 7 && nik.length > 15 && no_telp.length > 10) {
                 submitButton.disabled = false;
 
 
@@ -223,7 +232,18 @@
         usernameInput.addEventListener('input', validatePassword);
         passwordInput.addEventListener('input', validatePassword);
         confirmPasswordInput.addEventListener('input', validatePassword);
-        nomorInput.addEventListener('input', validatePassword);
+        nikInput.addEventListener('input', validatePassword);
+        no_telpInput.addEventListener('input', validatePassword);
+
+        function validasiAngka(input) {
+            // Menghapus karakter selain angka
+            input.value = input.value.replace(/\D/g, '');
+
+            // Memastikan panjang input tidak melebihi 16 digit
+            if (input.value.length > 16) {
+                input.value = input.value.slice(0, 16);
+            }
+        }
     </script>
     <script src=" <?= base_url('assets/') ?>assets/plugins/global/plugins.bundle.js "></script>
     <script src=" <?= base_url('assets/') ?>assets/js/scripts.bundle.js "></script>
@@ -237,7 +257,7 @@
             "preventDuplicates": false,
             "showDuration": "300",
             "hideDuration": "1000",
-            "timeOut": "5000",
+            "timeOut": "15000",
             "extendedTimeOut": "1000",
             "showEasing": "swing",
             "hideEasing": "linear",
