@@ -392,6 +392,46 @@
     }));
 </script>
 <script>
+    const shpLabel = document.getElementById('shp-label');
+    const shpToast = new bootstrap.Toast(document.getElementById('shp-toast'));
+
+    const suratTanahLabel = document.getElementById('suratTanah-label');
+    const suratTanahToast = new bootstrap.Toast(document.getElementById('suratTanah-toast'));
+
+    let activeToast = null;
+
+    function checkLabelVisibility() {
+        const shpLabelRect = shpLabel.getBoundingClientRect();
+        const suratTanahLabelRect = suratTanahLabel.getBoundingClientRect();
+
+        if (shpLabelRect.top < window.innerHeight) {
+            if (activeToast !== shpToast) {
+                shpToast.show();
+                if (activeToast) {
+                    activeToast.hide();
+                }
+                activeToast = shpToast;
+            }
+        } else if (suratTanahLabelRect.top < window.innerHeight) {
+            if (activeToast !== suratTanahToast) {
+                suratTanahToast.show();
+                if (activeToast) {
+                    activeToast.hide();
+                }
+                activeToast = suratTanahToast;
+            }
+        } else {
+            if (activeToast) {
+                activeToast.hide();
+                activeToast = null;
+            }
+        }
+    }
+
+    window.addEventListener('scroll', checkLabelVisibility);
+    checkLabelVisibility();
+</script>
+<script>
     $(document).ready(function() {
 
         $('#provinsi_pemohon').change(function() {
@@ -672,7 +712,7 @@
     }
 
     // Tambahkan event listener untuk input
-    const inputElements = document.querySelectorAll('#nama_pemohon, #alamat_pemohon, #rt_pemohon, #rw_pemohon, #telp_pemohon,  #nama_kuasa, #alamat_kuasa, #rt_kuasa, #rw_kuasa, #telp_kuasa,  #nib, #peruntukan_tanah,#luas_tanah,#lokasi_tanah,#rt_tanah,#rw_tanah');
+    const inputElements = document.querySelectorAll('#nama_pemohon, #alamat_pemohon, #rt_pemohon, #rw_pemohon, #telp_pemohon,  #nama_kuasa, #alamat_kuasa, #rt_kuasa, #rw_kuasa, #telp_kuasa,  #nib, #peruntukan_tanah,#luas_tanah,#lokasi_tanah,#rt_tanah,#rw_tanah,#judul_kbli');
     inputElements.forEach(input => {
         input.addEventListener('input', saveDraft);
     });
@@ -682,16 +722,16 @@
         select.addEventListener('change', saveDraft); // Gunakan event 'change' untuk select
     });
     document.addEventListener('DOMContentLoaded', function() {
-    const draftData = <?= json_encode($draft_data) ?>;
-    for (const key in draftData) {
-        if (draftData.hasOwnProperty(key)) {
-            const element = document.getElementById(key);
-            if (element) {
-                element.value = draftData[key];
+        const draftData = <?= json_encode($draft_data) ?>;
+        for (const key in draftData) {
+            if (draftData.hasOwnProperty(key)) {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.value = draftData[key];
+                }
             }
         }
-    }
-});
+    });
 </script>
 <script>
     $(document).ready(function() {
@@ -705,7 +745,7 @@
             $("#additionalInputs input:last-child").remove();
         });
     });
-//ATAS NAMA SENDIRI
+    //ATAS NAMA SENDIRI
     $(document).ready(function() {
         $("#id_st_1").on("change", function() {
             var selectedOption = $(this).val();
@@ -717,7 +757,7 @@
             var formSM = $("#sewa_menyewa");
             var formFSSM = $("#file_sertifikat_sewa_menyewa");
             var formFLSM = $("#file_letter_sewa_menyewa");
-            
+
             var formPK = $("#perjanjian_kerjasama");
             var formFSPK = $("#file_sertifikat_perjanjian_kerjasama");
             var formFLPK = $("#file_letter_perjanjian_kerjasama");
@@ -775,12 +815,11 @@
                 formKW.hide();
                 formFSKW.hide();
                 formFLKW.hide();
-            }else if (selectedOption === "atas_nama_orang_lain") {
+            } else if (selectedOption === "atas_nama_orang_lain") {
                 formANOL.show();
                 formS.hide();
                 formL.hide();
-            } 
-            else {
+            } else {
                 formS.hide();
                 formL.hide();
             }
@@ -872,7 +911,7 @@
             }
         });
     });
-//ATAS NAMA ORANG LAIN
+    //ATAS NAMA ORANG LAIN
     $(document).ready(function() {
         $("#id_st_3").on("change", function() {
             var selectedOption = $(this).val();
@@ -894,25 +933,24 @@
             // Tampilkan atau sembunyikan form berdasarkan pilihan
             if (selectedOption === "sewa_menyewa") {
                 formSM.show();
-            }else if (selectedOption === "perjanjian_kerjasama") {
+            } else if (selectedOption === "perjanjian_kerjasama") {
                 formPK.show();
-            }else if (selectedOption === "ppjb") {
+            } else if (selectedOption === "ppjb") {
                 formPPJB.show();
-            }else if (selectedOption === "ajb") {
+            } else if (selectedOption === "ajb") {
                 formAJB.show();
-            }else if (selectedOption === "akta_hibah") {
+            } else if (selectedOption === "akta_hibah") {
                 formAH.show();
-            }else if (selectedOption === "akta_pelepasan_hak") {
+            } else if (selectedOption === "akta_pelepasan_hak") {
                 formAPH.show();
-            }else if (selectedOption === "keterangan_waris") {
+            } else if (selectedOption === "keterangan_waris") {
                 formKW.show();
-            }
-             else {
+            } else {
                 formLPK.show();
             }
         });
     });
-//SEWA_MENYEWA
+    //SEWA_MENYEWA
     $(document).ready(function() {
         $("#id_st_sewa_menyewa").on("change", function() {
             var selectedOption = $(this).val();
@@ -1006,7 +1044,7 @@
             }
         });
     });
-//PERJANJIAN KERJASAMA    
+    //PERJANJIAN KERJASAMA    
     $(document).ready(function() {
         $("#id_st_perjanjian_kerjasama").on("change", function() {
             var selectedOption = $(this).val();
@@ -1100,7 +1138,7 @@
             }
         });
     });
-//PPJB
+    //PPJB
     $(document).ready(function() {
         $("#id_st_ppjb").on("change", function() {
             var selectedOption = $(this).val();
@@ -1194,7 +1232,7 @@
             }
         });
     });
-//AJB
+    //AJB
     $(document).ready(function() {
         $("#id_st_ajb").on("change", function() {
             var selectedOption = $(this).val();
@@ -1288,7 +1326,7 @@
             }
         });
     });
-//AKTA HIBAH
+    //AKTA HIBAH
     $(document).ready(function() {
         $("#id_st_akta_hibah").on("change", function() {
             var selectedOption = $(this).val();
@@ -1382,7 +1420,7 @@
             }
         });
     });
-//AKTA PELEPASAN HAK
+    //AKTA PELEPASAN HAK
     $(document).ready(function() {
         $("#id_st_akta_pelepasan_hak").on("change", function() {
             var selectedOption = $(this).val();
@@ -1476,7 +1514,7 @@
             }
         });
     });
-//KETERANGAN WARIS
+    //KETERANGAN WARIS
     $(document).ready(function() {
         $("#id_st_keterangan_waris").on("change", function() {
             var selectedOption = $(this).val();
@@ -1570,5 +1608,5 @@
             }
         });
     });
-//
+    //
 </script>

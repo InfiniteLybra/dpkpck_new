@@ -30,32 +30,32 @@
                                     <tr>
                                         <th>No.</th>
                                         <th>Pemilik Formulir</th>
-                                        <th>Type Aksi</th>
+                                        <th>Type</th>
                                         <th>Keterangan</th>
-                                        <th>Waktu</th>
+                                        <!-- <th>Waktu</th> -->
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php 
                                         $no = 1;
-                                        foreach($log as $d)
+                                        foreach($kkpr as $d)
                                         {                                            
                                     ?>
                                     <?php 
-                                        $kkpr = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_kkpr_permohonan = '$d->id_permohonan'")->row();
-                                        $admin = $this->db->query("SELECT * FROM user WHERE id = '$d->id_user'")->row();
+                                        // $kkpr = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_kkpr_permohonan = '$d->id_permohonan'")->row();
+                                        // $admin = $this->db->query("SELECT * FROM user WHERE id = '$d->id_user'")->row();
                                     ?>
                                     <tr>
                                         <td><?= $no++;?></td>
-                                        <td><?= $kkpr->nama_pemohon?></td>
-                                        <td><?= $admin->nama_lengkap?></td>
-                                        <td><?= $d->keterangan?></td>
-                                        <td><?= $d->waktu?></td>
+                                        <td><?= $d->nama_pemohon?></td>
+                                        <td><?= $d->kategori?></td>
+                                        <td>Tertolak otomatis karena tidak memperbaiki lampiran lebih dari 7 hari</td>
+                                        <!-- <td><?= $d->waktu_ter?></td> -->
                                         <td>
-                                            <button class="btn btn-outline-danger btn-sm rounded-pill btn-icon warning-button" data-toggle="tooltip" data-placement="bottom" title="Hapus"><i class='bx bx-trash'></i></button>
-                                            <button class="btn btn-info rounded-pill btn-sm btn-icon" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-pencil'></i></button>
-                                            <!-- <button class="btn btn-dark btn-sm rounded-pill btn-icon" data-toggle="tooltip" data-placement="bottom" title="Pulihkan Data"><i class='bx bx-repeat'></i></button> -->
+                                            <!-- <button class="btn btn-outline-danger btn-sm rounded-pill btn-icon warning-button" data-toggle="tooltip" data-placement="bottom" title="Hapus"><i class='bx bx-trash'></i></button>
+                                            <button class="btn btn-info rounded-pill btn-sm btn-icon" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-pencil'></i></button> -->
+                                            <a href="<?php echo base_url('History/pulih_data/');?><?= $d->id_kkpr_permohonan?>" class="btn btn-dark btn-sm rounded-pill btn-icon" data-toggle="tooltip" data-placement="bottom" title="Pulihkan Data"><i class='bx bx-repeat'></i></a>
                                         </td>
                                     </tr>                                    
                                     <?php }?>

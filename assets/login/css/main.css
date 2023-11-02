@@ -475,7 +475,11 @@ iframe {
 
 @media (min-width: 1000px) {
   .hahaha {
-    padding-top: 79px;
+    padding-top: 20px;
+  }
+  
+  .atas {
+    padding-top: 61px;
   }
 }
 

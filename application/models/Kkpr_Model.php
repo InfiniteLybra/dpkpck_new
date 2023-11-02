@@ -260,6 +260,7 @@ class Kkpr_Model extends CI_Model
             $nib = $this->input->post('nib');
             $skala_usaha = $this->input->post('skala_usaha');
             $klasifikasi_resiko = $this->input->post('klasifikasi_resiko');
+            $judul_kbli = $this->input->post('judul_kbli'); //array
             $kbli = $this->input->post('kbli_array'); //array
             $alamat_perusahaan = $this->input->post('alamat_perusahaan');
             $rt_perusahaan = $this->input->post('rt_perusahaan');
@@ -351,6 +352,7 @@ class Kkpr_Model extends CI_Model
                     nib,
                     skala_usaha,
                     klasifikasi_resiko,
+                    judul_kbli,
                     kbli,
                     alamat_perusahaan,
                     rt_perusahaan,
@@ -465,6 +467,7 @@ class Kkpr_Model extends CI_Model
                         '$nib',
                         '$skala_usaha',
                         '$klasifikasi_resiko',
+                        '$judul_kbli',
                         '$kbli_Array',
                         '$alamat_perusahaan',
                         '$rt_perusahaan',
@@ -570,6 +573,7 @@ class Kkpr_Model extends CI_Model
                     nib,
                     skala_usaha,
                     klasifikasi_resiko,
+                    judul_kbli,
                     kbli,
                     alamat_perusahaan,
                     rt_perusahaan,
@@ -673,6 +677,7 @@ class Kkpr_Model extends CI_Model
                         '$nib',
                         '$skala_usaha',
                         '$klasifikasi_resiko',
+                        '$judul_kbli',
                         '$kbli_Array',
                         '$alamat_perusahaan',
                         '$rt_perusahaan',
@@ -1007,6 +1012,7 @@ class Kkpr_Model extends CI_Model
             $nib = $this->input->post('nib');
             $skala_usaha = $this->input->post('skala_usaha');
             $klasifikasi_resiko = $this->input->post('klasifikasi_resiko');
+            $judul_kbli = $this->input->post('judul_kbli');
             $kbli = $this->input->post('kbli_array');
 
             $status_tanah_sm = $this->input->post('status_tanah_sm');
@@ -1089,6 +1095,7 @@ class Kkpr_Model extends CI_Model
                     nib,
                     skala_usaha,
                     klasifikasi_resiko,
+                    judul_kbli,
                     kbli,
     
                     peruntukan_tanah,
@@ -1198,6 +1205,7 @@ class Kkpr_Model extends CI_Model
                         '$nib',
                         '$skala_usaha',
                         '$klasifikasi_resiko',
+                        '$judul_kbli',
                         '$kbli_Array',                    
     
                         '$peruntukan_tanah',
@@ -1298,6 +1306,7 @@ class Kkpr_Model extends CI_Model
                     nib,
                     skala_usaha,
                     klasifikasi_resiko,
+                    judul_kbli,
                     kbli,
     
                     peruntukan_tanah,
@@ -1396,6 +1405,7 @@ class Kkpr_Model extends CI_Model
                         '$nib',
                         '$skala_usaha',
                         '$klasifikasi_resiko',
+                        '$judul_kbli',
                         '$kbli_Array',                    
     
                         '$peruntukan_tanah',
@@ -3446,6 +3456,36 @@ class Kkpr_Model extends CI_Model
     {
         $id = $this->input->post('id');
         $telp_pemohon = $this->input->post('telp_pemohon');
+        $total_revisi = $this->db->query("SELECT COUNT(id_permohonan) AS jumlah FROM action_pengembalian_kkpr_permohonan WHERE id_permohonan = '$id'")->row();
+        if($total_revisi->jumlah > 3 ) {
+            $query = $this->db->query("UPDATE kkpr_permohonan SET status_berkas = '99' WHERE id_kkpr_permohonan = '$id'");
+            $curl = curl_init();            
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://api.fonnte.com/send',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => array(
+                    'target' => $telp_pemohon,
+                    'message' => 'Salam, kami dari DPKPCK menyampaikan bahwa permohonan anda tertolak sepenuhnya dikarenakan anda sudah lebih dari 3x salah dalam perbaikan formulir, harap mengisi formulir ulang. Terimakasih',
+                    'countryCode' => '62', //optional
+                ),
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: 5@6!I4e2eSKYewSZSFhD' //change TOKEN to your actual token
+                ),
+            ));
+
+            $response = curl_exec($curl);
+            if ($query) {
+            return true;
+        } else {
+            return false;
+        }
+        }else{  
         $type = $this->input->post('type');
         $dokumen_oss = $this->input->post('dokumen_oss');
         $fotokopi_ktp = $this->input->post('fotokopi_ktp');
@@ -3776,6 +3816,7 @@ class Kkpr_Model extends CI_Model
         } else {
             return false;
         }
+        }
     }
     public function update_admin_kkpr()
     {
@@ -3804,6 +3845,7 @@ class Kkpr_Model extends CI_Model
         $nib = $this->input->post('nib');
         $skala_usaha = $this->input->post('skala_usaha');
         $klasifikasi_resiko = $this->input->post('klasifikasi_resiko');
+        $judul_kbli = $this->input->post('judul_kbli');
         $kbli = $this->input->post('kbli_array'); //array
         $alamat_perusahaan = $this->input->post('alamat_perusahaan');
         $rt_perusahaan = $this->input->post('rt_perusahaan');
@@ -3862,6 +3904,7 @@ class Kkpr_Model extends CI_Model
                     nib='$nib',
                     skala_usaha='$skala_usaha',
                     klasifikasi_resiko='$klasifikasi_resiko',
+                    judul_kbli='$judul_kbli',
                     kbli='$kbli_Array',
                     alamat_perusahaan='$alamat_perusahaan',
                     rt_perusahaan='$rt_perusahaan',

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 
 <style>
     #map {
@@ -42,7 +43,7 @@
                             } else {
                             ?>
                                 <div class="d-flex mb-3">
-                                    <input type="file" name="shp" class="form-control flex-grow-1" value="">
+                                    <input type="file" name="shp_file" class="form-control flex-grow-1" value="">
                                     <button type="submit" class="btn btn-primary fw-bold flex-shrink-0">Upload</button>
                                 </div>
                             <?php } ?>
@@ -71,11 +72,60 @@
     <!-- / Content -->
 </div>
 <!-- Content wrapper -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+    var boundary = L.polygon([
+        [-8.476526, 112.975311],
+        [-7.923313, 112.947845],
+        [-7.756714, 112.587792],
+        [-7.752253, 112.285789],
+        [-8.443661, 112.321731]
+    ], {
+        color: 'white',
+        opacity: 0.0,
+        fillColor: 'white',
+        fillOpacity: 0.0
+    });
 
-<!-- <script>
-    var map = L.map('map').setView([-7.9661185535104755, 112.6328875899145], 13); // Latitude, Longitude, and Zoom Level
+    var map = L.map('map', {
+        tap: false, // ref https://github.com/Leaflet/Leaflet/issues/7255
+        center: new L.LatLng(-8.133063, 112.568680),
+        zoom: 15,
+        minZoom: 13, // Set zoom level minimum
+        maxZoom: 19, // Set zoom level maximum
+        maxBounds: boundary.getBounds(),
+        fullscreenControl: true,
+        fullscreenControlOptions: { // optional
+            title: "Show me the fullscreen !",
+            titleCancel: "Exit fullscreen mode"
+        }
+    });
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
+        maxZoom: 19,
     }).addTo(map);
-  </script> -->
+
+    var geojsonFeature = <?= $geojson ?>;
+
+    function decimalToDMS(decimal, isLongitude) {
+        const degrees = Math.floor(Math.abs(decimal));
+        const minutes = (Math.abs(decimal) - degrees) * 60;
+        const seconds = (minutes - Math.floor(minutes)) * 60;
+        const direction = isLongitude ? (decimal > 0 ? "E" : "W") : (decimal > 0 ? "N" : "S");
+        return `${degrees}° ${Math.floor(minutes)}' ${seconds.toFixed(2)}" ${direction}`;
+    }
+
+    const coordinates = geojsonFeature.features[0].geometry.coordinates[0];
+    const dmsCoordinates = coordinates.map(coord => ({
+        latitude: decimalToDMS(coord[1], false),
+        longitude: decimalToDMS(coord[0], true)
+    }));
+
+    L.geoJSON(geojsonFeature).addTo(map);
+
+    // Menambahkan marker di tiap sudut polygon dengan popup
+    dmsCoordinates.forEach(function(coord, index) {
+        var marker = L.marker(new L.LatLng(coordinates[index][1], coordinates[index][0])).addTo(map);
+        marker.bindPopup('Koordinat: ' + coord.latitude + ', ' + coord.longitude).openPopup();
+    });
+</script>

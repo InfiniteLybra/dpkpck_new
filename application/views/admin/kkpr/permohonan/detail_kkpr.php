@@ -164,7 +164,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                         </div>
                                                     <?php } else { ?>
                                                         <div class="form-check form-check-inline ms-5 ">
-                                                            <input name="yn_fotokopi_ktp_revisi" class="form-check-input" type="radio" value="1" id="KTP1" />
+                                                            <input name="yn_fotokopi_ktp_revisi" class="form-check-input" type="radio" value="1" id="KTP1" checked/>
                                                             <label class="form-check-label" for="KTP1"> Ya </label>
                                                         </div>
                                                         <div class="form-check form-check-inline ">
@@ -196,7 +196,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                 <input type="hidden" name="file_fotokopi_ktp" value="<?= $kkpr->fotokopi_ktp  ?>">
 
                                                 <div class="form-check form-check-inline ms-5 ">
-                                                    <input name="yn_fotokopi_ktp" class="form-check-input" type="radio" value="1" id="KTP1" />
+                                                    <input name="yn_fotokopi_ktp" class="form-check-input" type="radio" value="1" id="KTP1" checked/>
                                                     <label class="form-check-label" for="KTP1"> Ya </label>
                                                 </div>
                                                 <div class="form-check form-check-inline ">
@@ -329,7 +329,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                         </div>
                                                     <?php } else { ?>
                                                         <div class="form-check form-check-inline ms-5 ">
-                                                            <input name="yn_fotokopi_ktp_kuasa_revisi" class="form-check-input" type="radio" value="1" id="KTP1" />
+                                                            <input name="yn_fotokopi_ktp_kuasa_revisi" class="form-check-input" type="radio" value="1" id="KTP1"checked />
                                                             <label class="form-check-label" for="KTP1"> Ya </label>
                                                         </div>
                                                         <div class="form-check form-check-inline ">
@@ -361,7 +361,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                 <input type="hidden" name="file_fotokopi_ktp_kuasa" value="<?= $kkpr->fotokopi_ktp_kuasa  ?>">
 
                                                 <div class="form-check form-check-inline ms-5 ">
-                                                    <input name="yn_fotokopi_ktp_kuasa" class="form-check-input" type="radio" value="1" id="KTP1" />
+                                                    <input name="yn_fotokopi_ktp_kuasa" class="form-check-input" type="radio" value="1" id="KTP1" checked/>
                                                     <label class="form-check-label" for="KTP1"> Ya </label>
                                                 </div>
                                                 <div class="form-check form-check-inline ">
@@ -494,7 +494,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                             </div>
                                                         <?php } else { ?>
                                                             <div class="form-check form-check-inline ms-5 ">
-                                                                <input name="yn_tdp_revisi" class="form-check-input" type="radio" value="1" id="nibFile1" />
+                                                                <input name="yn_tdp_revisi" class="form-check-input" type="radio" value="1" id="nibFile1" checked/>
                                                                 <label class="form-check-label" for="nibFile1"> Ya </label>
                                                             </div>
                                                             <div class="form-check form-check-inline ">
@@ -526,7 +526,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                 <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->tdp ?>" target="_blank" class="btn btn-sm btn-primary mb-2">Lihat</a>
 
                                                 <div class="form-check form-check-inline ms-5 ">
-                                                    <input name="yn_tdp" class="form-check-input" type="radio" value="1" id="nibFile1" />
+                                                    <input name="yn_tdp" class="form-check-input" type="radio" value="1" id="nibFile1" checked/>
                                                     <label class="form-check-label" for="nibFile1"> Ya </label>
                                                 </div>
                                                 <div class="form-check form-check-inline ">
@@ -575,6 +575,12 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                         <?php } ?>
                                     </select>
                             </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label fw-bold text-dark" for="judul_kbli">Judul KBLI</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" name="judul_kbli" id="judul_kbli" value="<?php if ($kkpr->judul_kbli) echo $kkpr->judul_kbli ?>" placeholder="Ex. 001" />
+                            </div>
                         </div>                        
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label fw-bold text-dark" for="kbli_array">KBLI diMohon</label>
@@ -621,7 +627,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                 </div>
                                                             <?php } else { ?>
                                                                 <div class="form-check form-check-inline ms-5 ">
-                                                                    <input name="yn_akta_perusahaan_revisi" class="form-check-input" type="radio" value="1" id="aktaPerusahaan1">
+                                                                    <input name="yn_akta_perusahaan_revisi" class="form-check-input" type="radio" value="1" id="aktaPerusahaan1" checked>
                                                                     <label class="form-check-label" for="aktaPerusahaan1"> Ya </label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline ">
@@ -654,7 +660,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                     <input type="hidden" name="file_fotokopi_akta_perusahaan" value="<?= $kkpr->akta_perusahaan ?>">
 
                                                     <div class="form-check form-check-inline ms-5 ">
-                                                        <input name="yn_akta_perusahaan" class="form-check-input" type="radio" value="1" id="aktaPerusahaan1" />
+                                                        <input name="yn_akta_perusahaan" class="form-check-input" type="radio" value="1" id="aktaPerusahaan1" checked/>
                                                         <label class="form-check-label" for="aktaPerusahaan1"> Ya </label>
                                                     </div>
                                                     <div class="form-check form-check-inline ">
@@ -702,7 +708,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                 </div>
                                                             <?php } else { ?>
                                                                 <div class="form-check form-check-inline ms-5 ">
-                                                                    <input name="yn_npwp_revisi" class="form-check-input" type="radio" value="1" id="npwp1" />
+                                                                    <input name="yn_npwp_revisi" class="form-check-input" type="radio" value="1" id="npwp1" checked/>
                                                                     <label class="form-check-label" for="npwp1"> Ya </label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline ">
@@ -734,7 +740,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                     <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->npwp ?>" target="_blank" class="btn btn-sm btn-primary mb-2">Lihat</a>
 
                                                     <div class="form-check form-check-inline ms-5 ">
-                                                        <input name="yn_npwp" class="form-check-input" type="radio" value="1" id="npwp1" />
+                                                        <input name="yn_npwp" class="form-check-input" type="radio" value="1" id="npwp1" checked/>
                                                         <label class="form-check-label" for="npwp1"> Ya </label>
                                                     </div>
                                                     <div class="form-check form-check-inline ">
@@ -783,7 +789,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                             </div>
                                                         <?php } else { ?>
                                                             <div class="form-check form-check-inline ms-5 ">
-                                                                <input name="yn_dokumen_oss_revisi" class="form-check-input" type="radio" value="1" id="dokOSS1" />
+                                                                <input name="yn_dokumen_oss_revisi" class="form-check-input" type="radio" value="1" id="dokOSS1" checked/>
                                                                 <label class="form-check-label" for="dokOSS1"> Ya </label>
                                                             </div>
                                                             <div class="form-check form-check-inline ">
@@ -815,7 +821,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                 <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->dokumen_oss ?>" target="_blank" class="btn btn-sm btn-primary mb-2">Lihat</a>
 
                                                 <div class="form-check form-check-inline ms-5 ">
-                                                    <input name="yn_dokumen_oss" class="form-check-input" type="radio" value="1" id="dokOSS1" />
+                                                    <input name="yn_dokumen_oss" class="form-check-input" type="radio" value="1" id="dokOSS1" checked/>
                                                     <label class="form-check-label" for="dokOSS1"> Ya </label>
                                                 </div>
                                                 <div class="form-check form-check-inline ">
@@ -1000,14 +1006,18 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                         <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php $peta_bidang_value ?>" target="_blank" class="btn btn-sm btn-primary mb-2">Lihat</a>
                                                                     </td>
                                                                     <td>
-                                                                        <div class="form-check form-check-inline">
+                                                                        <!-- <div class="form-check form-check-inline">
                                                                             <input name="yn_surat_tanah_revisi[]" class="form-check-input" type="radio" value="1" id="suratTanah1" <?php if ($action_value  == '1') echo 'checked'; ?> />
                                                                             <label class="form-check-label" for="suratTanah1"> Ya </label>
                                                                         </div>
                                                                         <div class="form-check form-check-inline ">
                                                                             <input name="yn_surat_tanah_revisi[]" class="form-check-input" type="radio" value="0" id="suratTanah2" <?php if ($action_value  == '0') echo 'checked'; ?> />
                                                                             <label class="form-check-label" for="suratTanah2"> Tidak </label>
-                                                                        </div>
+                                                                        </div> -->
+                                                                        <select name="yn_surat_tanah_revisi[]">
+                                                                            <option value="1" <?php if ($action_value  == '1') echo 'selected'; ?>>ya</option>
+                                                                            <option value="0" <?php if ($action_value  == '') echo 'selected'; ?>>tidak</option>
+                                                                        </select>
                                                                     </td>
                                                                     <td>
                                                                         <div class="form-text-area">
@@ -1076,14 +1086,18 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                 <input type="hidden" name="file_peta_bidang_surat_tanah[]" value="<?= $pb_surat_tanah[$i]->peta_bidang ?>">
                                                             </td>
                                                             <td>
-                                                                <div class="form-check form-check-inline">
+                                                                <!-- <div class="form-check form-check-inline">
                                                                     <input name="yn_surat_tanah[]" class="form-check-input" type="radio" value="1" id="suratTanah1" />
                                                                     <label class="form-check-label" for="suratTanah1"> Ya </label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline ">
                                                                     <input name="yn_surat_tanah[]" class="form-check-input" type="radio" value="0" id="suratTanah2" />
                                                                     <label class="form-check-label" for="suratTanah2"> Tidak </label>
-                                                                </div>
+                                                                </div> -->
+                                                                <select name="yn_surat_tanah_revisi[]">
+                                                                            <option value="1" selected>ya</option>
+                                                                            <option value="0">tidak</option>
+                                                                        </select>
                                                             </td>
                                                             <td>
                                                                 <div class="form-text-area">
@@ -1158,14 +1172,18 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                         <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php $st->surat_tanah ?>" target="_blank" class="btn btn-sm btn-primary mb-2">Lihat</a>
                                                                     </td>
                                                                     <td>
-                                                                        <div class="form-check form-check-inline">
+                                                                        <!-- <div class="form-check form-check-inline">
                                                                             <input name="yn_surat_tanah_revisi[]" class="form-check-input" type="radio" value="1" id="suratTanah1" <?php if ($action_value  == '1') echo 'checked'; ?> />
                                                                             <label class="form-check-label" for="suratTanah1"> Ya </label>
                                                                         </div>
                                                                         <div class="form-check form-check-inline ">
                                                                             <input name="yn_surat_tanah_revisi[]" class="form-check-input" type="radio" value="0" id="suratTanah2" <?php if ($action_value  == '0') echo 'checked'; ?> />
                                                                             <label class="form-check-label" for="suratTanah2"> Tidak </label>
-                                                                        </div>
+                                                                        </div> -->
+                                                                        <select name="yn_surat_tanah_revisi[]">
+                                                                            <option value="1" <?php if ($action_value  == '1') echo 'selected'; ?>>ya</option>
+                                                                            <option value="0" <?php if ($action_value  == '0') echo 'selected'; ?>>tidak</option>
+                                                                        </select>
                                                                     </td>
                                                                     <td>
                                                                         <div class="form-text-area">
@@ -1219,14 +1237,18 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                 <input type="hidden" name="file_surat_tanah[]" value="<?php if ($kkpr) echo $s->surat_tanah ?>">
                                                             </td>
                                                             <td>
-                                                                <div class="form-check form-check-inline">
+                                                                <!-- <div class="form-check form-check-inline">
                                                                     <input name="yn_surat_tanah[]" class="form-check-input" type="radio" value="1" id="suratTanah1" />
                                                                     <label class="form-check-label" for="suratTanah1"> Ya </label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline ">
                                                                     <input name="yn_surat_tanah[]" class="form-check-input" type="radio" value="0" id="suratTanah2" />
                                                                     <label class="form-check-label" for="suratTanah2"> Tidak </label>
-                                                                </div>
+                                                                </div> -->
+                                                                <select name="yn_surat_tanah_revisi[]">
+                                                                            <option value="1" selected>ya</option>
+                                                                            <option value="0" >tidak</option>
+                                                                        </select>
                                                             </td>
                                                             <td>
                                                                 <div class="form-text-area">
@@ -1272,7 +1294,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                             </div>
                                                         <?php } else { ?>
                                                             <div class="form-check form-check-inline ms-5 ">
-                                                                <input name="yn_peta_bidang_revisi" class="form-check-input" type="radio" value="1" id="petaBidang1" />
+                                                                <input name="yn_peta_bidang_revisi" class="form-check-input" type="radio" value="1" id="petaBidang1" checked/>
                                                                 <label class="form-check-label" for="petaBidang1"> Ya </label>
                                                             </div>
                                                             <div class="form-check form-check-inline ">
@@ -1304,7 +1326,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                 <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->peta_bidang ?>" target="_blank" class="btn btn-sm btn-primary mb-2">Lihat</a>
 
                                                 <div class="form-check form-check-inline ms-5 ">
-                                                    <input name="yn_peta_bidang" class="form-check-input" type="radio" value="1" id="petaBidang1" />
+                                                    <input name="yn_peta_bidang" class="form-check-input" type="radio" value="1" id="petaBidang1" checked/>
                                                     <label class="form-check-label" for="petaBidang1"> Ya </label>
                                                 </div>
                                                 <div class="form-check form-check-inline ">
@@ -1349,7 +1371,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                             </div>
                                                         <?php } else { ?>
                                                             <div class="form-check form-check-inline ms-5 ">
-                                                                <input name="yn_shp_revisi" class="form-check-input" type="radio" value="1" id="shp1" />
+                                                                <input name="yn_shp_revisi" class="form-check-input" type="radio" value="1" id="shp1" checked/>
                                                                 <label class="form-check-label" for="shp1"> Ya </label>
                                                             </div>
                                                             <div class="form-check form-check-inline ">
@@ -1380,7 +1402,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                 <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->shp ?>" class="btn btn-sm btn-secondary mb-2" download>Unduh</a>
 
                                                 <div class="form-check form-check-inline ms-5 ">
-                                                    <input name="yn_shp" class="form-check-input" type="radio" value="1" id="shp1" />
+                                                    <input name="yn_shp" class="form-check-input" type="radio" value="1" id="shp1" checked/>
                                                     <label class="form-check-label" for="shp1"> Ya </label>
                                                 </div>
                                                 <div class="form-check form-check-inline ">
@@ -1427,7 +1449,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                 </div>
                                                             <?php } else { ?>
                                                                 <div class="form-check form-check-inline ms-5 ">
-                                                                    <input name="yn_surat_kematian_revisi" class="form-check-input" type="radio" value="1" id="suratKematian1" />
+                                                                    <input name="yn_surat_kematian_revisi" class="form-check-input" type="radio" value="1" id="suratKematian1" checked/>
                                                                     <label class="form-check-label" for="suratKematian1"> Ya </label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline ">
@@ -1459,7 +1481,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                     <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->surat_kematian ?>" target="_blank" class="btn btn-sm btn-primary mb-2">Lihat</a>
 
                                                     <div class="form-check form-check-inline ms-5 ">
-                                                        <input name="yn_surat_kematian" class="form-check-input" type="radio" value="1" id="suratKematian1" />
+                                                        <input name="yn_surat_kematian" class="form-check-input" type="radio" value="1" id="suratKematian1" checked/>
                                                         <label class="form-check-label" for="suratKematian1"> Ya </label>
                                                     </div>
                                                     <div class="form-check form-check-inline ">
@@ -1505,7 +1527,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                 </div>
                                                             <?php } else { ?>
                                                                 <div class="form-check form-check-inline ms-5 ">
-                                                                    <input name="yn_surat_kuasa_ahli_waris_revisi" class="form-check-input" type="radio" value="1" id="suratKuasaAhliWaris1" />
+                                                                    <input name="yn_surat_kuasa_ahli_waris_revisi" class="form-check-input" type="radio" value="1" id="suratKuasaAhliWaris1" checked/>
                                                                     <label class="form-check-label" for="suratKuasaAhliWaris1"> Ya </label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline ">
@@ -1537,7 +1559,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                     <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->surat_kuasa_ahli_waris ?>" target="_blank" class="btn btn-sm btn-primary mb-2">Lihat</a>
 
                                                     <div class="form-check form-check-inline ms-5 ">
-                                                        <input name="yn_surat_kuasa_ahli_waris" class="form-check-input" type="radio" value="1" id="suratKuasaAhliWaris1" />
+                                                        <input name="yn_surat_kuasa_ahli_waris" class="form-check-input" type="radio" value="1" id="suratKuasaAhliWaris1" checked/>
                                                         <label class="form-check-label" for="suratKuasaAhliWaris1"> Ya </label>
                                                     </div>
                                                     <div class="form-check form-check-inline ">
@@ -1585,7 +1607,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                 </div>
                                                             <?php } else { ?>
                                                                 <div class="form-check form-check-inline ms-5 ">
-                                                                    <input name="yn_surat_dinas_komunikasi_revisi" class="form-check-input" type="radio" value="1" id="suratRekomIT1" />
+                                                                    <input name="yn_surat_dinas_komunikasi_revisi" class="form-check-input" type="radio" value="1" id="suratRekomIT1" checked/>
                                                                     <label class="form-check-label" for="suratRekomIT1"> Ya </label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline ">
@@ -1617,7 +1639,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                     <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->surat_dinas_komunikasi ?>" target="_blank" class="btn btn-sm btn-primary mb-2">Lihat</a>
 
                                                     <div class="form-check form-check-inline ms-5 ">
-                                                        <input name="yn_surat_dinas_komunikasi" class="form-check-input" type="radio" value="1" id="suratRekomIT1" />
+                                                        <input name="yn_surat_dinas_komunikasi" class="form-check-input" type="radio" value="1" id="suratRekomIT1" checked/>
                                                         <label class="form-check-label" for="suratRekomIT1"> Ya </label>
                                                     </div>
                                                     <div class="form-check form-check-inline ">
@@ -1663,7 +1685,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                 </div>
                                                             <?php } else { ?>
                                                                 <div class="form-check form-check-inline ms-5 ">
-                                                                    <input name="yn_surat_rekom_tni_revisi" class="form-check-input" type="radio" value="1" id="suratRekomTNI1" />
+                                                                    <input name="yn_surat_rekom_tni_revisi" class="form-check-input" type="radio" value="1" id="suratRekomTNI1" checked/>
                                                                     <label class="form-check-label" for="suratRekomTNI1"> Ya </label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline ">
@@ -1695,7 +1717,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                     <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->surat_rekom_tni ?>" target="_blank" class="btn btn-sm btn-primary mb-2">Lihat</a>
 
                                                     <div class="form-check form-check-inline ms-5 ">
-                                                        <input name="yn_surat_rekom_tni" class="form-check-input" type="radio" value="1" id="suratRekomTNI1" />
+                                                        <input name="yn_surat_rekom_tni" class="form-check-input" type="radio" value="1" id="suratRekomTNI1" checked/>
                                                         <label class="form-check-label" for="suratRekomTNI1"> Ya </label>
                                                     </div>
                                                     <div class="form-check form-check-inline ">
@@ -1743,7 +1765,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                 </div>
                                                             <?php } else { ?>
                                                                 <div class="form-check form-check-inline ms-5 ">
-                                                                    <input name="yn_surat_dinas_perdagagan_revisi" class="form-check-input" type="radio" value="1" id="suratRekomPerdagangan1" />
+                                                                    <input name="yn_surat_dinas_perdagagan_revisi" class="form-check-input" type="radio" value="1" id="suratRekomPerdagangan1" checked/>
                                                                     <label class="form-check-label" for="suratRekomPerdagangan1"> Ya </label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline ">
@@ -1775,7 +1797,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                     <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->surat_dinas_perdagangan ?>" target="_blank" class="btn btn-sm btn-primary mb-2">Lihat</a>
 
                                                     <div class="form-check form-check-inline ms-5 ">
-                                                        <input name="yn_surat_dinas_perdagagan" class="form-check-input" type="radio" value="1" id="suratRekomPerdagangan1" />
+                                                        <input name="yn_surat_dinas_perdagagan" class="form-check-input" type="radio" value="1" id="suratRekomPerdagangan1" checked/>
                                                         <label class="form-check-label" for="suratRekomPerdagangan1"> Ya </label>
                                                     </div>
                                                     <div class="form-check form-check-inline ">
@@ -1823,7 +1845,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                 </div>
                                                             <?php } else { ?>
                                                                 <div class="form-check form-check-inline ms-5 ">
-                                                                    <input name="yn_surat_dinas_peternakan_revisi" class="form-check-input" type="radio" value="1" id="suratRekomPeternakan1" />
+                                                                    <input name="yn_surat_dinas_peternakan_revisi" class="form-check-input" type="radio" value="1" id="suratRekomPeternakan1" checked/>
                                                                     <label class="form-check-label" for="suratRekomPeternakan1"> Ya </label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline ">
@@ -1855,7 +1877,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                     <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->surat_dinas_peternakan ?>" target="_blank" class="btn btn-sm btn-primary mb-2">Lihat</a>
 
                                                     <div class="form-check form-check-inline ms-5 ">
-                                                        <input name="yn_surat_dinas_peternakan" class="form-check-input" type="radio" value="1" id="suratRekomPeternakan1" />
+                                                        <input name="yn_surat_dinas_peternakan" class="form-check-input" type="radio" value="1" id="suratRekomPeternakan1" checked/>
                                                         <label class="form-check-label" for="suratRekomPeternakan1"> Ya </label>
                                                     </div>
                                                     <div class="form-check form-check-inline ">
@@ -1903,7 +1925,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                 </div>
                                                             <?php } else { ?>
                                                                 <div class="form-check form-check-inline ms-5 ">
-                                                                    <input name="yn_surat_pertamina_revisi" class="form-check-input" type="radio" value="1" id="suratRekomPertamina1" />
+                                                                    <input name="yn_surat_pertamina_revisi" class="form-check-input" type="radio" value="1" id="suratRekomPertamina1" checked/>
                                                                     <label class="form-check-label" for="suratRekomPertamina1"> Ya </label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline ">
@@ -1935,7 +1957,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                     <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->surat_pertamina ?>" target="_blank" class="btn btn-sm btn-primary mb-2">Lihat</a>
 
                                                     <div class="form-check form-check-inline ms-5 ">
-                                                        <input name="yn_surat_pertamina" class="form-check-input" type="radio" value="1" id="suratRekomPertamina1" />
+                                                        <input name="yn_surat_pertamina" class="form-check-input" type="radio" value="1" id="suratRekomPertamina1" checked/>
                                                         <label class="form-check-label" for="suratRekomPertamina1"> Ya </label>
                                                     </div>
                                                     <div class="form-check form-check-inline ">
@@ -1983,7 +2005,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                 </div>
                                                             <?php } else { ?>
                                                                 <div class="form-check form-check-inline ms-5 ">
-                                                                    <input name="yn_daftar_nama_kk_revisi" class="form-check-input" type="radio" value="1" id="daftarNamaKK1" />
+                                                                    <input name="yn_daftar_nama_kk_revisi" class="form-check-input" type="radio" value="1" id="daftarNamaKK1" checked/>
                                                                     <label class="form-check-label" for="daftarNamaKK1"> Ya </label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline ">
@@ -2015,7 +2037,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                     <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->daftar_nama_kk ?>" target="_blank" class="btn btn-sm btn-primary mb-2">Lihat</a>
 
                                                     <div class="form-check form-check-inline ms-5 ">
-                                                        <input name="yn_daftar_nama_kk" class="form-check-input" type="radio" value="1" id="daftarNamaKK1" />
+                                                        <input name="yn_daftar_nama_kk" class="form-check-input" type="radio" value="1" id="daftarNamaKK1" checked/>
                                                         <label class="form-check-label" for="daftarNamaKK1"> Ya </label>
                                                     </div>
                                                     <div class="form-check form-check-inline ">
@@ -2061,7 +2083,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                 </div>
                                                             <?php } else { ?>
                                                                 <div class="form-check form-check-inline ms-5 ">
-                                                                    <input name="yn_surat_fkub_revisi" class="form-check-input" type="radio" value="1" id="suratFKUB1" />
+                                                                    <input name="yn_surat_fkub_revisi" class="form-check-input" type="radio" value="1" id="suratFKUB1" checked/>
                                                                     <label class="form-check-label" for="suratFKUB1"> Ya </label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline ">
@@ -2093,7 +2115,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                     <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->surat_fkub ?>" target="_blank" class="btn btn-sm btn-primary mb-2">Lihat</a>
 
                                                     <div class="form-check form-check-inline ms-5 ">
-                                                        <input name="yn_surat_fkub" class="form-check-input" type="radio" value="1" id="suratFKUB1" />
+                                                        <input name="yn_surat_fkub" class="form-check-input" type="radio" value="1" id="suratFKUB1" checked/>
                                                         <label class="form-check-label" for="suratFKUB1"> Ya </label>
                                                     </div>
                                                     <div class="form-check form-check-inline ">
@@ -2120,6 +2142,20 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                 </div>
                             </div>
                         </div>
+                        <div class="row mb-3">
+                        <div class="col-sm-12">
+                          <div class="alert alert-warning my-autor" role="alert">
+                            <div class="row d-flex align-items-center">
+                              <div class="col-md-10 fw-bold fs-5">
+                                PASTIKAN ANDA SUDAH MENGISI SEMUA BARIS FORMULIR DENGAN BENAR!
+                              </div>
+                              <div class="col-md-2 text-end">
+                                <img src="<?php echo base_url('assets/');?>assets/img/warning.jpg" class="mb-0 my-3 rounded pb-0 img-fluid">
+                              </div>
+                            </div>
+                          </div>                          
+                        </div>
+                    </div>
 
                         <div class="row float-end">
                             <div class="col-md-12">

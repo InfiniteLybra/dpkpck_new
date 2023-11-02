@@ -76,7 +76,9 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                             </div>
                         </div>
                     <?php } ?>
-                    <?php if ($yn->fotokopi_ktp_kuasa == '0') { ?>
+                    <?php 
+                    if($kkpr->fotokopi_ktp_kuasa){
+                    if ($yn->fotokopi_ktp_kuasa == '0') { ?>
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label fw-bold text-dark" for="ktp">Fotokopi KTP Kuasa</label>
                             <div class="col-sm-10">
@@ -100,7 +102,7 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                 </div>
                             </div>
                         </div>
-                    <?php } ?>
+                    <?php }} ?>
                     <?php if ($kkpr->nama_perusahaan) { ?>
                         <?php if ($yn->akta_perusahaan == '0') { ?>
                             <div class="row mb-3">
@@ -338,7 +340,7 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                             </div>
                         </div>
                     <?php } ?>
-                    <?php if ($pmlk_meinggal) { ?>
+                    <?php if (!empty($pmlk_meninggal->surat_kematian)) { ?>
                         <?php if ($yn->surat_kematian == '0') { ?>
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label fw-bold text-dark" for="surat_tanah">Surat Kematian</label>

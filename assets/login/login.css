@@ -1,0 +1,168 @@
+@import url('https://fonts.cdnfonts.com/css/poppins');
+                
+.body {
+    font-family: 'Poppins';
+}
+.error-message {
+    color: red;
+    font-size: 12px;
+}
+
+#nama::placeholder {
+    opacity: 0.3; 
+}
+#nama:focus::placeholder {
+    color: #555; 
+}
+#username::placeholder {
+    opacity: 0.3;
+}
+#username:focus::placeholder {
+    color: #555; 
+}
+#pw::placeholder {
+    opacity: 0.3;
+}
+#pw:focus::placeholder {
+    color: #555;
+}
+#ulangpw::placeholder {
+    opacity: 0.3;
+}
+#ulangpw:focus::placeholder {
+    color: #555;
+}
+
+
+/* Hide spinner for number input */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+body::-webkit-scrollbar {
+    background-color: #fff;
+    width: 16px;
+}
+
+/* background of the scrollbar except button or resizer */
+body::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+/* scrollbar itself */
+body::-webkit-scrollbar-thumb {
+    background-color: #2f49a0;
+    border-radius: 16px;
+    border: 4px solid #fff;
+}
+
+/* set button(top and bottom of the scrollbar) */
+body::-webkit-scrollbar-button {
+    display:none;
+}
+
+* {
+    vertical-align: middle;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.background-radial-gradient {
+min-height: 100%;
+background-color: hsla(238.868, 98%, 32%, 0.91);
+background-image: radial-gradient(650px circle at 0% 0%,
+    hsla(239, 88%, 22%, 0.91),
+    hsla(239, 85%, 16%, 0.91),
+    hsla(239, 52%, 20%, 0.91),
+    hsla(239, 71%, 33%, 0.91),
+    transparent 100%),	
+radial-gradient(1250px circle at 100% 100%,
+    hsla(238.868, 98%, 32%, 0.91),
+    hsla(239, 85%, 16%, 0.91),
+    hsla(239, 52%, 20%, 0.91),
+    hsla(239, 71%, 33%, 0.91),
+    transparent 100%);
+}
+
+#radius-shape-1 {
+height: 220px;
+width: 220px;
+top: -60px;
+left: -130px;
+background: radial-gradient(#228cbd, #50b9e9);
+overflow: hidden;
+}
+
+#radius-shape-2 {
+border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+bottom: -60px;	
+right: -110px;
+width: 300px;
+height: 300px;
+background: radial-gradient(#228cbd, #50b9e9);
+overflow: hidden;
+}
+
+.bg-glass {
+background-color: hsla(0, 0%, 100%, 0.7) !important;
+backdrop-filter: saturate(200%) blur(25px);
+}
+
+.text-otp{
+    font-size: 26px  ;
+}
+.text-otp1{
+    font-size: 15px;
+}
+
+.otp-field {
+    flex-direction: row;
+    column-gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .otp-field input {
+    height: 45px;
+    width: 42px;
+    border-radius: 6px;
+    outline: none;
+    font-size: 1.125rem;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  .otp-field input:focus {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  }
+  .otp-field input::-webkit-inner-spin-button,
+  .otp-field input::-webkit-outer-spin-button {
+    display: none;
+  }
+  
+  .resend {
+    font-size: 12px;
+    text-align: center;
+  }
+  
+  .footer {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: black;
+    font-size: 12px;
+    text-align: right;
+    font-family: monospace;
+  }
+  
+  .footer a {
+    color: black;
+    text-decoration: none;
+  }      

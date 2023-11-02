@@ -459,7 +459,16 @@
                                                     </div>
                                                 </div> -->
                             <div class="row mb-3">
-                                <label class="col-md-2 col-form-label" for="kbli">KBLI diMohon
+                                <label class="col-md-2 col-form-label" for="judul_nib">
+                                    Judul KBLI
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-10">
+                                    <input type="text" id="judul_kbli" name="judul_kbli" class="form-control" required="required" value="<?php if($kkpr){echo $kkpr->judul_kbli;}else{echo isset($draft_data['judul_kbli']) ? $draft_data['judul_kbli'] : '';} ?>">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-md-2 col-form-label" for="kbli">Kode KBLI diMohon
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-10">
@@ -565,7 +574,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-md-3 col-form-label" for="st_1">Surat Tanah
+                                <label class="col-md-3 col-form-label" for="st_1"  id="suratTanah-label">Surat Tanah
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-9">
@@ -1625,7 +1634,7 @@
                                 <?php } ?>
                             <?php } ?>
                             <div class="row mb-3">
-                                <label class="col-md-3 col-form-label" for="shp">
+                                <label class="col-md-3 col-form-label" for="shp" id="shp-label">
                                     SHP File
                                     <span class="required">*</span>
                                     <div class="form-text">File berbentuk zip yang sudah di download
@@ -1769,4 +1778,30 @@
     </div>
 
 </div>
+<!-- Toast Surat Tanah -->
+<div class="bs-toast toast bg-primary position-fixed top-0 end-0 m-3" id="suratTanah-toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header border-bottom mb-3">
+            <i class="bx bx-info-circle me-2 fs-4"></i>
+            <div class="me-auto fs-4">Informasi Surat Tanah</div>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Contoh Surat Tanah : <br>
+            <img src="<?php echo base_url('assets/');?>assets/img/contoh-sertifikat-tanah.jpg" draggable="false" class="mt-3" style="width: 310px;">
+        </div>
+    </div>
+
+    <!-- Toast SHP -->
+    <div class="bs-toast toast bg-primary position-fixed top-0 end-0 m-3" id="shp-toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header border-bottom mb-3">
+            <i class="bx bx-info-circle me-2 fs-4"></i>
+            <div class="me-auto fs-4">Informasi File SHP</div>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            <img src="<?php echo base_url('assets/');?>assets/img/zip.jpg" class="mb-3 rounded" draggable="false" style="width: 300px;">
+            File SHP berbentuk zip yang sudah di download. <br>
+            <button class="btn btn-light mt-3"><small><a href="<?php echo base_url('Map/polygon_new'); ?>" target="_blank">Belum membuat Polygon Map?</a></small></button>
+        </div>
+    </div>
 <!-- End Content -->

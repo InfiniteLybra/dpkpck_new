@@ -162,7 +162,7 @@
                     <?= $k->koordinat_d ?><br><br><br> -->
                 <?php } ?><br><br><br>
             </td>
-            <td style="border: 1px solid black; padding:3px; font-size: 11; vertical-align: top;" rowspan="3">
+            <td style="border: 1px solid black; padding:3px; font-size: 12; vertical-align: top;" rowspan="3">
                 <?php
                 $kkpr = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_kkpr_permohonan ='$data->id_permohonan' ")->row();
                 if ($kkpr->type == 'biasa') {
@@ -188,6 +188,7 @@
                 } ?>
 
                 <?php if ($kkpr->type == 'pergudangan') { ?>
+                    <p style="text-align: justify;">
                     1.Membuat sistem drainase yang disesuaikan dengan besarnya aliran pembuangan dan kontur tanah untuk menghindari banjir / genangan air.<br>
                     2.Operasionalisasi gudang hanya untuk proses bongkar muat dan penyimpanan barang atau hal-hal yang menyangkut kegiatan pergudangan dan bukan merupakan proses produksi atau tempat penyimpanan bahan-bahan berbahaya / berpolutan.<br>
                     3.Operasionalisasi gudang hanya untuk proses bongkar muat dan penyimpanan barang atau hal-hal yang menyangkut kegiatan pergudangan.<br>
@@ -195,7 +196,8 @@
                     5.Berkoordinasi dengan Dinas Perindustrian dan Perdagangan Kabupaten Malang terkait izin usaha dibidang perdagangan.<br>
                     6.Menyediakan alat pemadam kebakaran sebagai upaya pencegahan bahaya kebakaran.<br>
                     7.Mematuhi dan melaksanakan ketentuan-ketentuan yang tertuang dalam surat pernyataan pada sistem Online Single Submission (OSS) berkoordinasi dengan Organisasi Perangkat Daerah (OPD) / Instansi terkait.<br>
-                    8.Informasi KKPR ini berlaku sejauh ketentuan rencana tata ruang dan pemanfaatan ruang dari lokasi yang dimohon serta kawasan sekitarnya tidak berubah dan menjadi batal / dicabut / ditinjau kembali apabila dalam permohonannya didapatkan unsur kelalaian, pemalsuan, penipuan, paksaan, penyesatan dalam memberikan informasi, difungsikan tidak sesuai permohonan dan pemanfaatannya menimbulkan keresahan di masyarakat.
+                    8.Informasi KKPR ini berlaku sejauh ketentuan rencana tata ruang dan pemanfaatan ruang dari lokasi yang dimohon serta kawasan sekitarnya tidak berubah dan menjadi batal / dicabut / ditinjau kembali apabila dalam permohonannya didapatkan unsur kelalaian, pemalsuan, penipuan, paksaan, penyesatan dalam memberikan informasi, difungsikan tidak sesuai permohonan dan pemanfaatannya menimbulkan keresahan di masyarakat.  
+                    
                     <br>
                     <?php 
                         if($data->lainya_ketentuan)
@@ -203,6 +205,7 @@
                             echo "9.".$data->lainya_ketentuan."<br>";
                         }
                     ?>
+                    </p>
                     <?php
                     $no = 10;
                     $ketentuan = json_decode($data->ketentuan_lainya);
@@ -218,6 +221,7 @@
                 } ?>
 
                 <?php if ($kkpr->type == 'klinik') { ?>
+                    <p style="text-align: justify;">
                     1.Berkoordinasi dengan Dinas Pekerjaan Umum Sumber Daya Air Kabupaten Malang terkait rekomendasi teknis mengatasi banjir / genangan air.<br>
                     2.Berkoordinasi dengan Dinas Perindustrian dan Perdagangan Kabupaten Malang terkait izin usaha dibidang perdagangan.<br>
                     3.Menyediakan alat pemadam kebakaran sebagai upaya pencegahan bahaya kebakaran.<br>
@@ -229,6 +233,7 @@
                             echo "6.".$data->lainya_ketentuan."<br>";
                         }
                     ?>
+                    </p>
                     <?php
                     $no = 7;
                     $ketentuan = json_decode($data->ketentuan_lainya);
@@ -244,6 +249,7 @@
                 } ?>
 
                 <?php if ($kkpr->type == 'minimarket') { ?>
+                    <p style="text-align: justify;">
                     1.Membuat sistem drainase yang disesuaikan dengan besarnya aliran pembuangan dan kontur tanah untuk menghindari banjir / genangan air.<br>
                     2.Apabila lokasi yang dimohon difungsikan sebagai minimarket / toko modern maka sebelum mengajukan Persetujuan Bangunan Gedung (PBG) agar mengajukan pertimbangan teknis kepada Dinas Perindustrian dan Perdagangan Kabupaten Malang tentang izin usaha dibidang perdagangan (Toko Moderen) dengan mempertimbangkan ketentuan jarak dan pertimbangan jam operasional sebagaimana diatur dalam Peraturan Daerah Kabupaten Malang Nomor 03 Tahun 2012 tentang Perlindungan dan Pemberdayaan Pasar Tradisional serta Penataan dan Pengendalian Pusat Perbelanjaan dan Toko Modern.<br>
                     3.Sebelum mengajukan Persetujuan Bangunan Gedung (PBG) agar mengajukan pertimbangan teknis kepada Dinas Perindustrian dan Perdagangan Kabupaten Malang tentang izin usaha dibidang perdagangan (Toko Moderen) dengan mempertimbangkan ketentuan jarak dan pertimbangan jam operasional sebagaimana diatur dalam Peraturan Daerah Kabupaten Malang Nomor 03 Tahun 2012 tentang Perlindungan dan Pemberdayaan Pasar Tradisional serta Penataan dan Pengendalian Pusat Perbelanjaan dan Toko Modern.<br>
@@ -256,6 +262,7 @@
                             echo "7.".$data->lainya_ketentuan."<br>";
                         }
                     ?>
+                    </p>
                     <?php
                     $no = 8;
                     $ketentuan = json_decode($data->ketentuan_lainya);
@@ -271,6 +278,7 @@
                 } ?>
 
                 <?php if ($kkpr->type == 'perumahan') { ?>
+                    <p style="text-align: justify;">
                     1.Apabila lokasi dimohon merupakan perumahan dan / atau pengajuan pemecahan lebih dari 5 (lima) bidang tanah sebagai Kawasan Siap bangun (KASIBA) / Lingkungan Siap Bangun (LISIBA) maka wajib menyusun Site Plan yang disahkan pejabat berwenang berkoordinasi dengan Dinas Perumahan, Kawasan Permukiman dan Cipta Karya Kabupaten malang dengan mematuhi ketentuan-ketentuan yang tertuang dalam Site Plan serta peraturan perundang-undangan yang berlaku.<br>
                     2.Berkoordinasi dengan Dinas Pekerjaan Umum Sumber Daya Air Kabupaten Malang terkait rekomendasi teknis mengatasi banjir / genangan air.<br>
                     3.Berkoordinasi dengan Balai Pelestarian Cagar Budaya Jawa Timur dan Dinas Pariwisata dan Kebudayaan Kabupaten Malang apabila terdapat situs-situs peninggalan purbakala di dalam dan / atau di sekitar lokasi dimohon.<br>
@@ -289,6 +297,7 @@
                             echo "13.".$data->lainya_ketentuan."<br>";
                         }
                     ?>
+                    </p>
                     <?php
                     $no = 14;
                     $ketentuan = json_decode($data->ketentuan_lainya);
@@ -304,6 +313,7 @@
                 } ?>
 
                 <?php if ($kkpr->type == 'spbu') { ?>
+                    <p style="text-align: justify;">
                     1.Informasi Kesesuaian Kegiatan Pemanfaatan Ruang (KKPR) ini merupakan informasi terkait kesesuaian antara rencana kegiatan pemanfaatan ruang dengan Rencana Tata Ruang Kabupaten Malang yang memuat persyaratan tata bangunan dan lingkungan. <br>                    2.Membuat sistem drainase yang disesuaikan dengan besarnya aliran pembuangan dan kontur tanah untuk menghindari banjir / genangan air.
                     3.Menyediakan Ruang Terbuka Hijau (RTH) dalam upaya melakukan penghijauan dan buffer zone terhadap lingkungan sekitar.<br>
                     4.Menyediakan alat pemadam kebakaran sebagai upaya pencegahan bahaya kebakaran.<br>
@@ -318,6 +328,7 @@
                             echo "7.".$data->lainya_ketentuan."<br>";
                         }
                     ?>
+                    </p>
                     <?php
                     $no = 8;
                     $ketentuan = json_decode($data->ketentuan_lainya);
@@ -333,6 +344,7 @@
                 } ?>
 
                 <?php if ($kkpr->type == 'tower') { ?>
+                    <p style="text-align: justify;">
                     1.Tidak mengganggu fungsi penggunaan lahan / pemanfaatan ruang lainnya khususnya dalam radius '&MASTER!B53&' meter rebahan tower. <br>
                     2.Meningkatkan kualitas jalan menuju lokasi dimohon untuk memudahkan akses serta berperan aktif dalam upaya pengembangan aksesibilitas di sekitar lokasi dimohon.<br>
                     3.Membangunan dilakukan dengan memperhatikan keselamatan warga sekitar serta memberi ruang di sekitar batas lahan untuk pengamanan.<br>
@@ -345,6 +357,7 @@
                             echo "7.".$data->lainya_ketentuan."<br>";
                         }
                     ?>
+                    </p>
                     <?php
                     $no = 8;
                     $ketentuan = json_decode($data->ketentuan_lainya);
@@ -365,7 +378,7 @@
         </tr>
         <tr>
             <td style="width: 50%; border: 1px solid black; vertical-align: top;">
-                <p class="font-size-11">
+                <p class="font-size-11" style="text-align: justify;">
                     <?php if ($data->flexsible_zoning == 'diijinkan' || $data->flexsible_zoning == 'bersyarat_tertentu' || $data->flexsible_zoning == 'bersyarat_terbatas') { ?>
                         Dinyatakan "disetujui seluruhnya" sebagai dasar pertimbangan dari:
                     <?php } ?>
@@ -444,6 +457,7 @@
                         <td>:</td>
                         <td><?= $data->koefisien_dasar_hijau ?></td>
                     </tr>
+                    <?php if($data->fungsi_jalan1){ ?>
                     <tr>
                         <td>6.</td>
                         <td>GSP & GSB Min. Lis (Utara)</td>
@@ -494,6 +508,8 @@
                             ?>
                         </td>
                     </tr>
+                    <?php }?>
+                    <?php if($data->fungsi_jalan2){ ?>
                     <tr>
                         <td></td>
                         <td>GSP & GSB Min. Lis (Barat)</td>
@@ -544,6 +560,8 @@
                             ?>
                         </td>
                     </tr>
+                    <?php }?>
+                    <?php if($data->fungsi_jalan3){ ?>
                     <tr>
                         <td></td>
                         <td>GSP & GSB Min. Lis (Selatan)</td>
@@ -594,6 +612,8 @@
                             ?>
                         </td>
                     </tr>
+                    <?php }?>
+                    <?php if($data->fungsi_jalan4){ ?>
                     <tr>
                         <td></td>
                         <td>GSP & GSB Min. Lis (Timur)</td>
@@ -644,6 +664,7 @@
                             ?>
                         </td>
                     </tr>
+                    <?php }?>
                     <tr>
                         <td>7.</td>
                         <td>Koefisien Lantai Bangunan Maks,</td>
@@ -652,7 +673,7 @@
                     </tr>
                 </table>
             </td>
-            <td class="font-size-11 text-center">
+            <td class="font-size-11 text-center width: 50%; border: 1px solid black;">
                 KEPALA DINAS
                 <br>
                 PERUMAHAN KAWASAN PERMUKIMAN DAN CIPTA KARYA

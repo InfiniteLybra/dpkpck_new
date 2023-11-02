@@ -1,11 +1,14 @@
-<!-- <script src="https://unpkg.com/leaflet@latest/dist/leaflet.js"></script>
-<script src="<?php echo base_url('assets/');?>map/js/Control.FullScreen.js"></script> -->
+<script src="https://unpkg.com/leaflet@latest/dist/leaflet.js"></script>
+<script src="assets/js/Control.FullScreen.js"></script>
 
 
-<!-- <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
-<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script> -->
-<!-- <script src="assets/js/catiline.js"></script>
-<script src="assets/js/leaflet.shpfile.js"></script> -->
+<script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+
+<!-- <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script> -->
+
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+<script src="assets/js/catiline.js"></script>
+<script src="assets/js/leaflet.shpfile.js"></script>
 <script>
     var boundary = L.polygon([
         [-8.476526, 112.975311],
@@ -212,25 +215,37 @@
     map.on(L.Draw.Event.CREATED, function(event) {
         if (polygon == 0) {
             var layer = event.layer;
-            // alert(layer.getLatLngs());
 
             if (layer instanceof L.Polygon) {
                 createAreaTooltip(layer);
             }
             drawnItems.addLayer(layer);
+
             if (layer instanceof L.Polygon) {
                 var coordinates = layer.getLatLngs()[0];
 
-                // Tampilkan koordinat tiap titik sebagai popup
+                // Fungsi untuk mengonversi desimal ke DMS
+                function decimalToDMS(decimal, isLongitude) {
+                    const degrees = Math.floor(Math.abs(decimal));
+                    const minutes = Math.floor((Math.abs(decimal) - degrees) * 60);
+                    const seconds = (Math.abs(decimal) - degrees - minutes / 60) * 3600;
+                    const direction = isLongitude ? (decimal > 0 ? "E" : "W") : (decimal > 0 ? "N" : "S");
+                    return `${degrees}° ${minutes}' ${seconds.toFixed(2)}" ${direction}`;
+                }
+
+                // Mengonversi koordinat ke format DMS dan menambahkannya sebagai popup
                 coordinates.forEach(function(coord, index) {
-                    var popupContent = "Koordinat Titik " + index + ": " + coord.lat + ", " + coord.lng;
+                    var dmsLat = decimalToDMS(coord.lat, false);
+                    var dmsLng = decimalToDMS(coord.lng, true);
+                    var popupContent = "Koordinat Titik " + index + ": " + dmsLat + ", " + dmsLng;
                     L.marker(coord).bindPopup(popupContent).addTo(map);
                 });
             }
         } else {
-            alert('Polygon Telah dibuat, hapus atau ubah polygon sebelumnya!')
+            alert('Polygon telah dibuat, hapus atau ubah polygon sebelumnya!');
         }
     });
+
 
     map.on(L.Draw.Event.EDITED, function(event) {
         event.layers.getLayers().forEach(function(layer) {
@@ -273,5 +288,5 @@
         a.href = url;
         a.download = 'map.geojson';
         a.click();
-}
+    }
 </script>

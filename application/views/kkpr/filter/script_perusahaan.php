@@ -391,7 +391,46 @@
         KTCreateAccount.init()
     }));
 </script>
+<script>
+    const shpLabel = document.getElementById('shp-label');
+    const shpToast = new bootstrap.Toast(document.getElementById('shp-toast'));
 
+    const suratTanahLabel = document.getElementById('suratTanah-label');
+    const suratTanahToast = new bootstrap.Toast(document.getElementById('suratTanah-toast'));
+
+    let activeToast = null;
+
+    function checkLabelVisibility() {
+        const shpLabelRect = shpLabel.getBoundingClientRect();
+        const suratTanahLabelRect = suratTanahLabel.getBoundingClientRect();
+
+        if (shpLabelRect.top < window.innerHeight) {
+            if (activeToast !== shpToast) {
+                shpToast.show();
+                if (activeToast) {
+                    activeToast.hide();
+                }
+                activeToast = shpToast;
+            }
+        } else if (suratTanahLabelRect.top < window.innerHeight) {
+            if (activeToast !== suratTanahToast) {
+                suratTanahToast.show();
+                if (activeToast) {
+                    activeToast.hide();
+                }
+                activeToast = suratTanahToast;
+            }
+        } else {
+            if (activeToast) {
+                activeToast.hide();
+                activeToast = null;
+            }
+        }
+    }
+
+    window.addEventListener('scroll', checkLabelVisibility);
+    checkLabelVisibility();
+</script>
 <script>
     $(document).ready(function() {
 
@@ -582,7 +621,7 @@
     }
 
     // Tambahkan event listener untuk input
-    const inputElements = document.querySelectorAll('#nama_pemohon, #alamat_pemohon, #rt_pemohon, #rw_pemohon, #telp_pemohon,  #nama_kuasa, #alamat_kuasa, #rt_kuasa, #rw_kuasa, #telp_kuasa,  #nama_perusahaan,#alamat_perusahaan,#rt_perusahaan,#rw_perusahaan,#nib, #peruntukan_tanah,#luas_tanah,#lokasi_tanah,#rt_tanah,#rw_tanah');
+    const inputElements = document.querySelectorAll('#nama_pemohon, #alamat_pemohon, #rt_pemohon, #rw_pemohon, #telp_pemohon,  #nama_kuasa, #alamat_kuasa, #rt_kuasa, #rw_kuasa, #telp_kuasa,  #nama_perusahaan,#alamat_perusahaan,#rt_perusahaan,#rw_perusahaan,#nib, #peruntukan_tanah,#luas_tanah,#lokasi_tanah,#rt_tanah,#rw_tanah,#judul_kbli');
     inputElements.forEach(input => {
         input.addEventListener('input', saveDraft);
     });

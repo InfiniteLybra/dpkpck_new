@@ -60,16 +60,10 @@
             </div>
             <div class="modal-footer pb-2 pt-2">
                 <a data-bs-dismiss="modal" class="btn btn-danger btn-sm pt-2 pb-2 me-5">
-                    <i class="ki-duotone ki-cross-square fs-2">
-                        <i class="path1"></i>
-                        <i class="path2"></i>
-                    </i>
+                <i class="fa fa-times fa-2x" aria-hidden="true"></i>
                 </a>
                 <a href="<?= base_url('Auth/logout') ?>" class="btn btn-success btn-sm pt-2 pb-2">
-                    <i class="ki-duotone ki-entrance-left fs-2">
-                        <i class="path1"></i>
-                        <i class="path2"></i>
-                    </i>
+                    <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
                 </a>
             </div>
             <!--end::Modal body-->

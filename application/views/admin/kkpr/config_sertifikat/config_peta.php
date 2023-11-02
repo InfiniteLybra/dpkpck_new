@@ -888,8 +888,8 @@ if ($cek) {
                                     <?php if ($cek) { ?>
                                         <div class="d-flex">
                                             <!-- <input type="text" name="luas_tanah_disetujui" id="luas_tanah_disetujui" class="form-control flex-grow-1" value="<?= $data->luas_disetujui ?>"> -->
-                                            <input type="text" name="luas_tanah_disetujui" id="luas_tanah_disetujui" class="form-control flex-grow-1" value="<?php if ($data->Luas_disetujui) {
-                                                                                                                                                        echo $data->Luas_disetujui;
+                                            <input type="text" name="luas_tanah_disetujui" id="luas_tanah_disetujui" class="form-control flex-grow-1" value="<?php if ($data->luas_disetujui) {
+                                                                                                                                                        echo $data->luas_disetujui;
                                                                                                                                                     } else {
                                                                                                                                                         echo isset($draft_data['luas_tanah_disetujui']) ? $draft_data['luas_tanah_disetujui'] : '';
                                                                                                                                                     } ?>">
@@ -1313,8 +1313,8 @@ if ($cek) {
                                 <td>
                                     <?php if ($cek) { ?>
                                         <!-- <input type="text" name="koefisien_lantai" id="koefisien_lantai" class="form-control" value="<?= $data->lantai_bangunan ?>"> -->
-                                        <input type="text" name="koefisien_lantai" id="koefisien_lantai" class="form-control" value="<?php if ($data->koefisien_lantai) {
-                                                                                                                                                        echo $data->koefisien_lantai;
+                                        <input type="text" name="koefisien_lantai" id="koefisien_lantai" class="form-control" value="<?php if ($data->lantai_bangunan) {
+                                                                                                                                                        echo $data->lantai_bangunan;
                                                                                                                                                     } else {
                                                                                                                                                         echo isset($draft_data['koefisien_lantai']) ? $draft_data['koefisien_lantai'] : '';
                                                                                                                                                     } ?>">
