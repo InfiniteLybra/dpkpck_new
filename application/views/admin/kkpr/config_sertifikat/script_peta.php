@@ -49,6 +49,50 @@
     });
 </script> -->
 <script>
+    // Fungsi untuk menyimpan draft otomatis saat perubahan input
+    function saveDraft() {
+        const draftForm = document.getElementById('kt_create_account_form');
+        const formData = new FormData(draftForm);
+
+        // Kirim data draft ke server
+        fetch('<?= base_url('Kkpr/save_draft_peta') ?>', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Draft saved successfully.');
+                } else {
+                    console.error('Failed to save draft.');
+                }
+            })
+            .catch(error => {
+                console.error('An error occurred:', error);
+            });
+    }
+
+    // Tambahkan event listener untuk input
+    const inputElements = document.querySelectorAll('#luas_tanah_lsd,#luas_tanah_kp2b,#diijinkan_sebagian,#indikasi_ppr,#luas_tanah_disetujui,#koefisien_bangunan,#koefisien_dasar_hijau,#koefisien_lantai');
+    inputElements.forEach(input => {
+        input.addEventListener('input', saveDraft);
+    });
+    const selectElements = document.querySelectorAll('#perda_rtr1,#perda_rtr2,#perda_rtr3,#flexsible_zoning,#masuk_lsd,#masuk_kp2b,#blok_kepanjen,#zona_kepanjen1,#zona_kepanjen2,#zona_kepanjen3,#fungsi_jalan1,#kelas_jalan1,#fungsi_jalan2,#kelas_jalan2,#fungsi_jalan3,#kelas_jalan3,#fungsi_jalan4,#kelas_jalan4'); // Gantilah 'your_select_id_here' dengan ID elemen select Anda
+    selectElements.forEach(select => {
+        select.addEventListener('change', saveDraft); // Gunakan event 'change' untuk select
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+    const draftData = <?= json_encode($draft_data) ?>;
+    for (const key in draftData) {
+        if (draftData.hasOwnProperty(key)) {
+            const element = document.getElementById(key);
+            if (element) {
+                element.value = draftData[key];
+            }
+        }
+    }
+});
+</script>
+<script>
     document.addEventListener("DOMContentLoaded", function() {
         var fungsiJalanSelect = document.getElementById("fungsi_jalan1");
         var kelasJalanSelect = document.getElementById("kelas_jalan1");

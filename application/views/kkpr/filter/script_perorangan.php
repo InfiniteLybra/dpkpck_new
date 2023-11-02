@@ -651,7 +651,7 @@
 <script>
     // Fungsi untuk menyimpan draft otomatis saat perubahan input
     function saveDraft() {
-        const draftForm = document.getElementById('kt_create_account_form');
+        const draftForm = document.getElementById('msform');
         const formData = new FormData(draftForm);
 
         // Kirim data draft ke server

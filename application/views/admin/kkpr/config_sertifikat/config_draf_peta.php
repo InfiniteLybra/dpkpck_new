@@ -34,7 +34,7 @@ if ($cek) {
     <div class="col-xxl">
         <div class="card mb-4">
             <div class="card-body">
-                <form method="POST" action="<?php echo base_url('Kkpr/proses_config_draft_peta'); ?>" enctype="multipart/form-data">
+                <form method="POST" id="kt_create_account_form" action="<?php echo base_url('Kkpr/proses_config_draft_peta'); ?>" enctype="multipart/form-data">
                     <div class="card shadow-none border-1 mb-4" id="card-detail-pdf">
                         <div class="card-body" id="detailData">
                             <div class="row mb-3">
@@ -191,9 +191,14 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                 <?php if ($cek) { ?>
-                                                    <input type="text" name="koordinat_tengah" class="form-control" value="<?php if ($data) echo $data->titik_koordinat_tengah ?>">
+                                                    <!-- <input type="text" name="koordinat_tengah" id="koordinat_tengah" class="form-control" value="<?php if ($data) echo $data->titik_koordinat_tengah ?>"> -->
+                                                    <input type="text" name="koordinat_tengah" id="koordinat_tengah" class="form-control" value="<?php if ($data->titik_koordinat_tengah ) {
+                                                                                                                                                        echo $data->titik_koordinat_tengah ;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['koordinat_tengah']) ? $draft_data['koordinat_tengah'] : '';
+                                                                                                                                                    } ?>">
                                                 <?php } else { ?>
-                                                    <input type="text" name="koordinat_tengah" class="form-control" value="">
+                                                    <input type="text" name="koordinat_tengah" id="koordinat_tengah" class="form-control" value="<?php echo isset($draft_data['koordinat_tengah']) ? $draft_data['koordinat_tengah'] : ''; ?>">
                                                 <?php } ?>
                                                 </td>
                                             </tr>

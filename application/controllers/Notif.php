@@ -37,4 +37,25 @@ class Notif extends CI_Controller
         $this->load->view('templates/footer');
         $this->load->view('templates/footScript');
     }
+    public function terimakasih_pengembalian()
+    {
+        $this->load->view('templates/header');
+        $this->load->view('templates/terimakasih/terimakasih_pengembalian');
+        $this->load->view('templates/footer');
+        $this->load->view('templates/footScript');
+    }
+    public function terimakasih_tolak_permohonan()
+    {
+        $this->load->view('templates/header');
+        $this->load->view('templates/terimakasih/terimakasih_tolak_permohonan');
+        $this->load->view('templates/footer');
+        $this->load->view('templates/footScript');
+    }
+    public function terimakasih_simpan_admin_permohonan()
+    {
+        $this->load->view('templates/header');
+        $this->load->view('templates/terimakasih/terimakasih_simpan_admin_permohonan');
+        $this->load->view('templates/footer');
+        $this->load->view('templates/footScript');
+    }
 }

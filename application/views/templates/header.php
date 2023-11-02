@@ -204,7 +204,7 @@
                   </a>
               </li>
               <li class="menu-item">
-                  <a href="<?= base_url('Map/polygon') ?>" class="menu-link">
+                  <a href="<?= base_url('Map/polygon_new') ?>" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-trip"></i>
                     <div data-i18n="Polygon Map">Polygon Map</div>
                   </a>
@@ -318,7 +318,7 @@
                   </a>
               </li>
               <li class="menu-item">
-                  <a href="<?php echo base_url('assets/');?>views/admin/kkpr/daftar_pengembalian_formulir/index.html" class="menu-link">
+                  <a href="<?php echo base_url('');?>Kkpr/pengembalian_formulir" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-file"></i>
                     <div data-i18n="Pengembalian Formulir">Pengembalian Formulir</div>
                   </a>
@@ -346,17 +346,11 @@
                   </a>
               </li>
               <li class="menu-item">
-                  <a href="<?= base_url('Map/polygon') ?>" class="menu-link">
+                  <a href="<?= base_url('Map/polygon_new') ?>" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-trip"></i>
                     <div data-i18n="Polygon Map">Polygon Map</div>
                   </a>
-              </li>
-              <li class="menu-item">
-                  <a href="<?= base_url('polygon/create_new.html') ?>" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-trip"></i>
-                    <div data-i18n="Polygon Map New">Polygon Map New</div>
-                  </a>
-              </li>
+              </li>              
               <li class="menu-item">
                   <a href="<?= base_url('Geojson') ?>" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-repeat"></i>
@@ -406,12 +400,7 @@
                       <a href="<?= base_url('Kkpr/getAllKkpr') ?>" class="menu-link">
                         <div data-i18n="Laporan Tahunan">Laporan Tahunan</div>
                       </a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="<?= base_url('Kkpr/admin_kkpr_kuasa') ?>" class="menu-link">
-                        <div data-i18n="Admin Kuasa">Admin Kuasa</div>
-                      </a>
-                    </li>
+                    </li>                    
                   </ul>
               </li>
               <li class="menu-item">
@@ -455,17 +444,11 @@
                   </a>
               </li>
               <li class="menu-item">
-                  <a href="<?= base_url('Map/polygon') ?>" class="menu-link">
+                  <a href="<?= base_url('Map/polygon_new') ?>" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-trip"></i>
                     <div data-i18n="Polygon Map">Polygon Map</div>
                   </a>
-              </li>
-              <li class="menu-item">
-                  <a href="<?= base_url('polygon/create_new.html') ?>" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-trip"></i>
-                    <div data-i18n="Polygon Map New">Polygon Map New</div>
-                  </a>
-              </li>
+              </li>              
               <li class="menu-item">
                   <a href="<?= base_url('Geojson') ?>" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-repeat"></i>
@@ -515,12 +498,7 @@
                       <a href="<?= base_url('Kkpr/getAllKkpr') ?>" class="menu-link">
                         <div data-i18n="Laporan Tahunan">Laporan Tahunan</div>
                       </a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="<?= base_url('Kkpr/admin_kkpr_kuasa') ?>" class="menu-link">
-                        <div data-i18n="Admin Kuasa">Admin Kuasa</div>
-                      </a>
-                    </li>
+                    </li>                    
                   </ul>
               </li>
               <li class="menu-item">
@@ -564,17 +542,11 @@
                   </a>
               </li>
               <li class="menu-item">
-                  <a href="<?= base_url('Map/polygon') ?>" class="menu-link">
+                  <a href="<?= base_url('Map/polygon_new') ?>" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-trip"></i>
                     <div data-i18n="Polygon Map">Polygon Map</div>
                   </a>
-              </li>
-              <li class="menu-item">
-                  <a href="<?= base_url('polygon/create_new.html') ?>" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-trip"></i>
-                    <div data-i18n="Polygon Map New">Polygon Map New</div>
-                  </a>
-              </li>
+              </li>              
               <li class="menu-item">
                   <a href="<?= base_url('Geojson') ?>" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-repeat"></i>
@@ -619,12 +591,7 @@
                       <a href="<?= base_url('Kkpr/getAllKkpr') ?>" class="menu-link">
                         <div data-i18n="Laporan Tahunan">Laporan Tahunan</div>
                       </a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="<?= base_url('Kkpr/admin_kkpr_kuasa') ?>" class="menu-link">
-                        <div data-i18n="Admin Kuasa">Admin Kuasa</div>
-                      </a>
-                    </li>
+                    </li>                    
                   </ul>
               </li>
               <li class="menu-item">
@@ -668,17 +635,11 @@
                   </a>
               </li>
               <li class="menu-item">
-                  <a href="<?= base_url('Map/polygon') ?>" class="menu-link">
+                  <a href="<?= base_url('Map/polygon_new') ?>" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-trip"></i>
                     <div data-i18n="Polygon Map">Polygon Map</div>
                   </a>
-              </li>
-              <li class="menu-item">
-                  <a href="<?= base_url('polygon/create_new.html') ?>" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-trip"></i>
-                    <div data-i18n="Polygon Map New">Polygon Map New</div>
-                  </a>
-              </li>
+              </li>              
               <li class="menu-item">
                   <a href="<?= base_url('Geojson') ?>" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-repeat"></i>
@@ -723,12 +684,7 @@
                       <a href="<?= base_url('Kkpr/getAllKkpr') ?>" class="menu-link">
                         <div data-i18n="Laporan Tahunan">Laporan Tahunan</div>
                       </a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="<?= base_url('Kkpr/admin_kkpr_kuasa') ?>"" class="menu-link">
-                        <div data-i18n="Admin Kuasa">Admin Kuasa</div>
-                      </a>
-                    </li>
+                    </li>                    
                   </ul>
               </li>
               <li class="menu-item">
@@ -763,7 +719,7 @@
               <!-- User -->
               <li class="menu-header small text-uppercase"><span class="menu-header-text">Menu</span></li>              
               <li class="menu-item">
-                  <a href="<?php echo base_url('assets/');?>views/admin/kkpr/daftar_pengembalian_formulir/index.html" class="menu-link">
+                  <a href="<?php echo base_url('');?>Kkpr/pengembalian_formulir" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-file"></i>
                     <div data-i18n="Pengembalian Formulir">Pengembalian Formulir</div>
                   </a>

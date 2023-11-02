@@ -168,6 +168,7 @@ class Kkpr extends CI_Controller
         {
             $data['data'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_kkpr_permohonan = '$id'")->row(); 
         }
+        $data['draft_data'] = $this->session->userdata('draft_data_peta');
         $data['ketentuan'] = $this->db->query(
             "SELECT * FROM ketentuan_lainya 
             WHERE 
@@ -219,11 +220,12 @@ class Kkpr extends CI_Controller
         {
             $data['data'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_kkpr_permohonan = '$id'")->row(); 
         }
+        $data['draft_data'] = $this->session->userdata('draft_data_peta_draft');
         $this->load->view('templates/header');
         $this->load->view('admin/kkpr/config_sertifikat/config_draf_peta',$data);
         $this->load->view('templates/footer');
         $this->load->view('templates/footScript');
-        // $this->load->view('admin/kkpr/config_sertifikat/script_config');
+        $this->load->view('admin/kkpr/config_sertifikat/script_draft');
         $this->session->set_userdata('detail_config_draft', current_url());
     }
     public function proses_config_draft_peta()
@@ -258,11 +260,12 @@ class Kkpr extends CI_Controller
         {
             $data['data'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_kkpr_permohonan = '$id'")->row(); 
         }
+        $data['draft_data'] = $this->session->userdata('draft_data_lhs');
         $this->load->view('templates/header');
         $this->load->view('admin/kkpr/config_sertifikat/config_lhs',$data);
         $this->load->view('templates/footer');
         $this->load->view('templates/footScript');
-        // $this->load->view('admin/kkpr/config_sertifikat/script_config');
+        $this->load->view('admin/kkpr/config_sertifikat/script_lhs');
          $this->session->set_userdata('detail_config_draft', current_url());
     }
     public function proses_config_lhs()
@@ -548,12 +551,18 @@ class Kkpr extends CI_Controller
     }
     public function detail_kkpr($id)
     {
+        $kkpr = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_kkpr_permohonan = '$id'")->row();
+        $data['provinsi_pemohon'] = $this->db->query("SELECT * FROM indo_provinsi")->result();
+        $data['provinsi_kuasa'] = $this->db->query("SELECT * FROM indo_provinsi")->result();
+        $data['provinsi_perusahaan'] = $this->db->query("SELECT * FROM indo_provinsi")->result();        
+        $data['kecamatan_tanah'] = $this->db->query("SELECT * FROM kecamatan")->result();
         $data['kkpr'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_kkpr_permohonan = '$id'")->row();
         $this->load->view('templates/header');
         $this->load->view('admin/kkpr/permohonan/detail_kkpr',$data);
         $this->load->view('templates/footer');
         $this->load->view('templates/footScript');
         $this->load->view('admin/kkpr/permohonan/script_detail');
+        $this->session->set_userdata('detail_admin_kkpr', current_url());
     }
     function proses_keterangan()
     {
@@ -565,7 +574,26 @@ class Kkpr extends CI_Controller
             $this->session->set_flashdata('error', 'Data gagal disimpan');
             $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
         }
-        redirect('Kkpr/admin_kkpr');
+        redirect('NotifikasiTolakPermohonan.html');
+    }
+    function proses_update_admin_kkpr()
+    {
+        $query = $this->Kkpr_Model->update_admin_kkpr();
+        if ($query == true) {
+            $this->session->set_flashdata('success', 'Data berhasil disimpan');
+            $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');
+        } else {
+            $this->session->set_flashdata('error', 'Data gagal disimpan');
+            $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
+        }
+        redirect('NotifikasiSimpanAdminPermohonan.html');
+        // $previousPage = $this->session->userdata('detail_admin_kkpr');
+
+        // if ($previousPage && filter_var($previousPage, FILTER_VALIDATE_URL)) {
+        //     redirect($previousPage);
+        // } else {
+        //     redirect('Kkpr/admin_kkpr');
+        // }
     }
     public function admin_kkpr_kuasa()
     {
@@ -689,7 +717,7 @@ class Kkpr extends CI_Controller
             $this->session->set_flashdata('error', 'Data gagal disimpan');
             $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
         }
-        redirect('Kkpr/pengembalian_formulir');
+        redirect('NotifikasiPengembalian.html');
     }
     public function monitoring_berkas()
     {
@@ -732,6 +760,33 @@ class Kkpr extends CI_Controller
         // Simpan data draft ke session
         $draft_data = $this->input->post(); // Ambil data dari formulir
         $this->session->set_userdata('draft_data', $draft_data);
+
+        // Redirect kembali ke halaman formulir
+        redirect('Kkpr/draft');
+    }
+    public function save_draft_peta()
+    {
+        // Simpan data draft ke session
+        $draft_data = $this->input->post(); // Ambil data dari formulir
+        $this->session->set_userdata('draft_data_peta', $draft_data);
+
+        // Redirect kembali ke halaman formulir
+        redirect('Kkpr/draft');
+    }
+    public function save_draft_peta_draft()
+    {
+        // Simpan data draft ke session
+        $draft_data = $this->input->post(); // Ambil data dari formulir
+        $this->session->set_userdata('draft_data_peta_draft', $draft_data);
+
+        // Redirect kembali ke halaman formulir
+        redirect('Kkpr/draft');
+    }
+    public function save_draft_lhs()
+    {
+        // Simpan data draft ke session
+        $draft_data = $this->input->post(); // Ambil data dari formulir
+        $this->session->set_userdata('draft_data_lhs', $draft_data);
 
         // Redirect kembali ke halaman formulir
         redirect('Kkpr/draft');

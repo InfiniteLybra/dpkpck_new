@@ -76,6 +76,31 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                             </div>
                         </div>
                     <?php } ?>
+                    <?php if ($yn->fotokopi_ktp_kuasa == '0') { ?>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label fw-bold text-dark" for="ktp">Fotokopi KTP Kuasa</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->fotokopi_ktp_kuasa ?>" class="btn btn-sm btn-primary mb-2" download>Download</a><br>
+                                                <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->fotokopi_ktp_kuasa ?>" target="_blank" class="btn btn-sm btn-secondary mb-2">Lihat</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="form-text-area">
+                                            <textarea class="form-control" name="fotokopi_ktp_kuasa" data-kt-autosize="true" data-preview="preview" readonly><?php if ($keterangan) echo $keterangan->fotokopi_ktp_kuasa ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input type="file" name="file_fotokopi_ktp_kuasa" class="form-file form-control" accept=".jpg, .pdf">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
                     <?php if ($kkpr->nama_perusahaan) { ?>
                         <?php if ($yn->akta_perusahaan == '0') { ?>
                             <div class="row mb-3">

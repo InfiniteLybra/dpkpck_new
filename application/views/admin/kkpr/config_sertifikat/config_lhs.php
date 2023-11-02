@@ -35,7 +35,7 @@ if ($cek) {
     <div class="col-xxl">
         <div class="card mb-4">
             <div class="card-body">
-                <form method="POST" action="<?php echo base_url('Kkpr/proses_config_lhs'); ?>" enctype="multipart/form-data">
+                <form method="POST" id="kt_create_account_form" action="<?php echo base_url('Kkpr/proses_config_lhs'); ?>" enctype="multipart/form-data">
                     <div class="card shadow-none border-1 mb-4">
                         <div class="card-body">
                             <div class="row mb-3">
@@ -54,7 +54,7 @@ if ($cek) {
                                                     <input type="text" name="no_reg" class="form-control" value="<?= $data->no_reg ?>" readonly>
                                                     <input type="hidden" name="id_permohonan" class="form-control" value="<?= $data->no_reg ?>">
                                                 <?php } else { ?>
-                                                    <input type="text" name="no_reg" class="form-control" value="<?= $data->id_kkpr_permohonan ?>"readonly>
+                                                    <input type="text" name="no_reg" class="form-control" value="650/000<?php $data->id_kkpr_permohonan ?>/35.07.111/<?= date("Y");?>"readonly>
                                                     <input type="hidden" name="id_permohonan" class="form-control" value="<?= $data->id_kkpr_permohonan ?>">
                                                 <?php } ?>
                                                 </td>
@@ -68,9 +68,14 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                 <?php if ($cek) { ?>
-                                                    <input type="date" name="tgl_survei" class="form-date form-control" value="<?= $data->tgl_survei ?>">
+                                                    <!-- <input type="date" name="tgl_survei" class="form-date form-control" value="<?= $data->tgl_survei ?>"> -->
+                                                    <input type="date" name="tgl_survei" id="tgl_survei" class="form-date form-control" value="<?php if ($data->tgl_survei) {
+                                                                                                                                                        echo $data->tgl_survei;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['tgl_survei']) ? $draft_data['tgl_survei'] : '';
+                                                                                                                                                    } ?>">
                                                 <?php } else { ?>
-                                                    <input type="date" name="tgl_survei" class="form-date form-control" value="">
+                                                    <input type="date" name="tgl_survei" id="tgl_survei" class="form-date form-control" value="<?php echo isset($draft_data['tgl_survei']) ? $draft_data['tgl_survei'] : '';?>">
                                                 <?php } ?>
                                                 </td>
                                             </tr>
@@ -83,9 +88,14 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                 <?php if ($cek) { ?>
-                                                    <input type="text" name="petugas1" class="form-control" value="<?= $data->petugas1 ?>">
+                                                    <!-- <input type="text" name="petugas1" id="petugas1" class="form-control" value="<?= $data->petugas1 ?>"> -->
+                                                    <input type="text" name="petugas1" id="petugas1" class="form-control" value="<?php if ($data->petugas1) {
+                                                                                                                                                        echo $data->petugas1;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['petugas1']) ? $draft_data['petugas1'] : '';
+                                                                                                                                                    } ?>">
                                                 <?php } else { ?>
-                                                    <input type="text" name="petugas1" class="form-control" value="">
+                                                    <input type="text" name="petugas1" id="petugas1" class="form-control" value="<?php echo isset($draft_data['petugas1']) ? $draft_data['petugas1'] : ''; ?>">
                                                 <?php } ?>
                                                 </td>
                                             </tr>
@@ -98,9 +108,14 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                 <?php if ($cek) { ?>
-                                                    <input type="text" name="petugas2" class="form-control" value="<?= $data->petugas2 ?>">
+                                                    <!-- <input type="text" name="petugas2" id="petugas2" class="form-control" value="<?= $data->petugas2 ?>"> -->
+                                                    <input type="text" name="petugas2" id="petugas2" class="form-control" value="<?php if ($data->petugas2) {
+                                                                                                                                                        echo $data->petugas2;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['petugas2']) ? $draft_data['petugas2'] : '';
+                                                                                                                                                    } ?>">
                                                 <?php } else { ?>
-                                                    <input type="text" name="petugas2" class="form-control" value="">
+                                                    <input type="text" name="petugas2" id="petugas2" class="form-control" value="<?php echo isset($draft_data['petugas2']) ? $draft_data['petugas2'] : ''; ?>">
                                                 <?php } ?>
                                                 </td>
                                             </tr>
@@ -207,9 +222,14 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                 <?php if ($cek) { ?>
-                                                    <input type="text" name="koordinat" class="form-control" value="<?php if ($data) echo $data->koordinat ?>">
+                                                    <!-- <input type="text" name="koordinat" class="form-control" value="<?php if ($data) echo $data->koordinat ?>"> -->
+                                                    <input type="text" name="koordinat" id="koordinat" class="form-control" value="<?php if ($data->koordinat) {
+                                                                                                                                                        echo $data->koordinat;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['koordinat']) ? $draft_data['koordinat'] : '';
+                                                                                                                                                    } ?>">
                                                 <?php } else { ?>
-                                                    <input type="text" name="koordinat" class="form-control" value="">
+                                                    <input type="text" name="koordinat" id="koordinat" class="form-control" value="<?php echo isset($draft_data['koordinat']) ? $draft_data['koordinat'] : ''; ?>">
                                                 <?php } ?>
                                                 </td>
                                             </tr>
@@ -222,9 +242,14 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                 <?php if ($cek) { ?>
-                                                    <input type="text" name="luas_tanah_jalan" class="form-control" value="<?= $data->luas_tanah_jalan ?>">
+                                                    <!-- <input type="text" name="luas_tanah_jalan" id="luas_tanah_jalan" class="form-control" value="<?= $data->luas_tanah_jalan ?>"> -->
+                                                    <input type="text" name="luas_tanah_jalan" id="luas_tanah_jalan" class="form-control" value="<?php if ($data->luas_tanah_jalan) {
+                                                                                                                                                        echo $data->luas_tanah_jalan;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['luas_tanah_jalan']) ? $draft_data['luas_tanah_jalan'] : '';
+                                                                                                                                                    } ?>">
                                                 <?php } else { ?>
-                                                    <input type="text" name="luas_tanah_jalan" class="form-control" value="">
+                                                    <input type="text" name="luas_tanah_jalan" id="luas_tanah_jalan" class="form-control" value="<?php echo isset($draft_data['luas_tanah_jalan']) ? $draft_data['luas_tanah_jalan'] : ''; ?>">
                                                 <?php } ?>
                                                 </td>
                                             </tr>
@@ -237,9 +262,14 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                 <?php if ($cek) { ?>
-                                                    <input type="text" name="guna_lahan" class="form-control" value="<?= $data->guna_lahan ?>">
+                                                    <!-- <input type="text" name="guna_lahan" id="guna_lahan" class="form-control" value="<?= $data->guna_lahan ?>"> -->
+                                                    <input type="text" name="guna_lahan" id="guna_lahan" class="form-control" value="<?php if ($data->guna_lahan) {
+                                                                                                                                                        echo $data->guna_lahan;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['guna_lahan']) ? $draft_data['guna_lahan'] : '';
+                                                                                                                                                    } ?>">
                                                 <?php } else { ?>
-                                                    <input type="text" name="guna_lahan" class="form-control" value="">
+                                                    <input type="text" name="guna_lahan" id="guna_lahan" class="form-control" value="<?php echo isset($draft_data['guna_lahan']) ? $draft_data['guna_lahan'] : '';?>">
                                                 <?php } ?>
                                                 </td>
                                             </tr>
@@ -252,9 +282,14 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                 <?php if ($cek) { ?>
-                                                    <input type="text" name="batas_utara" class="form-control" value="<?= $data->batas_utara ?>">
+                                                    <!-- <input type="text" name="batas_utara" id="batas_utara" class="form-control" value="<?= $data->batas_utara ?>"> -->
+                                                    <input type="text" name="batas_utara" id="batas_utara" class="form-control" value="<?php if ($data->batas_utara) {
+                                                                                                                                                        echo $data->batas_utara;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['batas_utara']) ? $draft_data['batas_utara'] : '';
+                                                                                                                                                    } ?>">
                                                 <?php } else { ?>
-                                                    <input type="text" name="batas_utara" class="form-control" value="">
+                                                    <input type="text" name="batas_utara" id="batas_utara" class="form-control" value="<?php echo isset($draft_data['batas_utara']) ? $draft_data['batas_utara'] : '';?>">
                                                 <?php } ?>
                                                 </td>
                                             </tr>
@@ -267,9 +302,14 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                 <?php if ($cek) { ?>
-                                                    <input type="text" name="batas_selatan" class="form-control" value="<?= $data->batas_selatan ?>">
+                                                    <!-- <input type="text" name="batas_selatan" id="batas_selatan" class="form-control" value="<?= $data->batas_selatan ?>"> -->
+                                                    <input type="text" name="batas_selatan" id="batas_selatan" class="form-control" value="<?php if ($data->batas_selatan) {
+                                                                                                                                                        echo $data->batas_selatan;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['batas_selatan']) ? $draft_data['batas_selatan'] : '';
+                                                                                                                                                    } ?>">
                                                 <?php } else { ?>
-                                                    <input type="text" name="batas_selatan" class="form-control" value="">
+                                                    <input type="text" name="batas_selatan" id="batas_selatan" class="form-control" value="<?php echo isset($draft_data['batas_selatan']) ? $draft_data['batas_selatan'] : '';?>">
                                                 <?php } ?>
                                                 </td>
                                             </tr>
@@ -282,9 +322,14 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                 <?php if ($cek) { ?>
-                                                    <input type="text" name="batas_barat" class="form-control" value="<?= $data->batas_barat ?>">
+                                                    <!-- <input type="text" name="batas_barat" id="batas_barat" class="form-control" value="<?= $data->batas_barat ?>"> -->
+                                                    <input type="text" name="batas_barat" id="batas_barat" class="form-control" value="<?php if ($data->batas_barat) {
+                                                                                                                                                        echo $data->batas_barat;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['batas_barat']) ? $draft_data['batas_barat'] : '';
+                                                                                                                                                    } ?>">
                                                 <?php } else { ?>
-                                                    <input type="text" name="batas_barat" class="form-control" value="">
+                                                    <input type="text" name="batas_barat" id="batas_barat" class="form-control" value="<?php echo isset($draft_data['batas_barat']) ? $draft_data['batas_barat'] : '';?>">
                                                 <?php } ?>
                                                 </td>
                                             </tr>
@@ -297,9 +342,14 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                 <?php if ($cek) { ?>
-                                                    <input type="text" name="batas_timur" class="form-control" value="<?= $data->batas_timur ?>">
+                                                    <!-- <input type="text" name="batas_timur" id="batas_timur" class="form-control" value="<?= $data->batas_timur ?>"> -->
+                                                    <input type="text" name="batas_timur" id="batas_timur" class="form-control" value="<?php if ($data->batas_timur) {
+                                                                                                                                                        echo $data->batas_timur;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['batas_timur']) ? $draft_data['batas_timur'] : '';
+                                                                                                                                                    } ?>">
                                                 <?php } else { ?>
-                                                    <input type="text" name="batas_timur" class="form-control" value="">
+                                                    <input type="text" name="batas_timur" id="batas_timur" class="form-control" value="<?php echo isset($draft_data['batas_timur']) ? $draft_data['batas_timur'] : '';?>">
                                                 <?php } ?>
                                                 </td>
                                             </tr>
@@ -312,9 +362,14 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                 <?php if ($cek) { ?>
-                                                    <input type="text" name="kemiringan_tanah" class="form-control" value="<?= $data->kemiringan_tanah ?>">
+                                                    <!-- <input type="text" name="kemiringan_tanah" id="kemiringan_tanah" class="form-control" value="<?= $data->kemiringan_tanah ?>"> -->
+                                                    <input type="text" name="kemiringan_tanah" id="kemiringan_tanah" class="form-control" value="<?php if ($data->kemiringan_tanah) {
+                                                                                                                                                        echo $data->kemiringan_tanah;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['kemiringan_tanah']) ? $draft_data['kemiringan_tanah'] : '';
+                                                                                                                                                    } ?>">
                                                 <?php } else { ?>
-                                                    <input type="text" name="kemiringan_tanah" class="form-control" value="">
+                                                    <input type="text" name="kemiringan_tanah" id="kemiringan_tanah" class="form-control" value="<?php echo isset($draft_data['kemiringan_tanah']) ? $draft_data['kemiringan_tanah'] : '';?>">
                                                 <?php } ?>
                                                 </td>
                                             </tr>
@@ -327,9 +382,14 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                 <?php if ($cek) { ?>
-                                                    <input type="text" name="fungsi_kelas_jalan" class="form-control" value="<?= $data->fungsi_kelas_jalan ?>">
+                                                    <!-- <input type="text" name="fungsi_kelas_jalan" id="fungsi_kelas_jalan" class="form-control" value="<?= $data->fungsi_kelas_jalan ?>"> -->
+                                                    <input type="text" name="fungsi_kelas_jalan" id="fungsi_kelas_jalan" class="form-control" value="<?php if ($data->fungsi_kelas_jalan) {
+                                                                                                                                                        echo $data->fungsi_kelas_jalan;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['fungsi_kelas_jalan']) ? $draft_data['fungsi_kelas_jalan'] : '';
+                                                                                                                                                    } ?>">
                                                 <?php } else { ?>
-                                                    <input type="text" name="fungsi_kelas_jalan" class="form-control" value="">
+                                                    <input type="text" name="fungsi_kelas_jalan" id="fungsi_kelas_jalan" class="form-control" value="<?php echo isset($draft_data['fungsi_kelas_jalan']) ? $draft_data['fungsi_kelas_jalan'] : '';?>">
                                                 <?php } ?>
                                                 </td>
                                             </tr>
@@ -347,14 +407,19 @@ if ($cek) {
                                                         <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?= $data->foto1 ?>" target="_blank" class="btn btn-light fw-bold flex-shrink-0"  >Lihat Disini</a>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <textarea class="form-control" name="keterangan1" data-kt-autosize="true"><?= $data->keterangan1 ?></textarea>
+                                                        <!-- <textarea class="form-control" name="keterangan1" id="keterangan1" data-kt-autosize="true"><?= $data->keterangan1 ?></textarea> -->
+                                                        <textarea class="form-control" name="keterangan1" id="keterangan1" data-kt-autosize="true"><?php if ($data->keterangan1) {
+                                                                                                                                                        echo $data->keterangan1;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['keterangan1']) ? $draft_data['keterangan1'] : '';
+                                                                                                                                                    } ?></textarea>
                                                     </div>
                                                 <?php } else { ?>
                                                     <div class="mb-3 row">
                                                         <input type="file" name="foto1" class="form-control" value="">
                                                     </div>
                                                     <div class="mb-3 row">
-                                                        <textarea class="form-control" name="keterangan1" data-kt-autosize="true"></textarea>
+                                                        <textarea class="form-control" name="keterangan1" id="keterangan1" data-kt-autosize="true"><?php echo isset($draft_data['keterangan1']) ? $draft_data['keterangan1'] : '';?></textarea>
                                                     </div>
                                                 <?php } ?>
                                                 </td>
@@ -373,14 +438,19 @@ if ($cek) {
                                                             <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?= $data->foto2 ?>" target="_blank" class="btn btn-light fw-bold flex-shrink-0"  >Lihat Disini</a>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <textarea class="form-control" name="keterangan2" data-kt-autosize="true"><?= $data->keterangan2 ?></textarea>
+                                                            <!-- <textarea class="form-control" name="keterangan2" id="keterangan2" data-kt-autosize="true"><?= $data->keterangan2 ?></textarea> -->
+                                                            <textarea class="form-control" name="keterangan2" id="keterangan2" data-kt-autosize="true"><?php if ($data->keterangan2) {
+                                                                                                                                                        echo $data->keterangan2;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['keterangan2']) ? $draft_data['keterangan2'] : '';
+                                                                                                                                                    } ?></textarea>
                                                         </div>
                                                     <?php } else { ?>
                                                         <div class="mb-3 row">
                                                             <input type="file" name="foto2" class="form-control" value="">
                                                         </div>
                                                         <div class="mb-3 row">
-                                                            <textarea class="form-control" name="keterangan2" data-kt-autosize="true"></textarea>
+                                                            <textarea class="form-control" name="keterangan2" id="keterangan2" data-kt-autosize="true"><?php echo isset($draft_data['keterangan2']) ? $draft_data['keterangan2'] : '';?></textarea>
                                                         </div>
                                                     <?php } ?>
                                                 </td>
@@ -399,14 +469,19 @@ if ($cek) {
                                     <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?= $data->foto3 ?>" target="_blank" class="btn btn-light fw-bold flex-shrink-0"  >Lihat Disini</a>
                                 </div>
                                 <div class="mb-3">
-                                    <textarea class="form-control" name="keterangan3" data-kt-autosize="true"><?= $data->keterangan3 ?></textarea>
+                                    <!-- <textarea class="form-control" name="keterangan3" id="keterangan3" data-kt-autosize="true"><?= $data->keterangan3 ?></textarea> -->
+                                    <textarea class="form-control" name="keterangan3" id="keterangan3" data-kt-autosize="true"><?php if ($data->keterangan3) {
+                                                                                                                                                        echo $data->keterangan3;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['keterangan3']) ? $draft_data['keterangan3'] : '';
+                                                                                                                                                    } ?></textarea>
                                 </div>
                             <?php } else { ?>
                                 <div class="mb-3 row">
                                     <input type="file" name="foto3" class="form-control" value="">
                                 </div>
                                 <div class="mb-3 row">
-                                    <textarea class="form-control" name="keterangan3" data-kt-autosize="true"></textarea>
+                                    <textarea class="form-control" name="keterangan3" id="keterangan3" data-kt-autosize="true"><?php echo isset($draft_data['keterangan3']) ? $draft_data['keterangan3'] : '';?></textarea>
                                 </div>
                             <?php } ?>
                                                 </td>
@@ -425,14 +500,19 @@ if ($cek) {
                                                         <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?= $data->foto4 ?>" target="_blank" class="btn btn-light fw-bold flex-shrink-0"  >Lihat Disini</a>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <textarea class="form-control" name="keterangan4" data-kt-autosize="true"><?= $data->keterangan4 ?></textarea>
+                                                        <!-- <textarea class="form-control" name="keterangan4" id="keterangan4" data-kt-autosize="true"><?= $data->keterangan4 ?></textarea> -->
+                                                        <textarea class="form-control" name="keterangan4" id="keterangan4" data-kt-autosize="true"><?php if ($data->keterangan4) {
+                                                                                                                                                        echo $data->keterangan4;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['keterangan4']) ? $draft_data['keterangan4'] : '';
+                                                                                                                                                    } ?></textarea>
                                                     </div>
                                                 <?php } else { ?>
                                                     <div class="mb-3 row">
                                                         <input type="file" name="foto4" class="form-control" value="">
                                                     </div>
                                                     <div class="mb-3 row">
-                                                        <textarea class="form-control" name="keterangan4" data-kt-autosize="true"></textarea>
+                                                        <textarea class="form-control" name="keterangan4" id="keterangan4" data-kt-autosize="true"><?php echo isset($draft_data['keterangan4']) ? $draft_data['keterangan4'] : '';?></textarea>
                                                     </div>
                                                 <?php } ?>
                                                 </td>
@@ -451,14 +531,19 @@ if ($cek) {
                                     <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?= $data->foto5 ?>" target="_blank" class="btn btn-light fw-bold flex-shrink-0"  >Lihat Disini</a>
                                 </div>
                                 <div class="mb-3">
-                                    <textarea class="form-control" name="keterangan5" data-kt-autosize="true"><?= $data->keterangan5 ?></textarea>
+                                    <!-- <textarea class="form-control" name="keterangan5" id="keterangan5" data-kt-autosize="true"><?= $data->keterangan5 ?></textarea> -->
+                                    <textarea class="form-control" name="keterangan5" id="keterangan5" data-kt-autosize="true"><?php if ($data->keterangan5) {
+                                                                                                                                                        echo $data->keterangan5;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['keterangan5']) ? $draft_data['keterangan5'] : '';
+                                                                                                                                                    } ?></textarea>
                                 </div>
                             <?php } else { ?>
                                 <div class="mb-3 row">
                                     <input type="file" name="foto5" class="form-control" value="">
                                 </div>
                                 <div class="mb-3 row">
-                                    <textarea class="form-control" name="keterangan5" data-kt-autosize="true"></textarea>
+                                    <textarea class="form-control" name="keterangan5" id="keterangan5" data-kt-autosize="true"><?php echo isset($draft_data['keterangan5']) ? $draft_data['keterangan5'] : '';?></textarea>
                                 </div>
                             <?php } ?>
                                                 </td>
@@ -477,14 +562,19 @@ if ($cek) {
                                     <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?= $data->foto6 ?>" target="_blank" class="btn btn-light fw-bold flex-shrink-0"  >Lihat Disini</a>
                                 </div>
                                 <div class="mb-3">
-                                    <textarea class="form-control" name="keterangan6" data-kt-autosize="true"><?= $data->keterangan6 ?></textarea>
+                                    <!-- <textarea class="form-control" name="keterangan6" id="keterangan6" data-kt-autosize="true"><?= $data->keterangan6 ?></textarea> -->
+                                    <textarea class="form-control" name="keterangan6" id="keterangan6" data-kt-autosize="true"><?php if ($data->keterangan6) {
+                                                                                                                                                        echo $data->keterangan6;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['keterangan6']) ? $draft_data['keterangan6'] : '';
+                                                                                                                                                    } ?></textarea>
                                 </div>
                             <?php } else { ?>
                                 <div class="mb-3 row">
                                     <input type="file" name="foto6" class="form-control" value="">
                                 </div>
                                 <div class="mb-3 row">
-                                    <textarea class="form-control" name="keterangan6" data-kt-autosize="true"></textarea>
+                                    <textarea class="form-control" name="keterangan6" id="keterangan6" data-kt-autosize="true"><?php echo isset($draft_data['keterangan6']) ? $draft_data['keterangan6'] : '';?></textarea>
                                 </div>
                             <?php } ?>
                                                 </td>
@@ -498,9 +588,14 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                 <?php if ($cek) { ?>
-                                <input type="text" name="rencana_pola_ruang" class="form-control" value="<?= $data->rencana_pola_ruang ?>">
+                                <!-- <input type="text" name="rencana_pola_ruang" id="rencana_pola_ruang" class="form-control" value="<?= $data->rencana_pola_ruang ?>"> -->
+                                <input type="text" name="rencana_pola_ruang" id="rencana_pola_ruang" class="form-control" value="<?php if ($data->rencana_pola_ruang) {
+                                                                                                                                                        echo $data->rencana_pola_ruang;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['rencana_pola_ruang']) ? $draft_data['rencana_pola_ruang'] : '';
+                                                                                                                                                    } ?>">
                             <?php } else { ?>
-                                <input type="text" name="rencana_pola_ruang" class="form-control" value="">
+                                <input type="text" name="rencana_pola_ruang" id="rencana_pola_ruang" class="form-control" value="<?php echo isset($draft_data['rencana_pola_ruang']) ? $draft_data['rencana_pola_ruang'] : '';?>">
                             <?php } ?>
                                                 </td>
                                             </tr>
@@ -559,9 +654,14 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                 <?php if ($cek) { ?>
-                                <input type="text" name="radius_mata_air" class="form-control" value="<?= $data->radius_mata_air ?>">
+                                <!-- <input type="text" name="radius_mata_air" id="radius_mata_air" class="form-control" value="<?= $data->radius_mata_air ?>"> -->
+                                <input type="text" name="radius_mata_air" id="radius_mata_air" class="form-control" value="<?php if ($data->radius_mata_air) {
+                                                                                                                                                        echo $data->radius_mata_air;
+                                                                                                                                                    } else {
+                                                                                                                                                        echo isset($draft_data['radius_mata_air']) ? $draft_data['radius_mata_air'] : '';
+                                                                                                                                                    } ?>">
                             <?php } else { ?>
-                                <input type="text" name="radius_mata_air" class="form-control" value="">
+                                <input type="text" name="radius_mata_air" id="radius_mata_air" class="form-control" value="<?php echo isset($draft_data['radius_mata_air']) ? $draft_data['radius_mata_air'] : '';?>">
                             <?php } ?>
                                                 </td>
                                             </tr>

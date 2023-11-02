@@ -75,3 +75,8 @@
         });
     });
 </script>
+<script>
+    $(document).ready(function () {
+      $('#modalPersiapan').modal('show');
+    });
+  </script>

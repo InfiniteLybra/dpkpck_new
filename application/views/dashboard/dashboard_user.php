@@ -156,7 +156,7 @@ $koor = $this->db->query("SELECT COUNT(*) AS total FROM user WHERE level = '3'")
                 </div>
               </div>
             </li>
-            <a href="<?php echo base_url('assets/'); ?>views/" class="btn btn-secondary float-end mt-5">Tata Cara Mengisi Formulir</a>
+            <a href="<?php echo base_url('Filter.html'); ?>" class="btn btn-secondary float-end mt-5">Tata Cara Mengisi Formulir</a>
           </ul>
         </div>
       </div>
