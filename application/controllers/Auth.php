@@ -24,7 +24,11 @@ class Auth extends CI_Controller
             $this->session->set_userdata('level', $cek_log->level);
             $this->session->set_userdata('isLogin', true);
             $this->session->set_flashdata('success', 'Selamat datang <b>' . $cek_log->nama_lengkap . '</b>');
-            redirect('kkpr');
+            if($cek_log->level == 1){
+                redirect('Dashboard/user');
+            }else{
+                redirect('Dashboard/admin');
+            }
         } else {
             $this->session->set_flashdata('error', 'Terjadi kesalahan');
         }
@@ -33,116 +37,154 @@ class Auth extends CI_Controller
     public function register()
     {
         $this->load->view('auth/register');
+    }    
+    public function registerotp()
+    {
+        $this->load->view('auth/registerotp');
     }
     public function proses_register()
     {
+        $this->load->library('session');
         $username = $this->input->post('username');
-        $nik = $this->input->post('nik');
         $nama_lengkap = $this->input->post('nama_lengkap');
         $password = $this->input->post('password');
-        $no_telp = $this->input->post('no_telp');
+        $nomor = $this->input->post('nomor');
+        $this->session->set_userdata('nomor_telepon', $nomor);
+        $hostname     = 'localhost';
+        $penggunaname     = 'root';
+        $passsword     = '';
+        $dbname     = 'dpkcpk';
+        $conn = mysqli_connect($hostname, $penggunaname, $passsword, $dbname);
+        if (isset($_POST['submitButton'])) {
+            $nomor = mysqli_escape_string($conn, $_POST['nomor']);
+            if ($nomor) {
+                // if (!mysqli_query($conn, "DELETE FROM user WHERE nomor = $nomor")) {
+                //     echo ("Error description: " . mysqli_error($conn));
+                // }
+                $curl = curl_init();
+                $otp = rand(100000, 999999);
+                $waktu = time();
+                mysqli_query($conn, "INSERT INTO user (nomor,otp,waktu) VALUES ( $nomor ,$otp , $waktu )");
+                $data = [
+                    'target' => $nomor,
+                    'message' => "Your OTP : " . $otp
+                ];
 
-        $cek_username = $this->Auth_model->cek_user('username', $username);
-        $cek_nik = $this->Auth_model->cek_user('nik', $nik);
-        $cek_no_telp = $this->Auth_model->cek_user('no_telp', $no_telp);
+                curl_setopt(
+                    $curl,
+                    CURLOPT_HTTPHEADER,
+                    array(
+                        "Authorization: 5@6!I4e2eSKYewSZSFhD",
+                    )
+                );
+                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+                curl_setopt($curl, CURLOPT_URL, "https://api.fonnte.com/send");
+                curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+                $result = curl_exec($curl);
+                curl_close($curl);
 
-        date_default_timezone_set('Asia/Jakarta'); // Ganti dengan zona waktu yang Anda inginkan
-        $kode = strval(date('sih'));
+                $register = $this->Auth_model->register($username, $nama_lengkap, $password, $nomor, $otp, $waktu);
+                if ($register ==  true) {
+                    $this->session->set_flashdata('success', 'Kode OTP Telah Dikirim');
+                    redirect('auth/registerotp');
+                    // $this->load->view('auth/registerotp', $data);
+                } else {
+                    $this->session->set_flashdata('error', 'Kesalahan, pengguna telah ada');
+                    redirect('auth/register');
+                }
+            }
+        } elseif (isset($_POST['otpButton'])) {
+            $hostname     = 'localhost';
+            $penggunaname     = 'root';
+            $passsword     = '';
+            $dbname     = 'dpkcpk';
+            $conn = mysqli_connect($hostname, $penggunaname, $passsword, $dbname);
+            // var_dump($_POST);
+            // die;
+            $otp = mysqli_escape_string($conn, $_POST['otp']);
+            $nomor = mysqli_escape_string($conn, $_POST['nomor']);
+            $q = mysqli_query($conn, "SELECT * FROM user WHERE nomor = $nomor AND otp = $otp");
+            $row = mysqli_num_rows($q);
+            $r = mysqli_fetch_array($q);
+            if ($row) {
+                if (time() - $r['waktu'] <= 300) {
+                    $this->session->set_flashdata('success', 'Akun anda berhasil dibuat');
+                    redirect('User');
+                    // var_dump($row);
+                    // die;
+                } else {
+                    $this->session->set_flashdata('error', 'Kode OTP anda Expired');
+                    redirect('auth/registerotp');
+                    // var_dump($row);
+                    // die;
+                }
+            } else {
+                $this->session->set_flashdata('error', 'Kode OTP anda salah');
+                redirect('auth/registerotp');
+                // var_dump($row);
+                // die;
+            }
+        } elseif (isset($_POST['sendAgain'])) {
+            $this->session->set_userdata('nomor_telepon', $nomor);
+            $nomor = mysqli_escape_string($conn, $_POST['nomor']);
+            // var_dump($nomor);die;
+            // Cek apakah nomor telepon ada di database
+            $query = mysqli_query($conn, "SELECT * FROM user WHERE nomor = $nomor");
+            $row = mysqli_fetch_array($query);
 
-        if ($cek_username == false) {
-            $this->session->set_flashdata('error', 'Kesalahan, username telah digunakan. Masukkan username yang belum digunakan.');
-            redirect('auth/register');
+            if ($row) {
+                // Generate ulang kode OTP
+                $otp_baru = rand(100000, 999999);
+                $waktu = time();
+
+                // Update kode OTP yang baru ke dalam database
+                mysqli_query($conn, "UPDATE user SET otp = $otp_baru, waktu = $waktu WHERE nomor = $nomor");
+
+                // Kirim ulang OTP melalui SMS atau metode lainnya
+                $data = [
+                    'target' => $nomor,
+                    'message' => "Your New OTP : " . $otp_baru
+                ];
+
+                $curl = curl_init();
+                curl_setopt($curl, CURLOPT_HTTPHEADER, array("Authorization: 5@6!I4e2eSKYewSZSFhD"));
+                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+                curl_setopt($curl, CURLOPT_URL, "https://api.fonnte.com/send");
+                curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+                $result = curl_exec($curl);
+                curl_close($curl);
+
+                $this->session->set_flashdata('success', 'Kode OTP telah dikirim ulang');
+                redirect('auth/registerotp');
+            } else {
+                $this->session->set_flashdata('error', 'Nomor telepon tidak ditemukan');
+                redirect('auth/registerotp');
+            }
         }
-
-        if ($cek_nik == false) {
-            $this->session->set_flashdata('error', 'Kesalahan, nik telah digunakan! Masukkan nik yang belum digunakan.');
-            redirect('auth/register');
-        }
-
-        if ($cek_no_telp == false) {
-            $this->session->set_flashdata('error', 'Kesalahan, nik telah digunakan! Masukkan no wa yang belum digunakan.');
-            redirect('auth/register');
-        }
-
-        $register = $this->Auth_model->register_pemohon($username, $nik, $nama_lengkap, $password, $no_telp, $kode);
-
-        if ($register == true) {
-            $this->session->set_flashdata('success', 'Berhasil, Akun anda sedang tahap verifikasi!');
-        } else {
-            $this->session->set_flashdata('error', 'Kesalaham, pastikan jaringan koneksi anda stabil!');
-            redirect('auth/register');
-        }
-
-        $data['username'] = $username;
-        $data['nik'] = $nik;
-        $data['kode'] = $kode;
-
-        if (empty($data['username'] && $data['nik'])) {
-            $this->session->set_flashdata('error', 'Kesalaham, tidak ada akun yang diverifikasi');
-            redirect('auth/register');
-        }
-        $this->load->view('auth/otp_register', $data);
     }
-    public function register_verifikasi()
+    public function kirim_ulang_otp()
     {
-        $data['username'] = $this->input->post('username');
-        $data['nik'] = $this->input->post('nik');
-
-        $this->load->view('auth/register_verifikasi', $data);
-    }
-    public function register_sukses()
-    {
-        $username = $this->input->post('username');
-        $nik = $this->input->post('nik');
-
-        $sukses = $this->Auth_model->register_sukses($username, $nik);
-        $this->session->set_flashdata('success', 'Berhasil, akun anda berhasil dan siap digunakan!');
-        redirect('auth');
-    }
-    public  function etes()
-    {
-        // $curl = curl_init();
-
-        // date_default_timezone_set('Asia/Jakarta'); // Ganti dengan zona waktu yang Anda inginkan
-        // $kode = strval(date('sih'));
-        // $pesan = '*Kode OTP ~ ' . $kode . '* Jangan beritahu siapapun. Kode OTP ini untuk aktivasi akun ... | Trimakasih';
-
-        // curl_setopt_array($curl, array(
-        //     CURLOPT_URL => 'https://api.fonnte.com/send',
-        //     CURLOPT_RETURNTRANSFER => true,
-        //     CURLOPT_ENCODING => '',
-        //     CURLOPT_MAXREDIRS => 10,
-        //     CURLOPT_TIMEOUT => 0,
-        //     CURLOPT_FOLLOWLOCATION => true,
-        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        //     CURLOPT_CUSTOMREQUEST => 'POST',
-        //     CURLOPT_POSTFIELDS => array(
-        //         'target' => '08123456789',
-        //         'message' => $pesan,
-        //         'url' => 'https://md.fonnte.com/images/wa-logo.png',
-        //         'filename' => 'filename',
-        //         'schedule' => '0',
-        //         'typing' => false,
-        //         'delay' => '0',
-        //         'countryCode' => '62',
-        //     ),
-        //     CURLOPT_HTTPHEADER => array(
-        //         'Authorization: 6fQRbc5v_00XJ-cT!CHz'
-        //     ),
-        // ));
-
-        // $response = curl_exec($curl);
-
-        // curl_close($curl);
-        // echo $response;
-
+        $this->load->library('session');
+        $hostname = 'localhost';
+        $penggunaname = 'root';
+        $passsword = '';
+        $dbname = 'dpkcpk';
+        $conn = mysqli_connect($hostname, $penggunaname, $passsword, $dbname);
     }
     public function logout()
     {
-        $this->load->view('auth/otp_register');
-    }
-    public function tes()
-    {
-        $this->load->view('auth/verifikasi_register');
+        $this->session->unset_userdata('id_user');
+        $this->session->unset_userdata('nama');
+        $this->session->unset_userdata('username');
+        $this->session->unset_userdata('level');
+        $this->session->unset_userdata('isLogin',);
+        $this->session->sess_destroy();
+        redirect('Auth');
     }
 }

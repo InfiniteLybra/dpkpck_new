@@ -176,7 +176,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="number" iname="rw_pemohon" id="rw_pemohon" value="<?php if($kkpr){echo $kkpr->rw_pemohon;}else{echo isset($draft_data['rw_pemohon']) ? $draft_data['rw_pemohon'] : '';} ?>" inputmode="numeric" placeholder="Ex. 001" required />
+                                    <input class="form-control" type="number" name="rw_pemohon" id="rw_pemohon" value="<?php if($kkpr){echo $kkpr->rw_pemohon;}else{echo isset($draft_data['rw_pemohon']) ? $draft_data['rw_pemohon'] : '';} ?>" inputmode="numeric" placeholder="Ex. 001" required />
                                 </div>
                             </div>
                             <div class="row mb-3">

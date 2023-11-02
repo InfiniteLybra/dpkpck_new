@@ -3454,10 +3454,10 @@ class Kkpr_Model extends CI_Model
     }
     public function tambah_keterangan()
     {
-        $id = $this->input->post('id');
-        $telp_pemohon = $this->input->post('telp_pemohon');
+        $id = $this->input->post('id');    
         $total_revisi = $this->db->query("SELECT COUNT(id_permohonan) AS jumlah FROM action_pengembalian_kkpr_permohonan WHERE id_permohonan = '$id'")->row();
         if($total_revisi->jumlah > 3 ) {
+            $telp_pemohon = $this->input->post('telp_pemohon');
             $query = $this->db->query("UPDATE kkpr_permohonan SET status_berkas = '99' WHERE id_kkpr_permohonan = '$id'");
             $curl = curl_init();            
             curl_setopt_array($curl, array(
@@ -3486,6 +3486,8 @@ class Kkpr_Model extends CI_Model
             return false;
         }
         }else{  
+        $id = $this->input->post('id');
+        $telp_pemohon = $this->input->post('telp_pemohon');
         $type = $this->input->post('type');
         $dokumen_oss = $this->input->post('dokumen_oss');
         $fotokopi_ktp = $this->input->post('fotokopi_ktp');
@@ -3649,6 +3651,7 @@ class Kkpr_Model extends CI_Model
                 tdp,
                 shp,
                 " . ($type == 'biasa' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                " . ($type == 'klinik' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                 " . ($type == 'pergudangan' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                 " . ($type == 'perumahan' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                 " . ($type == 'tower' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
@@ -3670,6 +3673,7 @@ class Kkpr_Model extends CI_Model
                     '$tdp',
                     '$shp',
                     " . ($type == 'biasa' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris'" : "") . "                                                
+                    " . ($type == 'klinik' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris'" : "") . "                                                
                     " . ($type == 'pergudangan' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris'" : "") . "                                                
                     " . ($type == 'perumahan' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris'" : "") . "                                                
                     " . ($type == 'tower' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris','$surat_dinas_komunikasi','$surat_rekom_tni'" : "") . "                                                
@@ -3695,6 +3699,7 @@ class Kkpr_Model extends CI_Model
                 tdp,
                 shp,
                 " . ($type == 'biasa' ? "npwp,surat_tanah,peta_bidang_surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                " . ($type == 'klinik' ? "npwp,surat_tanah,peta_bidang_surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                 " . ($type == 'pergudangan' ? "npwp,surat_tanah,peta_bidang_surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                 " . ($type == 'perumahan' ? "npwp,surat_tanah,peta_bidang_surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                 " . ($type == 'tower' ? "npwp,surat_tanah,peta_bidang_surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
@@ -3716,6 +3721,7 @@ class Kkpr_Model extends CI_Model
                     '$file_tdp',
                     '$file_shp',
                     " . ($type == 'biasa' ? "'$file_npwp','$file_surat_tanah_array ','$file_peta_bidang_surat_tanah_array','$file_peta_bidang','$file_teknis_pertanahan','$file_surat_kematian','$file_surat_kuasa_ahli_waris'" : "") . "                                                
+                    " . ($type == 'klinik' ? "'$file_npwp','$file_surat_tanah_array ','$file_peta_bidang_surat_tanah_array','$file_peta_bidang','$file_teknis_pertanahan','$file_surat_kematian','$file_surat_kuasa_ahli_waris'" : "") . "                                                
                     " . ($type == 'pergudangan' ? "'$file_npwp','$file_surat_tanah_array ','$file_peta_bidang_surat_tanah_array','$file_peta_bidang','$file_teknis_pertanahan','$file_surat_kematian','$file_surat_kuasa_ahli_waris'" : "") . "                                                
                     " . ($type == 'perumahan' ? "'$file_npwp','$file_surat_tanah_array ','$file_peta_bidang_surat_tanah_array','$file_peta_bidang','$file_teknis_pertanahan','$file_surat_kematian','$file_surat_kuasa_ahli_waris'" : "") . "                                                
                     " . ($type == 'tower' ? "'$file_npwp','$file_surat_tanah_array ','$file_peta_bidang_surat_tanah_array','$file_peta_bidang','$file_teknis_pertanahan','$file_surat_kematian','$file_surat_kuasa_ahli_waris','$file_surat_dinas_komunikasi','$file_surat_rekom_tni'" : "") . "                                                
@@ -3740,6 +3746,7 @@ class Kkpr_Model extends CI_Model
                 tdp,
                 shp,
                 " . ($type == 'biasa' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
+                " . ($type == 'klinik' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                 " . ($type == 'pergudangan' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                 " . ($type == 'perumahan' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris" : "") . "                                            
                 " . ($type == 'tower' ? "npwp,surat_tanah,peta_bidang,teknis_pertanahan,surat_kematian,surat_kuasa_ahli_waris,surat_dinas_komunikasi,surat_rekom_tni" : "") . "                                            
@@ -3761,6 +3768,7 @@ class Kkpr_Model extends CI_Model
                     '$yn_tdp',
                     '$yn_shp',
                     " . ($type == 'biasa' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris'" : "") . "                                                
+                    " . ($type == 'klinik' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris'" : "") . "                                                
                     " . ($type == 'pergudangan' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris'" : "") . "                                                
                     " . ($type == 'perumahan' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris'" : "") . "                                                
                     " . ($type == 'tower' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris','$yn_surat_dinas_komunikasi','$yn_surat_rekom_tni'" : "") . "                                                
@@ -3810,7 +3818,7 @@ class Kkpr_Model extends CI_Model
         $response = curl_exec($curl);
 
         curl_close($curl);
-        // echo $response;
+        echo $response;
         if ($query1) {
             return true;
         } else {

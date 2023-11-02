@@ -32,15 +32,11 @@ class Auth extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Terjadi kesalahan');
         }
-        redirect('');
+        redirect('Auth');
     }
     public function register()
     {
         $this->load->view('auth/register');
-    }    
-    public function registerotp()
-    {
-        $this->load->view('auth/registerotp');
     }
     public function proses_register()
     {
@@ -168,23 +164,67 @@ class Auth extends CI_Controller
             }
         }
     }
-    public function kirim_ulang_otp()
+
+    public function register_verifikasi()
     {
-        $this->load->library('session');
-        $hostname = 'localhost';
-        $penggunaname = 'root';
-        $passsword = '';
-        $dbname = 'dpkcpk';
-        $conn = mysqli_connect($hostname, $penggunaname, $passsword, $dbname);
+        $data['username'] = $this->input->post('username');
+        $data['nik'] = $this->input->post('nik');
+
+        $this->load->view('auth/register_verifikasi', $data);
+    }
+    public function register_sukses()
+    {
+        $username = $this->input->post('username');
+        $nik = $this->input->post('nik');
+
+        $sukses = $this->Auth_model->register_sukses($username, $nik);
+        $this->session->set_flashdata('success', 'Berhasil, akun anda berhasil dan siap digunakan!');
+        redirect('auth');
+    }
+    public  function etes()
+    {
+        // $curl = curl_init();
+
+        // date_default_timezone_set('Asia/Jakarta'); // Ganti dengan zona waktu yang Anda inginkan
+        // $kode = strval(date('sih'));
+        // $pesan = '*Kode OTP ~ ' . $kode . '* Jangan beritahu siapapun. Kode OTP ini untuk aktivasi akun ... | Trimakasih';
+
+        // curl_setopt_array($curl, array(
+        //     CURLOPT_URL => 'https://api.fonnte.com/send',
+        //     CURLOPT_RETURNTRANSFER => true,
+        //     CURLOPT_ENCODING => '',
+        //     CURLOPT_MAXREDIRS => 10,
+        //     CURLOPT_TIMEOUT => 0,
+        //     CURLOPT_FOLLOWLOCATION => true,
+        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        //     CURLOPT_CUSTOMREQUEST => 'POST',
+        //     CURLOPT_POSTFIELDS => array(
+        //         'target' => '08123456789',
+        //         'message' => $pesan,
+        //         'url' => 'https://md.fonnte.com/images/wa-logo.png',
+        //         'filename' => 'filename',
+        //         'schedule' => '0',
+        //         'typing' => false,
+        //         'delay' => '0',
+        //         'countryCode' => '62',
+        //     ),
+        //     CURLOPT_HTTPHEADER => array(
+        //         'Authorization: 6fQRbc5v_00XJ-cT!CHz'
+        //     ),
+        // ));
+
+        // $response = curl_exec($curl);
+
+        // curl_close($curl);
+        // echo $response;
+
     }
     public function logout()
     {
-        $this->session->unset_userdata('id_user');
-        $this->session->unset_userdata('nama');
-        $this->session->unset_userdata('username');
-        $this->session->unset_userdata('level');
-        $this->session->unset_userdata('isLogin',);
-        $this->session->sess_destroy();
-        redirect('Auth');
+        $this->load->view('auth/otp_register');
+    }
+    public function tes()
+    {
+        $this->load->view('auth/verifikasi_register');
     }
 }

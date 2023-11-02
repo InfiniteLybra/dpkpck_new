@@ -1094,7 +1094,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                     <input name="yn_surat_tanah[]" class="form-check-input" type="radio" value="0" id="suratTanah2" />
                                                                     <label class="form-check-label" for="suratTanah2"> Tidak </label>
                                                                 </div> -->
-                                                                <select name="yn_surat_tanah_revisi[]">
+                                                                <select name="yn_surat_tanah[]">
                                                                             <option value="1" selected>ya</option>
                                                                             <option value="0">tidak</option>
                                                                         </select>
@@ -1245,7 +1245,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                     <input name="yn_surat_tanah[]" class="form-check-input" type="radio" value="0" id="suratTanah2" />
                                                                     <label class="form-check-label" for="suratTanah2"> Tidak </label>
                                                                 </div> -->
-                                                                <select name="yn_surat_tanah_revisi[]">
+                                                                <select name="yn_surat_tanah[]">
                                                                             <option value="1" selected>ya</option>
                                                                             <option value="0" >tidak</option>
                                                                         </select>
