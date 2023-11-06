@@ -3807,7 +3807,7 @@ class Kkpr_Model extends CI_Model
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => array(
                 'target' => $telp_pemohon,
-                'message' => $pesan_wa,
+                'message' => $preview,
                 'countryCode' => '62', //optional
             ),
             CURLOPT_HTTPHEADER => array(
@@ -4522,6 +4522,7 @@ class Kkpr_Model extends CI_Model
         $rencana_pola_ruang = $this->input->post('rencana_pola_ruang');
         $masuk_lsd = $this->input->post('masuk_lsd');
         $masuk_kp2b = $this->input->post('masuk_kp2b');
+        $yn_radius_mata_air = $this->input->post('yn_mata_air');
         $radius_mata_air = $this->input->post('radius_mata_air');
         $pihak_lain = $this->input->post('pihak_lain');
 
@@ -4562,6 +4563,7 @@ class Kkpr_Model extends CI_Model
                 rencana_pola_ruang='$rencana_pola_ruang',                             
                 masuk_lsd='$masuk_lsd',                             
                 masuk_kp2b='$masuk_kp2b',                             
+                yn_radius_mata_air='$yn_radius_mata_air',                             
                 radius_mata_air='$radius_mata_air',                             
                 pihak_lain='$pihak_lain'                             
             WHERE
@@ -4605,6 +4607,7 @@ class Kkpr_Model extends CI_Model
             rencana_pola_ruang,
             masuk_lsd,
             masuk_kp2b,
+            yn_radius_mata_air,
             radius_mata_air,
             pihak_lain       
 
@@ -4644,6 +4647,7 @@ class Kkpr_Model extends CI_Model
             '$rencana_pola_ruang',                      
             '$masuk_lsd',                      
             '$masuk_kp2b',                      
+            '$yn_radius_mata_air',                      
             '$radius_mata_air',                      
             '$pihak_lain'                      
         )";

@@ -836,7 +836,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                             <textarea class="form-control" name="dokumen_oss" data-preview="preview"></textarea>
                                             <input type="hidden" name="type" class="form-control" value="<?php if ($kkpr) echo $kkpr->type ?>">
                                             <input type="hidden" name="id" class="form-control" value="<?php if ($kkpr) echo $kkpr->id_kkpr_permohonan ?>">
-                                            <input type="hidden" name="telp_pemohon" class="form-control" value="<?php if ($kkpr) echo $kkpr->telp_pemohon ?>">
+                                            <!-- <input type="hidden" name="telp_pemohon" class="form-control" value="<?php if ($kkpr) echo $kkpr->telp_pemohon ?>"> -->
                                         </div>
                                     </div>
                                 </div>

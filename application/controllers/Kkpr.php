@@ -128,7 +128,7 @@ class Kkpr extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Data gagal disimpan');
             $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
-            redirect('Filter.html');
+            redirect('NotifikasiGagalFormulir.html');
         }
         redirect('NotifikasiFormulir.html');
     }

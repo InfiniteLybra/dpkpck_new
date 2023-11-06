@@ -69,3 +69,4 @@ $route['NotifikasiPengembalian.html'] = 'Notif/terimakasih_pengembalian';
 $route['NotifikasiTolakPermohonan.html'] = 'Notif/terimakasih_tolak_permohonan';
 $route['NotifikasiSimpanAdminPermohonan.html'] = 'Notif/terimakasih_simpan_admin_permohonan';
 $route['NotifikasiPemulihanData.html'] = 'Notif/terimakasih_history';
+$route['NotifikasiGagalFormulir.html'] = 'Notif/gagal_formulir';

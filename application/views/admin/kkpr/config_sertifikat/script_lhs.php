@@ -31,14 +31,40 @@
         select.addEventListener('change', saveDraft); // Gunakan event 'change' untuk select
     });
     document.addEventListener('DOMContentLoaded', function() {
-    const draftData = <?= json_encode($draft_data) ?>;
-    for (const key in draftData) {
-        if (draftData.hasOwnProperty(key)) {
-            const element = document.getElementById(key);
-            if (element) {
-                element.value = draftData[key];
+        const draftData = <?= json_encode($draft_data) ?>;
+        for (const key in draftData) {
+            if (draftData.hasOwnProperty(key)) {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.value = draftData[key];
+                }
             }
         }
-    }
-});
+    });
+    $(document).ready(function() {
+        $("#mata_air_y").on("change", function() {
+            var selectedOption = $(this).val();
+            var formPLM = $("#mata_air");
+
+            // Tampilkan atau sembunyikan form berdasarkan pilihan
+            if (selectedOption === "1") {
+                formPLM.show();
+            } else {
+                formPLM.hide();
+            }
+        });
+    });
+    $(document).ready(function() {
+        $("#mata_air_t").on("change", function() {
+            var selectedOption = $(this).val();
+            var formPLM = $("#mata_air");
+
+            // Tampilkan atau sembunyikan form berdasarkan pilihan
+            if (selectedOption === "0") {
+                formPLM.hide();
+            } else {
+                formPLM.hide();
+            }
+        });
+    });
 </script>

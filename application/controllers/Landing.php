@@ -13,4 +13,8 @@ class Landing extends CI_Controller
     {
         $this->load->view('templates/landing');
     }
+    public function landingv4()
+    {
+        $this->load->view('templates/landingv4');
+    }
 }

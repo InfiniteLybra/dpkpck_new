@@ -281,11 +281,19 @@
             <td>:</td>
             <td><?php if($data->masuk_lsd == '1'){echo "Ya";}else{echo"Tidak";} ?></td>
         </tr>
+        <?php if($data->yn_radius_mata_air == 1){ ?>
         <tr>
             <td>Radius Dengan Air Mata</td>
             <td>:</td>
             <td><?= $data->radius_mata_air?></td>
         </tr>
+        <?php }else{?>
+        <tr>
+            <td>Radius Dengan Air Mata</td>
+            <td>:</td>
+            <td>Tidak</td>
+        </tr>
+        <?php }?>
         <tr>
             <td>Melewati Lahan Pihak Lain</td>
             <td>:</td>
