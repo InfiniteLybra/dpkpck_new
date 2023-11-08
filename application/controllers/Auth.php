@@ -17,6 +17,7 @@ class Auth extends CI_Controller
         $username = $this->input->post('username');
         $password = $this->input->post('password');
         $cek_log = $this->Auth_model->cek_user($username, $password);
+
         if (!empty($cek_log)) {
             $this->session->set_userdata('id_user', $cek_log->id);
             $this->session->set_userdata('nama', $cek_log->nama_lengkap);
@@ -24,20 +25,27 @@ class Auth extends CI_Controller
             $this->session->set_userdata('level', $cek_log->level);
             $this->session->set_userdata('isLogin', true);
             $this->session->set_flashdata('success', 'Selamat datang <b>' . $cek_log->nama_lengkap . '</b>');
-            if($cek_log->level == 1){
-                redirect('Dashboard/user');
-            }else{
-                redirect('Dashboard/admin');
+
+            // Tambahkan pengecekan status berkas
+            if ($cek_log->status_verifikasi == 'Terverifikasi') {
+                if ($cek_log->level == 1) {
+                    redirect('Dashboard/user');
+                } else {
+                    redirect('Dashboard/admin');
+                }
+            } else {
+                $this->session->set_flashdata('error', 'Status berkas Anda belum terverifikasi.');
+                redirect('Auth'); // Atau redirect ke halaman lain jika diperlukan
             }
         } else {
             $this->session->set_flashdata('error', 'Terjadi kesalahan');
+            redirect('Auth');
         }
-        redirect('');
     }
     public function register()
     {
         $this->load->view('auth/register');
-    }    
+    }
     public function registerotp()
     {
         $this->load->view('auth/registerotp');
@@ -49,7 +57,8 @@ class Auth extends CI_Controller
         $nama_lengkap = $this->input->post('nama_lengkap');
         $password = $this->input->post('password');
         $nomor = $this->input->post('nomor');
-        $this->session->set_userdata('nomor_telepon', $nomor);
+        $nik = $this->input->post('nik');
+        $this->session->set_userdata('nomor', $nomor);
         $hostname     = 'localhost';
         $penggunaname     = 'root';
         $passsword     = '';
@@ -74,7 +83,7 @@ class Auth extends CI_Controller
                     $curl,
                     CURLOPT_HTTPHEADER,
                     array(
-                        "Authorization: 5@6!I4e2eSKYewSZSFhD",
+                        "Authorization: 9Sn+qbEWAjSvpSx9LbAQ",
                     )
                 );
                 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
@@ -86,7 +95,7 @@ class Auth extends CI_Controller
                 $result = curl_exec($curl);
                 curl_close($curl);
 
-                $register = $this->Auth_model->register($username, $nama_lengkap, $password, $nomor, $otp, $waktu);
+                $register = $this->Auth_model->register($username, $nama_lengkap, $password, $nomor, $otp, $waktu, $nik);
                 if ($register ==  true) {
                     $this->session->set_flashdata('success', 'Kode OTP Telah Dikirim');
                     redirect('auth/registerotp');
@@ -112,7 +121,9 @@ class Auth extends CI_Controller
             if ($row) {
                 if (time() - $r['waktu'] <= 300) {
                     $this->session->set_flashdata('success', 'Akun anda berhasil dibuat');
-                    redirect('User');
+                    $user_id = $this->session->userdata('id');
+                    redirect('Auth/loading/' . $user_id);
+                    // redirect('User');
                     // var_dump($row);
                     // die;
                 } else {
@@ -130,11 +141,9 @@ class Auth extends CI_Controller
         } elseif (isset($_POST['sendAgain'])) {
             $this->session->set_userdata('nomor_telepon', $nomor);
             $nomor = mysqli_escape_string($conn, $_POST['nomor']);
-            // var_dump($nomor);die;
             // Cek apakah nomor telepon ada di database
             $query = mysqli_query($conn, "SELECT * FROM user WHERE nomor = $nomor");
             $row = mysqli_fetch_array($query);
-
             if ($row) {
                 // Generate ulang kode OTP
                 $otp_baru = rand(100000, 999999);
@@ -150,7 +159,7 @@ class Auth extends CI_Controller
                 ];
 
                 $curl = curl_init();
-                curl_setopt($curl, CURLOPT_HTTPHEADER, array("Authorization: 5@6!I4e2eSKYewSZSFhD"));
+                curl_setopt($curl, CURLOPT_HTTPHEADER, array("Authorization: 9Sn+qbEWAjSvpSx9LbAQ"));
                 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
                 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
@@ -176,6 +185,105 @@ class Auth extends CI_Controller
         $passsword = '';
         $dbname = 'dpkcpk';
         $conn = mysqli_connect($hostname, $penggunaname, $passsword, $dbname);
+    }
+
+    public function loading($user_id)
+    {
+        $data['id'] = $user_id;
+        $this->load->view('auth/loading', $data);
+    }
+
+    public function update_verification_status()
+    {
+
+        if (!$this->session->userdata('id')) {
+            redirect('Welcome');
+        }
+        // var_dump($_POST);die;
+
+        $user_id = $this->input->post('id');
+        $verification_status = $this->input->post('status_verivikasi');
+        // var_dump($verification_status);die;
+
+        $data = array('status_verifikasi' => $verification_status);
+        $this->db->where('id', $user_id);
+        $this->db->update('user', $data);
+
+        $this->db->where('id', $user_id);
+        $query = $this->db->get('user');
+        $result = $query->result();
+        foreach ($result as $r) {
+            $curl = curl_init();
+            // var_dump($r->nomor);
+
+            $data = [
+                'target' => $r->nomor,
+                'message' => "Selamat akun anda telah diaktivasi oleh admin\n\n" .
+                    "Silahkan gunakan user dibawah ini untuk login dan memulai pengisian formulir anda\n" .
+                    "Username : " . $r->username . "\n" .
+                    "Password : " . $r->password . "\n\n" .
+                    "Silahkan login melalui link di bawah ini atau mengunjungi website kami\n" .
+                    "https://epora.com"
+            ];
+
+
+            curl_setopt(
+                $curl,
+                CURLOPT_HTTPHEADER,
+                array(
+                    "Authorization: 9Sn+qbEWAjSvpSx9LbAQ",
+                )
+            );
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+            curl_setopt($curl, CURLOPT_URL, "https://api.fonnte.com/send");
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+            $result = curl_exec($curl);
+            curl_close($curl);
+        }
+        // error_log('Perintah SQL:', $this->db->last_query());
+
+        redirect('Auth');
+    }
+
+    public function kirim_otp($nomor)
+    {
+        $this->db->where('nomor', $nomor);
+        $query = $this->db->get('user');
+        if ($query) {
+            $otp_baru = rand(100000, 999999);
+            $waktu = time();
+
+            $data = array(
+                'otp' => $otp_baru,
+                'waktu' => $waktu,
+            );
+            $this->db->update('user', $data);
+
+            $data = [
+                'target' => $nomor,
+                'message' => "Your New OTP : " . $otp_baru
+            ];
+
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array("Authorization: 9Sn+qbEWAjSvpSx9LbAQ"));
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+            curl_setopt($curl, CURLOPT_URL, "https://api.fonnte.com/send");
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+            $result = curl_exec($curl);
+            curl_close($curl);
+
+            $this->session->set_flashdata('success', 'Kode OTP telah dikirim ulang');
+            redirect('auth/registerotp');
+        } else {
+            $this->session->set_flashdata('error', 'Nomor telepon tidak ditemukan');
+            redirect('auth/registerotp');
+        }
     }
     public function logout()
     {

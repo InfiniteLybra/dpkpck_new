@@ -124,13 +124,14 @@ class Kkpr extends CI_Controller
         $query = $this->Kkpr_Model->tambah_kkpr_new();
         if ($query == true) {
             $this->session->set_flashdata('success', 'Data berhasil disimpan');
-            $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');            
+            $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');          
+            redirect('NotifikasiFormulir.html');  
         } else {
             $this->session->set_flashdata('error', 'Data gagal disimpan');
             $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
             redirect('NotifikasiGagalFormulir.html');
         }
-        redirect('NotifikasiFormulir.html');
+        // redirect('NotifikasiFormulir.html');
     }
     public function proses_terima($id)
     {
@@ -194,12 +195,13 @@ class Kkpr extends CI_Controller
         if ($query == true) {
             $this->session->set_flashdata('success', 'Data Berhasil Disimpan');
             $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');
+            // redirect('NotifikasiConfig.html');
         } else {
             $this->session->set_flashdata('error', 'Data gagal disimpan');
             $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
             redirect('Kkpr/config');
         }
-        redirect('NotifikasiConfig.html');
+        // redirect('NotifikasiConfig.html');
         // $previousPage = $this->session->userdata('detail_config');
 
         // if ($previousPage && filter_var($previousPage, FILTER_VALIDATE_URL)) {
@@ -250,6 +252,7 @@ class Kkpr extends CI_Controller
     }
     public function detail_config_lhs($id)
     {     
+        // var_dump($id);die;
         $cek = $this->db->query("SELECT * FROM data_sertifikat_lhs WHERE id_permohonan = '$id'")->row(); 
         $data['cek'] = $cek;
         if($cek)

@@ -510,6 +510,12 @@
                 <div data-i18n="Kelola User">Kelola User</div>
               </a>
             </li>
+            <li class="menu-item">
+              <a href="<?php echo base_url('User/kelola_register'); ?>" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-user-account"></i>
+                <div data-i18n="Kelola User">User Register</div>
+              </a>
+            </li>
           </ul>
         <?php } ?>
         <?php if ($this->session->userdata('level') == 3) { ?>

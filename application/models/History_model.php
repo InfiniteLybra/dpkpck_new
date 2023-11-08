@@ -26,7 +26,7 @@ class History_model extends CI_Model
                 'countryCode' => '62', //optional
             ),
             CURLOPT_HTTPHEADER => array(
-                'Authorization: 5@6!I4e2eSKYewSZSFhD' //change TOKEN to your actual token
+                'Authorization: 9Sn+qbEWAjSvpSx9LbAQ' //change TOKEN to your actual token
             ),
         ));
 

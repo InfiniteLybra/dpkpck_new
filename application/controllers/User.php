@@ -29,6 +29,15 @@ class User extends CI_Controller
         $this->load->view('templates/footScript');
         $this->load->view('admin/kelola_user/script');
     }
+    public function kelola_register()
+    {        
+        $data['user'] = $this->db->query("SELECT * FROM user WHERE status_verifikasi = 'Belum Terverifikasi' AND level = '1'")->result();
+        $this->load->view('templates/header');
+        $this->load->view('admin/kelola_register/index',$data);
+        $this->load->view('templates/footer');
+        $this->load->view('templates/footScript');
+        $this->load->view('admin/kelola_user/script');
+    }
     function get_user(){
 		$id= $this->input->post('id');
 		//$where=array('id' => $id);
@@ -62,5 +71,32 @@ class User extends CI_Controller
         echo json_encode($info);
         // redirect('User/kelola_user');
     }
+    function terima_register($id)
+    {
+        $query = $this->User_model->terima_register($id);
+        if ($query == true) {
+            $this->session->set_flashdata('success', 'User Berhasil Di Verivikasi');
+            $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');
+        } else {
+            $this->session->set_flashdata('error', 'Terdapat Kesalahan');
+            $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
+        }        
+        // echo json_encode($info);
+        redirect('User/kelola_register');
+    }
+    function tolak_register($id)
+    {
+        $query = $this->User_model->tolak_register($id);
+        if ($query == true) {
+            $this->session->set_flashdata('success', 'User Berhasil Di Tolak');
+            $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');
+        } else {
+            $this->session->set_flashdata('error', 'Terdapat Kesalahan');
+            $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
+        }        
+        // echo json_encode($info);
+        redirect('User/kelola_register');
+    }
+
 }
 ?>
