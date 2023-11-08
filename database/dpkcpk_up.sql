@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 08 Nov 2023 pada 03.58
+-- Waktu pembuatan: 08 Nov 2023 pada 08.22
 -- Versi server: 8.0.30
 -- Versi PHP: 8.1.10
 
@@ -78,15 +78,7 @@ INSERT INTO `action_pengembalian_kkpr_permohonan` (`id_action`, `id_permohonan`,
 (30, 36, 'biasa', 3870, 1, 1, 1, 1, 1, 1, 1, '[{\"surat_tanah\":\"1\"},{\"surat_tanah\":\"1\"}]', 0, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
 (31, 36, 'biasa', 4939, 1, 0, 0, 1, 0, 1, 0, '[]', 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
 (32, 69, 'klinik', 7944, 1, 0, 0, 0, 0, 1, 0, '[{\"surat_tanah\":\"1\"}]', 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
-(33, 68, 'klinik', 5077, 1, 0, 0, 0, 0, 1, 0, '[{\"surat_tanah\":\"1\"}]', 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
-(34, 68, 'klinik', 7945, 1, 0, 0, 0, 0, 1, 0, '[{\"surat_tanah\":\"1\"}]', 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
-(35, 66, 'pergudangan', 2064, 1, 0, 0, 0, 0, 1, 0, '[{\"surat_tanah\":\"1\"}]', 1, 0, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
-(36, 70, 'biasa', 1848, 1, 0, 0, 0, 0, 1, 0, '[{\"surat_tanah\":\"1\"}]', 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
-(37, 70, 'biasa', 2038, 0, 1, 0, 0, 0, 1, 0, '[{\"surat_tanah\":\"1\"}]', 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
-(38, 72, 'biasa', 7896, 1, 1, 0, 0, 0, 1, 0, '[{\"surat_tanah\":\"1\"}]', 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
-(39, 72, 'biasa', 8272, 1, 1, 0, 0, 0, 1, 0, '[{\"surat_tanah\":\"1\"}]', 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
-(40, 72, 'biasa', 3467, 0, 0, 0, 0, 0, 0, 0, '[{\"surat_tanah\":\"1\"}]', 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(41, 74, 'biasa', 2190, 1, 0, 0, 0, 0, 1, 0, '[{\"surat_tanah\":\"1\"}]', 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL);
+(33, 68, 'klinik', 5077, 1, 0, 0, 0, 0, 1, 0, '[{\"surat_tanah\":\"1\"}]', 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -186,8 +178,7 @@ INSERT INTO `data_sertifikat_lhs` (`id_sertifikat`, `id_permohonan`, `no_reg`, `
 (7, 53, '53', '0000-00-00', 's', 's', 'Yudi Parayudha', 'Jl. Candi Blok 2b No.01 RT. 001 RW. 002 Kel. AEK GARINGGIN - Kec. LANGGA BAYU (LINGGA BAYU) - Kota / Kab. MANDAILING NATAL - Prov. SUMATERA UTARA                                ', '', '                                      ', '8120104902682', 'Dusun Karang Asem Desa / Kel. Sidorenggo - Kec. Ampelgading ', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, 0, '', ''),
 (8, 63, '63', '2023-10-11', 'Sulistya', 'Mahmud', 'Developer', 'Jl. Candi Blok 2b No.01 RT. 003 RW. 001 Kel. AEK SIANSIMUN  /  SIAMSIMUN - Kec. TARUTUNG - Kota / Kab. TAPANULI UTARA - Prov. SUMATERA UTARA                                ', '', '                                      ', '8120104902682', 'Jl. Karang Besuki Desa / Kel. Amadanom - Kec. Dampit ', 'S008234832423847324', '7200', 'Gudang Amunisi (Eks. Tegalan)', 'Tanah milik sendiri (PT. PINDAD)', 'Jalan (Tanah milik sendiri PT. PINDAD)', 'Jalan (Tanah milik sendiri PT. PINDAD)', ' Tanah milik sendiri (PT. PINDAD)', '0 - 2 %', 'Lingkungan Sekunder dan Sedang', 'dua.jpg', 'foto1`', 'tiga.jpg', 'foto2', 'satu.jpg', 'foto3', '', '', '', '', '', '', 'Tegalan', '0', NULL, 0, '> 200 m', '0'),
 (9, 64, '64', '2023-10-16', 'Sulistya', 'Mahmud', 'Dr. Akbar Jaya', 'Jl. Candi Blok 2b No.01 RT. 002 RW. 004 Kel. AEK SIANSIMUN  /  SIAMSIMUN - Kec. TARUTUNG - Kota / Kab. TAPANULI UTARA - Prov. SUMATERA UTARA                                                            ', '', ' \r\n                                ', '8120104902682', 'Dusun Sumawe Desa / Kel. Banjarejo - Kec. Donomulyo ', '-8.145927, 112.575475', '50', 'Gudang Amunisi (Eks. Tegalan)', 'Tanah milik sendiri (PT. PINDAD)', 'Jalan (Tanah milik sendiri PT. PINDAD)', 'Jalan (Tanah milik sendiri PT. PINDAD)', ' Tanah milik sendiri (PT. PINDAD)', '0 - 2 %', 'Lingkungan Sekunder dan Sedang', 'dua1.jpg', 'contoh keterangan 1', 'satu1.jpg', 'contoh keterangan 2', 'dua2.jpg', ' contoh keterangan 3', '', '', '', '', '', '', 'Tegalan', '0', NULL, 0, '> 200 m', '0'),
-(10, 69, '650/000/35.07.111/20', '2023-11-02', 'Sulistya', 'Mahmud', 'Muhammad Gilang Ramadhan part 1', 'Jl. Candi Blok 2b No.01 RT. 002 RW. 004 Kel. BEDOYO - Kec. PONJONG - Kota / Kab. GUNUNG KIDUL - Prov. DI YOGYAKARTA                                                    ', '', '                                                          ', '8120104902682', 'Jl. Karang Besuki No.90 Desa / Kel. Ampeldento - Kec. Karangploso ', 'S008234832423847324', '7200.0m2', 'Gudang Amunisi (Eks. Tegalan)', 'Tanah milik sendiri (PT. PINDAD)', 'Jalan (Tanah milik sendiri PT. PINDAD)', 'Jalan (Tanah milik sendiri PT. PINDAD)', ' Tanah milik sendiri (PT. PINDAD)', '0 - 2 %', 'Lingkungan Sekunder dan Sedang', 'dua3.jpg', 'tampak depan ', 'satu2.jpg', 'tampak samping', 'tiga1.jpg', 'tampak jalan', 'dua4.jpg', 'tampak belakang', 'satu3.jpg', 'tampak depan', 'tiga2.jpg', 'tampak jalan belakang', 'Tegalan', '0', NULL, 0, '> 200 m', '0'),
-(11, 72, '650/000/35.07.111/20', '0000-00-00', '', '', 'Fawwaz Dzaky', 'Gadang Sukun RT. 001 RW. 001 Kel. GADANG - Kec. SUKUN - Kota / Kab. MALANG - Prov. JAWA TIMUR                                                                                                           ', '', ' \r\n                                                    ', '1', 'Gadang Desa / Kel. Kepanjen - Kec. Kepanjen ', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, '200', '');
+(10, 69, '650/000/35.07.111/20', '2023-11-02', 'Sulistya', 'Mahmud', 'Muhammad Gilang Ramadhan part 1', 'Jl. Candi Blok 2b No.01 RT. 002 RW. 004 Kel. BEDOYO - Kec. PONJONG - Kota / Kab. GUNUNG KIDUL - Prov. DI YOGYAKARTA                                                    ', '', '                                                          ', '8120104902682', 'Jl. Karang Besuki No.90 Desa / Kel. Ampeldento - Kec. Karangploso ', 'S008234832423847324', '7200.0m2', 'Gudang Amunisi (Eks. Tegalan)', 'Tanah milik sendiri (PT. PINDAD)', 'Jalan (Tanah milik sendiri PT. PINDAD)', 'Jalan (Tanah milik sendiri PT. PINDAD)', ' Tanah milik sendiri (PT. PINDAD)', '0 - 2 %', 'Lingkungan Sekunder dan Sedang', 'dua3.jpg', 'tampak depan ', 'satu2.jpg', 'tampak samping', 'tiga1.jpg', 'tampak jalan', 'dua4.jpg', 'tampak belakang', 'satu3.jpg', 'tampak depan', 'tiga2.jpg', 'tampak jalan belakang', 'Tegalan', '0', NULL, 0, '> 200 m', '0');
 
 -- --------------------------------------------------------
 
@@ -259,8 +250,7 @@ INSERT INTO `data_sertifikat_peta` (`id_sertifikat`, `id_permohonan`, `nomor`, `
 (18, 63, '600.3.3.2 /0063/ 35.07.111', 'Developer', 'Jl. Candi Blok 2b No.01 RT. 003 RW. 001 Kel. AEK SIANSIMUN  /  SIAMSIMUN - Kec. TARUTUNG - Kota / Kab. TAPANULI UTARA - Prov. SUMATERA UTARA', '', '                                      ', '8120104902682 / Kecil', '[{\"kbli\":\"1 -  Industri dan Pergudangan / Menegah Tinggi\"}]', 'Dev sedang mencoba', 'Jl. Karang Besuki Desa / Kel. Amadanom - Kec. Dampit ', '200', '[{\"status_tanah\":\"SHM No.25 / GS.2974 / 1989 luas 2.000 mu00b2\"}]', 'peta.jpg', '[{\"legenda\":\"1\"},{\"legenda\":\"3\"},{\"legenda\":\"5\"}]', '[{\"koordinat\":\"a.-8.145909, 112.57588\"},{\"koordinat\":\"b. asdasd\"},{\"koordinat\":\"c.asdasd\"}]', '[{\"ketentuan\":\"11\"}]', '', '', '200', NULL, '-', '-', '', '', NULL, '32323m2', '1', '', '', 'diijinkan', 'tidak', 'tidak', '200', '', '', '', '', '', 'as', '', '', '', 'r', '', '', ''),
 (19, 64, '600.3.3.2 /0064/ 35.07.111', 'Dr. Akbar Jaya', 'Jl. Candi Blok 2b No.01 RT. 002 RW. 004 Kel. AEK SIANSIMUN  /  SIAMSIMUN - Kec. TARUTUNG - Kota / Kab. TAPANULI UTARA - Prov. SUMATERA UTARA ', '', ' \r\n                                                    ', '8120104902682 / Mikro', '[{\"kbli\":\"0898912 -  Industri dan Pergudangan / Menegah Rendah\"}]', 'Ruko', 'Dusun Sumawe Desa / Kel. Banjarejo - Kec. Donomulyo  ', '200', '[{\"status_tanah\":\"SHM No.25 / GS.2974 / 1989 luas 2.000 mu00b2\"}]', 'peta1.jpg', '[{\"legenda\":\"9\"},{\"legenda\":\"13\"},{\"legenda\":\"23\"}]', '[{\"koordinat\":\"a.-8.146352, 112.575381\"},{\"koordinat\":\"b.-8.146152, 112.575535\"},{\"koordinat\":\"c.-8.145927, 112.575475\"},{\"koordinat\":\"d.-8.145927, 112.575475\"}]', '[]', 'cobaa', '', '200', NULL, '', '', '70%=5.040,0', '11', NULL, '1112', '1', '', '', 'diijinkan', 'tidak', 'tidak', '200', '', '', '', '', 'perumahan', 'as', 'ap', 'as', 'ls', 's', 'r', 's', 's'),
 (20, 67, '600.3.3.2 /0067/ 35.07.111', 'Muhammad Gilang Ramadhan', 'Jl. Candi Blok 2b No.01 RT. 1 RW.  Kel. TUAH KARYA - Kec. TAMPAN - Kota / Kab. PEKANBARU - Prov. RIAU  ', '', ' \r\n                                                    ', '8120104902682 / Menengah', '[{\"kbli\":\"Dev sedang mencoba -  Kesehatan / Menegah Tinggi\"}]', 'gudang parfum', 'Jl. Karang Besuki No.90 Desa / Kel. Jambuwer - Kec. Kromengan   ', '200', '[{\"status_tanah\":\"Dev sedang mencoba\"}]', 'peta2.jpg', '[{\"legenda\":\"1\"},{\"legenda\":\"9\"},{\"legenda\":\"11\"},{\"legenda\":\"15\"},{\"legenda\":\"17\"}]', '[{\"koordinat\":\"a.-7.949789, 112.608659\"},{\"koordinat\":\"b.-7.951659, 112.625147\"},{\"koordinat\":\"c.-7.960669, 112.624289\"},{\"koordinat\":\"d.-7.964749, 112.613125\"},{\"koordinat\":\"e.-7.957439, 112.604537\"},{\"koordinat\":\"f.-7.949789, 112.608659\"}]', '[{\"ketentuan\":\"9\"}]', '', '', '200', NULL, '', '', '', '', NULL, '11', '2', '', '', 'diijinkan', 'tidak', '', '200', '', '', '', '', '', 'ks', '', '', '', 's', '', '', ''),
-(21, 69, '650/000/35.07.111/2023', 'Muhammad Gilang Ramadhan part 1', 'Jl. Candi Blok 2b No.01 RT. 002 RW. 004 Kel. BEDOYO - Kec. PONJONG - Kota / Kab. GUNUNG KIDUL - Prov. DI YOGYAKARTA', '', '                                                          ', '8120104902682 / Mikro', '[{\"kbli\":\"0898912 -  Kesehatan / Menegah Tinggi\"},{\"kbli\":\"123123 -  Kesehatan / Menegah Tinggi\"}]', 'gudang parfum', 'Jl. Karang Besuki No.90 Desa / Kel. Ampeldento - Kec. Karangploso ', '200', '[{\"status_tanah\":\"SHM No.25 / GS.2974 / 1989 luas 300 mu00b2\"}]', 'peta3.jpg', '[{\"legenda\":\"9\"},{\"legenda\":\"56\"},{\"legenda\":\"57\"}]', '[{\"koordinat\":\"a.asdasd\"},{\"koordinat\":\"b.sss\"},{\"koordinat\":\"c.ssss\"},{\"koordinat\":\"d.ssss\"}]', '[{\"ketentuan\":\"9\"}]', '', '', '200', NULL, '-', '-', '70%=5.040,0 m2', '10%=42,9 m2', NULL, '32323m2', '1', '', '', 'diijinkan', 'tidak', 'tidak', '200', '', '', '', '', 'gudang', 'ap', '', '', '', 'r', '', '', ''),
-(22, 70, '650/000/35.07.111/2023', 'Fawwaz Dzaky', 'Gadang RT. 001 RW. 003 Kel. GADANG - Kec. SUKUN - Kota / Kab. MALANG - Prov. JAWA TIMUR                          ', '', ' \r\n                                                    ', '1 / Besar', '[{\"kbli\":\"1 -  Pendidikan / Tinggi\"},{\"kbli\":\"3 -  Pendidikan / Tinggi\"}]', 'Sekolah', 'Gadang Desa / Kel. Mojosari - Kec. Kepanjen                           ', '500', '[{\"status_tanah\":\"SHM/2309s\"}]', '', '[]', '[{\"koordinat\":\"a.\"}]', '[]', '', '', '', NULL, '', '', '', '', NULL, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+(21, 69, '650/000/35.07.111/2023', 'Muhammad Gilang Ramadhan part 1', 'Jl. Candi Blok 2b No.01 RT. 002 RW. 004 Kel. BEDOYO - Kec. PONJONG - Kota / Kab. GUNUNG KIDUL - Prov. DI YOGYAKARTA', '', '                                                          ', '8120104902682 / Mikro', '[{\"kbli\":\"0898912 -  Kesehatan / Menegah Tinggi\"},{\"kbli\":\"123123 -  Kesehatan / Menegah Tinggi\"}]', 'gudang parfum', 'Jl. Karang Besuki No.90 Desa / Kel. Ampeldento - Kec. Karangploso ', '200', '[{\"status_tanah\":\"SHM No.25 / GS.2974 / 1989 luas 300 mu00b2\"}]', 'peta3.jpg', '[{\"legenda\":\"9\"},{\"legenda\":\"56\"},{\"legenda\":\"57\"}]', '[{\"koordinat\":\"a.asdasd\"},{\"koordinat\":\"b.sss\"},{\"koordinat\":\"c.ssss\"},{\"koordinat\":\"d.ssss\"}]', '[{\"ketentuan\":\"9\"}]', '', '', '200', NULL, '-', '-', '70%=5.040,0 m2', '10%=42,9 m2', NULL, '32323m2', '1', '', '', 'diijinkan', 'tidak', 'tidak', '200', '', '', '', '', 'gudang', 'ap', '', '', '', 'r', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -710,15 +700,10 @@ CREATE TABLE `file_pengembalian_kkpr_permohonan` (
 INSERT INTO `file_pengembalian_kkpr_permohonan` (`id_pengembalian`, `id_permohonan`, `type`, `dokumen_oss`, `fotokopi_ktp`, `fotokopi_ktp_kuasa`, `akta_perusahaan`, `siup`, `tdp`, `npwp`, `surat_tanah`, `peta_bidang_surat_tanah`, `peta_bidang`, `teknis_pertanahan`, `surat_kematian`, `surat_kuasa_ahli_waris`, `surat_dinas_komunikasi`, `surat_rekom_tni`, `surat_dinas_perdagangan`, `surat_dinas_peternakan`, `surat_pertamina`, `daftar_nama_kk`, `surat_fkub`, `shp`) VALUES
 (1, 59, 'biasa', 'Gilang_testing_3236.pdf', 'Gilang_testing_3237.pdf', NULL, '', '', '', '', '[{\"surat_tanah\":\"Gilang_testing_1149.pdf\"},{\"surat_tanah\":\"Gilang_testing_11410.pdf\"}] ', '[{\"surat_tanah\":\"Gilang_testing_32310.pdf\"},{\"surat_tanah\":\"Gilang_testing_32311.pdf\"}]', 'Gilang_testing_3239.pdf', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (2, 59, 'biasa', 'Gilang_testing_505.pdf', 'Gilang_testing_505.pdf', NULL, '', '', '1', '', '[{\"surat_tanah\":\"Gilang_testing_1149.pdf\"},{\"surat_tanah\":\"Gilang_testing_11410.pdf\"}] ', '[{\"surat_tanah\":\"Gilang_testing_32310.pdf\"},{\"surat_tanah\":\"Gilang_testing_32311.pdf\"}]', 'Gilang_testing_3239.pdf', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'real_shp_(3)_(1)1.zip'),
-(1848, 70, 'biasa', '', 'Gilang_testing_120.pdf', '', '', '', '', '', '[{\"surat_tanah\":\"Gilang_testing_327.pdf\"}] ', '[]', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(2038, 70, 'biasa', '', 'pdf_(5)2.pdf', '', '', '', '', '', '[{\"surat_tanah\":\"Gilang_testing_327.pdf\"}] ', '[]', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(2064, 66, 'pergudangan', '', 'pdf_(3)13.pdf', '', '', '', '', '', '[{\"surat_tanah\":\"pdf_(4)5.pdf\"}] ', '[]', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
 (2065, 43, 'biasa', 'Gilang_testing_125.pdf', 'Gilang_testing_446.pdf', NULL, 'Gilang_testing_224.pdf', '', 'Dev sedang mencoba', 'Gilang_testing_225.pdf', '[{\"surat_tanah\":\"Gilang_testing_338.pdf\"},{\"surat_tanah\":\"Gilang_testing_311.pdf\"}] ', '[]', 'Gilang_testing_448.pdf', '', 'Gilang_testing_226.pdf', 'Gilang_testing_227.pdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(2190, 74, 'biasa', '', 'pdf_(5)25.pdf', '', '', '', '', '', '[{\"surat_tanah\":\"pdf_(5)26.pdf\"}] ', '[]', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
 (2533, 59, 'biasa', 'Gilang_testing_3236.pdf', 'Gilang_testing_516.pdf', NULL, '', '', '1', '', '[{\"surat_tanah\":\"Gilang_testing_412.pdf\"},{\"surat_tanah\":\"Gilang_testing_11419.pdf\"}] ', '[]', 'Gilang_testing_3239.pdf', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'real_shp_(3)_(1)7.zip'),
 (2929, 59, 'biasa', 'Gilang_testing_3236.pdf', 'Gilang_testing_3237.pdf', NULL, '', '', '1', '', '[{\"surat_tanah\":\"Gilang_testing_412.pdf\"},{\"surat_tanah\":\"Gilang_testing_11410.pdf\"}] ', '[{\"surat_tanah\":\"Gilang_testing_515.pdf\"},{\"surat_tanah\":\"Gilang_testing_11417.pdf\"}]', 'Gilang_testing_3239.pdf', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'real_shp_(3)_(1)7.zip'),
 (3439, 59, 'biasa', 'Gilang_testing_3236.pdf', 'Gilang_testing_3237.pdf', NULL, '', '', '1', '', '[{\"surat_tanah\":\"Gilang_testing_412.pdf\"},{\"surat_tanah\":\"Gilang_testing_11410.pdf\"}] ', '[{\"surat_tanah\":\"Gilang_testing_515.pdf\"},{\"surat_tanah\":\"Gilang_testing_11417.pdf\"}]', 'Gilang_testing_3239.pdf', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'real_shp_(3)_(1)7.zip'),
-(3467, 72, 'biasa', '', 'pdf_(5)10.pdf', '', '', '', '', '', '[{\"surat_tanah\":\"pdf_(5)12.pdf\"}] ', '[]', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
 (3870, 36, 'biasa', '', 'Gilang_testing_22.pdf', '', 'Gilang_testing_32.pdf', '', '', '', '[] ', '[]', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
 (3924, 43, 'biasa', '', '', NULL, 'pdf_(4).pdf', '', '', '', '[{\"surat_tanah\":\"Gilang_testing_338.pdf\"},{\"surat_tanah\":\"Gilang_testing_311.pdf\"}] ', '[]', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
 (4454, 43, 'biasa', '', 'pdf_(8)1.pdf', 'pdf_(4).pdf', 'pdf_(8)2.pdf', '', '', '', '[{\"surat_tanah\":\"Gilang_testing_338.pdf\"},{\"surat_tanah\":\"Gilang_testing_311.pdf\"}] ', '[]', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
@@ -727,11 +712,8 @@ INSERT INTO `file_pengembalian_kkpr_permohonan` (`id_pengembalian`, `id_permohon
 (6805, 59, 'biasa', 'Gilang_testing_3236.pdf', 'Gilang_testing_516.pdf', NULL, '', '', '1', '', '[{\"surat_tanah\":\"Gilang_testing_412.pdf\"},{\"surat_tanah\":\"Gilang_testing_11410.pdf\"}] ', '[{\"surat_tanah\":\"Gilang_testing_515.pdf\"},{\"surat_tanah\":\"Gilang_testing_11417.pdf\"}]', 'Gilang_testing_3239.pdf', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'real_shp_(3)_(1)7.zip'),
 (7161, 63, 'pergudangan', 'Gilang_testing_11421.pdf', 'Gilang_testing_11422.pdf', NULL, '', '', '8120104902682', '', '[{\"surat_tanah\":\"Gilang_testing_11424.pdf\"}] ', '[]', 'Gilang_testing_11425.pdf', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'map_(20).zip'),
 (7447, 43, 'biasa', '', '', NULL, 'Gilang_testing_224.pdf', '', '', '', '[{\"surat_tanah\":\"Gilang_testing_338.pdf\"},{\"surat_tanah\":\"Gilang_testing_311.pdf\"}] ', '[]', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(7896, 72, 'biasa', '', 'pdf_(5)10.pdf', '', '', '', '', '', '[{\"surat_tanah\":\"pdf_(5)12.pdf\"}] ', '[]', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
 (7944, 69, 'klinik', '', 'Gilang_testing_118.pdf', '', '', '', '', '', '[{\"surat_tanah\":\"Gilang_testing_119.pdf\"}] ', '[]', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(7945, 68, 'klinik', '', 'pdf_(10)1.pdf', '', '', '', '', '', '[{\"surat_tanah\":\"pdf_(8)11.pdf\"}] ', '[]', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
 (8100, 66, 'pergudangan', '', '', NULL, '', '', '', '', '[{\"surat_tanah\":\"pdf_(4)5.pdf\"}] ', '[]', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(8272, 72, 'biasa', '', 'pdf_(5)10.pdf', '', '', '', '', '', '[{\"surat_tanah\":\"pdf_(5)12.pdf\"}] ', '[]', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
 (8444, 64, 'pergudangan', 'Gilang_testing_32329.pdf', 'Gilang_testing_32330.pdf', NULL, '', '', '8120104902682', '', '[{\"surat_tanah\":\"Gilang_testing_32332.pdf\"}] ', '[]', 'Gilang_testing_32333.pdf', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'map_(25)1.zip'),
 (8771, 59, 'biasa', 'Gilang_testing_3236.pdf', 'Gilang_testing_516.pdf', NULL, '', '', '1', '', '[{\"surat_tanah\":\"Gilang_testing_412.pdf\"},{\"surat_tanah\":\"Gilang_testing_11419.pdf\"}] ', '[]', 'Gilang_testing_3239.pdf', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'real_shp_(3)_(1)7.zip'),
 (2147483647, 59, 'biasa', 'Gilang_testing_3236.pdf', 'Gilang_testing_3237.pdf', NULL, '', '', '1', '', '[{\"surat_tanah\":\"Gilang_testing_412.pdf\"},{\"surat_tanah\":\"Gilang_testing_11410.pdf\"}] ', '[{\"surat_tanah\":\"Gilang_testing_515.pdf\"},{\"surat_tanah\":\"Gilang_testing_11417.pdf\"}]', 'Gilang_testing_3239.pdf', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'real_shp_(3)_(1)7.zip');
@@ -89982,12 +89964,11 @@ INSERT INTO `kkpr_permohonan` (`id_kkpr_permohonan`, `id_user`, `tgl_verif_berka
 (59, 8, NULL, NULL, NULL, '2023-09-25', '2023-09-25', NULL, NULL, 'biasa', '', '1', '1', '1', '1', '2', '25', '313', '6487', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 'Menengah', 'Menegah Tinggi', NULL, '[{\"kbli\":\"1\"}]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', 'Kkpr', 'Revisi', NULL, '[{\"status_tanah\":\"dev sedang mencoba\"},{\"status_tanah\":\"Dev sedang mencoba2\"}]', '1', '1', '1', 'KAB Malang', '2', '14', 'Gilang_testing_3236.pdf', 'Gilang_testing_516.pdf', NULL, '', NULL, 'Gilang_testing_3238.pdf', '', 'atas_nama_orang_lain', 'sertifikat', 'sewa_menyewa', '', '[{\"surat_tanah\": \"Gilang_testing_412.pdf\"}, {\"surat_tanah\": \"Gilang_testing_11419.pdf\"}]', '[{\"peta_bidang\": \"Gilang_testing_515.pdf\"}, {\"peta_bidang\": \"Gilang_testing_11420.pdf\"}]', 'Gilang_testing_3239.pdf', 'real_shp_(3)_(1)7.zip', NULL, '', '', '', '', '', '', '', '', '', NULL, 99),
 (63, 1, NULL, '2023-10-11', NULL, '2011-10-23', '2023-10-11', 'Sulistya', 'Mahmud', 'pergudangan', '', 'Developer', 'Jl. Candi Blok 2b No.01', '003', '001', '2', '28', '358', '6570', '0895367331237', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '8120104902682', 'Kecil', 'Menegah Tinggi', NULL, '[{\"kbli\":\"1\"}]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dev sedang mencoba', '200', ' Industri dan Pergudangan', 'Revisi', NULL, '[{\"status_tanah\":\"SHM No.25 / GS.2974 / 1989 luas 2.000 mu00b2\"}]', 'Jl. Karang Besuki', '002', '002', 'KAB Malang', '4', '38', 'Gilang_testing_11421.pdf', 'Gilang_testing_32318.pdf', NULL, '', NULL, 'Gilang_testing_11423.pdf', '', 'atas_nama_sendiri', 'sertifikat', NULL, NULL, '[{\"surat_tanah\":\"Gilang_testing_11424.pdf\"}]', NULL, 'Gilang_testing_11425.pdf', 'map_(20).zip', NULL, '', '', '', '', '', '', '', '', '', 5, 2),
 (64, 16, NULL, '2023-10-16', NULL, '2016-10-23', '2023-10-16', 'Sulistya', 'Mahmud', 'pergudangan', '', 'Dr. Akbar Jaya', 'Jl. Candi Blok 2b No.01', '002', '004', '2', '28', '358', '6570', '0895367331237', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '8120104902682', 'Mikro', 'Menegah Rendah', NULL, '[{\"kbli\":\"0898912\"}]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ruko', '200', ' Industri dan Pergudangan', 'Baru', NULL, '[{\"status_tanah\":\"SHM No.25 / GS.2974 / 1989 luas 2.000 mu00b2\"}]', 'Dusun Sumawe', '001', '009', 'KAB Malang', '6', '60', 'Gilang_testing_32329.pdf', 'Gilang_testing_32334.pdf', NULL, '', NULL, 'Gilang_testing_32331.pdf', '', 'atas_nama_sendiri', 'sertifikat', NULL, NULL, '[{\"surat_tanah\":\"Gilang_testing_32332.pdf\"}]', NULL, 'Gilang_testing_32333.pdf', 'map_(25)1.zip', NULL, '', '', '', '', '', '', '', '', '', 5, 2),
-(66, 1, NULL, NULL, NULL, '2027-10-23', '2023-11-07', NULL, NULL, 'pergudangan', '', 'Gilang Ramadhan', 'Jl. Candi Blok 2b No.01', '1', '1', '2', '28', '345', '6543', '0895367331237', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8120104902682', 'Kecil', 'Menegah Tinggi', NULL, '[{\"kbli\":\"0898912\"}]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'gudang parfum', '200', ' Industri dan Pergudangan', 'Perluasan', NULL, '[{\"status_tanah\":\"Dev sedang mencoba1\"}]', 'Jl. Karang Besuki No.90', '1', '1', 'KAB Malang', '1', '1', 'pdf_(4)4.pdf', 'pdf_(3)13.pdf', '', '', NULL, 'pdf_(3)14.pdf', '', 'atas_nama_sendiri', 'sertifikat', NULL, NULL, '[{\"surat_tanah\":\"pdf_(4)5.pdf\"}]', NULL, 'pdf_(4)6.pdf', 'map_(19)1.zip', NULL, 'pdf_(4)7.pdf', 'pdf_(5)4.pdf', '', '', '', '', '', '', '', NULL, 1),
+(66, 1, NULL, NULL, NULL, '2027-10-23', '2023-11-01', NULL, NULL, 'pergudangan', '', 'Gilang Ramadhan', 'Jl. Candi Blok 2b No.01', '1', '1', '2', '28', '345', '6543', '0895367331237', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8120104902682', 'Kecil', 'Menegah Tinggi', NULL, '[{\"kbli\":\"0898912\"}]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'gudang parfum', '200', ' Industri dan Pergudangan', 'Perluasan', NULL, '[{\"status_tanah\":\"Dev sedang mencoba1\"}]', 'Jl. Karang Besuki No.90', '1', '1', 'KAB Malang', '1', '1', 'pdf_(4)4.pdf', 'pdf_(3)13.pdf', NULL, NULL, NULL, 'pdf_(3)14.pdf', NULL, 'atas_nama_sendiri', 'sertifikat', NULL, NULL, '[{\"surat_tanah\":\"pdf_(4)5.pdf\"}]', NULL, 'pdf_(4)6.pdf', 'map_(19)1.zip', NULL, 'pdf_(4)7.pdf', 'pdf_(5)4.pdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
 (67, 1, NULL, NULL, NULL, '2028-10-23', NULL, NULL, NULL, 'klinik', '', 'Muhammad Gilang Ramadhan', 'Jl. Candi Blok 2b No.01', '1', '', '4', '78', '1014', '15356', '0895367331237', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '8120104902682', 'Menengah', 'Menegah Tinggi', NULL, '[{\"kbli\":\"Dev sedang mencoba\"}]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'gudang parfum', '200', ' Kesehatan', 'Revisi', NULL, '[{\"status_tanah\":\"Dev sedang mencoba\"}]', 'Jl. Karang Besuki No.90', '1', '1', 'KAB Malang', '14', '150', 'pdf_(3)6.pdf', 'pdf_(3)7.pdf', NULL, NULL, NULL, 'pdf_(3)8.pdf', NULL, 'atas_nama_sendiri', 'sertifikat', NULL, NULL, '[{\"surat_tanah\":\"pdf_(4)6.pdf\"}]', NULL, 'pdf_(4)7.pdf', 'map_(25)3.zip', NULL, 'pdf_(4)8.pdf', 'pdf_(4)9.pdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, 2),
-(68, 8, NULL, NULL, NULL, '2002-11-23', '2023-11-07', NULL, NULL, 'klinik', '', 'Fawwaz Dzaky', '1', '1', '', '7', '117', '1508', '20189', '085749167976', '', '', '', '', '', '', '', '', '', '', '1', 'Menengah', 'Menegah Tinggi', 'merakyat bersamaku1', '[{\"kbli\":\"0898912\"}]', '', '', '', '', '', '', '', '1', '1', ' Kesehatan', 'Baru', 'milik_sendiri', '[{\"status_tanah\":\"SHM No.25 / GS.2974 / 1989 luas 300 mu00b2\"}]', '1', '1', '1', 'KAB Malang', '4', '38', 'pdf_(8)9.pdf', 'pdf_(10)1.pdf', '', '', NULL, 'pdf_(7)2.pdf', '', 'atas_nama_sendiri', 'sertifikat', NULL, NULL, '[{\"surat_tanah\":\"pdf_(8)11.pdf\"}]', NULL, 'pdf_(8)12.pdf', 'map_(23).zip', NULL, '', '', '', '', '', '', '', '', '', NULL, 1),
-(69, 1, NULL, '2023-11-02', NULL, '2002-11-23', '2023-11-02', 'Sulistya', 'Mahmud', 'klinik', '', 'Muhammad Gilang Ramadhan part 1', 'Jl. Candi Blok 2b No.01', '002', '004', '14', '213', '3161', '39781', '085730593481', '', '', '', '', '', '', '', '', '', '', '8120104902682', 'Mikro', 'Menegah Tinggi', 'merakyat bersamaku part 2', '[{\"kbli\":\"0898912\"},{\"kbli\":\"123123\"}]', '', '', '', '', '', '', '', 'gudang parfum', '200', ' Kesehatan', 'Revisi', 'milik_sendiri', '[{\"status_tanah\":\"SHM No.25 / GS.2974 / 1989 luas 300 mu00b2\"}]', 'Jl. Karang Besuki No.90', '1', '1', 'KAB Malang', '11', '116', 'Gilang_testing_413.pdf', 'pdf_(10).pdf', '', '', NULL, 'Gilang_testing_226.pdf', '', 'atas_nama_sendiri', 'sertifikat', NULL, NULL, '[{\"surat_tanah\":\"Gilang_testing_119.pdf\"}]', NULL, 'Gilang_testing_517.pdf', 'map_(26).zip', NULL, '', '', '', '', '', '', '', '', '', 4, 2),
-(70, 30, NULL, NULL, NULL, '2007-11-23', '2023-11-07', NULL, NULL, 'biasa', '', 'Fawwaz Dzaky', 'Gadang', '001', '003', '15', '232', '3372', '41748', '085730593481', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 'Besar', 'Tinggi', 'Pendidikan', '[{\"kbli\":\"1\"},{\"kbli\":\"3\"}]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Sekolah', '500', ' Pendidikan', 'Baru', 'milik_sendiri', '[{\"status_tanah\":\"SHM/2309s\"}]', 'Gadang', '001', '003', 'KAB Malang', '13', '142', 'pdf_(5)3.pdf', 'pdf_(5)2.pdf', '', '', NULL, 'Gilang_testing_227.pdf', '', 'atas_nama_sendiri', 'sertifikat', NULL, NULL, '[{\"surat_tanah\":\"Gilang_testing_327.pdf\"}]', NULL, 'Gilang_testing_414.pdf', 'map_(30).zip', NULL, '', '', '', '', '', '', '', '', '', 4, 2),
-(71, 31, NULL, NULL, NULL, '2007-11-23', NULL, NULL, NULL, 'biasa', '', 'Iqbal Rama', 'Gadang Sukun', '001', '001', '15', '232', '3375', '41238', '085730593481', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 'Besar', 'Tinggi', 'Pendidikan', '[{\"kbli\":\"1\"}]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1000', '1000', ' Pendidikan', 'Baru', 'milik_sendiri', '[{\"status_tanah\":\"SHM/2309s\"}]', 'Gadang', '001', '002', 'KAB Malang', '8', '82', 'pdf_(5)4.pdf', 'pdf_(5)5.pdf', NULL, NULL, NULL, 'pdf_(5)6.pdf', NULL, 'atas_nama_sendiri', 'sertifikat', NULL, NULL, '[{\"surat_tanah\":\"pdf_(5)7.pdf\"}]', NULL, 'pdf_(5)8.pdf', 'map_(30)1.zip', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2);
+(68, 8, NULL, NULL, NULL, '2002-11-23', '2023-11-04', NULL, NULL, 'klinik', '', 'coba develper', '1', '1', '', '7', '117', '1508', '20189', '085749167976', '', '', '', '', '', '', '', '', '', '', '1', 'Menengah', 'Menegah Tinggi', 'merakyat bersamaku1', '[{\"kbli\":\"0898912\"}]', '', '', '', '', '', '', '', '1', '1', ' Kesehatan', 'Baru', 'milik_sendiri', '[{\"status_tanah\":\"SHM No.25 / GS.2974 / 1989 luas 300 mu00b2\"}]', '1', '1', '1', 'KAB Malang', '4', '38', 'pdf_(8)9.pdf', 'pdf_(10)1.pdf', '', '', NULL, 'pdf_(7)2.pdf', '', 'atas_nama_sendiri', 'sertifikat', NULL, NULL, '[{\"surat_tanah\":\"pdf_(8)11.pdf\"}]', NULL, 'pdf_(8)12.pdf', 'map_(23).zip', NULL, '', '', '', '', '', '', '', '', '', NULL, 0),
+(69, 1, NULL, '2023-11-02', NULL, '2002-11-23', '2023-11-02', 'Sulistya', 'Mahmud', 'klinik', '', 'Muhammad Gilang Ramadhan part 1', 'Jl. Candi Blok 2b No.01', '002', '004', '14', '213', '3161', '39781', '085749167976', '', '', '', '', '', '', '', '', '', '', '8120104902682', 'Mikro', 'Menegah Tinggi', 'merakyat bersamaku part 2', '[{\"kbli\":\"0898912\"},{\"kbli\":\"123123\"}]', '', '', '', '', '', '', '', 'gudang parfum', '200', ' Kesehatan', 'Revisi', 'milik_sendiri', '[{\"status_tanah\":\"SHM No.25 / GS.2974 / 1989 luas 300 mu00b2\"}]', 'Jl. Karang Besuki No.90', '1', '1', 'KAB Malang', '11', '116', 'Gilang_testing_413.pdf', 'pdf_(10).pdf', '', '', NULL, 'Gilang_testing_226.pdf', '', 'atas_nama_sendiri', 'sertifikat', NULL, NULL, '[{\"surat_tanah\":\"Gilang_testing_119.pdf\"}]', NULL, 'Gilang_testing_517.pdf', 'map_(26).zip', NULL, '', '', '', '', '', '', '', '', '', 4, 2),
+(70, 58, NULL, NULL, NULL, '2008-11-23', NULL, NULL, NULL, 'biasa', '', 'Muhammad Ari', 'Gadang Sukun', '001', '003', '15', '221', '3776', '43422', '085730593481', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 'Besar', 'Tinggi', 'Pendidikan', '[{\"kbli\":\"1\"},{\"kbli\":\"2\"}]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Sekolah', '500', ' Pendidikan', 'Baru', 'milik_sendiri', '[{\"status_tanah\":\"SHM/2309s\"}]', 'Gadang', '001', '003', 'KAB Malang', '14', '156', 'pdf_(4)13.pdf', 'pdf_(4)14.pdf', NULL, NULL, NULL, 'pdf_(5)37.pdf', NULL, 'atas_nama_sendiri', 'sertifikat', NULL, NULL, '[{\"surat_tanah\":\"pdf_(5)38.pdf\"}]', NULL, 'pdf_(5)39.pdf', 'map_(34)11.zip', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -90136,53 +90117,7 @@ INSERT INTO `log_admin` (`id`, `id_permohonan`, `type`, `id_user`, `keterangan`,
 (49, 35, 'insert dan update', 8, 'Insert atau Update data pada config lhs', '2023-11-04 07:02:22'),
 (50, 35, 'insert dan update', 8, 'Insert atau Update data pada config lhs', '2023-11-04 07:04:44'),
 (51, 35, 'insert dan update', 8, 'Insert atau Update data pada config lhs', '2023-11-04 07:05:02'),
-(52, 35, 'insert dan update', 8, 'Insert atau Update data pada config lhs', '2023-11-04 07:09:50'),
-(53, 68, 'insert dan update', 8, 'Tambah Keterangan dan tolak berkas di halaman admin permohonan', '2023-11-07 01:57:07'),
-(54, 66, 'insert dan update', 4, 'Tambah Keterangan dan tolak berkas di halaman admin permohonan', '2023-11-07 02:01:03'),
-(55, 70, 'insert dan update', 4, 'Tambah Keterangan dan tolak berkas di halaman admin permohonan', '2023-11-07 02:12:51'),
-(56, 70, 'insert dan update', 4, 'Tambah Keterangan dan tolak berkas di halaman admin permohonan', '2023-11-07 02:27:33'),
-(57, 70, 'insert dan update', 4, 'Terima berkas di halaman admin permohonan', '2023-11-07 02:29:26'),
-(58, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 02:40:44'),
-(59, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 02:40:51'),
-(60, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 02:40:56'),
-(61, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 02:40:59'),
-(62, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 02:41:06'),
-(63, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 02:41:09'),
-(64, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 02:44:04'),
-(65, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 02:44:31'),
-(66, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 03:00:16'),
-(67, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 03:09:53'),
-(68, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 03:10:04'),
-(69, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 03:10:17'),
-(70, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 03:17:19'),
-(71, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 03:17:23'),
-(72, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 03:18:00'),
-(73, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 03:18:05'),
-(74, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 03:18:08'),
-(75, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 03:18:22'),
-(76, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 03:18:25'),
-(77, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 03:18:53'),
-(78, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 03:20:52'),
-(79, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 03:20:57'),
-(80, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 03:21:00'),
-(81, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 03:23:38'),
-(82, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 03:23:41'),
-(83, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 03:23:43'),
-(84, 70, 'insert atau update', 4, 'Tambah atau Update pada config peta', '2023-11-07 03:23:48'),
-(85, 72, 'insert dan update', 4, 'Tambah Keterangan dan tolak berkas di halaman admin permohonan', '2023-11-07 04:01:55'),
-(86, 72, 'insert dan update', 4, 'Tambah Keterangan dan tolak berkas di halaman admin permohonan', '2023-11-07 04:18:55'),
-(87, 72, 'insert dan update', 4, 'Tambah Keterangan dan tolak berkas di halaman admin permohonan', '2023-11-07 06:08:24'),
-(88, 72, 'insert dan update', 4, 'Terima berkas di halaman admin permohonan', '2023-11-07 06:09:42'),
-(89, 72, 'insert dan update', 4, 'Insert atau Update data pada config lhs', '2023-11-07 06:45:07'),
-(90, 72, 'insert dan update', 4, 'Insert atau Update data pada config lhs', '2023-11-07 06:46:11'),
-(91, 72, 'insert dan update', 4, 'Insert atau Update data pada config lhs', '2023-11-07 06:46:17'),
-(92, 72, 'insert dan update', 4, 'Insert atau Update data pada config lhs', '2023-11-07 06:46:22'),
-(93, 73, 'insert dan update', 4, 'Terima berkas di halaman admin permohonan', '2023-11-07 07:25:29'),
-(94, 74, 'insert dan update', 4, 'Tambah Keterangan dan tolak berkas di halaman admin permohonan', '2023-11-08 03:17:31'),
-(95, 74, 'insert dan update', 4, 'Terima berkas di halaman admin permohonan', '2023-11-08 03:26:08'),
-(96, 75, 'insert dan update', 4, 'Terima berkas di halaman admin permohonan', '2023-11-08 03:38:08'),
-(97, 71, 'insert dan update', 4, 'Terima berkas di halaman admin permohonan', '2023-11-08 03:39:43'),
-(98, 76, 'insert dan update', 4, 'Terima berkas di halaman admin permohonan', '2023-11-08 03:44:40');
+(52, 35, 'insert dan update', 8, 'Insert atau Update data pada config lhs', '2023-11-04 07:09:50');
 
 -- --------------------------------------------------------
 
@@ -90263,15 +90198,7 @@ INSERT INTO `pengembalian_kkpr_permohonan` (`id_pengembalian`, `id_permohonan`, 
 (45, 36, 'biasa', 3870, '', '', '', '', '', '', '', '[] ', 'salah kamu bos', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
 (46, 36, 'biasa', 4939, '', 'cek bos', '', '', '', '', '', '[{\"surat_tanah\":\"\"},{\"surat_tanah\":\"\"}] ', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
 (48, 69, 'klinik', 7944, '', 'skpasdas', '', '', '', '', '', '[{\"surat_tanah\":\"\"}] ', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(49, 68, 'klinik', 5077, '', 'cek masuk ga', '', '', '', '', '', '[{\"surat_tanah\":\"\"}] ', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(50, 68, 'klinik', 7945, '', 'perbaiki lagi yaaa', '', '', '', '', '', '[{\"surat_tanah\":\"\"}] ', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(51, 66, 'pergudangan', 2064, '', 'blur', '', '', '', '', '', '[{\"surat_tanah\":\"\"}] ', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(52, 70, 'biasa', 1848, '', 'Blurring', '', '', '', '', '', '[{\"surat_tanah\":\"\"}] ', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(53, 70, 'biasa', 2038, 'Blur', '', '', '', '', '', '', '[{\"surat_tanah\":\"\"}] ', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(54, 72, 'biasa', 7896, 'Burem', 'Burem', '', '', '', 'Burem', '', '[{\"surat_tanah\":\"\"}] ', 'Burem', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Error'),
-(55, 72, 'biasa', 8272, 'Buram', 'Buram', '', '', '', 'Buram', '', '[{\"surat_tanah\":\"\"}] ', 'Buram', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Buram'),
-(56, 72, 'biasa', 3467, 'JPG ini, Harus PDF', 'Buram Cak', '', '', '', 'Ngeblur Cah', '', '[{\"surat_tanah\":\"\"}] ', 'Kurang Zoom Out', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Filenya harus. shp'),
-(57, 74, 'biasa', 2190, '', 'Foto Buram', '', '', '', '', '', '[{\"surat_tanah\":\"\"}] ', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Tolong Upload Ulang');
+(49, 68, 'klinik', 5077, '', 'cek masuk ga', '', '', '', '', '', '[{\"surat_tanah\":\"\"}] ', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -90453,7 +90380,7 @@ CREATE TABLE `user` (
   `level` enum('1','2','3','4','5','6') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `otp` int DEFAULT NULL,
   `nomor` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `nik` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `nik` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `status_verifikasi` enum('Belum Terverifikasi','Terverifikasi') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `tanggal_register` date DEFAULT NULL,
   `waktu` int DEFAULT NULL
@@ -90464,24 +90391,25 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `nama_lengkap`, `password`, `level`, `otp`, `nomor`, `nik`, `status_verifikasi`, `tanggal_register`, `waktu`) VALUES
-(1, 'user', 'Achmad Rifaldi', '111', '1', 378036, NULL, '', 'Terverifikasi', NULL, 1699414507),
-(2, 'aldi1234', 'Sonaini RIfaldi', '1234aldi', '1', 378036, NULL, '', 'Belum Terverifikasi', NULL, 1699414507),
-(3, 'valen', 'Valen Syahab', '123456789', '1', 378036, NULL, '', 'Belum Terverifikasi', NULL, 1699414507),
-(4, 'Staff', 'Staff', '111', '2', 378036, NULL, '', 'Terverifikasi', NULL, 1699414507),
-(5, 'Koordinator', 'Koordinator', '111', '3', 378036, NULL, '', 'Terverifikasi', NULL, 1699414507),
-(6, 'Kabid', 'Kepala Bidang', '111', '4', 378036, NULL, '', 'Terverifikasi', NULL, 1699414507),
-(7, 'Kadin', 'Kepala Dinas', '111', '5', 378036, NULL, '', 'Terverifikasi', NULL, 1699414507),
-(8, 'gilang', 'Developer', '111', '6', 378036, NULL, '', 'Terverifikasi', NULL, 1699414507),
-(9, 'gilang111', 'Muhammad Gilang Ramadhan', 'gilang123', '1', 378036, NULL, '', 'Terverifikasi', NULL, 1699414507),
-(10, 'prayuda123', 'Prayudha Adi', '123456789', '1', 378036, NULL, '', 'Belum Terverifikasi', NULL, 1699414507),
-(11, 'sulastri123', 'sulastri', '123456789', '1', 378036, NULL, '', 'Belum Terverifikasi', NULL, 1699414507),
-(12, 'yudi12345', 'yudi ananta', '123456789', '1', 378036, NULL, '', 'Belum Terverifikasi', NULL, 1699414507),
-(14, 'gilang123', 'Muhammad Gilang Ramadhan', 'gilang123', '1', 378036, '0895367331237', '', 'Belum Terverifikasi', NULL, 1699414507),
-(15, '', NULL, NULL, NULL, 378036, '895367331237', '', 'Belum Terverifikasi', NULL, 1699414507),
-(16, 'Akbar123', 'Akbar Jaya', '12345678', '1', 378036, '0895367331237', '', 'Terverifikasi', NULL, 1699414507),
-(32, 'Fawwaz Dzaky', 'Fawwaz Dzaky Arya', '12345678', '1', 378036, '6285730593481', '2007180315435325', 'Terverifikasi', NULL, 1699414507),
-(37, 'Iqbal Rama', 'Iqbal Ramadhan', '12345678', '1', 378036, '6285730593481', '2007180315435325', 'Terverifikasi', NULL, 1699414507),
-(57, 'Fido Ganteng', 'Athallah Yassar', '12345678', '1', 144656, '6285730593481', '2007180315435325', 'Terverifikasi', NULL, 1699414890);
+(1, 'user', 'Achmad Rifaldi', '111', '1', 953873, NULL, '', 'Terverifikasi', NULL, 1699418402),
+(2, 'aldi1234', 'Sonaini RIfaldi', '1234aldi', '1', 953873, NULL, '', 'Belum Terverifikasi', NULL, 1699418402),
+(3, 'valen', 'Valen Syahab', '123456789', '1', 953873, NULL, '', 'Belum Terverifikasi', NULL, 1699418402),
+(4, 'Staff', 'Staff', '111', '2', 953873, NULL, '', 'Terverifikasi', NULL, 1699418402),
+(5, 'Koordinator', 'Koordinator', '111', '3', 953873, NULL, '', 'Terverifikasi', NULL, 1699418402),
+(6, 'Kabid', 'Kepala Bidang', '111', '4', 953873, NULL, '', 'Terverifikasi', NULL, 1699418402),
+(7, 'Kadin', 'Kepala Dinas', '111', '5', 953873, NULL, '', 'Terverifikasi', NULL, 1699418402),
+(8, 'gilang', 'Developer', '111', '6', 953873, NULL, '', 'Terverifikasi', NULL, 1699418402),
+(9, 'gilang111', 'Muhammad Gilang Ramadhan', 'gilang123', '1', 953873, NULL, '', 'Terverifikasi', NULL, 1699418402),
+(10, 'prayuda123', 'Prayudha Adi', '123456789', '1', 953873, NULL, '', 'Belum Terverifikasi', NULL, 1699418402),
+(11, 'sulastri123', 'sulastri', '123456789', '1', 953873, NULL, '', 'Belum Terverifikasi', NULL, 1699418402),
+(12, 'yudi12345', 'yudi ananta', '123456789', '1', 953873, NULL, '', 'Belum Terverifikasi', NULL, 1699418402),
+(14, 'gilang123', 'Muhammad Gilang Ramadhan', 'gilang123', '1', 953873, '0895367331237', '', 'Belum Terverifikasi', NULL, 1699418402),
+(15, '', NULL, NULL, NULL, 953873, '895367331237', '', 'Belum Terverifikasi', NULL, 1699418402),
+(16, 'Akbar123', 'Akbar Jaya', '12345678', '1', 953873, '0895367331237', '', 'Terverifikasi', NULL, 1699418402),
+(32, 'Fawwaz Dzaky', 'Fawwaz Dzaky Arya', '12345678', '1', 953873, '6285730593481', '2007180315435325', 'Terverifikasi', NULL, 1699418402),
+(37, 'Iqbal Rama', 'Iqbal Ramadhan', '12345678', '1', 953873, '6285730593481', '2007180315435325', 'Terverifikasi', NULL, 1699418402),
+(57, 'Fido Ganteng', 'Athallah Yassar', '12345678', '1', 953873, '6285730593481', '2007180315435325', 'Terverifikasi', NULL, 1699418402),
+(58, 'Bapak Ari', 'Muhammad Ari', '12345678', '1', 953873, '085730593481', '2007180315435325', 'Terverifikasi', NULL, 1699418402);
 
 -- --------------------------------------------------------
 
@@ -90535,10 +90463,7 @@ INSERT INTO `validasi_formulir` (`id_validasi`, `id_permohonan`, `tolak_formulir
 (7, 66, 4, NULL),
 (8, 36, 8, NULL),
 (9, 69, 4, NULL),
-(10, 68, 8, NULL),
-(11, 70, 4, NULL),
-(12, 72, 4, NULL),
-(13, 74, 4, NULL);
+(10, 68, 8, NULL);
 
 -- --------------------------------------------------------
 
@@ -90735,7 +90660,7 @@ ALTER TABLE `validasi_formulir`
 -- AUTO_INCREMENT untuk tabel `action_pengembalian_kkpr_permohonan`
 --
 ALTER TABLE `action_pengembalian_kkpr_permohonan`
-  MODIFY `id_action` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_action` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_sertifikat_draft_peta`
@@ -90747,13 +90672,13 @@ ALTER TABLE `data_sertifikat_draft_peta`
 -- AUTO_INCREMENT untuk tabel `data_sertifikat_lhs`
 --
 ALTER TABLE `data_sertifikat_lhs`
-  MODIFY `id_sertifikat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_sertifikat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_sertifikat_peta`
 --
 ALTER TABLE `data_sertifikat_peta`
-  MODIFY `id_sertifikat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_sertifikat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `desa`
@@ -90831,7 +90756,7 @@ ALTER TABLE `kkpr_kuasa`
 -- AUTO_INCREMENT untuk tabel `kkpr_permohonan`
 --
 ALTER TABLE `kkpr_permohonan`
-  MODIFY `id_kkpr_permohonan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id_kkpr_permohonan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT untuk tabel `legenda`
@@ -90843,7 +90768,7 @@ ALTER TABLE `legenda`
 -- AUTO_INCREMENT untuk tabel `log_admin`
 --
 ALTER TABLE `log_admin`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengembalian_itr_permohonan`
@@ -90855,7 +90780,7 @@ ALTER TABLE `pengembalian_itr_permohonan`
 -- AUTO_INCREMENT untuk tabel `pengembalian_kkpr_permohonan`
 --
 ALTER TABLE `pengembalian_kkpr_permohonan`
-  MODIFY `id_pengembalian` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id_pengembalian` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT untuk tabel `pilihan`
@@ -90885,7 +90810,7 @@ ALTER TABLE `upload`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_aldi`
@@ -90897,7 +90822,7 @@ ALTER TABLE `user_aldi`
 -- AUTO_INCREMENT untuk tabel `validasi_formulir`
 --
 ALTER TABLE `validasi_formulir`
-  MODIFY `id_validasi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_validasi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
