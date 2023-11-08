@@ -19,7 +19,8 @@
                                     <tr>
                                         <th>No.</th>
                                         <th>Username</th>
-                                        <!-- <th>Tanggal Registrasi</th> -->
+                                        <th>NIK</th>
+                                        <th>Nomor Hp</th>
                                         <th>Level</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -32,7 +33,8 @@
                                         <tr>
                                             <td><?= $no++ ?></td>
                                             <td><?= $u->nama_lengkap ?></td>
-                                            <!-- <td><?= $u->waktu ?></td> -->
+                                            <td><?= $u->nik ?></td>
+                                            <td><?= $u->nomor ?></td>
                                             <td>
                                                 <?php
                                                 if ($u->level == 1) {
