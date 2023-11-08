@@ -103,7 +103,7 @@
 							<div class="mb-4 text-center">
 								<img src="<?php echo base_url('assets/login/'); ?>logokabupaten.png" class="img-thumbnaill" alt="...">
 							</div>
-							<form action=" <?= base_url('auth/proses_log') ?>" method="post">
+							<form action=" <?= base_url('auth/proses_log') ?>" method="post" onsubmit="return validateCaptcha();">
 								<!-- Email input -->
 								<div class="form-outline mb-4 text-start">
 									<label class="form-label" for="form3Example3">Username</label>
@@ -132,7 +132,7 @@
 
 								<div class="mt-4 mb-0 py-0 text-center">
 									<div class="text-black">
-										Belum memiliki akun? <a href="daftar.html" class="ms-1 hahahaha">Daftar sekarang!</a>
+										Belum memiliki akun? <a href="<?= base_url('Auth/register'); ?>" class="ms-1 hahahaha">Daftar sekarang!</a>
 									</div>
 								</div>
 
@@ -208,6 +208,17 @@
 	<!--===============================================================================================-->
 	<script src="<?php echo base_url('assets/login/'); ?>js/main.js"></script>
 	<script src="<?php echo base_url('assets/login/'); ?>login.js"></script>
+	<script>
+		function validateCaptcha() {
+			var response = grecaptcha.getResponse();
+			if (response.length === 0) {
+				alert("Please complete the reCAPTCHA.");
+				return false;
+			}
+			return true;
+		}
+	</script>
+
 
 </body>
 

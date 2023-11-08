@@ -76,33 +76,34 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                             </div>
                         </div>
                     <?php } ?>
-                    <?php 
-                    if($kkpr->fotokopi_ktp_kuasa){
-                    if ($yn->fotokopi_ktp_kuasa == '0') { ?>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label fw-bold text-dark" for="ktp">Fotokopi KTP Kuasa</label>
-                            <div class="col-sm-10">
-                                <div class="row">
-                                    <div class="col-sm-2">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->fotokopi_ktp_kuasa ?>" class="btn btn-sm btn-primary mb-2" download>Download</a><br>
-                                                <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->fotokopi_ktp_kuasa ?>" target="_blank" class="btn btn-sm btn-secondary mb-2">Lihat</a>
+                    <?php
+                    if ($kkpr->fotokopi_ktp_kuasa) {
+                        if ($yn->fotokopi_ktp_kuasa == '0') { ?>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label fw-bold text-dark" for="ktp">Fotokopi KTP Kuasa</label>
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->fotokopi_ktp_kuasa ?>" class="btn btn-sm btn-primary mb-2" download>Download</a><br>
+                                                    <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->fotokopi_ktp_kuasa ?>" target="_blank" class="btn btn-sm btn-secondary mb-2">Lihat</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <div class="form-text-area">
-                                            <textarea class="form-control" name="fotokopi_ktp_kuasa" data-kt-autosize="true" data-preview="preview" readonly><?php if ($keterangan) echo $keterangan->fotokopi_ktp_kuasa ?></textarea>
+                                        <div class="col-sm-5">
+                                            <div class="form-text-area">
+                                                <textarea class="form-control" name="fotokopi_ktp_kuasa" data-kt-autosize="true" data-preview="preview" readonly><?php if ($keterangan) echo $keterangan->fotokopi_ktp_kuasa ?></textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <input type="file" name="file_fotokopi_ktp_kuasa" class="form-file form-control" accept=".jpg, .pdf">
+                                        <div class="col-sm-5">
+                                            <input type="file" name="file_fotokopi_ktp_kuasa" class="form-file form-control" accept=".jpg, .pdf">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php }} ?>
+                    <?php }
+                    } ?>
                     <?php if ($kkpr->nama_perusahaan) { ?>
                         <?php if ($yn->akta_perusahaan == '0') { ?>
                             <div class="row mb-3">
@@ -252,7 +253,13 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                             $surat_tanah = json_decode($kkpr->surat_tanah);
                             $keterangan_st = json_decode($keterangan->surat_tanah, true); // Ubah menjadi array PHP
                             $yn_surat_tanah = json_decode($yn->surat_tanah, true); // Ubah menjadi array PHP
-                            $peta_bidang = json_decode($kkpr->peta_bidang_surat_tanah, true);
+                            if ($kkpr->peta_bidang_surat_tanah !== null) {
+                                $peta_bidang = json_decode($kkpr->peta_bidang_surat_tanah, true);
+                                // Lakukan sesuatu dengan $peta_bidang
+                            } else {
+                                
+                            }
+
                             $no = 0;
                             foreach ($surat_tanah as $index => $st) {
                                 $surat_tanah_value = isset($keterangan_st[$index]['surat_tanah']) ? $keterangan_st[$index]['surat_tanah'] : '';

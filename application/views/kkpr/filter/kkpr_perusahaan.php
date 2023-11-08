@@ -1622,7 +1622,7 @@
                                     <span class="required">*</span>
                                     <div class="form-text">File berbentuk zip yang sudah di download
                                     </div>
-                                    <small><a href="<?php echo base_url('polygon/create_new.html'); ?>" target="_blank">Polygon Map</a></small>
+                                    <small><a href="<?php echo base_url('Map/polygon_new'); ?>" target="_blank">Polygon Map</a></small>
                                 </label>
                                 <div class="col-md-9">
                                     <input type="file" id="shp" name="shp" class="form-control" accept=".zip">

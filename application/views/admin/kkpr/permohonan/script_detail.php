@@ -2,15 +2,15 @@
     $(document).ready(function() {
         $("#buka_st").click(function() {
             // Buat input baru dan tambahkan ke dalam "additionalInputs" div
-            var newInput1 = $("#table_surat_tanah1"); 
-            var newInput2 = $("#table_surat_tanah2"); 
+            var newInput1 = $("#table_surat_tanah1");
+            var newInput2 = $("#table_surat_tanah2");
             newInput1.show();
             newInput2.show();
         });
         $("#tutup_st").click(function() {
             // Hapus input terakhir dari "additionalInputs" div
-            var newInput1 = $("#table_surat_tanah1"); 
-            var newInput2 = $("#table_surat_tanah2"); 
+            var newInput1 = $("#table_surat_tanah1");
+            var newInput2 = $("#table_surat_tanah2");
             newInput1.hide();
             newInput2.hide();
         });
@@ -18,18 +18,67 @@
     $(document).ready(function() {
         $("#buka_st_ol").click(function() {
             // Buat input baru dan tambahkan ke dalam "additionalInputs" div
-            var newInput1 = $("#table_surat_tanah_ol1"); 
-            var newInput2 = $("#table_surat_tanah_ol2"); 
+            var newInput1 = $("#table_surat_tanah_ol1");
+            var newInput2 = $("#table_surat_tanah_ol2");
             newInput1.show();
             newInput2.show();
         });
         $("#tutup_st_ol").click(function() {
             // Hapus input terakhir dari "additionalInputs" div
-            var newInput1 = $("#table_surat_tanah_ol1");  
+            var newInput1 = $("#table_surat_tanah_ol1");
             var newInput2 = $("#table_surat_tanah_ol2");
             newInput1.hide();
             newInput2.hide();
         });
+    });
+    // Ketika radio button "Tidak" diubah
+    $('input[name="yn_fotokopi_ktp"]').change(function() {
+        if ($(this).val() === '0') {
+            // Aktifkan textarea jika "Tidak" dipilih
+            $('textarea[name="fotokopi_ktp"]').prop('disabled', false);
+        } else {
+            // Nonaktifkan textarea jika "Ya" dipilih
+            $('textarea[name="fotokopi_ktp"]').prop('disabled', true);
+        }
+    });
+    // Ketika radio button "Tidak" diubah
+    $('input[name="yn_tdp"]').change(function() {
+        if ($(this).val() === '0') {
+            // Aktifkan textarea jika "Tidak" dipilih
+            $('textarea[name="tdp"]').prop('disabled', false);
+        } else {
+            // Nonaktifkan textarea jika "Ya" dipilih
+            $('textarea[name="tdp"]').prop('disabled', true);
+        }
+    });
+    $('input[name="yn_dokumen_oss"]').change(function() {
+        if ($(this).val() === '0') {
+            // Aktifkan textarea jika "Tidak" dipilih
+            $('textarea[name="dokumen_oss"]').prop('disabled', false);
+        } else {
+            // Nonaktifkan textarea jika "Ya" dipilih
+            $('textarea[name="dokumen_oss"]').prop('disabled', true);
+        }
+    });
+    // Ketika radio button "Tidak" diubah
+    $('input[name="yn_peta_bidang"]').change(function() {
+        if ($(this).val() === '0') {
+            // Aktifkan textarea jika "Tidak" dipilih
+            $('textarea[name="peta_bidang"]').prop('disabled', false);
+        } else {
+            // Nonaktifkan textarea jika "Ya" dipilih
+            $('textarea[name="peta_bidang"]').prop('disabled', true);
+        }
+    });
+    // Ketika radio button "Tidak" diubah
+    $('input[name="yn_shp"]').change(function() {
+        if ($(this).val() === '0') {
+            // Aktifkan textarea jika "Tidak" dipilih
+            $('textarea[name="shp"]').prop('disabled', false);
+        } else {
+            // Nonaktifkan textarea jika "Ya" dipilih
+            $('textarea[name="shp"]').prop('disabled', true);
+        }
     });
 </script>
 <!-- <script>
@@ -50,20 +99,20 @@
     });
 </script> -->
 <script>
-        document.getElementById('myForm').addEventListener('submit', function (e) {
-            e.preventDefault(); // Mencegah pengiriman formulir
+    document.getElementById('myForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Mencegah pengiriman formulir
 
-            var submitBtnValue = e.submitter.value;
-            
-            if (submitBtnValue === 'submit1') {
-                this.action = '<?php echo base_url('Kkpr/proses_keterangan'); ?>'; // Update action dengan URL yang diinginkan
-            } else if (submitBtnValue === 'submit2') {
-                this.action = '<?php echo base_url('Kkpr/proses_update_admin_kkpr'); ?>';
-            }
-            this.submit(); // Kirim formulir setelah mengatur ulang action
-        });
-    </script>
-    <script>
+        var submitBtnValue = e.submitter.value;
+
+        if (submitBtnValue === 'submit1') {
+            this.action = '<?php echo base_url('Kkpr/proses_keterangan'); ?>'; // Update action dengan URL yang diinginkan
+        } else if (submitBtnValue === 'submit2') {
+            this.action = '<?php echo base_url('Kkpr/proses_update_admin_kkpr'); ?>';
+        }
+        this.submit(); // Kirim formulir setelah mengatur ulang action
+    });
+</script>
+<script>
     $(document).ready(function() {
 
         $('#provinsi_pemohon').change(function() {
@@ -300,14 +349,14 @@
 </script>
 <script>
     $(document).ready(function() {
-    $("#addInput").click(function() {
-      // Buat input baru dan tambahkan ke dalam "additionalInputs" div
-      var newInput = '<input type="text" class="form-control mb-2" name="kbli_array[]" required />';
-      $("#additionalInputs").append(newInput);
+        $("#addInput").click(function() {
+            // Buat input baru dan tambahkan ke dalam "additionalInputs" div
+            var newInput = '<input type="text" class="form-control mb-2" name="kbli_array[]" required />';
+            $("#additionalInputs").append(newInput);
+        });
+        $("#removeInput").click(function() {
+            // Hapus input terakhir dari "additionalInputs" div
+            $("#additionalInputs input:last-child").remove();
+        });
     });
-    $("#removeInput").click(function() {
-      // Hapus input terakhir dari "additionalInputs" div
-      $("#additionalInputs input:last-child").remove();
-    });
-  });
 </script>

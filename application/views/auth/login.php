@@ -132,7 +132,7 @@
 
 								<div class="mt-4 mb-0 py-0 text-center">
 									<div class="text-black">
-										Belum memiliki akun? <a href="<?= base_url('Auth/register'); ?>" class="ms-1 hahahaha">Daftar sekarang!</a>
+										Belum memiliki akun? <a href="<?= base_url('auth/register'); ?>" class="ms-1 hahahaha text-decoration-none">Daftar sekarang!</a>
 									</div>
 								</div>
 
@@ -204,6 +204,16 @@
 		$('.js-tilt').tilt({
 			scale: 1.1
 		})
+	</script>
+	<script>
+		function validateCaptcha() {
+			var response = grecaptcha.getResponse();
+			if (response.length === 0) {
+				// alert("Please complete the reCAPTCHA.");
+				return false;
+			}
+			return true;
+		}
 	</script>
 	<!--===============================================================================================-->
 	<script src="<?php echo base_url('assets/login/'); ?>js/main.js"></script>
