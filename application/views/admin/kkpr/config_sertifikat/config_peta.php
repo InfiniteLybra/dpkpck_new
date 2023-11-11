@@ -148,17 +148,17 @@ if ($cek) {
                                                         $kbli = json_decode($data->kbli_tingkat_resiko);
                                                         foreach ($kbli as $k) {
                                                     ?>
-                                                        <div class="mb-3">
-                                                            <input type="text" name="kbli_tingkat_resiko[]" class="form-control" value="<?= $k->kbli ?>" readonly>
-                                                        </div>
+                                                            <div class="mb-3">
+                                                                <input type="text" name="kbli_tingkat_resiko[]" class="form-control" value="<?= $k->kbli ?>" readonly>
+                                                            </div>
                                                         <?php }
                                                     } else {
                                                         $kbli = json_decode($data->kbli);
                                                         foreach ($kbli as $k) {
                                                         ?>
-                                                        <div class="mb-3">
-                                                            <input type="text" name="kbli_tingkat_resiko[]" class="form-control" value="<?= $k->kbli ?> - <?php if ($data) echo $data->kategori ?> / <?php if ($data) echo $data->klasifikasi_resiko ?>" readonly>
-                                                        </div>
+                                                            <div class="mb-3">
+                                                                <input type="text" name="kbli_tingkat_resiko[]" class="form-control" value="<?= $k->kbli ?> - <?php if ($data) echo $data->kategori ?> / <?php if ($data) echo $data->klasifikasi_resiko ?>" readonly>
+                                                            </div>
                                                     <?php }
                                                     } ?>
                                                 </td>
@@ -254,15 +254,15 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                     <!-- <div class="d-flex"> -->
-                                                        <?php if ($cek) { ?>
-                                                            <div class="d-flex">
-                                                                <input type="file" name="peta" class="form-control flex-grow-1" value="">
-                                                                <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?= $data->gambar_peta ?>" class="btn btn-light fw-bold flex-shrink-0" target="_blank">Lihat Disini</a>
-                                                            </div>
-                                                        <?php } else { ?>
-                                                            <input type="file" name="peta" class="form-control" value="">
-                                                            <small style="float: left;"><a href="<?php echo base_url('Map'); ?>" target="_blank">Klik disini untuk ke Shp Map</a></small>
-                                                        <?php } ?>
+                                                    <?php if ($cek) { ?>
+                                                        <div class="d-flex">
+                                                            <input type="file" name="peta" class="form-control flex-grow-1" value="">
+                                                            <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?= $data->gambar_peta ?>" class="btn btn-light fw-bold flex-shrink-0" target="_blank">Lihat Disini</a>
+                                                        </div>
+                                                    <?php } else { ?>
+                                                        <input type="file" name="peta" class="form-control" value="">
+                                                        <small style="float: left;"><a href="<?php echo base_url('Map'); ?>" target="_blank">Klik disini untuk ke Shp Map</a></small>
+                                                    <?php } ?>
                                                     <!-- </div> -->
                                                 </td>
                                             </tr>
@@ -667,10 +667,10 @@ if ($cek) {
                                         <div class="d-flex">
                                             <!-- <input type="text" name="luas_tanah_kp2b" class="form-control flex-grow-1" value="<?= $data->luas_tanah_kp2b ?>"> -->
                                             <input type="text" name="luas_tanah_kp2b" class="form-control flex-grow-1" value="<?php if ($data->luas_tanah_kp2b) {
-                                                                                                                                                        echo $data->luas_tanah_kp2b;
-                                                                                                                                                    } else {
-                                                                                                                                                        echo isset($draft_data['luas_tanah_kp2b']) ? $draft_data['luas_tanah_kp2b'] : '';
-                                                                                                                                                    } ?>">
+                                                                                                                                    echo $data->luas_tanah_kp2b;
+                                                                                                                                } else {
+                                                                                                                                    echo isset($draft_data['luas_tanah_kp2b']) ? $draft_data['luas_tanah_kp2b'] : '';
+                                                                                                                                } ?>">
                                             <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
                                         </div>
                                     <?php } else { ?>
@@ -694,10 +694,10 @@ if ($cek) {
                                         <div class="d-flex">
                                             <!-- <input type="text" name="diijinkan_sebagian" class="form-control flex-grow-1" value="<?= $data->diijinkan_sebagian ?>"> -->
                                             <input type="text" name="diijinkan_sebagian" class="form-control flex-grow-1" value="<?php if ($data->diijinkan_sebagian) {
-                                                                                                                                                        echo $data->diijinkan_sebagian;
-                                                                                                                                                    } else {
-                                                                                                                                                        echo isset($draft_data['diijinkan_sebagian']) ? $draft_data['diijinkan_sebagian'] : '';
-                                                                                                                                                    } ?>">
+                                                                                                                                        echo $data->diijinkan_sebagian;
+                                                                                                                                    } else {
+                                                                                                                                        echo isset($draft_data['diijinkan_sebagian']) ? $draft_data['diijinkan_sebagian'] : '';
+                                                                                                                                    } ?>">
                                             <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
                                         </div>
                                     <?php } else {
@@ -866,10 +866,10 @@ if ($cek) {
                                     ?>
                                         <!-- <input type="text" name="indikasi_ppr" class="form-control" value="<?= $data->indikasi_ppr ?>"> -->
                                         <input type="text" name="indikasi_ppr" id="indikasi_ppr" class="form-control" value="<?php if ($data->indikasi_ppr) {
-                                                                                                                                                        echo $data->indikasi_ppr;
-                                                                                                                                                    } else {
-                                                                                                                                                        echo isset($draft_data['indikasi_ppr']) ? $draft_data['indikasi_ppr'] : '';
-                                                                                                                                                    } ?>">
+                                                                                                                                    echo $data->indikasi_ppr;
+                                                                                                                                } else {
+                                                                                                                                    echo isset($draft_data['indikasi_ppr']) ? $draft_data['indikasi_ppr'] : '';
+                                                                                                                                } ?>">
                                     <?php } else {
                                     ?>
                                         <input type="text" name="indikasi_ppr" id="indikasi_ppr" class="form-control" value="<?php echo isset($draft_data['indikasi_ppr']) ? $draft_data['indikasi_ppr'] : ''; ?>">
@@ -889,10 +889,10 @@ if ($cek) {
                                         <div class="d-flex">
                                             <!-- <input type="text" name="luas_tanah_disetujui" id="luas_tanah_disetujui" class="form-control flex-grow-1" value="<?= $data->luas_disetujui ?>"> -->
                                             <input type="text" name="luas_tanah_disetujui" id="luas_tanah_disetujui" class="form-control flex-grow-1" value="<?php if ($data->luas_disetujui) {
-                                                                                                                                                        echo $data->luas_disetujui;
-                                                                                                                                                    } else {
-                                                                                                                                                        echo isset($draft_data['luas_tanah_disetujui']) ? $draft_data['luas_tanah_disetujui'] : '';
-                                                                                                                                                    } ?>">
+                                                                                                                                                                    echo $data->luas_disetujui;
+                                                                                                                                                                } else {
+                                                                                                                                                                    echo isset($draft_data['luas_tanah_disetujui']) ? $draft_data['luas_tanah_disetujui'] : '';
+                                                                                                                                                                } ?>">
                                             <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
                                         </div>
                                     <?php } else { ?>
@@ -912,20 +912,18 @@ if ($cek) {
                                 </td>
                                 <td>
                                     <?php if ($cek) { ?>
-                                        <div class="d-flex">
-                                            <!-- <input type="text" name="koefisien_bangunan" id="koefisien_bangunan" class="form-control flex-grow-1" value="<?= $data->koefisien_bangunan ?>"> -->
-                                            <input type="text" name="koefisien_bangunan" id="koefisien_bangunan" class="form-control flex-grow-1" value="<?php if ($data->koefisien_bangunan) {
-                                                                                                                                                        echo $data->koefisien_bangunan;
-                                                                                                                                                    } else {
-                                                                                                                                                        echo isset($draft_data['koefisien_bangunan']) ? $draft_data['koefisien_bangunan'] : '';
-                                                                                                                                                    } ?>">
-                                            <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
-                                        </div>
+                                        <!-- <input type="text" name="koefisien_bangunan" id="koefisien_bangunan" class="form-control flex-grow-1" value="<?= $data->koefisien_bangunan ?>"> -->
+                                        <input type="text" name="koefisien_bangunan" id="koefisien_bangunan" class="form-control" value="<?php if ($data->koefisien_bangunan) {
+                                                                                                                                                echo $data->koefisien_bangunan;
+                                                                                                                                            } else {
+                                                                                                                                                echo isset($draft_data['koefisien_bangunan']) ? $draft_data['koefisien_bangunan'] : '';
+                                                                                                                                            } ?>">
                                     <?php } else { ?>
-                                        <div class="d-flex">
-                                            <input type="text" name="koefisien_bangunan" id="koefisien_bangunan" class="form-control flex-grow-1" value="<?php echo isset($draft_data['koefisien_bangunan']) ? $draft_data['koefisien_bangunan'] : ''; ?>">
-                                            <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
-                                        </div>
+                                        <input type="text" name="koefisien_bangunan" id="koefisien_bangunan" class="form-control" value="<?php if (isset($draft_data['koefisien_bangunan'])) {
+                                                                                                                                                echo isset($draft_data['koefisien_bangunan']) ? $draft_data['koefisien_bangunan'] : '';
+                                                                                                                                            } else {
+                                                                                                                                                echo ' %=  m²';
+                                                                                                                                            } ?>">
                                     <?php } ?>
                                 </td>
                             </tr>
@@ -938,20 +936,18 @@ if ($cek) {
                                 </td>
                                 <td>
                                     <?php if ($cek) { ?>
-                                        <div class="d-flex">
-                                            <!-- <input type="text" name="koefisien_dasar_hijau" id="koefisien_dasar_hijau" class="form-control flex-grow-1" value="<?= $data->koefisien_dasar_hijau ?>"> -->
-                                            <input type="text" name="koefisien_dasar_hijau" id="koefisien_dasar_hijau" class="form-control flex-grow-1" value="<?php if ($data->koefisien_dasar_hijau) {
-                                                                                                                                                        echo $data->koefisien_dasar_hijau;
-                                                                                                                                                    } else {
-                                                                                                                                                        echo isset($draft_data['koefisien_dasar_hijau']) ? $draft_data['koefisien_dasar_hijau'] : '';
-                                                                                                                                                    } ?>">
-                                            <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
-                                        </div>
+                                        <!-- <input type="text" name="koefisien_dasar_hijau" id="koefisien_dasar_hijau" class="form-control flex-grow-1" value="<?= $data->koefisien_dasar_hijau ?>"> -->
+                                        <input type="text" name="koefisien_dasar_hijau" id="koefisien_dasar_hijau" class="form-control" value="<?php if ($data->koefisien_dasar_hijau) {
+                                                                                                                                                    echo $data->koefisien_dasar_hijau;
+                                                                                                                                                } else {
+                                                                                                                                                    echo isset($draft_data['koefisien_dasar_hijau']) ? $draft_data['koefisien_dasar_hijau'] : '';
+                                                                                                                                                } ?>">
                                     <?php } else { ?>
-                                        <div class="d-flex">
-                                            <input type="text" name="koefisien_dasar_hijau" id="koefisien_dasar_hijau" class="form-control flex-grow-1" value="<?php echo isset($draft_data['koefisien_dasar_hijau']) ? $draft_data['koefisien_dasar_hijau'] : ''; ?>">
-                                            <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
-                                        </div>
+                                        <input type="text" name="koefisien_dasar_hijau" id="koefisien_dasar_hijau" class="form-control" value="<?php if (isset($draft_data['koefisien_dasar_hijau'])) {
+                                                                                                                                                    echo isset($draft_data['koefisien_dasar_hijau']) ? $draft_data['koefisien_dasar_hijau'] : '';
+                                                                                                                                                } else {
+                                                                                                                                                    echo ' %=  m²';
+                                                                                                                                                } ?>">
                                     <?php } ?>
                                 </td>
                             </tr>
@@ -1314,10 +1310,10 @@ if ($cek) {
                                     <?php if ($cek) { ?>
                                         <!-- <input type="text" name="koefisien_lantai" id="koefisien_lantai" class="form-control" value="<?= $data->lantai_bangunan ?>"> -->
                                         <input type="text" name="koefisien_lantai" id="koefisien_lantai" class="form-control" value="<?php if ($data->lantai_bangunan) {
-                                                                                                                                                        echo $data->lantai_bangunan;
-                                                                                                                                                    } else {
-                                                                                                                                                        echo isset($draft_data['koefisien_lantai']) ? $draft_data['koefisien_lantai'] : '';
-                                                                                                                                                    } ?>">
+                                                                                                                                            echo $data->lantai_bangunan;
+                                                                                                                                        } else {
+                                                                                                                                            echo isset($draft_data['koefisien_lantai']) ? $draft_data['koefisien_lantai'] : '';
+                                                                                                                                        } ?>">
                                     <?php } else { ?>
                                         <input type="text" name="koefisien_lantai" id="koefisien_lantai" class="form-control" value="<?php echo isset($draft_data['koefisien_lantai']) ? $draft_data['koefisien_lantai'] : ''; ?>">
                                     <?php } ?>

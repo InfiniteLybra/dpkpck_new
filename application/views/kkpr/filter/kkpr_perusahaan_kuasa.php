@@ -288,6 +288,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <p>NB: Jika ada icon ini (<span class="required">*</span>) maka Wajib Diisi!</p>
                         </div>
 
                         <input type="button" name="next" class="next action-button btn btn-primary mb-5 me-5" value="Next" style="float: right;" />
@@ -425,6 +426,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <p>NB: Jika ada icon ini (<span class="required">*</span>) maka Wajib Diisi!</p>
                         </div>
 
                         <input type="button" name="next" class="next action-button btn btn-primary mb-5 me-5" value="Next" style="float: right;" />
@@ -627,6 +629,7 @@
                                     <small>File yang diterima hanya .jpg dan .pdf</small>
                                 </div>
                             </div>
+                            <p>NB: Jika ada icon ini (<span class="required">*</span>) maka Wajib Diisi!</p>
                         </div>
                         <input type="button" name="next" class="next action-button btn btn-primary mb-5 me-4" value="Next" style="float: right;" />
                         <input type="button" name="previous" class="previous action-button-previous btn btn-secondary mb-5 me-2" value="Previous" style="float: right;" />
@@ -635,7 +638,7 @@
                     <!-- Data Tanah -->
                     <fieldset>
                         <div class="card-body">
-                            <div class="row mb-3">
+                            <!-- <div class="row mb-3">
                                 <label class="col-md-3 col-form-label" for="status_tanah_sm">
                                     Status Tanah
                                     <span class="required">*</span>
@@ -648,7 +651,7 @@
                                             <option value="milik_sendiri" <?php //if($draft_data['status_tanah_sm'] ) {if ($draft_data['status_tanah_sm']  == 'milik_sendiri') {echo 'selected';} }?>>Milik Sendiri</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label" for="peruntukan_tanah">Peruntukan dimohon
                                     <span class="required">*</span>
@@ -1631,27 +1634,27 @@
                             <div class="row mb-3">
                                 <label for="middle-name" class="col-md-3 col-form-label">
                                     RT
-                                    <span class="required">*</span>
+                                    <!-- <span class="required">*</span> -->
                                 </label>
                                 <div class="col-md-9">
                                     <input class="form-control col" type="number" placeholder="Ex. 001" min="1" max="20" name="rt_tanah" id="rt_tanah" value="<?php if ($kkpr) {
                                                                                                                                                                     echo $kkpr->rt_tanah;
                                                                                                                                                                 } else {
                                                                                                                                                                     echo isset($draft_data['rt_tanah']) ? $draft_data['rt_tanah'] : '';
-                                                                                                                                                                } ?>" required>
+                                                                                                                                                                } ?>" >
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="middle-name" class="col-md-3 col-form-label">
                                     RW
-                                    <span class="required">*</span>
+                                    <!-- <span class="required">*</span> -->
                                 </label>
                                 <div class="col-md-9">
                                     <input class="form-control col" type="number" placeholder="Ex. 001" min="1" max="20" name="rw_tanah" id="rw_tanah" value="<?php if ($kkpr) {
                                                                                                                                                                     echo $kkpr->rw_tanah;
                                                                                                                                                                 } else {
                                                                                                                                                                     echo isset($draft_data['rw_tanah']) ? $draft_data['rw_tanah'] : '';
-                                                                                                                                                                } ?>" required>
+                                                                                                                                                                } ?>" >
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -1879,7 +1882,7 @@
                                     </div>
                                 </div>
                             <?php } ?>
-
+                            <p>NB: Jika ada icon ini (<span class="required">*</span>) maka Wajib Diisi!</p>
                         </div>
                         <input type="button" name="next" class="submit action-button btn btn-primary mb-5 me-5" value="Submit" style="float: right;" />
                         <!-- <button type="submit" class="submit action-button btn btn-primary mb-5 me-5">SUBMIT</button> -->

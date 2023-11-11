@@ -653,7 +653,7 @@ if ($cek) {
                                                     <span class="fw-bold">Apakah ada mata air</span>
                                                 </td>
                                                 <td>
-                                                    <?php if ($data->radius_mata_air) { ?>
+                                                    <?php if ($cek) { ?>
                                                         <div class="form-check form-check-inline">
                                                             <input name="yn_mata_air" id="mata_air_y" class="form-check-input" type="radio" value="1" <?php if ($data->yn_radius_mata_air == '1') echo 'checked'; ?> />
                                                             <label class="form-check-label" for="dokOSS1"> Ya </label>

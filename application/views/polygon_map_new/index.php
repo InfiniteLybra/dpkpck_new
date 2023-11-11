@@ -47,7 +47,7 @@
         <button id="deletePolygonButton" class="btn btn-light-danger">Hapus Poligon</button> -->
                         <button class="btn btn-primary mt-3" id="reloadButton" hidden>Klik untuk Perubahan</button>
                         <button id="export" class="btn btn-primary mt-3">Expor</button>
-                        <a href="<?= base_url('Geojson'); ?>" class="btn btn-primary mt-3" target="_blank">Convert SHP</a>
+                        <a href="<?= base_url('Geojson'); ?>" class="btn btn-primary mt-3" target="_blank" hidden>Convert SHP</a>
                     </div>
                 </div>
             </div>

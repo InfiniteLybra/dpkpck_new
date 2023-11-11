@@ -80,6 +80,35 @@
             $('textarea[name="shp"]').prop('disabled', true);
         }
     });
+    $('input[name="yn_akta_perusahaan"]').change(function() {
+        if ($(this).val() === '0') {
+            // Aktifkan textarea jika "Tidak" dipilih
+            $('textarea[name="akta_perusahaan"]').prop('disabled', false);
+        } else {
+            // Nonaktifkan textarea jika "Ya" dipilih
+            $('textarea[name="akta_perusahaan"]').prop('disabled', true);
+        }
+    });
+    // Ketika radio button "Tidak" diubah
+    $('input[name="yn_surat_kematian"]').change(function() {
+        if ($(this).val() === '0') {
+            // Aktifkan textarea jika "Tidak" dipilih
+            $('textarea[name="surat_kematian"]').prop('disabled', false);
+        } else {
+            // Nonaktifkan textarea jika "Ya" dipilih
+            $('textarea[name="surat_kematian"]').prop('disabled', true);
+        }
+    });
+    // Ketika radio button "Tidak" diubah
+    $('input[name="yn_surat_kuasa_ahli_waris"]').change(function() {
+        if ($(this).val() === '0') {
+            // Aktifkan textarea jika "Tidak" dipilih
+            $('textarea[name="surat_kuasa_ahli_waris"]').prop('disabled', false);
+        } else {
+            // Nonaktifkan textarea jika "Ya" dipilih
+            $('textarea[name="surat_kuasa_ahli_waris"]').prop('disabled', true);
+        }
+    });
 </script>
 <!-- <script>
     var previewTextarea = document.querySelector('[name="preview"]');

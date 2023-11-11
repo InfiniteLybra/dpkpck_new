@@ -149,11 +149,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-sm-10 ">
-                                    <input type="text" id="nama_pemohon" class="form-control" name="nama_pemohon" value="<?php if ($kkpr) {
-                                                                                                                                echo $kkpr->nama_pemohon;
-                                                                                                                            } else {
-                                                                                                                                echo isset($draft_data['nama_pemohon']) ? $draft_data['nama_pemohon'] : '';
-                                                                                                                            } ?>" placeholder="Ex. Dr. Sarah Wijayanto, Esq." required />
+                                    <input type="text" id="nama_pemohon" class="form-control" name="nama_pemohon" value="<?php if($kkpr){echo $kkpr->nama_pemohon;}else{echo isset($draft_data['nama_pemohon']) ? $draft_data['nama_pemohon'] : '';} ?>" placeholder="Ex. Dr. Sarah Wijayanto, Esq." required />
                                     <input type="hidden" class="form-control" name="type_pengurusan" value="<?= $pengurusan ?>" required="required" />
                                     <input type="hidden" class="form-control" name="type_isi_kategori" value="<?= $isi_pengajuan ?>" required="required" />
                                     <input type="hidden" class="form-control" name="type_kategori" value="<?= $pengajuan ?>" required="required" />
@@ -170,11 +166,7 @@
                                     <div class="form-text">Sesuai KTP</div>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="alamat_pemohon" name="alamat_pemohon" value="<?php if ($kkpr) {
-                                                                                                                                    echo $kkpr->alamat_pemohon;
-                                                                                                                                } else {
-                                                                                                                                    echo isset($draft_data['alamat_pemohon']) ? $draft_data['alamat_pemohon'] : '';
-                                                                                                                                } ?>" placeholder="Ex. Jl. Kebon Raya blok 3A No.01" required />
+                                    <input type="text" class="form-control" id="alamat_pemohon" name="alamat_pemohon" value="<?php if($kkpr){echo $kkpr->alamat_pemohon;}else{echo isset($draft_data['alamat_pemohon']) ? $draft_data['alamat_pemohon'] : '';} ?>" placeholder="Ex. Jl. Kebon Raya blok 3A No.01" required />
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -182,11 +174,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="number" name="rt_pemohon" id="rt_pemohon" value="<?php if ($kkpr) {
-                                                                                                                            echo $kkpr->rt_pemohon;
-                                                                                                                        } else {
-                                                                                                                            echo isset($draft_data['rt_pemohon']) ? $draft_data['rt_pemohon'] : '';
-                                                                                                                        } ?>" inputmode="numeric" placeholder="Ex. 001" required />
+                                    <input class="form-control" type="number" name="rt_pemohon" id="rt_pemohon" value="<?php if($kkpr){echo $kkpr->rt_pemohon;}else{echo isset($draft_data['rt_pemohon']) ? $draft_data['rt_pemohon'] : '';} ?>" inputmode="numeric" placeholder="Ex. 001" required />
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -194,11 +182,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="number" iname="rw_pemohon" id="rw_pemohon" value="<?php if ($kkpr) {
-                                                                                                                            echo $kkpr->rw_pemohon;
-                                                                                                                        } else {
-                                                                                                                            echo isset($draft_data['rw_pemohon']) ? $draft_data['rw_pemohon'] : '';
-                                                                                                                        } ?>" inputmode="numeric" placeholder="Ex. 001" required />
+                                    <input class="form-control" type="number" iname="rw_pemohon" id="rw_pemohon" value="<?php if($kkpr){echo $kkpr->rw_pemohon;}else{echo isset($draft_data['rw_pemohon']) ? $draft_data['rw_pemohon'] : '';} ?>" inputmode="numeric" placeholder="Ex. 001" required />
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -207,7 +191,7 @@
                                 </label>
                                 <div class="col-md-10">
                                     <div class="form-group">
-                                        <select name="provinsi_pemohon" id="provinsi_pemohon" class="form-select" required>
+                                        <select name="provinsi_pemohon" id="provinsi_pemohon"  class="form-select" required>
                                             <option value="Pilih Provinsi" disabled selected>Pilih
                                                 Provinsi
                                             </option>
@@ -227,7 +211,7 @@
                                     <div class="form-group">
                                         <select name="kota_pemohon" id="kota_pemohon" class="form-select" required>
                                             <option value="Pilih Kota / Kabupaten" disabled selected>Pilih Kota /
-                                                Kabupaten</option>
+                                                Kabupaten</option>                                            
                                         </select>
                                     </div>
                                 </div>
@@ -238,10 +222,10 @@
                                 </label>
                                 <div class="col-md-10">
                                     <div class="form-group">
-                                        <select name="kecamatan_pemohon" id="kecamatan_pemohon" class="form-select" required>
+                                        <select name="kecamatan_pemohon" id="kecamatan_pemohon"  class="form-select" required>
                                             <option value="Pilih Kecamatan" disabled selected>Pilih
                                                 Kecamatan
-                                            </option>
+                                            </option>                                            
                                         </select>
                                     </div>
                                 </div>
@@ -255,7 +239,7 @@
                                     <div class="form-group">
                                         <select name="kelurahan_pemohon" id="kelurahan_pemohon" class="form-select" required>
                                             <option value="Pilih Desa / Kelurahan" disabled selected>
-                                                Pilih Desa / Kelurahan</option>
+                                                Pilih Desa / Kelurahan</option>                                            
                                         </select>
                                     </div>
                                 </div>
@@ -266,11 +250,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="number" id="telp_pemohon" name="telp_pemohon" value="<?php if ($kkpr) {
-                                                                                                                                echo $kkpr->telp_pemohon;
-                                                                                                                            } else {
-                                                                                                                                echo isset($draft_data['telp_pemohon']) ? $draft_data['telp_pemohon'] : '';
-                                                                                                                            } ?>" inputmode="numeric" placeholder="Ex. 08998989809" required />
+                                    <input class="form-control" type="number" id="telp_pemohon" name="telp_pemohon" value="<?php if($kkpr){echo $kkpr->telp_pemohon;}else{echo isset($draft_data['telp_pemohon']) ? $draft_data['telp_pemohon'] : '';} ?>" inputmode="numeric" placeholder="Ex. 08998989809" required />
                                     <div class="form-text">Cantumkan No. Telp. / HP / WA Pemohon,
                                         <b>BUKAN</b> Kuasa pengurusan
                                     </div>
@@ -288,6 +268,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <p>NB: Jika ada icon ini (<span class="required">*</span>) maka Wajib Diisi!</p>
                         </div>
 
                         <input type="button" name="next" class="next action-button btn btn-primary mb-5 me-5" value="Next" style="float: right;" />
@@ -301,11 +282,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-10">
-                                    <input type="text" id="nama_kuasa" class="form-control" name="nama_kuasa" value="<?php if ($kkpr) {
-                                                                                                                            echo $kkpr->nama_kuasa;
-                                                                                                                        } else {
-                                                                                                                            echo isset($draft_data['nama_kuasa']) ? $draft_data['nama_kuasa'] : '';
-                                                                                                                        } ?>" value="" placeholder="Ex. Wawan Supriyadi" required="required" />
+                                    <input type="text" id="nama_kuasa" class="form-control" name="nama_kuasa" value="<?php if($kkpr){echo $kkpr->nama_kuasa;}else{echo isset($draft_data['nama_kuasa']) ? $draft_data['nama_kuasa'] : '';} ?>"value="" placeholder="Ex. Wawan Supriyadi" required="required" />
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -315,11 +292,7 @@
                                     <div class="form-text">Sesuai KTP</div>
                                 </label>
                                 <div class="col-md-10">
-                                    <input type="text" id="alamat_kuasa" name="alamat_kuasa" value="<?php if ($kkpr) {
-                                                                                                        echo $kkpr->alamat_kuasa;
-                                                                                                    } else {
-                                                                                                        echo isset($draft_data['alamat_pemohon']) ? $draft_data['alamat_pemohon'] : '';
-                                                                                                    } ?>" class="form-control " placeholder="Ex. Jl.Kebon Raya blok 3A No.01" required="required">
+                                    <input type="text" id="alamat_kuasa" name="alamat_kuasa" value="<?php if($kkpr){echo $kkpr->alamat_kuasa;}else{echo isset($draft_data['alamat_pemohon']) ? $draft_data['alamat_pemohon'] : '';} ?>" class="form-control " placeholder="Ex. Jl.Kebon Raya blok 3A No.01" required="required">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -327,11 +300,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="number" id="rt_kuasa" name="rt_kuasa" value="<?php if ($kkpr) {
-                                                                                                                        echo $kkpr->rt_kuasa;
-                                                                                                                    } else {
-                                                                                                                        echo isset($draft_data['rt_kuasa']) ? $draft_data['rt_kuasa'] : '';
-                                                                                                                    } ?>" inputmode="numeric" placeholder="Ex. 001" required />
+                                    <input class="form-control" type="number" id="rt_kuasa" name="rt_kuasa" value="<?php if($kkpr){echo $kkpr->rt_kuasa;}else{echo isset($draft_data['rt_kuasa']) ? $draft_data['rt_kuasa'] : '';} ?>" inputmode="numeric" placeholder="Ex. 001" required />
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -339,11 +308,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="number" id="rw_kuasa" name="rw_kuasa" value="<?php if ($kkpr) {
-                                                                                                                        echo $kkpr->rw_kuasa;
-                                                                                                                    } else {
-                                                                                                                        echo isset($draft_data['rw_kuasa']) ? $draft_data['rw_kuasa'] : '';
-                                                                                                                    } ?>" inputmode="numeric" placeholder="Ex. 001" required />
+                                    <input class="form-control" type="number" id="rw_kuasa" name="rw_kuasa" value="<?php if($kkpr){echo $kkpr->rw_kuasa;}else{echo isset($draft_data['rw_kuasa']) ? $draft_data['rw_kuasa'] : '';} ?>" inputmode="numeric" placeholder="Ex. 001" required />
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -354,9 +319,9 @@
                                         <select name="provinsi_kuasa" id="provinsi_kuasa" class="form-select" required>
                                             <option value="Pilih Provinsi" disabled selected>
                                                 Pilih Provinsi</option>
-                                            <?php foreach ($provinsi as $k) { ?>
-                                                <option value="<?= $k->prov_id ?>"><?= $k->prov_name ?></option>
-                                            <?php } ?>
+                                                <?php foreach ($provinsi as $k) { ?>
+                                                    <option value="<?= $k->prov_id ?>"><?= $k->prov_name ?></option>
+                                                <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -369,7 +334,7 @@
                                     <div class="form-group">
                                         <select name="kota_kuasa" id="kota_kuasa" class="form-select" required>
                                             <option value="Pilih Kota / Kabupaten" disabled selected>
-                                                Pilih Kota / Kabupaten</option>
+                                                Pilih Kota / Kabupaten</option>                                            
                                         </select>
                                     </div>
                                 </div>
@@ -382,7 +347,7 @@
                                         <select name="kecamatan_kuasa" id="kecamatan_kuasa" class="form-select" required>
                                             <option value="Pilih Kecamatan" disabled selected>
                                                 Pilih Kecamatan
-                                            </option>
+                                            </option>                                            
                                         </select>
                                     </div>
                                 </div>
@@ -395,7 +360,7 @@
                                     <div class="form-group">
                                         <select name="kelurahan_kuasa" id="kelurahan_kuasa" class="form-select" required>
                                             <option value="Pilih Desa / Kelurahan" disabled selected>
-                                                Pilih Desa / Kelurahan</option>
+                                                Pilih Desa / Kelurahan</option>                                            
                                         </select>
                                     </div>
                                 </div>
@@ -406,11 +371,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="number" id="telp_kuasa" name="telp_kuasa" value="<?php if ($kkpr) {
-                                                                                                                            echo $kkpr->telp_kuasa;
-                                                                                                                        } else {
-                                                                                                                            echo isset($draft_data['telp_kuasa']) ? $draft_data['telp_kuasa'] : '';
-                                                                                                                        } ?>" inputmode="numeric" placeholder="Ex. 08998989809" required />
+                                    <input class="form-control" type="number" id="telp_kuasa" name="telp_kuasa" value="<?php if($kkpr){echo $kkpr->telp_kuasa;}else{echo isset($draft_data['telp_kuasa']) ? $draft_data['telp_kuasa'] : '';} ?>" inputmode="numeric" placeholder="Ex. 08998989809" required />
                                     </label>
                                 </div>
                             </div>
@@ -425,6 +386,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <p>NB: Jika ada icon ini (<span class="required">*</span>) maka Wajib Diisi!</p>
                         </div>
 
                         <input type="button" name="next" class="next action-button btn btn-primary mb-5 me-5" value="Next" style="float: right;" />
@@ -440,11 +402,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-10">
-                                    <input type="text" id="nib" class="form-control" required="required" data-validate-length-range="6" name="nib" value="<?php if ($kkpr) {
-                                                                                                                                                                echo $kkpr->nib;
-                                                                                                                                                            } else {
-                                                                                                                                                                echo isset($draft_data['nib']) ? $draft_data['nib'] : '';
-                                                                                                                                                            } ?>">
+                                    <input type="text" id="nib" class="form-control" required="required" data-validate-length-range="6" name="nib" value="<?php if($kkpr){echo $kkpr->nib;}else{echo isset($draft_data['nib']) ? $draft_data['nib'] : '';} ?>">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -467,13 +425,13 @@
                                     <select name="skala_usaha" id="skala_usaha" class="form-select form-control" required>
                                         <option value="Pilih skala usaha" selected disabled>
                                             Pilih skala usaha </option>
-                                        <?php
-                                        $kategori_skala = $this->db->query("SELECT * FROM pilihan WHERE nama_pilihan = 'skala_usaha_kkpr'")->row();
-                                        $isi_skala = json_decode($kategori_skala->pilihan);
-                                        foreach ($isi_skala as $i) {
-                                        ?>
-                                            <option value="<?= $i->skala ?>"> <?= $i->skala ?></option>
-                                        <?php } ?>
+                                            <?php
+                                            $kategori_skala = $this->db->query("SELECT * FROM pilihan WHERE nama_pilihan = 'skala_usaha_kkpr'")->row();
+                                            $isi_skala = json_decode($kategori_skala->pilihan);
+                                            foreach ($isi_skala as $i) {
+                                            ?>
+                                                <option value="<?= $i->skala ?>"> <?= $i->skala ?></option>
+                                            <?php } ?>
                                     </select>
                                 </div>
                             </div>
@@ -486,13 +444,13 @@
                                     <select name="klasifikasi_resiko" id="klasifikasi_resiko" class="form-select form-control" required>
                                         <option value="Pilih klasifikasi risiko" selected disabled>
                                             Pilih klasifikasi risiko</option>
-                                        <?php
-                                        $kategori_resiko = $this->db->query("SELECT * FROM pilihan WHERE nama_pilihan = 'klasifikasi_resiko_kkpr'")->row();
-                                        $isi_resiko = json_decode($kategori_resiko->pilihan);
-                                        foreach ($isi_resiko as $i) {
-                                        ?>
-                                            <option value="<?= $i->resiko ?>"> <?= $i->resiko ?></option>
-                                        <?php } ?>
+                                            <?php
+                                            $kategori_resiko = $this->db->query("SELECT * FROM pilihan WHERE nama_pilihan = 'klasifikasi_resiko_kkpr'")->row();
+                                            $isi_resiko = json_decode($kategori_resiko->pilihan);
+                                            foreach ($isi_resiko as $i) {
+                                            ?>
+                                                <option value="<?= $i->resiko ?>"> <?= $i->resiko ?></option>
+                                            <?php } ?>
                                     </select>
                                 </div>
                             </div>
@@ -508,11 +466,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-10">
-                                    <input type="text" id="judul_kbli" name="judul_kbli" class="form-control" required="required" value="<?php if ($kkpr) {
-                                                                                                                                                echo $kkpr->judul_kbli;
-                                                                                                                                            } else {
-                                                                                                                                                echo isset($draft_data['judul_kbli']) ? $draft_data['judul_kbli'] : '';
-                                                                                                                                            } ?>">
+                                    <input type="text" id="judul_kbli" name="judul_kbli" class="form-control" required="required" value="<?php if($kkpr){echo $kkpr->judul_kbli;}else{echo isset($draft_data['judul_kbli']) ? $draft_data['judul_kbli'] : '';} ?>">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -542,23 +496,23 @@
                                 </div>
                             </div>
                             <?php if ($badan_hukum == '1') { ?>
-                                <div class="row mb-3">
-                                    <label class="col-md-2 col-form-label" for="npwp">
-                                        Fotokopi Nomor Pokok Wajib Pajak (NPWP)
-                                        <span class="required">*</span>
-                                        <div class="form-text">
-                                            Jika berbadan hukum, dan wajib untuk permohonan
-                                            Perumahan dengan luas di atas 5.000 m2</div>
-                                    </label>
-                                    <div class="col-md-10">
-                                        <input type="file" id="npwp" name="npwp" class="form-control " accept=".jpg, .pdf" required>
-                                        <div class="form-text">
-                                            File yang diterima hanya .jpg dan .pdf
-                                        </div>
+                            <div class="row mb-3">
+                                <label class="col-md-2 col-form-label" for="npwp">
+                                    Fotokopi Nomor Pokok Wajib Pajak (NPWP)
+                                    <span class="required">*</span>
+                                    <div class="form-text">
+                                        Jika berbadan hukum, dan wajib untuk permohonan
+                                        Perumahan dengan luas di atas 5.000 m2</div>
+                                </label>
+                                <div class="col-md-10">
+                                    <input type="file" id="npwp" name="npwp" class="form-control " accept=".jpg, .pdf" required>
+                                    <div class="form-text">
+                                        File yang diterima hanya .jpg dan .pdf
                                     </div>
                                 </div>
+                            </div>
                             <?php } ?>
-
+                            <p>NB: Jika ada icon ini (<span class="required">*</span>) maka Wajib Diisi!</p>
                         </div>
 
                         <input type="button" name="next" class="next action-button btn btn-primary mb-5 me-5" value="Next" style="float: right;" />
@@ -568,7 +522,7 @@
                     <!-- Data Tanah -->
                     <fieldset>
                         <div class="card-body">
-                            <div class="row mb-3">
+                            <!-- <div class="row mb-3">
                                 <label class="col-md-3 col-form-label" for="status_tanah_sm">
                                     Status Tanah
                                     <span class="required">*</span>
@@ -577,23 +531,17 @@
                                     <select name="status_tanah_sm" id="status_tanah_sm" class="form-select form-control mb-2">
                                         <option value="Pilih status tanah" selected disabled>
                                             Pilih status tanah</option>
-                                        <option value="sewa" <?php //if($draft_data['status_tanah_sm'] ) {if ($draft_data['status_tanah_sm']  == 'sewa') {echo 'selected';} }
-                                                                ?>>Sewa</option>
-                                        <option value="milik_sendiri" <?php //if($draft_data['status_tanah_sm'] ) {if ($draft_data['status_tanah_sm']  == 'milik_sendiri') {echo 'selected';} }
-                                                                        ?>>Milik Sendiri</option>
+                                            <option value="sewa" <?php //if($draft_data['status_tanah_sm'] ) {if ($draft_data['status_tanah_sm']  == 'sewa') {echo 'selected';} }?>>Sewa</option>
+                                            <option value="milik_sendiri" <?php //if($draft_data['status_tanah_sm'] ) {if ($draft_data['status_tanah_sm']  == 'milik_sendiri') {echo 'selected';} }?>>Milik Sendiri</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label" for="peruntukan_tanah">Peruntukan dimohon
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <input id="peruntukan_tanah" class="form-control" required="required" type="text" name="peruntukan_tanah" value="<?php if ($kkpr) {
-                                                                                                                                                            echo $kkpr->peruntukan_tanah;
-                                                                                                                                                        } else {
-                                                                                                                                                            echo isset($draft_data['peruntukan_tanah']) ? $draft_data['peruntukan_tanah'] : '';
-                                                                                                                                                        } ?>" placeholder="Ex. Gudang Kosmetik">
+                                    <input id="peruntukan_tanah" class="form-control" required="required" type="text" name="peruntukan_tanah" value="<?php if($kkpr){echo $kkpr->peruntukan_tanah;}else{echo isset($draft_data['peruntukan_tanah']) ? $draft_data['peruntukan_tanah'] : '';} ?>" placeholder="Ex. Gudang Kosmetik">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -605,11 +553,7 @@
                                     </div>
                                 </label>
                                 <div class="col-md-9">
-                                    <input id="luas_tanah" value="<?php if ($kkpr) {
-                                                                        echo $kkpr->luas_tanah;
-                                                                    } else {
-                                                                        echo isset($draft_data['luas_tanah']) ? $draft_data['luas_tanah'] : '';
-                                                                    } ?>" class="date-picker form-control" required="required" type="number" name="luas_tanah" placeholder="Ex. 500">
+                                    <input id="luas_tanah" value="<?php if($kkpr){echo $kkpr->luas_tanah;}else{echo isset($draft_data['luas_tanah']) ? $draft_data['luas_tanah'] : '';} ?>" class="date-picker form-control" required="required" type="number" name="luas_tanah" placeholder="Ex. 500">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -621,18 +565,18 @@
                                     <select name="perluasan" id="perluasan" class="form-select form-control mb-2">
                                         <option value="Pilih tipe pengajuan" selected disabled>
                                             Pilih tipe pengajuan</option>
-                                        <?php
-                                        $kategori_perluasan = $this->db->query("SELECT * FROM pilihan WHERE nama_pilihan = 'perluasan_kkpr'")->row();
-                                        $isi_perluasan = json_decode($kategori_perluasan->pilihan);
-                                        foreach ($isi_perluasan as $i) {
-                                        ?>
-                                            <option value="<?= $i->perluasan ?>"> <?= $i->perluasan ?></option>
-                                        <?php } ?>
+                                            <?php
+                                            $kategori_perluasan = $this->db->query("SELECT * FROM pilihan WHERE nama_pilihan = 'perluasan_kkpr'")->row();
+                                            $isi_perluasan = json_decode($kategori_perluasan->pilihan);
+                                            foreach ($isi_perluasan as $i) {
+                                            ?>
+                                                <option value="<?= $i->perluasan ?>"> <?= $i->perluasan ?></option>
+                                            <?php } ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-md-3 col-form-label" for="st_1" id="suratTanah-label">Surat Tanah
+                                <label class="col-md-3 col-form-label" for="st_1"  id="suratTanah-label">Surat Tanah
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-9">
@@ -663,7 +607,7 @@
                             </div>
                             <div id="file_sertifikat" style="display: none;">
                                 <div class="row mb-3">
-                                    <label class="col-md-3 col-form-label">
+                                    <label class="col-md-3 col-form-label" >
                                         Status Tanah
                                         <span class="required">*</span>
                                     </label>
@@ -1313,7 +1257,7 @@
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <select name="st_akta_pelepasan_hak" id="id_st_akta_pelepasan_hak" class="form-select form-control mb-2">
+                                        <select name="st_akta_pelepasan_hak" id="id_st_akta_pelepasan_hak" class="form-select form-control mb-2" >
                                             <option value="Pilih dasar surat tanah" selected disabled>Pilih dasar surat tanah</option>
                                             <option value="sertifikat">Sertifikat SHM/SHGB</option>
                                             <option value="letter">Letter C / Petok D</option>
@@ -1337,7 +1281,7 @@
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <input type="file" name="file_status_tanah[]" class="form-control " accept=".jpg, .pdf">
+                                        <input type="file" name="file_status_tanah[]" class="form-control " accept=".jpg, .pdf" >
                                         <div class="form-text">File yang diterima hanya .jpg dan
                                             .pdf</div>
                                     </div>
@@ -1372,7 +1316,7 @@
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <input type="file" name="file_status_tanah[]" class="form-control " accept=".jpg, .pdf">
+                                        <input type="file" name="file_status_tanah[]" class="form-control " accept=".jpg, .pdf" >
                                         <div class="form-text">File yang diterima hanya .jpg dan
                                             .pdf</div>
                                     </div>
@@ -1383,7 +1327,7 @@
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <input type="file" name="file_peta_bidang[]" class="form-control " accept=".jpg, .pdf">
+                                        <input type="file" name="file_peta_bidang[]" class="form-control " accept=".jpg, .pdf" >
                                         <div class="form-text">File yang diterima hanya .jpg dan
                                             .pdf</div>
                                     </div>
@@ -1480,7 +1424,7 @@
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <input type="file" name="file_status_tanah[]" class="form-control " accept=".jpg, .pdf">
+                                        <input type="file" name="file_status_tanah[]" class="form-control " accept=".jpg, .pdf" >
                                         <div class="form-text">File yang diterima hanya .jpg dan
                                             .pdf</div>
                                     </div>
@@ -1492,7 +1436,7 @@
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <input type="file" name="file_peta_bidang[]" class="form-control " accept=".jpg, .pdf">
+                                        <input type="file" name="file_peta_bidang[]" class="form-control " accept=".jpg, .pdf" >
                                         <div class="form-text">File yang diterima hanya .jpg dan
                                             .pdf</div>
                                     </div>
@@ -1574,27 +1518,27 @@
                             <div class="row mb-3">
                                 <label for="middle-name" class="col-md-3 col-form-label">
                                     RT
-                                    <span class="required">*</span>
+                                    <!-- <span class="required">*</span> -->
                                 </label>
                                 <div class="col-md-9">
                                     <input class="form-control col" type="number" placeholder="Ex. 001" min="1" max="20" name="rt_tanah" id="rt_tanah" value="<?php if ($kkpr) {
                                                                                                                                                                     echo $kkpr->rt_tanah;
                                                                                                                                                                 } else {
                                                                                                                                                                     echo isset($draft_data['rt_tanah']) ? $draft_data['rt_tanah'] : '';
-                                                                                                                                                                } ?>" required>
+                                                                                                                                                                } ?>" >
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="middle-name" class="col-md-3 col-form-label">
                                     RW
-                                    <span class="required">*</span>
+                                    <!-- <span class="required">*</span> -->
                                 </label>
                                 <div class="col-md-9">
                                     <input class="form-control col" type="number" placeholder="Ex. 001" min="1" max="20" name="rw_tanah" id="rw_tanah" value="<?php if ($kkpr) {
                                                                                                                                                                     echo $kkpr->rw_tanah;
                                                                                                                                                                 } else {
                                                                                                                                                                     echo isset($draft_data['rw_tanah']) ? $draft_data['rw_tanah'] : '';
-                                                                                                                                                                } ?>" required>
+                                                                                                                                                                } ?>" >
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -1648,7 +1592,7 @@
                                         </div>
                                     </label>
                                     <div class="col-md-9">
-                                        <input type="file" id="alamat-pemohon" name="peta_bidang" class="form-control " accept=".jpg, .pdf">
+                                        <input type="file" id="alamat-pemohon" name="peta_bidang" class="form-control " accept=".jpg, .pdf" >
                                         <div class="form-text">File yang diterima hanya .jpg dan .pdf
                                         </div>
                                     </div>
@@ -1822,7 +1766,7 @@
                                     </div>
                                 </div>
                             <?php } ?>
-
+                            <p>NB: Jika ada icon ini (<span class="required">*</span>) maka Wajib Diisi!</p>
                         </div>
                         <input type="button" name="next" class="submit action-button btn btn-primary mb-5 me-5" value="Submit" style="float: right;" />
                         <!-- <button type="submit" class="submit action-button btn btn-primary mb-5 me-5">SUBMIT</button> -->
@@ -1838,28 +1782,28 @@
 </div>
 <!-- Toast Surat Tanah -->
 <div class="bs-toast toast bg-primary position-fixed top-0 end-0 m-3" id="suratTanah-toast" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header border-bottom mb-3">
-        <i class="bx bx-info-circle me-2 fs-4"></i>
-        <div class="me-auto fs-4">Informasi Surat Tanah</div>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        <div class="toast-header border-bottom mb-3">
+            <i class="bx bx-info-circle me-2 fs-4"></i>
+            <div class="me-auto fs-4">Informasi Surat Tanah</div>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Contoh Surat Tanah : <br>
+            <img src="<?php echo base_url('assets/');?>assets/img/contoh-sertifikat-tanah.jpg" draggable="false" class="mt-3" style="width: 310px;">
+        </div>
     </div>
-    <div class="toast-body">
-        Contoh Surat Tanah : <br>
-        <img src="<?php echo base_url('assets/'); ?>assets/img/contoh-sertifikat-tanah.jpg" draggable="false" class="mt-3" style="width: 310px;">
-    </div>
-</div>
 
-<!-- Toast SHP -->
-<div class="bs-toast toast bg-primary position-fixed top-0 end-0 m-3" id="shp-toast" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header border-bottom mb-3">
-        <i class="bx bx-info-circle me-2 fs-4"></i>
-        <div class="me-auto fs-4">Informasi File SHP</div>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    <!-- Toast SHP -->
+    <div class="bs-toast toast bg-primary position-fixed top-0 end-0 m-3" id="shp-toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header border-bottom mb-3">
+            <i class="bx bx-info-circle me-2 fs-4"></i>
+            <div class="me-auto fs-4">Informasi File SHP</div>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            <img src="<?php echo base_url('assets/');?>assets/img/zip.jpg" class="mb-3 rounded" draggable="false" style="width: 300px;">
+            File SHP berbentuk zip yang sudah di download. <br>
+            <button class="btn btn-light mt-3"><small><a href="<?php echo base_url('Map/polygon_new'); ?>" target="_blank">Belum membuat Polygon Map?</a></small></button>
+        </div>
     </div>
-    <div class="toast-body">
-        <img src="<?php echo base_url('assets/'); ?>assets/img/zip.jpg" class="mb-3 rounded" draggable="false" style="width: 300px;">
-        File SHP berbentuk zip yang sudah di download. <br>
-        <button class="btn btn-light mt-3"><small><a href="<?php echo base_url('Map/polygon_new'); ?>" target="_blank">Belum membuat Polygon Map?</a></small></button>
-    </div>
-</div>
 <!-- End Content -->
