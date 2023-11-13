@@ -53,11 +53,28 @@ class Auth extends CI_Controller
     public function proses_register()
     {
         $this->load->library('session');
+
+        $config['upload_path'] = './assets_dokumen/auth/';
+        $config['allowed_types'] = 'jpg|jpeg|png|pdf';
+        $config['max_size'] = 5048;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('foto_ktp')) {
+            $upload_data = $this->upload->data();
+            $file_name = $upload_data['file_name'];
+        } else {
+            $error = array('error' => $this->upload->display_errors());
+        }
+
+        $timestamp = date('Y-m-d H:i:s');
+
         $username = $this->input->post('username');
         $nama_lengkap = $this->input->post('nama_lengkap');
         $password = $this->input->post('password');
         $nomor = $this->input->post('nomor');
         $nik = $this->input->post('nik');
+
         $this->session->set_userdata('nomor', $nomor);
         $hostname     = 'localhost';
         $penggunaname     = 'root';
@@ -95,7 +112,8 @@ class Auth extends CI_Controller
                 $result = curl_exec($curl);
                 curl_close($curl);
 
-                $register = $this->Auth_model->register($username, $nama_lengkap, $password, $nomor, $otp, $waktu, $nik);
+                $register = $this->Auth_model->register($username, $nama_lengkap, $password, $nomor, $otp, $waktu, $nik, $file_name, $timestamp);
+                // var_dump($register);die;
                 if ($register ==  true) {
                     $this->session->set_flashdata('success', 'Kode OTP Telah Dikirim');
                     redirect('auth/registerotp');
@@ -118,6 +136,7 @@ class Auth extends CI_Controller
             $q = mysqli_query($conn, "SELECT * FROM user WHERE nomor = $nomor AND otp = $otp");
             $row = mysqli_num_rows($q);
             $r = mysqli_fetch_array($q);
+            // var_dump($row);die;
             if ($row) {
                 if (time() - $r['waktu'] <= 300) {
                     $this->session->set_flashdata('success', 'Akun anda berhasil dibuat');

@@ -40,7 +40,7 @@
                             <img src="<?php echo base_url('assets/login/'); ?>logokabupaten.png" class="img-thumbnaill" alt="...">
                         </div>
 
-                        <form class="form w-100" action="<?= base_url('auth/proses_register') ?>" method="post">
+                        <form class="form w-100" action="<?= base_url('auth/proses_register') ?>" method="post" enctype="multipart/form-data">
 
 
                             <div class="form-outline mb-3 text-start">
@@ -71,6 +71,10 @@
                             <div class="form-outline mb-3 text-start">
                                 <label class="form-label" for="form3Example4">No. Telp</label>
                                 <input id="no_telp" placeholder="Masukkan Nomor Whatsapp" name="nomor" type="text" autocomplete class="form-control bg-transparent" pattern="[0-9]*" maxlength="13" required oninput="validasiAngka(this)" />
+                            </div>
+                            <div class="form-outline mb-3 text-start">
+                                <label class="form-label" for="form3Example4">Foto KTP</label>
+                                <input type="file" id="foto_ktp" placeholder="" name="foto_ktp" class="form-control bg-transparent"/>
                             </div>
 
 

@@ -16,7 +16,7 @@ class Auth_model extends CI_Model
         $this->db->where('password',  $password);
         return $this->db->get()->row();
     }
-    public function register($username, $nama_lengkap, $password, $nomor, $otp, $waktu, $nik)
+    public function register($username, $nama_lengkap, $password, $nomor, $otp, $waktu, $nik, $file_name, $timestamp)
     {
         $this->db->from($this->table_user);
         $this->db->where('username',  $username);
@@ -32,7 +32,9 @@ class Auth_model extends CI_Model
                 "otp" => $otp,
                 "waktu" => $waktu,
                 "level" => '1',
-                "nik" => $nik
+                "nik" => $nik,
+                "foto_ktp" => $file_name,
+                "tanggal_register" => $timestamp
             );
 
             $this->db->insert($this->table_user, $data);
