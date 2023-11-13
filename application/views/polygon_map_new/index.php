@@ -47,7 +47,17 @@
         <button id="deletePolygonButton" class="btn btn-light-danger">Hapus Poligon</button> -->
                         <button class="btn btn-primary mt-3" id="reloadButton" hidden>Klik untuk Perubahan</button>
                         <button id="export" class="btn btn-primary mt-3">Expor</button>
-                        <a href="<?= base_url('Geojson'); ?>" class="btn btn-primary mt-3" target="_blank">Convert SHP</a>
+                        <a href="<?= base_url('Geojson'); ?>" class="btn btn-primary mt-3" target="_blank" hidden>Convert SHP</a>
+                        <div class="m-1 mt-3" id="fileSHPContainer">
+                            <?php
+                            $converted_file_path = $this->session->userdata('converted_file_path');
+                            if (!empty($converted_file_path)) {
+                                echo '<h6 class="mb-0">File SHP yang telah dikonversi: <a href="' . base_url() . $converted_file_path . '" download>Unduh File SHP</a></h6>';
+                            } else {
+                                echo '<h6 class="mb-0">Tidak ada file yang telah dikonversi.</h6>';
+                            }
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>

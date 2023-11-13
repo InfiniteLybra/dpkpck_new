@@ -257,7 +257,6 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                 $peta_bidang = json_decode($kkpr->peta_bidang_surat_tanah, true);
                                 // Lakukan sesuatu dengan $peta_bidang
                             } else {
-                                
                             }
 
                             $no = 0;
@@ -341,7 +340,7 @@ $yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE 
                                         </div>
                                     </div>
                                     <div class="col-sm-5">
-                                        <input type="file" name="file_shp" class="form-file form-control" accept=".zip">
+                                        <input type="file" name="file_shp" class="form-control" accept=".zip">
                                     </div>
                                 </div>
                             </div>

@@ -118,14 +118,6 @@ class Map extends CI_Controller
         $this->load->view('map/script_map');
         $this->load->view('templates/footScript');
     }
-    public function polygon()
-    {
-        $this->load->view('templates/header');
-        $this->load->view('polygon_map/map');
-        $this->load->view('templates/footer');
-        $this->load->view('templates/footScript');
-        $this->load->view('polygon_map/script');
-    }
     public function polygon_new()
     {
         $this->load->view('templates/header');
@@ -146,5 +138,30 @@ class Map extends CI_Controller
     function cek1()
     {
         $this->load->view('map/tes_koor');
+    }
+    
+    public function save_polygon()
+    {
+        $geojson_data = $this->input->post('geojson_data');
+        $nama = $this->session->userdata('nama');
+        $timestamp = date('Y-m-d_H-i-s');
+
+        // Buat nama file GeoJSON dengan ID pengguna dan timestamp
+        $geojson_filename =  'polygon_cache/' . $nama . '_' . $timestamp . '.geojson';
+        file_put_contents($geojson_filename, $geojson_data);
+
+        // Konversi GeoJSON ke SHP menggunakan Python
+        $shp_filename = 'polygon_cache/' . $nama . '_' . $timestamp . '.shp';
+        $command = "python python_scripts\convert_auto_geojson_shp.py $geojson_filename $shp_filename";
+        exec($command);
+
+        // Setelah konversi selesai, arahkan pengguna untuk mengunduh file ZIP
+        $zip_filename = 'polygon_cache/' . $nama . '_' . $timestamp . '.zip';
+        $this->session->set_userdata('converted_file_path', $zip_filename);
+        // var_dump($zip_filename);die;
+
+        // Hapus file ZIP dan file GeoJSON setelah pengguna mengunduhnya
+        // unlink($zip_filename);
+        unlink($geojson_filename);
     }
 }

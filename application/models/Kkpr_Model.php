@@ -366,8 +366,7 @@ class Kkpr_Model extends CI_Model
                     luas_tanah,
                     kategori,
                     perluasan,
-                    status_tanah,
-                    status_tanah_sm,
+                    status_tanah,                    
                     lokasi_tanah,
                     rt_tanah,
                     rw_tanah,
@@ -481,8 +480,7 @@ class Kkpr_Model extends CI_Model
                         '$luas_tanah',
                         '$type_isi_kategori',
                         '$perluasan',
-                        '$Tanah_Array',
-                        '$status_tanah_sm',
+                        '$Tanah_Array',                        
                         '$lokasi_tanah',
                         '$rt_tanah',
                         '$rw_tanah',
@@ -587,8 +585,7 @@ class Kkpr_Model extends CI_Model
                     luas_tanah,
                     kategori,
                     perluasan,
-                    status_tanah,
-                    status_tanah_sm,
+                    status_tanah,                    
                     lokasi_tanah,
                     rt_tanah,
                     rw_tanah,
@@ -691,8 +688,7 @@ class Kkpr_Model extends CI_Model
                         '$luas_tanah',
                         '$type_isi_kategori',
                         '$perluasan',
-                        '$Tanah_Array',
-                        '$status_tanah_sm',
+                        '$Tanah_Array',                        
                         '$lokasi_tanah',
                         '$rt_tanah',
                         '$rw_tanah',
@@ -1102,8 +1098,7 @@ class Kkpr_Model extends CI_Model
                     luas_tanah,
                     kategori,
                     perluasan,
-                    status_tanah,
-                    status_tanah_sm,
+                    status_tanah,                    
                     lokasi_tanah,
                     rt_tanah,
                     rw_tanah,
@@ -1212,8 +1207,7 @@ class Kkpr_Model extends CI_Model
                         '$luas_tanah',
                         '$type_isi_kategori',
                         '$perluasan',
-                        '$Tanah_Array',
-                        '$status_tanah_sm',
+                        '$Tanah_Array',                        
                         '$lokasi_tanah',
                         '$rt_tanah',
                         '$rw_tanah',
@@ -1313,8 +1307,7 @@ class Kkpr_Model extends CI_Model
                     luas_tanah,
                     kategori,
                     perluasan,
-                    status_tanah,
-                    status_tanah_sm,
+                    status_tanah,                    
                     lokasi_tanah,
                     rt_tanah,
                     rw_tanah,
@@ -1412,8 +1405,7 @@ class Kkpr_Model extends CI_Model
                         '$luas_tanah',
                         '$type_isi_kategori',
                         '$perluasan',
-                        '$Tanah_Array',
-                        '$status_tanah_sm',
+                        '$Tanah_Array',                        
                         '$lokasi_tanah',
                         '$rt_tanah',
                         '$rw_tanah',
@@ -1484,10 +1476,31 @@ class Kkpr_Model extends CI_Model
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file17','$file18'" : "") . "                                                
                         " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                                    
                         )";
-            }
+            }           
             // echo $insert;
             $query = $this->db->query($insert);
             if ($query) {
+                 $curl = curl_init();            
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://api.fonnte.com/send',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS => array(
+                        'target' => '085749167976',
+                        'message' => 'Ada Permohonan masuk.',
+                        'countryCode' => '62', //optional
+                    ),
+                    CURLOPT_HTTPHEADER => array(
+                        'Authorization: 9Sn+qbEWAjSvpSx9LbAQ' //change TOKEN to your actual token
+                    ),
+                ));
+
+                $response = curl_exec($curl);
                 return true;
             } else {
                 return false;
@@ -3454,12 +3467,12 @@ class Kkpr_Model extends CI_Model
     }
     public function tambah_keterangan()
     {
-        $id = $this->input->post('id');
+        $id = $this->input->post('id');    
         $total_revisi = $this->db->query("SELECT COUNT(id_permohonan) AS jumlah FROM action_pengembalian_kkpr_permohonan WHERE id_permohonan = '$id'")->row();
-        if ($total_revisi->jumlah > 3) {
+        if($total_revisi->jumlah > 3 ) {
             $telp_pemohon = $this->input->post('telp_pemohon');
             $query = $this->db->query("UPDATE kkpr_permohonan SET status_berkas = '99' WHERE id_kkpr_permohonan = '$id'");
-            $curl = curl_init();
+            $curl = curl_init();            
             curl_setopt_array($curl, array(
                 CURLOPT_URL => 'https://api.fonnte.com/send',
                 CURLOPT_RETURNTRANSFER => true,
@@ -3481,164 +3494,164 @@ class Kkpr_Model extends CI_Model
 
             $response = curl_exec($curl);
             if ($query) {
-                return true;
-            } else {
-                return false;
-            }
+            return true;
         } else {
-            $id = $this->input->post('id');
-            $telp_pemohon = $this->input->post('telp_pemohon');
-            $type = $this->input->post('type');
-            $dokumen_oss = $this->input->post('dokumen_oss');
-            $fotokopi_ktp = $this->input->post('fotokopi_ktp');
-            $fotokopi_ktp_kuasa = $this->input->post('fotokopi_ktp_kuasa');
-            $akta_perusahaan = $this->input->post('akta_perusahaan');
-            $siup = $this->input->post('siup');
-            $tdp = $this->input->post('tdp');
-            $npwp = $this->input->post('npwp');
-            $surat_tanah = $this->input->post('surat_tanah');
-            $peta_bidang = $this->input->post('peta_bidang');
-            $shp = $this->input->post('shp');
-            $teknis_pertanahan = $this->input->post('teknis_pertanahan');
+            return false;
+        }
+        }else{  
+        $id = $this->input->post('id');
+        $telp_pemohon = $this->input->post('telp_pemohon');
+        $type = $this->input->post('type');
+        $dokumen_oss = $this->input->post('dokumen_oss');
+        $fotokopi_ktp = $this->input->post('fotokopi_ktp');
+        $fotokopi_ktp_kuasa = $this->input->post('fotokopi_ktp_kuasa');
+        $akta_perusahaan = $this->input->post('akta_perusahaan');
+        $siup = $this->input->post('siup');
+        $tdp = $this->input->post('tdp');
+        $npwp = $this->input->post('npwp');
+        $surat_tanah = $this->input->post('surat_tanah');
+        $peta_bidang = $this->input->post('peta_bidang');
+        $shp = $this->input->post('shp');
+        $teknis_pertanahan = $this->input->post('teknis_pertanahan');
 
-            $surat_kematian = $this->input->post('surat_kematian');
-            $surat_kuasa_ahli_waris = $this->input->post('surat_kuasa_ahli_waris');
+        $surat_kematian = $this->input->post('surat_kematian');
+        $surat_kuasa_ahli_waris = $this->input->post('surat_kuasa_ahli_waris');
 
-            $surat_dinas_komunikasi = $this->input->post('surat_dinas_komunikasi');
-            $surat_rekom_tni = $this->input->post('surat_rekom_tni');
+        $surat_dinas_komunikasi = $this->input->post('surat_dinas_komunikasi');
+        $surat_rekom_tni = $this->input->post('surat_rekom_tni');
 
-            $surat_dinas_perdagangan = $this->input->post('surat_dinas_perdagangan');
+        $surat_dinas_perdagangan = $this->input->post('surat_dinas_perdagangan');
 
-            $surat_dinas_peternakan = $this->input->post('surat_dinas_peternakan');
+        $surat_dinas_peternakan = $this->input->post('surat_dinas_peternakan');
 
-            $surat_pertamina = $this->input->post('surat_pertamina');
+        $surat_pertamina = $this->input->post('surat_pertamina');
 
-            $daftar_nama_kk = $this->input->post('daftar_nama_kk');
-            $surat_fkub = $this->input->post('surat_fkub');
+        $daftar_nama_kk = $this->input->post('daftar_nama_kk');
+        $surat_fkub = $this->input->post('surat_fkub');
 
-            $file_dokumen_oss = $this->input->post('file_dokumen_oss');
-            $file_fotokopi_ktp = $this->input->post('file_fotokopi_ktp');
-            $file_fotokopi_ktp_kuasa = $this->input->post('file_fotokopi_ktp_kuasa');
-            $file_akta_perusahaan = $this->input->post('file_fotokopi_akta_perusahaan');
-            $file_siup = $this->input->post('file_siup');
-            $file_tdp = $this->input->post('file_nib');
-            $file_npwp = $this->input->post('file_npwp');
-            $file_surat_tanah = $this->input->post('file_surat_tanah');
-            $file_peta_bidang_surat_tanah = $this->input->post('file_peta_bidang_surat_tanah');
-            $file_peta_bidang = $this->input->post('file_peta_bidang');
-            $file_shp = $this->input->post('file_shp');
-            $file_teknis_pertanahan = $this->input->post('file_teknis_pertanahan');
+        $file_dokumen_oss = $this->input->post('file_dokumen_oss');
+        $file_fotokopi_ktp = $this->input->post('file_fotokopi_ktp');
+        $file_fotokopi_ktp_kuasa = $this->input->post('file_fotokopi_ktp_kuasa');
+        $file_akta_perusahaan = $this->input->post('file_fotokopi_akta_perusahaan');
+        $file_siup = $this->input->post('file_siup');
+        $file_tdp = $this->input->post('file_nib');
+        $file_npwp = $this->input->post('file_npwp');
+        $file_surat_tanah = $this->input->post('file_surat_tanah');
+        $file_peta_bidang_surat_tanah = $this->input->post('file_peta_bidang_surat_tanah');
+        $file_peta_bidang = $this->input->post('file_peta_bidang');
+        $file_shp = $this->input->post('file_shp');
+        $file_teknis_pertanahan = $this->input->post('file_teknis_pertanahan');
 
-            $file_surat_kematian = $this->input->post('file_surat_kematian');
-            $file_surat_kuasa_ahli_waris = $this->input->post('file_surat_kuasa');
+        $file_surat_kematian = $this->input->post('file_surat_kematian');
+        $file_surat_kuasa_ahli_waris = $this->input->post('file_surat_kuasa');
 
-            $file_surat_dinas_komunikasi = $this->input->post('file_surat_dinas_komunikasi');
-            $file_surat_rekom_tni = $this->input->post('file_surat_rekom_tni');
+        $file_surat_dinas_komunikasi = $this->input->post('file_surat_dinas_komunikasi');
+        $file_surat_rekom_tni = $this->input->post('file_surat_rekom_tni');
 
-            $file_surat_dinas_perdagangan = $this->input->post('file_surat_dinas_perdagangan');
+        $file_surat_dinas_perdagangan = $this->input->post('file_surat_dinas_perdagangan');
 
-            $file_surat_dinas_peternakan = $this->input->post('file_surat_dinas_peternakan');
+        $file_surat_dinas_peternakan = $this->input->post('file_surat_dinas_peternakan');
 
-            $file_surat_pertamina = $this->input->post('file_surat_pertamina');
+        $file_surat_pertamina = $this->input->post('file_surat_pertamina');
 
-            $file_daftar_nama_kk = $this->input->post('file_daftar_nama_kk');
-            $file_surat_fkub = $this->input->post('file_surat_fkub');
+        $file_daftar_nama_kk = $this->input->post('file_daftar_nama_kk');
+        $file_surat_fkub = $this->input->post('file_surat_fkub');
 
-            $yn_dokumen_oss = $this->input->post('yn_dokumen_oss');
-            $yn_fotokopi_ktp = $this->input->post('yn_fotokopi_ktp');
-            $yn_fotokopi_ktp_kuasa = $this->input->post('yn_fotokopi_ktp_kuasa');
-            $yn_akta_perusahaan = $this->input->post('yn_akta_perusahaan');
-            $yn_siup = $this->input->post('yn_siup');
-            $yn_tdp = $this->input->post('yn_tdp');
-            $yn_npwp = $this->input->post('yn_npwp');
-            $yn_surat_tanah = $this->input->post('yn_surat_tanah');
-            $yn_peta_bidang = $this->input->post('yn_peta_bidang');
-            $yn_shp = $this->input->post('yn_shp');
-            $yn_teknis_pertanahan = $this->input->post('yn_teknis_pertanahan');
+        $yn_dokumen_oss = $this->input->post('yn_dokumen_oss');
+        $yn_fotokopi_ktp = $this->input->post('yn_fotokopi_ktp');
+        $yn_fotokopi_ktp_kuasa = $this->input->post('yn_fotokopi_ktp_kuasa');
+        $yn_akta_perusahaan = $this->input->post('yn_akta_perusahaan');
+        $yn_siup = $this->input->post('yn_siup');
+        $yn_tdp = $this->input->post('yn_tdp');
+        $yn_npwp = $this->input->post('yn_npwp');
+        $yn_surat_tanah = $this->input->post('yn_surat_tanah');
+        $yn_peta_bidang = $this->input->post('yn_peta_bidang');
+        $yn_shp = $this->input->post('yn_shp');
+        $yn_teknis_pertanahan = $this->input->post('yn_teknis_pertanahan');
 
-            $yn_surat_kematian = $this->input->post('yn_surat_kematian');
-            $yn_surat_kuasa_ahli_waris = $this->input->post('yn_surat_kuasa_ahli_waris');
+        $yn_surat_kematian = $this->input->post('yn_surat_kematian');
+        $yn_surat_kuasa_ahli_waris = $this->input->post('yn_surat_kuasa_ahli_waris');
 
-            $yn_surat_dinas_komunikasi = $this->input->post('yn_surat_dinas_komunikasi');
-            $yn_surat_rekom_tni = $this->input->post('yn_surat_rekom_tni');
+        $yn_surat_dinas_komunikasi = $this->input->post('yn_surat_dinas_komunikasi');
+        $yn_surat_rekom_tni = $this->input->post('yn_surat_rekom_tni');
 
-            $yn_surat_dinas_perdagangan = $this->input->post('yn_surat_dinas_perdagangan');
+        $yn_surat_dinas_perdagangan = $this->input->post('yn_surat_dinas_perdagangan');
 
-            $yn_surat_dinas_peternakan = $this->input->post('yn_surat_dinas_peternakan');
+        $yn_surat_dinas_peternakan = $this->input->post('yn_surat_dinas_peternakan');
 
-            $yn_surat_pertamina = $this->input->post('yn_surat_pertamina');
+        $yn_surat_pertamina = $this->input->post('yn_surat_pertamina');
 
-            $yn_daftar_nama_kk = $this->input->post('yn_daftar_nama_kk');
-            $yn_surat_fkub = $this->input->post('yn_surat_fkub');
+        $yn_daftar_nama_kk = $this->input->post('yn_daftar_nama_kk');
+        $yn_surat_fkub = $this->input->post('yn_surat_fkub');
 
-            $preview = $this->input->post('preview');
+        $preview = $this->input->post('preview');
 
-            $kkpr = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_kkpr_permohonan = '$id'")->row();
+        $kkpr = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_kkpr_permohonan = '$id'")->row();
 
-            $array_surat_tanah = array();
-            // $data_surat_tanah = json_decode();
-            // $jumlah_data = count($data_surat_tanah);
+        $array_surat_tanah = array();
+        // $data_surat_tanah = json_decode();
+        // $jumlah_data = count($data_surat_tanah);
 
-            // for ($i = 0; $i < $jumlah_data; $i++) {
-            //     $data = array(
-            //         'surat_tanah' => isset($data_surat_tanah[$i]['surat_tanah']) ? $data_surat_tanah[$i]['surat_tanah'] : null
-            //     );
-            //     $array_surat_tanah[] = $data;
-            // }
+        // for ($i = 0; $i < $jumlah_data; $i++) {
+        //     $data = array(
+        //         'surat_tanah' => isset($data_surat_tanah[$i]['surat_tanah']) ? $data_surat_tanah[$i]['surat_tanah'] : null
+        //     );
+        //     $array_surat_tanah[] = $data;
+        // }
 
-            // $surat_tanah_array = json_encode($array_surat_tanah);
+        // $surat_tanah_array = json_encode($array_surat_tanah);
 
-            if (!empty($surat_tanah)) {
-                foreach ($surat_tanah as $input) {
-                    // if (!empty($input)) {
+        if (!empty($surat_tanah)) {
+            foreach ($surat_tanah as $input) {
+                // if (!empty($input)) {
+                $data = array(
+                    'surat_tanah' => $input
+                );
+                $array_surat_tanah[] = $data;
+                // }
+            }
+        }
+        $surat_tanah_array = json_encode($array_surat_tanah);
+
+        $array_file_surat_tanah = array();
+        if (!empty($file_surat_tanah)) {
+            foreach ($file_surat_tanah as $input) {
+                if (!empty($input)) {
                     $data = array(
                         'surat_tanah' => $input
                     );
-                    $array_surat_tanah[] = $data;
-                    // }
+                    $array_file_surat_tanah[] = $data;
                 }
             }
-            $surat_tanah_array = json_encode($array_surat_tanah);
+        }
+        $file_surat_tanah_array = json_encode($array_file_surat_tanah);
 
-            $array_file_surat_tanah = array();
-            if (!empty($file_surat_tanah)) {
-                foreach ($file_surat_tanah as $input) {
-                    if (!empty($input)) {
-                        $data = array(
-                            'surat_tanah' => $input
-                        );
-                        $array_file_surat_tanah[] = $data;
-                    }
+        $array_file_peta_bidang_surat_tanah = array();
+        if (!empty($file_peta_bidang_surat_tanah)) {
+            foreach ($file_peta_bidang_surat_tanah as $input) {
+                if (!empty($input)) {
+                    $data = array(
+                        'surat_tanah' => $input
+                    );
+                    $array_file_peta_bidang_surat_tanah[] = $data;
                 }
             }
-            $file_surat_tanah_array = json_encode($array_file_surat_tanah);
+        }
+        $file_peta_bidang_surat_tanah_array = json_encode($array_file_peta_bidang_surat_tanah);
 
-            $array_file_peta_bidang_surat_tanah = array();
-            if (!empty($file_peta_bidang_surat_tanah)) {
-                foreach ($file_peta_bidang_surat_tanah as $input) {
-                    if (!empty($input)) {
-                        $data = array(
-                            'surat_tanah' => $input
-                        );
-                        $array_file_peta_bidang_surat_tanah[] = $data;
-                    }
-                }
-            }
-            $file_peta_bidang_surat_tanah_array = json_encode($array_file_peta_bidang_surat_tanah);
+        $dataArray_tanah = array();
+        foreach ($yn_surat_tanah as $value) {
+            $data = array("surat_tanah" => $value);
+            $dataArray_tanah[] = $data;
+        }
+        $yn_surat_tanah_array = json_encode($dataArray_tanah);
+        // echo $yn_surat_tanah_array;
 
-            $dataArray_tanah = array();
-            foreach ($yn_surat_tanah as $value) {
-                $data = array("surat_tanah" => $value);
-                $dataArray_tanah[] = $data;
-            }
-            $yn_surat_tanah_array = json_encode($dataArray_tanah);
-            // echo $yn_surat_tanah_array;
-
-            $get_keterangan = $this->db->query("SELECT * FROM pengembalian_kkpr_permohonan WHERE id_permohonan = '$id'")->row();
-            $get_yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE id_permohonan = '$id'")->row();
-            $unikAngka = mt_rand(1000, 9999);
-            $date = date('y-m-d');
-            $insert_pengembalian = "INSERT INTO pengembalian_kkpr_permohonan (
+        $get_keterangan = $this->db->query("SELECT * FROM pengembalian_kkpr_permohonan WHERE id_permohonan = '$id'")->row();
+        $get_yn = $this->db->query("SELECT * FROM action_pengembalian_kkpr_permohonan WHERE id_permohonan = '$id'")->row();
+        $unikAngka = mt_rand(1000, 9999);
+        $date = date('y-m-d');
+        $insert_pengembalian = "INSERT INTO pengembalian_kkpr_permohonan (
                 id_permohonan,                                        
                 type,    
                 id_file,
@@ -3682,11 +3695,11 @@ class Kkpr_Model extends CI_Model
                     " . ($type == 'spbu' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris','$surat_pertamina'" : "") . "                                                
                     " . ($type == 'tempat_ibadah' ? "'$npwp','$surat_tanah_array ','$peta_bidang','$teknis_pertanahan','$surat_kematian','$surat_kuasa_ahli_waris','$daftar_nama_kk','$surat_fkub'" : "") . "                                                
                     )";
-            // echo $insert_pengembalian;
-            $query1 = $this->db->query($insert_pengembalian);
-            // $this->db->query("UPDATE kkpr_permohonan SET status_berkas = '1' WHERE id_kkpr_permohonan = '$id'");
+        // echo $insert_pengembalian;
+        $query1 = $this->db->query($insert_pengembalian);
+        // $this->db->query("UPDATE kkpr_permohonan SET status_berkas = '1' WHERE id_kkpr_permohonan = '$id'");
 
-            $insert_file_pengembalian = "INSERT INTO file_pengembalian_kkpr_permohonan (
+        $insert_file_pengembalian = "INSERT INTO file_pengembalian_kkpr_permohonan (
                 id_pengembalian,
                 id_permohonan,                                        
                 type,    
@@ -3730,10 +3743,10 @@ class Kkpr_Model extends CI_Model
                     " . ($type == 'spbu' ? "'$file_npwp','$file_surat_tanah_array ','$file_peta_bidang_surat_tanah_array','$file_peta_bidang','$file_teknis_pertanahan','$file_surat_kematian','$file_surat_kuasa_ahli_waris','$file_surat_pertamina'" : "") . "                                                
                     " . ($type == 'tempat_ibadah' ? "'$file_npwp','$file_surat_tanah_array ','$file_peta_bidang_surat_tanah_array','$file_peta_bidang','$file_teknis_pertanahan','$file_surat_kematian','$file_surat_kuasa_ahli_waris','$file_daftar_nama_kk','$file_surat_fkub'" : "") . "                                                
                     )";
-            // echo $insert_file_pengembalian;
-            $query2 = $this->db->query($insert_file_pengembalian);
+        // echo $insert_file_pengembalian;
+        $query2 = $this->db->query($insert_file_pengembalian);
 
-            $insert_yn = "INSERT INTO action_pengembalian_kkpr_permohonan (
+        $insert_yn = "INSERT INTO action_pengembalian_kkpr_permohonan (
                 id_permohonan,                                        
                 type,   
                 id_file, 
@@ -3777,53 +3790,53 @@ class Kkpr_Model extends CI_Model
                     " . ($type == 'spbu' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris','$yn_surat_pertamina'" : "") . "                                                
                     " . ($type == 'tempat_ibadah' ? "'$yn_npwp','$yn_surat_tanah_array','$yn_peta_bidang','$yn_teknis_pertanahan','$yn_surat_kematian','$yn_surat_kuasa_ahli_waris','$yn_daftar_nama_kk','$yn_surat_fkub'" : "") . "                                                
                     )";
-            // echo $insert_yn;
-            $this->db->query($insert_yn);
-            $this->db->query("UPDATE kkpr_permohonan SET status_berkas = '1',tgl_tolak = '$date' WHERE id_kkpr_permohonan = '$id'");
+        // echo $insert_yn;
+        $this->db->query($insert_yn);
+        $this->db->query("UPDATE kkpr_permohonan SET status_berkas = '1',tgl_tolak = '$date' WHERE id_kkpr_permohonan = '$id'");
 
-            $admin = $this->session->userdata('id_user');
-            $waktu = date('Y-m-d H:i:s');
-            $this->db->query("INSERT INTO log_admin (type,id_user,id_permohonan,keterangan,waktu) VALUES('insert dan update','$admin','$id','Tambah Keterangan dan tolak berkas di halaman admin permohonan','$waktu')");
+        $admin = $this->session->userdata('id_user');
+        $waktu = date('Y-m-d H:i:s');
+        $this->db->query("INSERT INTO log_admin (type,id_user,id_permohonan,keterangan,waktu) VALUES('insert dan update','$admin','$id','Tambah Keterangan dan tolak berkas di halaman admin permohonan','$waktu')");
 
-            $validasi = $this->db->query("SELECT * FROM validasi_formulir WHERE id_permohonan = '$id'")->row();
-            $pesan_wa = $preview . "Kepada Pemohon, Kami dari Dinas Perumahan, Kawasan Permukiman dan Cipta Karya .........";
-            $id_user = $this->session->userdata('id_user');
-            if ($validasi) {
-                $this->db->query("UPDATE validasi_formulir SET tolak_formulir = '$id_user' WHERE id_permohonan = '$id' ");
-            } else {
-                $this->db->query("INSERT INTO validasi_formulir (id_permohonan,tolak_formulir) VALUES ('$id','$id_user')");
-            }
+        $validasi = $this->db->query("SELECT * FROM validasi_formulir WHERE id_permohonan = '$id'")->row();
+        $pesan_wa = $preview . "Kepada Pemohon, Kami dari Dinas Perumahan, Kawasan Permukiman dan Cipta Karya .........";
+        $id_user = $this->session->userdata('id_user');
+        if ($validasi) {
+            $this->db->query("UPDATE validasi_formulir SET tolak_formulir = '$id_user' WHERE id_permohonan = '$id' ");
+        } else {
+            $this->db->query("INSERT INTO validasi_formulir (id_permohonan,tolak_formulir) VALUES ('$id','$id_user')");
+        }
 
-            $curl = curl_init();
+        $curl = curl_init();
 
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://api.fonnte.com/send',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => '',
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => array(
-                    'target' => $telp_pemohon,
-                    'message' => $preview,
-                    'countryCode' => '62', //optional
-                ),
-                CURLOPT_HTTPHEADER => array(
-                    'Authorization: 9Sn+qbEWAjSvpSx9LbAQ' //change TOKEN to your actual token
-                ),
-            ));
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'target' => $telp_pemohon,
+                'message' => $preview,
+                'countryCode' => '62', //optional
+            ),
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: 9Sn+qbEWAjSvpSx9LbAQ' //change TOKEN to your actual token
+            ),
+        ));
 
-            $response = curl_exec($curl);
+        $response = curl_exec($curl);
 
-            curl_close($curl);
-            echo $response;
-            if ($query1) {
-                return true;
-            } else {
-                return false;
-            }
+        curl_close($curl);
+        echo $response;
+        if ($query1) {
+            return true;
+        } else {
+            return false;
+        }
         }
     }
     public function update_admin_kkpr()
@@ -4870,7 +4883,7 @@ class Kkpr_Model extends CI_Model
         }
         //file20
         if (!empty($_FILES['file_shp']['name'])) {
-            $this->upload->do_upload('shp');
+            $this->upload->do_upload('file_shp');
             $data20 = $this->upload->data();
             $file20 = $data20['file_name'];
         } else {
@@ -4983,10 +4996,10 @@ class Kkpr_Model extends CI_Model
             WHERE id_kkpr_permohonan = '$id'
             ";
         }
-        $update = $this->db->query($query);
         // $this->db->query("DELETE FROM pengembalian_kkpr_permohonan WHERE id_permohonan = '$id'");
         // $this->db->query("DELETE FROM action_pengembalian_kkpr_permohonan WHERE id_permohonan = '$id'");
-        echo $query;
+        // echo $query;
+        $update = $this->db->query($query);
         if ($update) {
             return true;
         } else {
@@ -5163,6 +5176,7 @@ class Kkpr_Model extends CI_Model
         $data = array(
             'titik_koordinat' => $koordinat
         );
+        // var_dump($data);die;
 
         $this->db->where('id_permohonan', $id); // Menggunakan kolom 'id_permohonan' yang sesuai
         $this->db->update('data_sertifikat_peta', $data);

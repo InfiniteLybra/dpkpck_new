@@ -672,7 +672,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                             </div>
                                             <div class="col-sm-7">
                                                 <div class="form-text-area">
-                                                    <textarea class="form-control" name="akta_perusahaan" data-preview="preview"></textarea>
+                                                    <textarea class="form-control" name="akta_perusahaan" data-preview="preview" disabled></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -1014,7 +1014,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                             <input name="yn_surat_tanah_revisi[]" class="form-check-input" type="radio" value="0" id="suratTanah2" <?php if ($action_value  == '0') echo 'checked'; ?> />
                                                                             <label class="form-check-label" for="suratTanah2"> Tidak </label>
                                                                         </div> -->
-                                                                            <select name="yn_surat_tanah_revisi[]">
+                                                                            <select name="yn_surat_tanah_revisi[]" class="form-control">
                                                                                 <option value="1" <?php if ($action_value  == '1') echo 'selected'; ?>>ya</option>
                                                                                 <option value="0" <?php if ($action_value  == '') echo 'selected'; ?>>tidak</option>
                                                                             </select>
@@ -1094,7 +1094,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                     <input name="yn_surat_tanah[]" class="form-check-input" type="radio" value="0" id="suratTanah2" />
                                                                     <label class="form-check-label" for="suratTanah2"> Tidak </label>
                                                                 </div> -->
-                                                                    <select name="yn_surat_tanah[]">
+                                                                    <select name="yn_surat_tanah[]" class="form-control">
                                                                         <option value="1" selected>ya</option>
                                                                         <option value="0">tidak</option>
                                                                     </select>
@@ -1180,7 +1180,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                             <input name="yn_surat_tanah_revisi[]" class="form-check-input" type="radio" value="0" id="suratTanah2" <?php if ($action_value  == '0') echo 'checked'; ?> />
                                                                             <label class="form-check-label" for="suratTanah2"> Tidak </label>
                                                                         </div> -->
-                                                                            <select name="yn_surat_tanah_revisi[]">
+                                                                            <select name="yn_surat_tanah_revisi[]" class="form-control">
                                                                                 <option value="1" <?php if ($action_value  == '1') echo 'selected'; ?>>ya</option>
                                                                                 <option value="0" <?php if ($action_value  == '0') echo 'selected'; ?>>tidak</option>
                                                                             </select>
@@ -1245,7 +1245,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                                                     <input name="yn_surat_tanah[]" class="form-check-input" type="radio" value="0" id="suratTanah2" />
                                                                     <label class="form-check-label" for="suratTanah2"> Tidak </label>
                                                                 </div> -->
-                                                                    <select name="yn_surat_tanah[]">
+                                                                    <select name="yn_surat_tanah[]" class="form-control">
                                                                         <option value="1" selected>ya</option>
                                                                         <option value="0">tidak</option>
                                                                     </select>
@@ -1400,7 +1400,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <a href="<?php echo base_url('assets_dokumen/kkpr/'); ?><?php if ($kkpr) echo $kkpr->shp ?>" class="btn btn-sm btn-secondary mb-2" download>Unduh</a>
-
+                                                    <input type="hidden" name="file_shp" value="<?= $kkpr->shp ?>">
                                                     <div class="form-check form-check-inline ms-5 ">
                                                         <input name="yn_shp" class="form-check-input" type="radio" value="1" id="shp1" checked />
                                                         <label class="form-check-label" for="shp1"> Ya </label>
@@ -1493,7 +1493,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                             </div>
                                             <div class="col-sm-7">
                                                 <div class="form-text-area">
-                                                    <textarea class="form-control" name="surat_kematian" data-preview="preview"></textarea>
+                                                    <textarea class="form-control" name="surat_kematian" data-preview="preview" disabled></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -1571,7 +1571,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                             </div>
                                             <div class="col-sm-7">
                                                 <div class="form-text-area">
-                                                    <textarea class="form-control" name="surat_kuasa_ahli_waris" data-preview="preview"></textarea>
+                                                    <textarea class="form-control" name="surat_kuasa_ahli_waris" data-preview="preview" disabled></textarea>
                                                 </div>
                                             </div>
                                         </div>

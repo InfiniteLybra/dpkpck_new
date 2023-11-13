@@ -271,7 +271,39 @@
         if (!(polygon == 1)) {
             alert('Gambar dan buat polygon terlebih dahulu');
         } else {
-            exportGeoJSON();
+            var geojson = drawnItems.toGeoJSON();
+            var geojsonStr = JSON.stringify(geojson);
+            // console.log(geojsonStr);
+
+            // Kirim GeoJSON ke server untuk disimpan sebagai file
+            $.post(<?= json_encode(base_url('Map/save_polygon')); ?>, {
+                    geojson_data: geojsonStr
+                }, function(data) {
+                    // Pastikan respons adalah JSON yang valid
+                    if (typeof data === 'object') {
+                        var shpUrl = data.shp_url;
+                        // alert("Polygon telah disimpan. Unduh SHP di: " + shpUrl);
+
+                    } else {
+                        console.error("Respons bukan JSON yang valid: ", data);
+                    }
+                }, "json")
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    console.error("Kesalahan: " + textStatus, errorThrown);
+                });
+            window.location.href = '<?= base_url('Map/polygon_new'); ?>';
+            // // Di sini, Anda mengambil tautan ke file ZIP dari session userdata
+            // var zipUrl = '<?= base_url() ?>' + '<?php echo $this->session->userdata('converted_file_path'); ?>';
+
+            // // Menginisiasi pengunduhan otomatis
+            // var a = document.createElement('a');
+            // a.href = zipUrl;
+            // a.download = 'map.zip'; // Nama file yang akan diunduh
+            // a.style.display = 'none';
+            // document.body.appendChild(a);
+            // a.click();
+            // document.body.removeChild(a);
+
         }
     });
 
