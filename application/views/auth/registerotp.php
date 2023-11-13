@@ -59,7 +59,7 @@
                                 <img src="<?php echo base_url('assets/login/'); ?>logokabupaten.png" class="img-thumbnaill" alt="...">
                             </div>
 
-                            <form class="form w-100" action="<?= base_url('auth/proses_register') ?>" method="post">
+                            <form class="form w-100" action="<?= base_url('Auth/proses_register') ?>" method="post">
                                 <div class="text-otp text-center">Verification Code</div>
                                 <div class="text-otp1 mb-4 text-center">Your code was sent to you via SMS</div>
                                 <div class="fv-row mb-8">

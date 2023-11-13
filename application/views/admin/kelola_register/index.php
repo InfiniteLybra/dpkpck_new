@@ -18,10 +18,12 @@
                                 <thead>
                                     <tr>
                                         <th>No.</th>
-                                        <th>Username</th>
                                         <th>NIK</th>
+                                        <th>Username</th>
                                         <th>Nomor Hp</th>
+                                        <th>Foto Ktp</th>
                                         <th>Level</th>
+                                        <th>Tanggal Registrasi</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -32,9 +34,10 @@
                                     ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td><?= $u->nama_lengkap ?></td>
                                             <td><?= $u->nik ?></td>
+                                            <td><?= $u->nama_lengkap ?></td>
                                             <td><?= $u->nomor ?></td>
+                                            <td><img src="<?= base_url('assets_dokumen/auth/' . $u->foto_ktp ); ?>" alt="Foto KTP" style="max-width: 100%; max-height: 100%;"></td>
                                             <td>
                                                 <?php
                                                 if ($u->level == 1) {
@@ -52,6 +55,7 @@
                                                 }
                                                 ?>
                                             </td>
+                                            <td><?= $u->tanggal_register ?></td>
                                             <td>
                                                 <a href="<?= base_url('User/terima_register'); ?>/<?= $u->id ?>" class="btn btn-primary"  aria-expanded="false">
                                                     Terima
