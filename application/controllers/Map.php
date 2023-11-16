@@ -143,7 +143,7 @@ class Map extends CI_Controller
     public function save_polygon()
     {
         $geojson_data = $this->input->post('geojson_data');
-        $nama = $this->session->userdata('nama');
+        $nama = $this->session->userdata('username');
         $timestamp = date('Y-m-d_H-i-s');
 
         // Buat nama file GeoJSON dengan ID pengguna dan timestamp
