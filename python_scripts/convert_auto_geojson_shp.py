@@ -20,6 +20,8 @@ with zipfile.ZipFile(zip_file, 'w', zipfile.ZIP_DEFLATED) as zf:
     zf.write(shp_file, os.path.basename(shp_file))
     zf.write(shp_base + '.shx', os.path.basename(shp_base + '.shx'))
     zf.write(shp_base + '.dbf', os.path.basename(shp_base + '.dbf'))
+    zf.write(shp_base + '.cpg', os.path.basename(shp_base + '.cpg'))
+    zf.write(shp_base + '.prj', os.path.basename(shp_base + '.prj'))
 
 # Print nama file ZIP untuk digunakan dalam fungsi PHP
 print(shp_file + '.zip')

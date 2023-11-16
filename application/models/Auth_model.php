@@ -48,6 +48,38 @@ class Auth_model extends CI_Model
             return false;
         }
     }
+    public function getUserByNomor($nomor)
+    {
+
+        $query = $this->db->get_where('user', array('nomor' => $nomor));
+        return $query->row_array();
+    }
+
+    public function updateOTP($nomor, $otp, $waktu)
+    {
+
+        $data = array('otp' => $otp, 'waktu' => $waktu);
+        $this->db->where('nomor', $nomor);
+        $this->db->update('user', $data);
+    }
+
+    public function validateOTP($nomor, $otp)
+    {
+
+        $query = $this->db->get_where('user', array('nomor' => $nomor, 'otp' => $otp));
+        return $query->row_array();
+    }
+
+    public function insertUser($nomor, $otp, $waktu)
+    {
+        $data = array(
+            'otp' => $otp,
+            'waktu' => $waktu
+        );
+        
+        $this->db->where('nomor', $nomor);
+        $this->db->insert('user', $data);
+    }
     // level pemohon
     function level_1()
     {
