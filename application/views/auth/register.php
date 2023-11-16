@@ -46,35 +46,35 @@
                             <div class="form-outline mb-3 text-start">
 
                                 <label class="form-label" for="form3Example3">Nama Lengkap</label>
-                                <input type="text" id="nama_lengkap" placeholder="Masukkan nama lengkap minimal 8 karakter" name="nama_lengkap" autocomplete class="form-control bg-transparent" required />
+                                <input type="text" id="nama_lengkap" name="nama_lengkap" placeholder="Masukkan nama lengkap minimal 8 karakter" class="form-control bg-transparent" value="<?= set_value('nama_lengkap'); ?>" autocomplete="on" required />
                                 <span class="error-message" id="error-nama-lengkap"></span>
                             </div>
                             <div class="form-outline mb-3 text-start">
 
                                 <label class="form-label" for="form3Example4">Username</label>
-                                <input type="text" id="username" placeholder="Masukkan username minimal 8 karakter" name="username" autocomplete class="form-control bg-transparent" required />
+                                <input type="text" id="username" name="username" placeholder="Masukkan username minimal 8 karakter" class="form-control bg-transparent" value="<?= set_value('username'); ?>" autocomplete="on" required />
                                 <span class="error-message" id="error-nama-lengkap"></span>
                             </div>
 
                             <div class="form-outline mb-3 text-start">
                                 <label class="form-label" for="form3Example5">Password</label>
-                                <input id="password" class="form-control bg-transparent" type="password" placeholder="Masukkan password minimal 8 karakter" name="password" autocomplete />
+                                <input type="password" id="password" name="password" class="form-control bg-transparent" placeholder="Masukkan password minimal 8 karakter" value="<?= set_value('password'); ?>" autocomplete="on" required />
                             </div>
                             <div class="form-outline mb-3 text-start">
                                 <label class="form-label" for="form3Example6">Ulangi Password</label>
-                                <input id="confirmPassword" placeholder="Ulangi password" name="confirmPassword" type="password" autocomplete class="form-control bg-transparent" />
+                                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Ulangi password" class="form-control bg-transparent" value="<?= set_value('confirmPassword'); ?>" autocomplete="on" required />
                             </div>
                             <div class="form-outline mb-3 text-start">
                                 <label class="form-label" for="form3Example4">NIK</label>
-                                <input id="nik" placeholder="Masukkan NIK" name="nik" type="text" autocomplete class="form-control bg-transparent" pattern="[0-9]*" maxlength="16" required oninput="validasiAngka(this)" />
+                                <input type="text" id="nik" name="nik" placeholder="Masukkan NIK" class="form-control bg-transparent" pattern="[0-9]*" maxlength="16" oninput="validasiAngka(this)" value="<?= set_value('nik'); ?>" autocomplete="on" required />
                             </div>
                             <div class="form-outline mb-3 text-start">
                                 <label class="form-label" for="form3Example4">No. Telp</label>
-                                <input id="no_telp" placeholder="Masukkan Nomor Whatsapp" name="nomor" type="text" autocomplete class="form-control bg-transparent" pattern="[0-9]*" maxlength="13" required oninput="validasiAngka(this)" />
+                                <input type="text" id="no_telp" name="nomor" placeholder="Masukkan Nomor Whatsapp" class="form-control bg-transparent" pattern="[0-9]*" maxlength="13" oninput="validasiAngka(this)" value="<?= set_value('nomor'); ?>" autocomplete="on" required />
                             </div>
                             <div class="form-outline mb-3 text-start">
                                 <label class="form-label" for="form3Example4">Foto KTP</label>
-                                <input type="file" id="foto_ktp" placeholder="" name="foto_ktp" class="form-control bg-transparent"/>
+                                <input type="file" id="foto_ktp" name="foto_ktp" placeholder="" class="form-control bg-transparent" />
                             </div>
 
 
@@ -82,11 +82,11 @@
                                 <div class="text-center" id="status">
                                     <?php
                                     if ($this->session->flashdata('error')) {
-                                        echo '<div class="text-danger">Kesalahan, username telah ada</div>';
+                                        echo '<div class="text-danger">' . $this->session->flashdata('error') . '</div>';
                                     }
                                     ?>
                                 </div>
-                                <button type="submit" id="submitButton" name="submitButton" class="btn btn-primary" disabled>
+                                <button type="submit" id="submitButton" name="submitButton" class="btn btn-primary">
 
                                     <span class="indicator-label">Sign up</span>
 
@@ -107,7 +107,7 @@
     </div>
     </div>
     <!--end::Root-->
-    <script>
+    <!-- <script>
         const nama_lengkapInput = document.getElementById('nama_lengkap');
         const usernameInput = document.getElementById('username');
         const passwordInput = document.getElementById('password');
@@ -127,16 +127,40 @@
             const no_telp = no_telpInput.value;
 
 
-            if (password === confirmPassword && password.length > 7 && username.length > 7 && nama_lengkap.length > 7 && nik.length > 15 && no_telp.length > 10) {
+            if (password === confirmPassword && password.length > 7 && username.length > 7 && nama_lengkap.length > 7 && nik.length === 16 && no_telp.length === 13) {
                 submitButton.disabled = false;
-
-
                 statusView.innerHTML = '<div class="text-success ">Akun siap dibuat!</div>';
             } else {
-                statusView.innerHTML = '<div class="text-danger ">Identitas akun belum memenuhi persyaratan!</div>';
-                submitButton.disabled = true;
+                let errorMessage = '<div class="text-danger">Identitas akun belum memenuhi persyaratan:</div>';
 
+                if (password !== confirmPassword) {
+                    errorMessage += '<div>Password dan konfirmasi password harus sama.</div>';
+                }
+
+                if (password.length <= 7) {
+                    errorMessage += '<div>Password harus minimal 8 karakter.</div>';
+                }
+
+                if (username.length <= 7) {
+                    errorMessage += '<div>Username harus minimal 8 karakter.</div>';
+                }
+
+                if (nama_lengkap.length <= 7) {
+                    errorMessage += '<div>Nama lengkap harus minimal 8 karakter.</div>';
+                }
+
+                if (nik.length !== 16) {
+                    errorMessage += '<div>NIK harus terdiri dari 16 digit.</div>';
+                }
+
+                if (no_telp.length !== 13) {
+                    errorMessage += '<div>No. Telp harus terdiri dari 13 digit.</div>';
+                }
+
+                statusView.innerHTML = errorMessage;
+                submitButton.disabled = true;
             }
+
         }
 
         nama_lengkapInput.addEventListener('input', validatePassword);
@@ -155,7 +179,7 @@
                 input.value = input.value.slice(0, 16);
             }
         }
-    </script>
+    </script> -->
     <script src=" <?= base_url('assets/') ?>assets/plugins/global/plugins.bundle.js "></script>
     <script src=" <?= base_url('assets/') ?>assets/js/scripts.bundle.js "></script>
     <script>

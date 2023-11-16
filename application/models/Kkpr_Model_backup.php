@@ -549,66 +549,6 @@ class Kkpr_Model extends CI_Model
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file17','$file18'" : "") . "                                                
                         " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                                    
                         )";
-
-                        $nomor = "600.3.3.2 /00".$id_kkpr."/ 35.07.111";
-                        $kelurahan = $this->db->query("SELECT * FROM indo_kelurahan WHERE subdis_id = '$kelurahan_pemohon' ")->row();
-                        $kecamatan = $this->db->query("SELECT * FROM indo_kecamatan WHERE dis_id = '$kecamatan_pemohon' ")->row();
-                        $kota = $this->db->query("SELECT * FROM indo_kota WHERE city_id = '$kota_pemohon' ")->row();
-                        $provinsi = $this->db->query("SELECT * FROM indo_provinsi WHERE prov_id = '$provinsi_pemohon' ")->row();
-                        $peta_kelurahan_perusahaan = $this->db->query("SELECT * FROM indo_kelurahan WHERE subdis_id = '$kelurahan_perusahaan' ")->row();
-                        $peta_kecamatan_perusahaan = $this->db->query("SELECT * FROM indo_kecamatan WHERE dis_id = '$kecamatan_perusahaan' ")->row();
-                        $peta_kota_perusahaan = $this->db->query("SELECT * FROM indo_kota WHERE city_id = '$kota_perusahaan' ")->row();
-                        $peta_provinsi_perusahaan = $this->db->query("SELECT * FROM indo_provinsi WHERE prov_id = '$provinsi_perusahaan' ")->row();
-                        $peta_alamat_pemohon = "".$alamat_pemohon."RT. ".$rt_pemohon."RW. ".$rw_pemohon."Kel. ".$kelurahan->subdis_name."Kec. ".$kecamatan->dis_name."Kota/Kab. ".$kota->city_name."Prov. ".$provinsi->prov_name."";
-                        $peta_alamat_perusahaan = "".$alamat_perusahaan."RT. ".$rt_perusahaan."RW. ".$rw_perusahaan."Kel. ".$peta_kelurahan_perusahaan->subdis_name."Kec. ".$peta_kecamatan_perusahaan->dis_name."Kota/Kab. ".$peta_kota_perusahaan->city_name."Prov. ".$peta_provinsi_provinsi->prov_name."";
-                        $nib_skala_usaha = "".$nib."/".$skala_usaha."";
-                        $peta_kelurahan_tanah = $this->db->query("SELECT * FROM desa WHERE id_desa = '$kelurahan_tanah' ")->row();
-                        $peta_kecamatan_tanah = $this->db->query("SELECT * FROM kecamatan WHERE id_kecamatan = '$kecamatan_tanah' ")->row();
-                        $lokasi = "".$lokasi_tanah."RT. ".$rt_tanah."RW. ".$rw_tanah."Desa/Kel. ".$peta_kelurahan_tanah->nama_desa."Kec. ".$peta_kecamatan_tanah->nama_kecamatan."";
-                        $peta = "INSERT INTO data_sertifikat_peta (
-                            id_permohonan,
-                            nomor,
-
-                            nama_pemohon,
-                            alamat_pemohon,
-
-                            nama_perusahaan,
-                            alamat_perusahaan,
-
-                            nib_skala_usaha,
-                            kbli_tingkat_resiko,
-
-                            peruntukan,
-                            lokasi,
-                            luas_tanah,
-                            status_tanah,
-
-                            legenda,
-                            titik_koordinat,
-                            ketentuan_lainya
-                                                        
-                        )VALUES(
-                            '$id_kkpr',
-                            '$nomor',
-
-                            '$nama_pemohon',
-                            '$peta_alamat_pemohon',
-
-                            '$nama_perusahaan',
-                            '$peta_alamat_perusahaan',
-
-                            '$nib_skala_usaha',
-                            '$kbli_Array',
-
-                            '$peruntukan_tanah',
-                            '$lokasi',
-                            '$luas_tanah',
-                            '$Tanah_Array',
-
-                            '[]',                          
-                            '[]',                          
-                            '[]'                          
-                        )";
             } else {
                 $insert = "INSERT INTO kkpr_permohonan (
                     id_kkpr_permohonan,
@@ -816,94 +756,11 @@ class Kkpr_Model extends CI_Model
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file17','$file18'" : "") . "                                                
                         " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                                    
                         )";
-
-                        $nomor = "600.3.3.2 /00".$id_kkpr."/ 35.07.111";
-                        $kelurahan = $this->db->query("SELECT * FROM indo_kelurahan WHERE subdis_id = '$kelurahan_pemohon' ")->row();
-                        $kecamatan = $this->db->query("SELECT * FROM indo_kecamatan WHERE dis_id = '$kecamatan_pemohon' ")->row();
-                        $kota = $this->db->query("SELECT * FROM indo_kota WHERE city_id = '$kota_pemohon' ")->row();
-                        $provinsi = $this->db->query("SELECT * FROM indo_provinsi WHERE prov_id = '$provinsi_pemohon' ")->row();
-                        $peta_kelurahan_perusahaan = $this->db->query("SELECT * FROM indo_kelurahan WHERE subdis_id = '$kelurahan_perusahaan' ")->row();
-                        $peta_kecamatan_perusahaan = $this->db->query("SELECT * FROM indo_kecamatan WHERE dis_id = '$kecamatan_perusahaan' ")->row();
-                        $peta_kota_perusahaan = $this->db->query("SELECT * FROM indo_kota WHERE city_id = '$kota_perusahaan' ")->row();
-                        $peta_provinsi_perusahaan = $this->db->query("SELECT * FROM indo_provinsi WHERE prov_id = '$provinsi_perusahaan' ")->row();
-                        $peta_alamat_pemohon = "".$alamat_pemohon."RT. ".$rt_pemohon."RW. ".$rw_pemohon."Kel. ".$kelurahan->subdis_name."Kec. ".$kecamatan->dis_name."Kota/Kab. ".$kota->city_name."Prov. ".$provinsi->prov_name."";
-                        $peta_alamat_perusahaan = "".$alamat_perusahaan."RT. ".$rt_perusahaan."RW. ".$rw_perusahaan."Kel. ".$peta_kelurahan_perusahaan->subdis_name."Kec. ".$peta_kecamatan_perusahaan->dis_name."Kota/Kab. ".$peta_kota_perusahaan->city_name."Prov. ".$peta_provinsi_provinsi->prov_name."";
-                        $nib_skala_usaha = "".$nib."/".$skala_usaha."";
-                        $peta_kelurahan_tanah = $this->db->query("SELECT * FROM desa WHERE id_desa = '$kelurahan_tanah' ")->row();
-                        $peta_kecamatan_tanah = $this->db->query("SELECT * FROM kecamatan WHERE id_kecamatan = '$kecamatan_tanah' ")->row();
-                        $lokasi = "".$lokasi_tanah."RT. ".$rt_tanah."RW. ".$rw_tanah."Desa/Kel. ".$peta_kelurahan_tanah->nama_desa."Kec. ".$peta_kecamatan_tanah->nama_kecamatan."";
-                        $peta = "INSERT INTO data_sertifikat_peta (
-                            id_permohonan,
-                            nomor,
-
-                            nama_pemohon,
-                            alamat_pemohon,
-
-                            nama_perusahaan,
-                            alamat_perusahaan,
-
-                            nib_skala_usaha,
-                            kbli_tingkat_resiko,
-
-                            peruntukan,
-                            lokasi,
-                            luas_tanah,
-                            status_tanah,
-
-                            legenda,
-                            titik_koordinat,
-                            ketentuan_lainya
-                                                        
-                        )VALUES(
-                            '$id_kkpr',
-                            '$nomor',
-
-                            '$nama_pemohon',
-                            '$peta_alamat_pemohon',
-
-                            '$nama_perusahaan',
-                            '$peta_alamat_perusahaan',
-
-                            '$nib_skala_usaha',
-                            '$kbli_Array',
-
-                            '$peruntukan_tanah',
-                            '$lokasi',
-                            '$luas_tanah',
-                            '$Tanah_Array',
-
-                            '[]',                         
-                            '[]',                         
-                            '[]'                         
-                        )";
             }
 
             // echo $insert;
-            // echo $peta;
             $query = $this->db->query($insert);
-            $this->db->query($peta);
             if ($query) {
-                $curl = curl_init();            
-                curl_setopt_array($curl, array(
-                    CURLOPT_URL => 'https://api.fonnte.com/send',
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_ENCODING => '',
-                    CURLOPT_MAXREDIRS => 10,
-                    CURLOPT_TIMEOUT => 0,
-                    CURLOPT_FOLLOWLOCATION => true,
-                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                    CURLOPT_CUSTOMREQUEST => 'POST',
-                    CURLOPT_POSTFIELDS => array(
-                        'target' => '085749167976',
-                        'message' => 'Ada Permohonan masuk.',
-                        'countryCode' => '62', //optional
-                    ),
-                    CURLOPT_HTTPHEADER => array(
-                        'Authorization: 5@6!I4e2eSKYewSZSFhD' //change TOKEN to your actual token
-                    ),
-                ));
-
-                $response = curl_exec($curl);
                 return true;
             } else {
                 return false;
@@ -1422,56 +1279,6 @@ class Kkpr_Model extends CI_Model
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file17','$file18'" : "") . "                                                
                         " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                                    
                         )";
-
-
-                        $nomor = "600.3.3.2 /00".$id_kkpr."/ 35.07.111";
-                        $kelurahan = $this->db->query("SELECT * FROM indo_kelurahan WHERE subdis_id = '$kelurahan_pemohon' ")->row();
-                        $kecamatan = $this->db->query("SELECT * FROM indo_kecamatan WHERE dis_id = '$kecamatan_pemohon' ")->row();
-                        $kota = $this->db->query("SELECT * FROM indo_kota WHERE city_id = '$kota_pemohon' ")->row();
-                        $provinsi = $this->db->query("SELECT * FROM indo_provinsi WHERE prov_id = '$provinsi_pemohon' ")->row();
-                        $peta_alamat_pemohon = "".$alamat_pemohon." RT. ".$rt_pemohon." RW. ".$rw_pemohon." Kel. ".$kelurahan->subdis_name." Kec. ".$kecamatan->dis_name." Kota/Kab. ".$kota->city_name." Prov. ".$provinsi->prov_name."";
-                        $nib_skala_usaha = "".$nib."/".$skala_usaha."";
-                        $peta_kelurahan_tanah = $this->db->query("SELECT * FROM desa WHERE id_desa = '$kelurahan_tanah' ")->row();
-                        $peta_kecamatan_tanah = $this->db->query("SELECT * FROM kecamatan WHERE id_kecamatan = '$kecamatan_tanah' ")->row();
-                        $lokasi = "".$lokasi_tanah." RT. ".$rt_tanah." RW. ".$rw_tanah." Desa/Kel. ".$peta_kelurahan_tanah->nama_desa." Kec. ".$peta_kecamatan_tanah->nama_kecamatan."";
-                        $peta = "INSERT INTO data_sertifikat_peta (
-                            id_permohonan,
-                            nomor,
-
-                            nama_pemohon,
-                            alamat_pemohon,                  
-
-                            nib_skala_usaha,
-                            kbli_tingkat_resiko,
-
-                            peruntukan,
-                            lokasi,
-                            luas_tanah,
-                            status_tanah,
-
-                            legenda,
-                            titik_koordinat,
-                            ketentuan_lainya
-                                                        
-                        )VALUES(
-                            '$id_kkpr',
-                            '$nomor',
-
-                            '$nama_pemohon',
-                            '$peta_alamat_pemohon',
-
-                            '$nib_skala_usaha',
-                            '$kbli_Array',
-
-                            '$peruntukan_tanah',
-                            '$lokasi',
-                            '$luas_tanah',
-                            '$Tanah_Array',
-
-                            '[]',                        
-                            '[]',                        
-                            '[]'                        
-                        )";
             } else {
                 $insert = "INSERT INTO kkpr_permohonan (
                     id_kkpr_permohonan,
@@ -1669,59 +1476,9 @@ class Kkpr_Model extends CI_Model
                         " . (($badan_hukum == '1' && $pemilik_lahan_meninggal == '0' && $type_kategori == 'tempat_ibadah') ? "'$file6','$file7','$file8','$file17','$file18'" : "") . "                                                
                         " . (($badan_hukum == '0' && $pemilik_lahan_meninggal == '1' && $type_kategori == 'tempat_ibadah') ? "'$file7','$file8','$file10','$file11','$file17','$file18'" : "") . "                                                                    
                         )";
-                        $nomor = "600.3.3.2 /00".$id_kkpr."/ 35.07.111";
-                        $kelurahan = $this->db->query("SELECT * FROM indo_kelurahan WHERE subdis_id = '$kelurahan_pemohon' ")->row();
-                        $kecamatan = $this->db->query("SELECT * FROM indo_kecamatan WHERE dis_id = '$kecamatan_pemohon' ")->row();
-                        $kota = $this->db->query("SELECT * FROM indo_kota WHERE city_id = '$kota_pemohon' ")->row();
-                        $provinsi = $this->db->query("SELECT * FROM indo_provinsi WHERE prov_id = '$provinsi_pemohon' ")->row();
-                        $peta_alamat_pemohon = "".$alamat_pemohon." RT. ".$rt_pemohon." RW. ".$rw_pemohon." Kel. ".$kelurahan->subdis_name." Kec. ".$kecamatan->dis_name." Kota/Kab. ".$kota->city_name." Prov. ".$provinsi->prov_name."";
-                        $nib_skala_usaha = "".$nib."/".$skala_usaha."";
-                        $peta_kelurahan_tanah = $this->db->query("SELECT * FROM desa WHERE id_desa = '$kelurahan_tanah' ")->row();
-                        $peta_kecamatan_tanah = $this->db->query("SELECT * FROM kecamatan WHERE id_kecamatan = '$kecamatan_tanah' ")->row();
-                        $lokasi = "".$lokasi_tanah." RT. ".$rt_tanah." RW. ".$rw_tanah." Desa/Kel. ".$peta_kelurahan_tanah->nama_desa." Kec. ".$peta_kecamatan_tanah->nama_kecamatan."";
-                        $peta = "INSERT INTO data_sertifikat_peta (
-                            id_permohonan,
-                            nomor,
-
-                            nama_pemohon,
-                            alamat_pemohon,                  
-
-                            nib_skala_usaha,
-                            kbli_tingkat_resiko,
-
-                            peruntukan,
-                            lokasi,
-                            luas_tanah,
-                            status_tanah,
-
-                            legenda,
-                            titik_koordinat,
-                            ketentuan_lainya
-                                                        
-                        )VALUES(
-                            '$id_kkpr',
-                            '$nomor',
-
-                            '$nama_pemohon',
-                            '$peta_alamat_pemohon',
-
-                            '$nib_skala_usaha',
-                            '$kbli_Array',
-
-                            '$peruntukan_tanah',
-                            '$lokasi',
-                            '$luas_tanah',
-                            '$Tanah_Array',
-
-                            '[]',                           
-                            '[]',                           
-                            '[]'                           
-                        )";
             }           
             // echo $insert;
-            // echo $peta;
             $query = $this->db->query($insert);
-            $this->db->query($peta);
             if ($query) {
                  $curl = curl_init();            
                 curl_setopt_array($curl, array(
@@ -1739,7 +1496,7 @@ class Kkpr_Model extends CI_Model
                         'countryCode' => '62', //optional
                     ),
                     CURLOPT_HTTPHEADER => array(
-                        'Authorization: 5@6!I4e2eSKYewSZSFhD' //change TOKEN to your actual token
+                        'Authorization: 9Sn+qbEWAjSvpSx9LbAQ' //change TOKEN to your actual token
                     ),
                 ));
 
@@ -3694,7 +3451,7 @@ class Kkpr_Model extends CI_Model
                 'countryCode' => '62', //optional
             ),
             CURLOPT_HTTPHEADER => array(
-                'Authorization: 5@6!I4e2eSKYewSZSFhD' //change TOKEN to your actual token
+                'Authorization: 9Sn+qbEWAjSvpSx9LbAQ' //change TOKEN to your actual token
             ),
         ));
 
@@ -3731,7 +3488,7 @@ class Kkpr_Model extends CI_Model
                     'countryCode' => '62', //optional
                 ),
                 CURLOPT_HTTPHEADER => array(
-                    'Authorization: 5@6!I4e2eSKYewSZSFhD' //change TOKEN to your actual token
+                    'Authorization: 9Sn+qbEWAjSvpSx9LbAQ' //change TOKEN to your actual token
                 ),
             ));
 
@@ -4067,7 +3824,7 @@ class Kkpr_Model extends CI_Model
                 'countryCode' => '62', //optional
             ),
             CURLOPT_HTTPHEADER => array(
-                'Authorization: 5@6!I4e2eSKYewSZSFhD' //change TOKEN to your actual token
+                'Authorization: 9Sn+qbEWAjSvpSx9LbAQ' //change TOKEN to your actual token
             ),
         ));
 
@@ -4214,11 +3971,15 @@ class Kkpr_Model extends CI_Model
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => array(
                 'target' => $data->telp_pemohon,
-                'message' => 'Berkas Anda telah di terima oleh Petugas',
+                'message' => "Kepada " . $data->nama_pemohon . "\n\n" .
+                    "Hormat kami dari Dinas Perumahan, Kawasan Permukiman, dan Cipta Karya." .
+                    "Kami ingin memberitahu bahwa formulir Anda telah diterima oleh petugas kami dan saat ini sedang dalam proses dikerjakan. Jika Anda memiliki pertanyaan lebih lanjut atau memerlukan bantuan tambahan, jangan ragu untuk menghubungi kami.\n" .
+                    "Terimakasih atas kerja sama Anda.\n\n" .
+                    "Salam, Admin DPKPCK",
                 'countryCode' => '62', //optional
             ),
             CURLOPT_HTTPHEADER => array(
-                'Authorization: 5@6!I4e2eSKYewSZSFhD' //change TOKEN to your actual token
+                'Authorization: 9Sn+qbEWAjSvpSx9LbAQ' //change TOKEN to your actual token
             ),
         ));
 
@@ -5267,7 +5028,7 @@ class Kkpr_Model extends CI_Model
                     'countryCode' => '62', //optional
                 ),
                 CURLOPT_HTTPHEADER => array(
-                    'Authorization: 5@6!I4e2eSKYewSZSFhD' //change TOKEN to your actual token
+                    'Authorization: 9Sn+qbEWAjSvpSx9LbAQ' //change TOKEN to your actual token
                 ),
             ));
         } else {
@@ -5287,7 +5048,7 @@ class Kkpr_Model extends CI_Model
                     'countryCode' => '62', //optional
                 ),
                 CURLOPT_HTTPHEADER => array(
-                    'Authorization: 5@6!I4e2eSKYewSZSFhD' //change TOKEN to your actual token
+                    'Authorization: 9Sn+qbEWAjSvpSx9LbAQ' //change TOKEN to your actual token
                 ),
             ));
         }
@@ -5342,7 +5103,7 @@ class Kkpr_Model extends CI_Model
                 'countryCode' => '62', //optional
             ),
             CURLOPT_HTTPHEADER => array(
-                'Authorization: 5@6!I4e2eSKYewSZSFhD' //change TOKEN to your actual token
+                'Authorization: 9Sn+qbEWAjSvpSx9LbAQ' //change TOKEN to your actual token
             ),
         ));
 
@@ -5384,7 +5145,7 @@ class Kkpr_Model extends CI_Model
                 'countryCode' => '62', // optional
             ),
             CURLOPT_HTTPHEADER => array(
-                'Authorization: 5@6!I4e2eSKYewSZSFhD' // change TOKEN to your actual token
+                'Authorization: 9Sn+qbEWAjSvpSx9LbAQ' // change TOKEN to your actual token
             ),
         ));
 
@@ -5415,6 +5176,7 @@ class Kkpr_Model extends CI_Model
         $data = array(
             'titik_koordinat' => $koordinat
         );
+        // var_dump($data);die;
 
         $this->db->where('id_permohonan', $id); // Menggunakan kolom 'id_permohonan' yang sesuai
         $this->db->update('data_sertifikat_peta', $data);

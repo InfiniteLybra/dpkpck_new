@@ -158,7 +158,6 @@ class Map extends CI_Controller
         // Setelah konversi selesai, arahkan pengguna untuk mengunduh file ZIP
         $zip_filename = 'polygon_cache/' . $nama . '_' . $timestamp . '.zip';
         $this->session->set_userdata('converted_file_path', $zip_filename);
-        // var_dump($zip_filename);die;
 
         // Hapus file ZIP dan file GeoJSON setelah pengguna mengunduhnya
         // unlink($zip_filename);
