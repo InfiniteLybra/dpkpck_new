@@ -80,7 +80,7 @@ class Auth extends CI_Controller
             'exact_length' => 'NIK harus terdiri dari 16 digit.'
         ));
 
-        $this->form_validation->set_rules('nomor', 'No. Telp', 'required|numeric|exact_length[13]', array(
+        $this->form_validation->set_rules('nomor', 'No. Telp', 'required|numeric|exact_length[12]', array(
             'required' => 'Harap masukkan nomor telepon.',
             'numeric' => 'Nomor telepon harus berupa angka.',
             'exact_length' => 'Nomor telepon harus terdiri dari 13 digit.'

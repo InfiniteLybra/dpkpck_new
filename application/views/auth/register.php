@@ -70,7 +70,7 @@
                             </div>
                             <div class="form-outline mb-3 text-start">
                                 <label class="form-label" for="form3Example4">No. Telp</label>
-                                <input type="text" id="no_telp" name="nomor" placeholder="Masukkan Nomor Whatsapp" class="form-control bg-transparent" pattern="[0-9]*" maxlength="13" oninput="validasiAngka(this)" value="<?= set_value('nomor'); ?>" autocomplete="on" required />
+                                <input type="text" id="no_telp" name="nomor" placeholder="Masukkan Nomor Whatsapp" class="form-control bg-transparent" pattern="[0-9]*" maxlength="12" oninput="validasiAngka(this)" value="<?= set_value('nomor'); ?>" autocomplete="on" required />
                             </div>
                             <div class="form-outline mb-3 text-start">
                                 <label class="form-label" for="form3Example4">Foto KTP</label>

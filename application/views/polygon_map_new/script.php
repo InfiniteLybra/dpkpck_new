@@ -213,37 +213,35 @@
     }));
 
     map.on(L.Draw.Event.CREATED, function(event) {
-        if (polygon == 0) {
-            var layer = event.layer;
 
-            if (layer instanceof L.Polygon) {
-                createAreaTooltip(layer);
-            }
-            drawnItems.addLayer(layer);
+        var layer = event.layer;
 
-            if (layer instanceof L.Polygon) {
-                var coordinates = layer.getLatLngs()[0];
-
-                // Fungsi untuk mengonversi desimal ke DMS
-                function decimalToDMS(decimal, isLongitude) {
-                    const degrees = Math.floor(Math.abs(decimal));
-                    const minutes = Math.floor((Math.abs(decimal) - degrees) * 60);
-                    const seconds = (Math.abs(decimal) - degrees - minutes / 60) * 3600;
-                    const direction = isLongitude ? (decimal > 0 ? "E" : "W") : (decimal > 0 ? "N" : "S");
-                    return `${degrees}° ${minutes}' ${seconds.toFixed(2)}" ${direction}`;
-                }
-
-                // Mengonversi koordinat ke format DMS dan menambahkannya sebagai popup
-                coordinates.forEach(function(coord, index) {
-                    var dmsLat = decimalToDMS(coord.lat, false);
-                    var dmsLng = decimalToDMS(coord.lng, true);
-                    var popupContent = "Koordinat Titik " + index + ": " + dmsLat + ", " + dmsLng;
-                    L.marker(coord).bindPopup(popupContent).addTo(map);
-                });
-            }
-        } else {
-            alert('Polygon telah dibuat, hapus atau ubah polygon sebelumnya!');
+        if (layer instanceof L.Polygon) {
+            createAreaTooltip(layer);
         }
+        drawnItems.addLayer(layer);
+
+        if (layer instanceof L.Polygon) {
+            var coordinates = layer.getLatLngs()[0];
+
+            // Fungsi untuk mengonversi desimal ke DMS
+            function decimalToDMS(decimal, isLongitude) {
+                const degrees = Math.floor(Math.abs(decimal));
+                const minutes = Math.floor((Math.abs(decimal) - degrees) * 60);
+                const seconds = (Math.abs(decimal) - degrees - minutes / 60) * 3600;
+                const direction = isLongitude ? (decimal > 0 ? "E" : "W") : (decimal > 0 ? "N" : "S");
+                return `${degrees}° ${minutes}' ${seconds.toFixed(2)}" ${direction}`;
+            }
+
+            // Mengonversi koordinat ke format DMS dan menambahkannya sebagai popup
+            coordinates.forEach(function(coord, index) {
+                var dmsLat = decimalToDMS(coord.lat, false);
+                var dmsLng = decimalToDMS(coord.lng, true);
+                var popupContent = "Koordinat Titik " + index + ": " + dmsLat + ", " + dmsLng;
+                L.marker(coord).bindPopup(popupContent).addTo(map);
+            });
+        }
+
     });
 
 
@@ -268,9 +266,7 @@
     reloadButton.addEventListener('click', handleClick);
 
     document.getElementById('export').addEventListener('click', function() {
-        if (!(polygon == 1)) {
-            alert('Gambar dan buat polygon terlebih dahulu');
-        } else {
+       
             var geojson = drawnItems.toGeoJSON();
             var geojsonStr = JSON.stringify(geojson);
             // console.log(geojsonStr);
@@ -305,7 +301,8 @@
             // document.body.removeChild(a);
 
         }
-    });
+    
+    );
 
     function exportGeoJSON() {
         var geoJSONData = drawnItems.toGeoJSON();
