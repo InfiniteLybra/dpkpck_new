@@ -195,7 +195,7 @@ class Kkpr extends CI_Controller
         if ($query == true) {
             $this->session->set_flashdata('success', 'Data Berhasil Disimpan');
             $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');
-            // redirect('NotifikasiConfig.html');
+            redirect('NotifikasiConfig.html');
         } else {
             $this->session->set_flashdata('error', 'Data gagal disimpan');
             $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
