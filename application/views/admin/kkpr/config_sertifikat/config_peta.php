@@ -50,10 +50,10 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                     <?php if ($cek) { ?>
-                                                        <input type="text" name="nomor" class="form-control" value="<?= $data->nomor ?>" readonly>
+                                                        <input type="text" name="nomor" class="form-control" value="<?= $data->nomor ?>">
                                                         <input type="hidden" name="id_permohonan" class="form-control" value="<?= $data->id_permohonan ?>">
                                                     <?php } else { ?>
-                                                        <input type="text" name="nomor" class="form-control" value="650/000<?php $data->id_kkpr_permohonan ?>/35.07.111/<?= date("Y"); ?>" readonly>
+                                                        <input type="text" name="nomor" class="form-control" value="650/000<?php $data->id_kkpr_permohonan ?>/35.07.111/<?= date("Y"); ?>">
                                                         <input type="hidden" name="id_permohonan" class="form-control" value="<?= $data->id_kkpr_permohonan ?>">
 
                                                     <?php } ?>
@@ -68,9 +68,9 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                     <?php if ($cek) { ?>
-                                                        <input type="text" name="nama_pemohon" id="nama_pemohon" class="form-control" value="<?= $data->nama_pemohon ?>" readonly>
+                                                        <input type="text" name="nama_pemohon" id="nama_pemohon" class="form-control" value="<?= $data->nama_pemohon ?>">
                                                     <?php } else { ?>
-                                                        <input type="text" name="nama_pemohon" id="nama_pemohon" class="form-control" value="<?= $data->nama_pemohon ?>" readonly>
+                                                        <input type="text" name="nama_pemohon" id="nama_pemohon" class="form-control" value="<?= $data->nama_pemohon ?>">
                                                     <?php } ?>
                                                 </td>
                                             </tr>
@@ -83,9 +83,9 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                     <?php if ($cek) { ?>
-                                                        <textarea class="form-control" name="alamat_pemohon" id="alamat_pemohon" data-kt-autosize="true" readonly><?php if ($data) echo $data->alamat_pemohon ?> </textarea>
+                                                        <textarea class="form-control" name="alamat_pemohon" id="alamat_pemohon" data-kt-autosize="true"><?php if ($data) echo $data->alamat_pemohon ?> </textarea>
                                                     <?php } else { ?>
-                                                        <textarea class="form-control" name="alamat_pemohon" id="alamat_pemohon" data-kt-autosize="true" readonly><?php if ($data) echo $data->alamat_pemohon ?> RT. <?php if ($data) echo $data->rt_pemohon ?> RW. <?php if ($data) echo $data->rw_pemohon ?> Kel. <?= $kelurahan->subdis_name ?> - Kec. <?= $kecamatan->dis_name ?> - Kota / Kab. <?= $kota->city_name ?> - Prov. <?= $provinsi->prov_name ?></textarea>
+                                                        <textarea class="form-control" name="alamat_pemohon" id="alamat_pemohon" data-kt-autosize="true"><?php if ($data) echo $data->alamat_pemohon ?> RT. <?php if ($data) echo $data->rt_pemohon ?> RW. <?php if ($data) echo $data->rw_pemohon ?> Kel. <?= $kelurahan->subdis_name ?> - Kec. <?= $kecamatan->dis_name ?> - Kota / Kab. <?= $kota->city_name ?> - Prov. <?= $provinsi->prov_name ?></textarea>
                                                     <?php } ?>
                                                 </td>
                                             </tr>
@@ -98,9 +98,9 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                     <?php if ($cek) { ?>
-                                                        <input type="text" name="nama_perusahaan" class="form-control" value="<?php if ($data->nama_perusahaan) echo $data->nama_perusahaan ?>" readonly>
+                                                        <input type="text" name="nama_perusahaan" class="form-control" value="<?php if ($data->nama_perusahaan) echo $data->nama_perusahaan ?>">
                                                     <?php } else { ?>
-                                                        <input type="text" name="nama_perusahaan" class="form-control" value="<?php if ($data->nama_perusahaan) echo $data->nama_perusahaan ?>" readonly>
+                                                        <input type="text" name="nama_perusahaan" class="form-control" value="<?php if ($data->nama_perusahaan) echo $data->nama_perusahaan ?>">
                                                     <?php } ?>
                                                 </td>
                                             </tr>
@@ -113,10 +113,10 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                     <?php if ($cek) { ?>
-                                                        <textarea class="form-control" name="alamat_perusahaan" data-kt-autosize="true" readonly><?php if ($data->nama_perusahaan) echo $data->alamat_perusahaan ?> 
+                                                        <textarea class="form-control" name="alamat_perusahaan" data-kt-autosize="true"><?php if ($data->nama_perusahaan) echo $data->alamat_perusahaan ?> 
                                                     </textarea>
                                                     <?php } else { ?>
-                                                        <textarea class="form-control" name="alamat_perusahaan" data-kt-autosize="true" readonly><?php if ($data->nama_perusahaan) echo $data->alamat_perusahaan ?> <?php if ($data->nama_perusahaan) echo 'RT. ' . $data->rt_perusahaan . '' ?> <?php if ($data->nama_perusahaan) echo 'RW. ' . $data->rw_perusahaan . '' ?> <?php if ($data->nama_perusahaan) echo 'Kel. ' . $kelurahan_perusahaan->subdis_name . '' ?> <?php if ($data->nama_perusahaan) echo '- Kec. ' . $kecamatan_perusahaan->dis_name . '' ?> <?php if ($data->nama_perusahaan) echo '- Kota / Kab. ' . $kota_perusahaan->city_name . '' ?> <?php if ($data->nama_perusahaan) echo '- Prov. ' . $provinsi_perusahaan->prov_name . '' ?>
+                                                        <textarea class="form-control" name="alamat_perusahaan" data-kt-autosize="true"><?php if ($data->nama_perusahaan) echo $data->alamat_perusahaan ?> <?php if ($data->nama_perusahaan) echo 'RT. ' . $data->rt_perusahaan . '' ?> <?php if ($data->nama_perusahaan) echo 'RW. ' . $data->rw_perusahaan . '' ?> <?php if ($data->nama_perusahaan) echo 'Kel. ' . $kelurahan_perusahaan->subdis_name . '' ?> <?php if ($data->nama_perusahaan) echo '- Kec. ' . $kecamatan_perusahaan->dis_name . '' ?> <?php if ($data->nama_perusahaan) echo '- Kota / Kab. ' . $kota_perusahaan->city_name . '' ?> <?php if ($data->nama_perusahaan) echo '- Prov. ' . $provinsi_perusahaan->prov_name . '' ?>
                                                     </textarea>
                                                     <?php } ?>
                                                 </td>
@@ -130,9 +130,9 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                     <?php if ($cek) { ?>
-                                                        <input type="text" name="nib_skala_usaha" class="form-control" value="<?php if ($data) echo $data->nib_skala_usaha ?>" readonly>
+                                                        <input type="text" name="nib_skala_usaha" class="form-control" value="<?php if ($data) echo $data->nib_skala_usaha ?>">
                                                     <?php } else { ?>
-                                                        <input type="text" name="nib_skala_usaha" class="form-control" value="<?php if ($data) echo $data->nib ?> / <?php if ($data) echo $data->skala_usaha ?>" readonly>
+                                                        <input type="text" name="nib_skala_usaha" class="form-control" value="<?php if ($data) echo $data->nib ?> / <?php if ($data) echo $data->skala_usaha ?>">
                                                     <?php } ?>
                                                 </td>
                                             </tr>
@@ -149,7 +149,7 @@ if ($cek) {
                                                         foreach ($kbli as $k) {
                                                     ?>
                                                             <div class="mb-3">
-                                                                <input type="text" name="kbli_tingkat_resiko[]" class="form-control" value="<?= $k->kbli ?>" readonly>
+                                                                <input type="text" name="kbli_tingkat_resiko[]" class="form-control" value="<?= $k->kbli ?>">
                                                             </div>
                                                         <?php }
                                                     } else {
@@ -157,7 +157,7 @@ if ($cek) {
                                                         foreach ($kbli as $k) {
                                                         ?>
                                                             <div class="mb-3">
-                                                                <input type="text" name="kbli_tingkat_resiko[]" class="form-control" value="<?= $k->kbli ?> - <?php if ($data) echo $data->kategori ?> / <?php if ($data) echo $data->klasifikasi_resiko ?>" readonly>
+                                                                <input type="text" name="kbli_tingkat_resiko[]" class="form-control" value="<?= $k->kbli ?> - <?php if ($data) echo $data->kategori ?> / <?php if ($data) echo $data->klasifikasi_resiko ?>">
                                                             </div>
                                                     <?php }
                                                     } ?>
@@ -172,9 +172,9 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                     <?php if ($cek) { ?>
-                                                        <input type="text" name="peruntukan" class="form-control" value="<?= $data->peruntukan ?>" readonly>
+                                                        <input type="text" name="peruntukan" class="form-control" value="<?= $data->peruntukan ?>">
                                                     <?php } else { ?>
-                                                        <input type="text" name="peruntukan" class="form-control" value="<?= $data->peruntukan_tanah ?>" readonly>
+                                                        <input type="text" name="peruntukan" class="form-control" value="<?= $data->peruntukan_tanah ?>">
                                                     <?php } ?>
                                                 </td>
                                             </tr>
@@ -187,9 +187,9 @@ if ($cek) {
                                                 </td>
                                                 <td>
                                                     <?php if ($cek) { ?>
-                                                        <input type="text" name="lokasi" class="form-control" value="<?php if ($data) echo $data->lokasi ?> " readonly>
+                                                        <input type="text" name="lokasi" class="form-control" value="<?php if ($data) echo $data->lokasi ?> ">
                                                     <?php } else { ?>
-                                                        <input type="text" name="lokasi" class="form-control" value="<?php if ($data) echo $data->lokasi_tanah ?> Desa / Kel. <?= $kelurahan_tanah->nama_desa ?> - Kec. <?= $kecamatan_tanah->nama_kecamatan ?> " readonly>
+                                                        <input type="text" name="lokasi" class="form-control" value="<?php if ($data) echo $data->lokasi_tanah ?> Desa / Kel. <?= $kelurahan_tanah->nama_desa ?> - Kec. <?= $kecamatan_tanah->nama_kecamatan ?> ">
                                                     <?php } ?>
                                                 </td>
                                             </tr>
@@ -203,12 +203,12 @@ if ($cek) {
                                                 <td>
                                                     <?php if ($cek) { ?>
                                                         <div class="d-flex">
-                                                            <input type="text" name="luas_tanah" class="form-control flex-grow-1" value="<?= $data->luas_tanah ?>" readonly>
+                                                            <input type="text" name="luas_tanah" class="form-control flex-grow-1" value="<?= $data->luas_tanah ?>">
                                                             <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
                                                         </div>
                                                     <?php } else { ?>
                                                         <div class="d-flex">
-                                                            <input type="text" name="luas_tanah" class="form-control flex-grow-1" value="<?= $data->luas_tanah ?>" readonly>
+                                                            <input type="text" name="luas_tanah" class="form-control flex-grow-1" value="<?= $data->luas_tanah ?>">
                                                             <button class="btn btn-light fw-bold flex-shrink-0" disabled>m2</button>
                                                         </div>
                                                     <?php } ?>
@@ -229,7 +229,7 @@ if ($cek) {
                                                         foreach ($status as $s) {
                                                         ?>
                                                             <div class="mb-3">
-                                                                <input type="text" name="status_tanah_" .<?= $no++; ?>."" class="form-control" value="<?= $s->status_tanah ?>" readonly>
+                                                                <input type="text" name="status_tanah_" .<?= $no++; ?>."" class="form-control" value="<?= $s->status_tanah ?>">
                                                             </div>
                                                         <?php } ?>
                                                     <?php } else { ?>
@@ -239,7 +239,7 @@ if ($cek) {
                                                         foreach ($status as $s) {
                                                         ?>
                                                             <div class="mb-3">
-                                                                <input type="text" name="status_tanah_" .<?= $no++; ?>."" class="form-control" value="<?= $s->status_tanah ?>" readonly>
+                                                                <input type="text" name="status_tanah_" .<?= $no++; ?>."" class="form-control" value="<?= $s->status_tanah ?>">
                                                             </div>
                                                         <?php } ?>
                                                     <?php } ?>
@@ -336,6 +336,7 @@ if ($cek) {
                                                 <td>
                                                     <?php if ($cek) {
                                                         $koordinat = json_decode($data->titik_koordinat);
+                                                        // var_dump($data->koordinat);die;
                                                         foreach ($koordinat as $k) { ?>
                                                             <div class="mb-3 row">
                                                                 <input type="text" name="koordinat[]" class="form-control" value="<?= $k->koordinat ?>">

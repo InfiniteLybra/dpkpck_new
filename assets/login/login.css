@@ -75,7 +75,7 @@ body::-webkit-scrollbar-button {
 
 
 .background-radial-gradient {
-min-height: 100%;
+min-height: 100vh;
 background-color: hsla(238.868, 98%, 32%, 0.91);
 background-image: radial-gradient(650px circle at 0% 0%,
     hsla(239, 88%, 22%, 0.91),
@@ -97,7 +97,7 @@ width: 220px;
 top: -60px;
 left: -130px;
 background: radial-gradient(#228cbd, #50b9e9);
-overflow: hidden;
+
 }
 
 #radius-shape-2 {
@@ -107,7 +107,7 @@ right: -110px;
 width: 300px;
 height: 300px;
 background: radial-gradient(#228cbd, #50b9e9);
-overflow: hidden;
+
 }
 
 .bg-glass {
@@ -166,3 +166,46 @@ backdrop-filter: saturate(200%) blur(25px);
     color: black;
     text-decoration: none;
   }      
+
+.coutdown-timer {
+    font-size: 2rem; /* Customize font size for minutes */
+    font-weight: bold;
+    color: #1f1f1f; /* Customize text color for minutes */
+    background-color: hsla(0, 0%, 100%, 0.169) !important;
+    backdrop-filter: saturate(200%) blur(25px);
+    border: #ffffff89;
+    border-style: solid;
+    border-radius: 10%;
+}
+.coutdown-sign {
+    font-size: 3rem; /* Customize font size for minutes */
+    font-weight: bold;
+    color: #1f1f1f; /* Customize text color for minutes */
+}
+
+.center-vertically-horizontally {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 150vh; 
+  }
+.center-vertically-horizontally2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+  }
+
+
+  @media (max-width: 768px) {
+    .center-vertically-horizontally {
+        display: block;
+        height: 100vh;
+      }
+    .center-vertically-horizontally2 {
+        display: block;
+        height: 100vh;
+      }
+  }
