@@ -4781,6 +4781,7 @@ class Kkpr_Model extends CI_Model
         $yn_radius_mata_air = $this->input->post('yn_mata_air');
         $radius_mata_air = $this->input->post('radius_mata_air');
         $pihak_lain = $this->input->post('pihak_lain');
+        $kronologi = $this->input->post('kronologi');
 
         if ($cek_data) {
             $query = "UPDATE data_sertifikat_lhs SET
@@ -4821,7 +4822,8 @@ class Kkpr_Model extends CI_Model
                 masuk_kp2b='$masuk_kp2b',                             
                 yn_radius_mata_air='$yn_radius_mata_air',                             
                 radius_mata_air='$radius_mata_air',                             
-                pihak_lain='$pihak_lain'                             
+                pihak_lain='$pihak_lain',                             
+                kronologi='$kronologi'                             
             WHERE
             id_permohonan = '$id_permohonan'
             ";
@@ -4865,7 +4867,8 @@ class Kkpr_Model extends CI_Model
             masuk_kp2b,
             yn_radius_mata_air,
             radius_mata_air,
-            pihak_lain       
+            pihak_lain,
+            kronologi    
 
         )VALUES(
             '$id_permohonan',
@@ -4905,7 +4908,8 @@ class Kkpr_Model extends CI_Model
             '$masuk_kp2b',                      
             '$yn_radius_mata_air',                      
             '$radius_mata_air',                      
-            '$pihak_lain'                      
+            '$pihak_lain',                     
+            '$kronologi'                     
         )";
         }
         $this->db->query("UPDATE kkpr_permohonan SET 

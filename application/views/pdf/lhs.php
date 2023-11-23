@@ -299,6 +299,11 @@
             <td>:</td>
             <td><?php if($data->pihak_lain == '1'){echo "Ya";}else{echo"Tidak";} ?></td>
         </tr>
+        <tr>
+            <td>Kronologi</td>
+            <td>:</td>
+            <td><?= $data->kronologi?></td>
+        </tr>
     </table>
 </body>
 
