@@ -15,8 +15,8 @@
                         <div class="col-sm-10">
                         <select name="umk" id="umk" class="form-select form-control mb-2" data-control="select2" data-placeholder="Pilih Type Pengurusan">
                                     <option value="" selected></option>
-                                    <option value="umk">Umk</option>
-                                    <option value="non_umk">Non Umk</option>
+                                    <option value="umk">UMK</option>
+                                    <option value="non_umk">NON UMK</option>
                                 </select>
                         </div>
                     </div>

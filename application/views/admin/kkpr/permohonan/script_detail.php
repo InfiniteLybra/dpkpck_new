@@ -109,6 +109,15 @@
             $('textarea[name="surat_kuasa_ahli_waris"]').prop('disabled', true);
         }
     });
+    $('input[name="yn_surat_dinas_peternakan"]').change(function() {
+        if ($(this).val() === '0') {
+            // Aktifkan textarea jika "Tidak" dipilih
+            $('textarea[name="surat_dinas_peternakan"]').prop('disabled', false);
+        } else {
+            // Nonaktifkan textarea jika "Ya" dipilih
+            $('textarea[name="surat_dinas_peternakan"]').prop('disabled', true);
+        }
+    });
 </script>
 <!-- <script>
     var previewTextarea = document.querySelector('[name="preview"]');

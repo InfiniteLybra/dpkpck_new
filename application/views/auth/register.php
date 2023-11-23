@@ -18,7 +18,8 @@
     <link href="<?php echo base_url('assets/login/'); ?>assets/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 </head>
 
-<section class="background-radial-gradient overflow-hidden align-middle">
+<section class="background-radial-gradient align-middle  overflow-y-scroll overflow-x-hidden">
+<div class="center-vertically-horizontally">
     <div class="container px-4 px-md-5 text-center text-lg-start align-middle">
         <div class="row gx-lg-5 align-items-center mb-5">
             <div class="col-lg-6 mb-3 mb-lg-0 hahaha" style="z-index: 10">
@@ -86,7 +87,7 @@
                                     }
                                     ?>
                                 </div>
-                                <button type="submit" id="submitButton" name="submitButton" class="btn btn-primary">
+                                <button type="submit" id="submitButton" name="submitButton" class="btn btn-block mt-4 rounded btn-success">
 
                                     <span class="indicator-label">Sign up</span>
 
@@ -105,7 +106,8 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
+</section>
     <!--end::Root-->
     <!-- <script>
         const nama_lengkapInput = document.getElementById('nama_lengkap');

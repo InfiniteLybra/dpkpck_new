@@ -22,7 +22,7 @@
     }
 
     // Tambahkan event listener untuk input
-    const inputElements = document.querySelectorAll('#tgl_survei,#petugas1,#petugas2,#koordinat,#luas_tanah_jalan,#guna_lahan,#batas_utara,#batas_selatan,#batas_barat,#batas_timur,#kemiringan_tanah,#fungsi_kelas_jalan,#keterangan1,#keterangan2,#keterangan3,#keterangan4,#keterangan5,#keterangan6,#rencana_pola_ruang,#radius_mata_air');
+    const inputElements = document.querySelectorAll('#kronologi,#tgl_survei,#petugas1,#petugas2,#koordinat,#luas_tanah_jalan,#guna_lahan,#batas_utara,#batas_selatan,#batas_barat,#batas_timur,#kemiringan_tanah,#fungsi_kelas_jalan,#keterangan1,#keterangan2,#keterangan3,#keterangan4,#keterangan5,#keterangan6,#rencana_pola_ruang,#radius_mata_air');
     inputElements.forEach(input => {
         input.addEventListener('input', saveDraft);
     });

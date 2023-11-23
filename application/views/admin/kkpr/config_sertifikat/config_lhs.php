@@ -717,6 +717,25 @@ if ($cek) {
                                                     <?php } ?>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td>
+                                                    <span class="fw-bold">31</span>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-bold">Kronologi</span>
+                                                </td>
+                                                <td>
+                                                    <?php if ($cek) { ?>
+                                                        <textarea name="kronologi" id="kronologi" class="form-control"><?php if ($data->kronologi) {
+                                                                                                                            echo $data->kronologi;
+                                                                                                                        } else {
+                                                                                                                            echo isset($draft_data['kronologi']) ? $draft_data['kronologi'] : '';
+                                                                                                                        } ?></textarea>
+                                                    <?php } else { ?>
+                                                        <textarea name="kronologi" id="kronologi" class="form-control"><?php echo isset($draft_data['kronologi']) ? $draft_data['kronologi'] : ''; ?></textarea>
+                                                    <?php } ?>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

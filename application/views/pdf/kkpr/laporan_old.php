@@ -165,9 +165,16 @@
             <td style="border: 1px solid black; padding:3px; font-size: 12; vertical-align: top;" rowspan="3">
                 <?php
                 $kkpr = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_kkpr_permohonan ='$data->id_permohonan' ")->row();
+                if ($kkpr->type == 'biasa') {
                 ?>
-                <?php
-                    $no = 1;
+                    <?php 
+                        if($data->lainya_ketentuan)
+                        {
+                            echo "1.".$data->lainya_ketentuan."<br>";
+                        }
+                    ?>
+                    <?php
+                    $no = 2;
                     $ketentuan = json_decode($data->ketentuan_lainya);
                     foreach ($ketentuan as $k) {
                         $get = $this->db->query("SELECT * FROM ketentuan_lainya WHERE id_ketentuan_lainya = '$k->ketentuan'")->row();
@@ -177,7 +184,193 @@
                     ?>
                             <?= $no++; ?><?php echo '. ' . $g->ketentuan ?><br>
                 <?php }
-                    }?>
+                    }
+                } ?>
+
+                <?php if ($kkpr->type == 'pergudangan') { ?>
+                    <p style="text-align: justify;">
+                    1.Membuat sistem drainase yang disesuaikan dengan besarnya aliran pembuangan dan kontur tanah untuk menghindari banjir / genangan air.<br>
+                    2.Operasionalisasi gudang hanya untuk proses bongkar muat dan penyimpanan barang atau hal-hal yang menyangkut kegiatan pergudangan dan bukan merupakan proses produksi atau tempat penyimpanan bahan-bahan berbahaya / berpolutan.<br>
+                    3.Operasionalisasi gudang hanya untuk proses bongkar muat dan penyimpanan barang atau hal-hal yang menyangkut kegiatan pergudangan.<br>
+                    4.Berkoordinasi dengan Dinas Pekerjaan Umum Sumber Daya Air Kabupaten Malang terkait rekomendasi teknis mengatasi banjir / genangan air.<br>
+                    5.Berkoordinasi dengan Dinas Perindustrian dan Perdagangan Kabupaten Malang terkait izin usaha dibidang perdagangan.<br>
+                    6.Menyediakan alat pemadam kebakaran sebagai upaya pencegahan bahaya kebakaran.<br>
+                    7.Mematuhi dan melaksanakan ketentuan-ketentuan yang tertuang dalam surat pernyataan pada sistem Online Single Submission (OSS) berkoordinasi dengan Organisasi Perangkat Daerah (OPD) / Instansi terkait.<br>
+                    8.Informasi KKPR ini berlaku sejauh ketentuan rencana tata ruang dan pemanfaatan ruang dari lokasi yang dimohon serta kawasan sekitarnya tidak berubah dan menjadi batal / dicabut / ditinjau kembali apabila dalam permohonannya didapatkan unsur kelalaian, pemalsuan, penipuan, paksaan, penyesatan dalam memberikan informasi, difungsikan tidak sesuai permohonan dan pemanfaatannya menimbulkan keresahan di masyarakat.  
+                    
+                    <br>
+                    <?php 
+                        if($data->lainya_ketentuan)
+                        {
+                            echo "9.".$data->lainya_ketentuan."<br>";
+                        }
+                    ?>
+                    </p>
+                    <?php
+                    $no = 10;
+                    $ketentuan = json_decode($data->ketentuan_lainya);
+                    foreach ($ketentuan as $k) {
+                        $get = $this->db->query("SELECT * FROM ketentuan_lainya WHERE id_ketentuan_lainya = '$k->ketentuan'")->row();
+                        $ketentuan_array = json_decode($get->pilihan);
+
+                        foreach ($ketentuan_array as $g) {
+                    ?>
+                            <?= $no++; ?><?php echo '. ' . $g->ketentuan ?><br>
+                <?php }
+                    }
+                } ?>
+
+                <?php if ($kkpr->type == 'klinik') { ?>
+                    <p style="text-align: justify;">
+                    1.Berkoordinasi dengan Dinas Pekerjaan Umum Sumber Daya Air Kabupaten Malang terkait rekomendasi teknis mengatasi banjir / genangan air.<br>
+                    2.Berkoordinasi dengan Dinas Perindustrian dan Perdagangan Kabupaten Malang terkait izin usaha dibidang perdagangan.<br>
+                    3.Menyediakan alat pemadam kebakaran sebagai upaya pencegahan bahaya kebakaran.<br>
+                    4.Mematuhi dan melaksanakan ketentuan-ketentuan yang tertuang dalam surat pernyataan pada sistem Online Single Submission (OSS) berkoordinasi dengan Organisasi Perangkat Daerah (OPD) / Instansi terkait.<br>
+                    5.Informasi KKPR ini berlaku sejauh ketentuan rencana tata ruang dan pemanfaatan ruang dari lokasi yang dimohon serta kawasan sekitarnya tidak berubah dan menjadi batal / dicabut / ditinjau kembali apabila dalam permohonannya didapatkan unsur kelalaian, pemalsuan, penipuan, paksaan, penyesatan dalam memberikan informasi, difungsikan tidak sesuai permohonan dan pemanfaatannya menimbulkan keresahan di masyarakat.<br>
+                    <?php 
+                        if($data->lainya_ketentuan)
+                        {
+                            echo "6.".$data->lainya_ketentuan."<br>";
+                        }
+                    ?>
+                    </p>
+                    <?php
+                    $no = 7;
+                    $ketentuan = json_decode($data->ketentuan_lainya);
+                    foreach ($ketentuan as $k) {
+                        $get = $this->db->query("SELECT * FROM ketentuan_lainya WHERE id_ketentuan_lainya = '$k->ketentuan'")->row();
+                        $ketentuan_array = json_decode($get->pilihan);
+
+                        foreach ($ketentuan_array as $g) {
+                    ?>
+                            <?= $no++; ?><?php echo '. ' . $g->ketentuan ?><br>
+                <?php }
+                    }
+                } ?>
+
+                <?php if ($kkpr->type == 'minimarket') { ?>
+                    <p style="text-align: justify;">
+                    1.Membuat sistem drainase yang disesuaikan dengan besarnya aliran pembuangan dan kontur tanah untuk menghindari banjir / genangan air.<br>
+                    2.Apabila lokasi yang dimohon difungsikan sebagai minimarket / toko modern maka sebelum mengajukan Persetujuan Bangunan Gedung (PBG) agar mengajukan pertimbangan teknis kepada Dinas Perindustrian dan Perdagangan Kabupaten Malang tentang izin usaha dibidang perdagangan (Toko Moderen) dengan mempertimbangkan ketentuan jarak dan pertimbangan jam operasional sebagaimana diatur dalam Peraturan Daerah Kabupaten Malang Nomor 03 Tahun 2012 tentang Perlindungan dan Pemberdayaan Pasar Tradisional serta Penataan dan Pengendalian Pusat Perbelanjaan dan Toko Modern.<br>
+                    3.Sebelum mengajukan Persetujuan Bangunan Gedung (PBG) agar mengajukan pertimbangan teknis kepada Dinas Perindustrian dan Perdagangan Kabupaten Malang tentang izin usaha dibidang perdagangan (Toko Moderen) dengan mempertimbangkan ketentuan jarak dan pertimbangan jam operasional sebagaimana diatur dalam Peraturan Daerah Kabupaten Malang Nomor 03 Tahun 2012 tentang Perlindungan dan Pemberdayaan Pasar Tradisional serta Penataan dan Pengendalian Pusat Perbelanjaan dan Toko Modern.<br>
+                    4.Mematuhi dan melaksanakan ketentuan-ketentuan yang tertuang dalam surat pernyataan pada sistem Online Single Submission (OSS) berkoordinasi dengan Organisasi Perangkat Daerah (OPD) / Instansi terkait.<br>
+                    5.Dilarang melakukan aktifitas pembangunan sebelum memperoleh PBG dan izin-izin terkait lainnya.<br>
+                    6.Informasi KKPR ini berlaku sejauh ketentuan rencana tata ruang dan pemanfaatan ruang dari lokasi yang dimohon serta kawasan sekitarnya tidak berubah dan menjadi batal / dicabut / ditinjau kembali apabila dalam permohonannya didapatkan unsur kelalaian, pemalsuan, penipuan, paksaan, penyesatan dalam memberikan informasi, difungsikan tidak sesuai permohonan dan pemanfaatannya menimbulkan keresahan di masyarakat.<br>
+                    <?php 
+                        if($data->lainya_ketentuan)
+                        {
+                            echo "7.".$data->lainya_ketentuan."<br>";
+                        }
+                    ?>
+                    </p>
+                    <?php
+                    $no = 8;
+                    $ketentuan = json_decode($data->ketentuan_lainya);
+                    foreach ($ketentuan as $k) {
+                        $get = $this->db->query("SELECT * FROM ketentuan_lainya WHERE id_ketentuan_lainya = '$k->ketentuan'")->row();
+                        $ketentuan_array = json_decode($get->pilihan);
+
+                        foreach ($ketentuan_array as $g) {
+                    ?>
+                            <?= $no++; ?><?php echo '. ' . $g->ketentuan ?><br>
+                <?php }
+                    }
+                } ?>
+
+                <?php if ($kkpr->type == 'perumahan') { ?>
+                    <p style="text-align: justify;">
+                    1.Apabila lokasi dimohon merupakan perumahan dan / atau pengajuan pemecahan lebih dari 5 (lima) bidang tanah sebagai Kawasan Siap bangun (KASIBA) / Lingkungan Siap Bangun (LISIBA) maka wajib menyusun Site Plan yang disahkan pejabat berwenang berkoordinasi dengan Dinas Perumahan, Kawasan Permukiman dan Cipta Karya Kabupaten malang dengan mematuhi ketentuan-ketentuan yang tertuang dalam Site Plan serta peraturan perundang-undangan yang berlaku.<br>
+                    2.Berkoordinasi dengan Dinas Pekerjaan Umum Sumber Daya Air Kabupaten Malang terkait rekomendasi teknis mengatasi banjir / genangan air.<br>
+                    3.Berkoordinasi dengan Balai Pelestarian Cagar Budaya Jawa Timur dan Dinas Pariwisata dan Kebudayaan Kabupaten Malang apabila terdapat situs-situs peninggalan purbakala di dalam dan / atau di sekitar lokasi dimohon.<br>
+                    4.Perluasan lokasi sehingga jumlah total luasan > 5.000 m² harus diajukan oleh pengembang berbadan hukum.<br>
+                    5.Perluasan lokasi sehingga jumlah total luasan ? 1 Ha melalui mekanisme Izin Lokasi dan berkoordinasi dengan Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu Kabupaten Malang.<br>
+                    6.Perluasan lokasi (Perumahan MBR) sehingga jumlah total luasan ? 5 Ha melalui mekanisme Izin Lokasi dan berkoordinasi dengan Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu Kabupaten Malang.<br>
+                    7.Menyusun Site Plan yang disahkan pejabat yang berwenang sebagai dasar penerbitan Persetujuan Bangunan Gedung (PBG) disertai surat pernyataan Penyerahan Prasarana, Sarana dan Utilitas Perumahan secara administrasi dan fisik yang pelaksanaannya dikoordinasikan dengan Dinas Perumahan, Kawasan Permukiman dan Cipta Karya Kabupaten Malang.<br>
+                    8.Dilarang menjual kaveling tanah matang tanpa rumah bagi badan hukum yang membangun Lingkungan Siap Bangun (LISIBA).<br>
+                    9.Ketentuan-ketentuan teknis terkait Garis Sempadan Pagar (GSP) dan Garis Sempadan Bangunan (GSB) lebih lanjut akan diatur di dalam Site Plan sesuai ketentuan / kaidah-kaidah teknis yang berlaku.<br>
+                    10.Dilarang menutup akses jalan bagi warga sekitar dan pembangunan perumahan ditata sedemikian rupa sehingga tidak mengakibatkan dampak lingkungan maupun dampak sosial bagi masyarakat sekitar.<br>
+                    11.Mematuhi dan melaksanakan ketentuan-ketentuan yang tertuang dalam surat pernyataan pada sistem Online Single Submission (OSS) berkoordinasi dengan Organisasi Perangkat Daerah (OPD) / Instansi terkait.<br>
+                    12.Informasi KKPR ini berlaku sejauh ketentuan rencana tata ruang dan pemanfaatan ruang dari lokasi yang dimohon serta kawasan sekitarnya tidak berubah dan menjadi batal / dicabut / ditinjau kembali apabila dalam permohonannya didapatkan unsur kelalaian, pemalsuan, penipuan, paksaan, penyesatan dalam memberikan informasi, difungsikan tidak sesuai permohonan dan pemanfaatannya menimbulkan keresahan di masyarakat.<br>
+                    <?php 
+                        if($data->lainya_ketentuan)
+                        {
+                            echo "13.".$data->lainya_ketentuan."<br>";
+                        }
+                    ?>
+                    </p>
+                    <?php
+                    $no = 14;
+                    $ketentuan = json_decode($data->ketentuan_lainya);
+                    foreach ($ketentuan as $k) {
+                        $get = $this->db->query("SELECT * FROM ketentuan_lainya WHERE id_ketentuan_lainya = '$k->ketentuan'")->row();
+                        $ketentuan_array = json_decode($get->pilihan);
+
+                        foreach ($ketentuan_array as $g) {
+                    ?>
+                            <?= $no++; ?><?php echo '. ' . $g->ketentuan ?><br>
+                <?php }
+                    }
+                } ?>
+
+                <?php if ($kkpr->type == 'spbu') { ?>
+                    <p style="text-align: justify;">
+                    1.Informasi Kesesuaian Kegiatan Pemanfaatan Ruang (KKPR) ini merupakan informasi terkait kesesuaian antara rencana kegiatan pemanfaatan ruang dengan Rencana Tata Ruang Kabupaten Malang yang memuat persyaratan tata bangunan dan lingkungan. <br>                    2.Membuat sistem drainase yang disesuaikan dengan besarnya aliran pembuangan dan kontur tanah untuk menghindari banjir / genangan air.
+                    3.Menyediakan Ruang Terbuka Hijau (RTH) dalam upaya melakukan penghijauan dan buffer zone terhadap lingkungan sekitar.<br>
+                    4.Menyediakan alat pemadam kebakaran sebagai upaya pencegahan bahaya kebakaran.<br>
+                    5.Mematuhi dan melaksanakan ketentuan-ketentuan yang tertuang dalam:<br>
+                    a.Peraturan Pemerintah Nomor 16 Tahun 2021 tentang Peraturan Pelaksanaan Undang-Undang Nomor 28 Tahun 2002 Tentang Bangunan Gedung.<br>
+                    b.Surat dari Pjs Executive GM MOR V  PT. Pertamina Patra Regional Jatimbalinus No.2994 / PND800000 / 2022-S3 tanggal 28 Desember 2022 perihal Izin Pengoperasian Sementara Pertashop No.5P.651.54 Type Gold Skema DODO an. Koperasi Primer TNI AU Walet di Desa Tamanharjo Kecamatan Singosari Kabupaten Malang Provinsi Jawa Timur.<br>
+                    c.Surat pernyataan pada sistem Online Single Submission (OSS) berkoordinasi dengan Organisasi Perangkat Daerah (OPD) / Instansi terkait.<br>
+                    6.Informasi KKPR ini berlaku sejauh ketentuan rencana tata ruang dan pemanfaatan ruang dari lokasi yang dimohon serta kawasan sekitarnya tidak berubah dan menjadi batal / dicabut / ditinjau kembali apabila dalam permohonannya didapatkan unsur kelalaian, pemalsuan, penipuan, paksaan, penyesatan dalam memberikan informasi, difungsikan tidak sesuai permohonan dan pemanfaatannya menimbulkan keresahan di masyarakat.<br>
+                    <?php 
+                        if($data->lainya_ketentuan)
+                        {
+                            echo "7.".$data->lainya_ketentuan."<br>";
+                        }
+                    ?>
+                    </p>
+                    <?php
+                    $no = 8;
+                    $ketentuan = json_decode($data->ketentuan_lainya);
+                    foreach ($ketentuan as $k) {
+                        $get = $this->db->query("SELECT * FROM ketentuan_lainya WHERE id_ketentuan_lainya = '$k->ketentuan'")->row();
+                        $ketentuan_array = json_decode($get->pilihan);
+
+                        foreach ($ketentuan_array as $g) {
+                    ?>
+                            <?= $no++; ?><?php echo '. ' . $g->ketentuan ?><br>
+                <?php }
+                    }
+                } ?>
+
+                <?php if ($kkpr->type == 'tower') { ?>
+                    <p style="text-align: justify;">
+                    1.Tidak mengganggu fungsi penggunaan lahan / pemanfaatan ruang lainnya khususnya dalam radius '&MASTER!B53&' meter rebahan tower. <br>
+                    2.Meningkatkan kualitas jalan menuju lokasi dimohon untuk memudahkan akses serta berperan aktif dalam upaya pengembangan aksesibilitas di sekitar lokasi dimohon.<br>
+                    3.Membangunan dilakukan dengan memperhatikan keselamatan warga sekitar serta memberi ruang di sekitar batas lahan untuk pengamanan.<br>
+                    4.Melakukan pengawasan secara berkala mengenai kekuatan konstruksi dan aspek-aspek lain untuk keamanan bagi lingkungan sekitar.<br>
+                    5.Berkoordinasi dengan Dinas Lingkungan Hidup Kabupaten Malang terkait  Dokumen Pengelolaan Lingkungan Hidup.<br>
+                    6.Informasi KKPR ini berlaku sejauh ketentuan rencana tata ruang dan pemanfaatan ruang dari lokasi yang dimohon serta kawasan sekitarnya tidak berubah dan menjadi batal / dicabut / ditinjau kembali apabila dalam permohonannya didapatkan unsur kelalaian, pemalsuan, penipuan, paksaan, penyesatan dalam memberikan informasi, difungsikan tidak sesuai permohonan dan pemanfaatannya menimbulkan keresahan di masyarakat.<br>
+                    <?php 
+                        if($data->lainya_ketentuan)
+                        {
+                            echo "7.".$data->lainya_ketentuan."<br>";
+                        }
+                    ?>
+                    </p>
+                    <?php
+                    $no = 8;
+                    $ketentuan = json_decode($data->ketentuan_lainya);
+                    foreach ($ketentuan as $k) {
+                        $get = $this->db->query("SELECT * FROM ketentuan_lainya WHERE id_ketentuan_lainya = '$k->ketentuan'")->row();
+                        $ketentuan_array = json_decode($get->pilihan);
+
+                        foreach ($ketentuan_array as $g) {
+                    ?>
+                            <?= $no++; ?><?php echo '. ' . $g->ketentuan ?><br>
+                <?php }
+                    }
+                } ?>
             </td>
         </tr>
         <tr>

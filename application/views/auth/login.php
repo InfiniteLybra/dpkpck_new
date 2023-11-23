@@ -26,10 +26,6 @@
 	<!--===============================================================================================-->
 </head>
 
-<body>
-
-	<!-- Section: Design Block -->
-	<section class="background-radial-gradient overflow-hidden align-middle">
 		<style>
 			* {
 				vertical-align: middle;
@@ -81,7 +77,11 @@
 				backdrop-filter: saturate(200%) blur(25px);
 			}
 		</style>
+<body>
 
+	<!-- Section: Design Block -->
+	<section class="background-radial-gradient align-middle  overflow-y-scroll overflow-x-hidden">
+	<div class="center-vertically-horizontally2">
 		<div class="container px-4 px-md-5 text-center text-lg-start align-middle">
 			<div class="row gx-lg-5 align-items-center mb-5">
 				<div class="col-lg-6 mb-3 mb-lg-0 hahaha" style="z-index: 10">
@@ -143,6 +143,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</section>
 	<!-- Section: Design Block -->
 

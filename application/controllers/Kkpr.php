@@ -170,16 +170,17 @@ class Kkpr extends CI_Controller
             $data['data'] = $this->db->query("SELECT * FROM kkpr_permohonan WHERE id_kkpr_permohonan = '$id'")->row(); 
         }
         $data['draft_data'] = $this->session->userdata('draft_data_peta');
-        $data['ketentuan'] = $this->db->query(
-            "SELECT * FROM ketentuan_lainya 
-            WHERE 
-            id_ketentuan_lainya = '9' OR 
-            id_ketentuan_lainya = '11' OR 
-            id_ketentuan_lainya = '40' OR 
-            id_ketentuan_lainya = '42' OR 
-            id_ketentuan_lainya = '43' OR 
-            id_ketentuan_lainya = '44' 
-            ")->result();         
+        $data['ketentuan'] = $this->db->query("SELECT * FROM ketentuan_lainya")->result();
+        // $data['ketentuan'] = $this->db->query(
+        //     "SELECT * FROM ketentuan_lainya 
+        //     WHERE 
+        //     id_ketentuan_lainya = '9' OR 
+        //     id_ketentuan_lainya = '11' OR 
+        //     id_ketentuan_lainya = '40' OR 
+        //     id_ketentuan_lainya = '42' OR 
+        //     id_ketentuan_lainya = '43' OR 
+        //     id_ketentuan_lainya = '44' 
+        //     ")->result();         
         // $data['legenda'] = $legenda; 
         $this->load->view('templates/header');
         $this->load->view('admin/kkpr/config_sertifikat/config_peta',$data);
@@ -236,12 +237,12 @@ class Kkpr extends CI_Controller
         if ($query == true) {
             $this->session->set_flashdata('success', 'Data Berhasil Disimpan');
             $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');
+            redirect('NotifikasiConfig.html');
         } else {
             $this->session->set_flashdata('error', 'Data gagal disimpan');
             $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
             redirect('Kkpr/config');
         }
-        redirect('NotifikasiConfig.html');
         // $previousPage = $this->session->userdata('detail_config_draft');
 
         // if ($previousPage && filter_var($previousPage, FILTER_VALIDATE_URL)) {
@@ -277,12 +278,12 @@ class Kkpr extends CI_Controller
         if ($query == true) {
             $this->session->set_flashdata('success', 'Data Berhasil Disimpan');
             $info = array('hasil' => 'TRUE', 'pesan' => 'data tersimpan');
+            redirect('NotifikasiConfig.html');
         } else {
             $this->session->set_flashdata('error', 'Data gagal disimpan');
             $info = array('hasil' => 'FALSE', 'pesan' => 'data gagal');
             redirect('Kkpr/config');
         }
-        redirect('NotifikasiConfig.html');
         // $previousPage = $this->session->userdata('detail_config_draft');
 
         // if ($previousPage && filter_var($previousPage, FILTER_VALIDATE_URL)) {

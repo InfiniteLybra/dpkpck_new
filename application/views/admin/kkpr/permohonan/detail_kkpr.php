@@ -1889,7 +1889,7 @@ $revisi = $this->db->query("SELECT * FROM file_pengembalian_kkpr_permohonan WHER
                                             </div>
                                             <div class="col-sm-7">
                                                 <div class="form-text-area">
-                                                    <textarea class="form-control" name="surat_dinas_peternakan" data-preview="preview"></textarea>
+                                                    <textarea class="form-control" name="surat_dinas_peternakan" data-preview="preview" disabled></textarea>
                                                 </div>
                                             </div>
                                         </div>
