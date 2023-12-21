@@ -22,6 +22,8 @@ class Auth_model extends CI_Model
         $this->db->where('username',  $username);
         $jml_user = $this->db->get()->num_rows();
         // $jml_user = $this->db->get()->result();
+        // var_dump($timestamp);die;
+
         if ($jml_user == 0) {
 
             $data = array(

@@ -32,6 +32,7 @@ class User extends CI_Controller
     public function kelola_register()
     {        
         $data['user'] = $this->db->query("SELECT * FROM user WHERE status_verifikasi = 'Belum Terverifikasi' AND level = '1'")->result();
+        // var_dump($data['user']);die;
         $this->load->view('templates/header');
         $this->load->view('admin/kelola_register/index',$data);
         $this->load->view('templates/footer');

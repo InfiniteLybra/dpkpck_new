@@ -19,46 +19,31 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>insert dan update</td>
-                                <td>Fawwaz</td>
-                                <td><span class="badge bg-label-primary me-1">Developer</span></td>
-                                <td>Tambah Keterangan dan tolak berkas di halaman admin permohonan</td>
-                                <td>2023-10-04 12:25:57</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>edit</td>
-                                <td>Admin999</td>
-                                <td><span class="badge bg-label-danger me-1">Staff</span></td>
-                                <td>Terima berkas di halaman admin permohonan</td>
-                                <td>2023-10-04 12:25:57</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>insert dan update</td>
-                                <td>Koor humas</td>
-                                <td><span class="badge bg-label-warning me-1">Koordinator</span></td>
-                                <td>Tambah Keterangan dan tolak berkas di halaman admin permohonan</td>
-                                <td>2023-10-04 12:25:57</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>upload</td>
-                                <td>Sulastri</td>
-                                <td><span class="badge bg-label-info me-1">user</span></td>
-                                <td>Upload formulir pengembalian</td>
-                                <td>2023-10-04 12:25:57</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>edit</td>
-                                <td>Kepala Dinas</td>
-                                <td><span class="badge bg-label-success me-1">Kadin</span></td>
-                                <td>edit formulir pengembalian</td>
-                                <td>2023-10-04 12:25:57</td>
-                            </tr>
+                            <?php
+                            $no = 1;
+                            $reversedLog = array_reverse($log); // Balik urutan array $log
+                            foreach ($reversedLog as $l) {
+                            ?>
+                                <tr>
+                                    <td><?= $no++ ?></td>
+                                    <td><?= $l->type ?></td>
+                                    <td>
+                                        <?php
+                                        foreach ($user as $u) {
+                                            if ($l->id_user == $u->id) {
+                                                echo $u->username;
+                                                break; // Keluar dari loop setelah menemukan id_user yang sesuai
+                                            }
+                                        }
+                                        ?>
+                                    </td>
+                                    <td><span class="badge bg-label-primary me-1">Admin</span></td>
+                                    <td><?= $l->keterangan ?></td>
+                                    <td><?= $l->waktu ?></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>

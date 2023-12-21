@@ -24,16 +24,18 @@
                     <div class="card-header">
                         <h5 class="card-title">Panduan Menggunakan Polygon Map</h5>
                         <div class="row mb-3">
-
-                            <div class="card-body p-2">
-                                <div class="col">
-                                    <p class="my-auto"><i class='bx bxs-plus-square me-2'></i>Ikon "Tambah" digunakan untuk memperbesar map</p>
-                                    <p class="my-auto"><i class='bx bxs-minus-square me-2'></i>Ikon "Kurang" digunakan untuk memperkecil map</p>
-                                    <p class="my-auto"><i class='bx bxs-polygon me-2'></i>Ikon "Polygon" digunakan untuk menggambar peta</p>
-                                    <p class="my-auto"><i class='bx bxs-edit me-2'></i>Ikon "Pensil" digunakan untuk mengedit titik peta</p>
-                                    <p class="my-auto"><i class='bx bxs-trash me-2'></i>Ikon "Sampah" digunakan untuk menghapus peta</p>
+                            <div class="card  shadow-none border-1 p-0 mx-3">
+                                <div class="card-body p-2">
+                                    <div class="col">
+                                        <p class="my-auto"><i class='bx bxs-plus-square me-2'></i>Ikon "Tambah" digunakan untuk memperbesar map</p>
+                                        <p class="my-auto"><i class='bx bxs-minus-square me-2'></i>Ikon "Kurang" digunakan untuk memperkecil map</p>
+                                        <p class="my-auto"><i class='bx bxs-polygon me-2'></i>Ikon "Polygon" digunakan untuk menggambar peta</p>
+                                        <p class="my-auto"><i class='bx bxs-edit me-2'></i>Ikon "Pensil" digunakan untuk mengedit titik peta</p>
+                                        <p class="my-auto"><i class='bx bxs-trash me-2'></i>Ikon "Sampah" digunakan untuk menghapus peta</p>
+                                    </div>
                                 </div>
                             </div>
+                                      
                         </div>
                     </div>
                     <div class="card-body">
@@ -57,6 +59,9 @@
                                 echo '<h6 class="mb-0">Tidak ada file yang telah dikonversi.</h6>';
                             }
                             ?>
+                        </div>
+                        <div class="m-1 mt-3">
+                            <h6>Setelah selesai donwload file berformat .shp. Silahkan kembali ke tab sebelumnya untuk mengupload file .shp yang barusan anda download dan menyelesaikan pengisian formulir anda</h6>
                         </div>
                     </div>
                 </div>

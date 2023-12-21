@@ -100,7 +100,8 @@
     <script>
 
         function startCountdown() {
-            var duration = Math.floor(Math.random() * 10) + 1; 
+            // var duration = Math.floor(Math.random() * 20) + 1; 
+            var duration = 10; 
             var countdownElement = document.getElementById('countdown');
 
             var timer = setInterval(function() {

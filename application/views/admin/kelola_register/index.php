@@ -37,7 +37,12 @@
                                             <td><?= $u->nik ?></td>
                                             <td><?= $u->nama_lengkap ?></td>
                                             <td><?= $u->nomor ?></td>
-                                            <td><img src="<?= base_url('assets_dokumen/auth/' . $u->foto_ktp ); ?>" alt="Foto KTP" style="max-width: 100%; max-height: 100%;"></td>
+                                            <td>
+                                                <a class="btn btn-primary" href="<?= base_url('assets_dokumen/auth/' . $u->foto_ktp) ?>" target="_blank">
+                                                    View Image
+                                                </a>
+                                            </td>
+                                            <!-- <td><img src="<?= base_url('assets_dokumen/auth/' . $u->foto_ktp ); ?>" alt="Foto KTP" style="max-width: 100%; max-height: 100%;"></td> -->
                                             <td>
                                                 <?php
                                                 if ($u->level == 1) {

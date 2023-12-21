@@ -91,7 +91,7 @@ class Auth_model extends CI_Model
                 'countryCode' => '62',
             ),
             CURLOPT_HTTPHEADER => array(
-                'Authorization: 5@6!I4e2eSKYewSZSFhD'
+                'Authorization: 9Sn+qbEWAjSvpSx9LbAQ'
             ),
         ));
 

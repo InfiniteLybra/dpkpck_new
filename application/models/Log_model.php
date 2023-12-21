@@ -7,4 +7,8 @@ class Log_model extends CI_Model
     {
         return $this->db->get('log_admin')->result();
     }
+    public function getAlluser()
+    {
+        return $this->db->get('user')->result();
+    }
 }

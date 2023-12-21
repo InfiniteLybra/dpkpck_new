@@ -11,6 +11,8 @@ class Log extends CI_Controller
     public function index()
     {
         $data['log'] = $this->Log_model->getAlldata();
+        $data['user'] = $this->Log_model->getAlluser();
+        // var_dump($data['user']);die;
         $this->load->view('templates/header');
         $this->load->view('log/index', $data);
         $this->load->view('templates/footer');

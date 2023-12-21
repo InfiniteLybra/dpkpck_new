@@ -206,12 +206,12 @@
                 <div data-i18n="Polygon Map New">Polygon Map </div>
               </a>
             </li>
-            <li class="menu-item">
+            <!-- <li class="menu-item">
               <a href="<?= base_url('Geojson') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-repeat"></i>
                 <div data-i18n="Converter GeoJson">Converter GeoJson</div>
               </a>
-            </li>
+            </li> -->
 
             <!-- Admin -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Admin</span></li>
@@ -342,12 +342,12 @@
                 <div data-i18n="Polygon Map">Polygon Map</div>
               </a>
             </li>
-            <li class="menu-item">
+            <!-- <li class="menu-item">
               <a href="<?= base_url('Geojson') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-repeat"></i>
                 <div data-i18n="Converter GeoJson">Converter GeoJson</div>
               </a>
-            </li>
+            </li> -->
 
             <!-- Admin -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Admin</span></li>
@@ -440,12 +440,12 @@
                 <div data-i18n="Polygon Map">Polygon Map</div>
               </a>
             </li>
-            <li class="menu-item">
+            <!-- <li class="menu-item">
               <a href="<?= base_url('Geojson') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-repeat"></i>
                 <div data-i18n="Converter GeoJson">Converter GeoJson</div>
               </a>
-            </li>
+            </li> -->
 
             <!-- Admin -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Admin</span></li>
@@ -512,7 +512,7 @@
             </li>
             <li class="menu-item">
               <a href="<?php echo base_url('User/kelola_register'); ?>" class="menu-link">
-                <i class="menu-icon tf-icons bx bxs-user-account"></i>
+                <i class="menu-icon tf-icons bx bxs-user-circle"></i>
                 <div data-i18n="Kelola User">User Register</div>
               </a>
             </li>
@@ -544,12 +544,12 @@
                 <div data-i18n="Polygon Map">Polygon Map</div>
               </a>
             </li>
-            <li class="menu-item">
+            <!-- <li class="menu-item">
               <a href="<?= base_url('Geojson') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-repeat"></i>
                 <div data-i18n="Converter GeoJson">Converter GeoJson</div>
               </a>
-            </li>
+            </li> -->
 
             <!-- Admin -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Admin</span></li>
@@ -637,12 +637,12 @@
                 <div data-i18n="Polygon Map">Polygon Map</div>
               </a>
             </li>
-            <li class="menu-item">
+            <!-- <li class="menu-item">
               <a href="<?= base_url('Geojson') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-repeat"></i>
                 <div data-i18n="Converter GeoJson">Converter GeoJson</div>
               </a>
-            </li>
+            </li> -->
 
             <!-- Admin -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Admin</span></li>
@@ -704,7 +704,7 @@
             </li>
             <li class="menu-item">
               <a href="<?php echo base_url('User/kelola_register'); ?>" class="menu-link">
-                <i class="menu-icon tf-icons bx bxs-user-account"></i>
+                <i class="menu-icon tf-icons bx bxs-user-circle"></i>
                 <div data-i18n="Kelola User">User Register</div>
               </a>
             </li>

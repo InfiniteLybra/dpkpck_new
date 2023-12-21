@@ -40,20 +40,16 @@
                         <div class="mb-4 text-center">
                             <img src="<?php echo base_url('assets/login/'); ?>logokabupaten.png" class="img-thumbnaill" alt="...">
                         </div>
-
                         <form class="form w-100" action="<?= base_url('auth/proses_register') ?>" method="post" enctype="multipart/form-data">
-
-
                             <div class="form-outline mb-3 text-start">
-
                                 <label class="form-label" for="form3Example3">Nama Lengkap</label>
-                                <input type="text" id="nama_lengkap" name="nama_lengkap" placeholder="Masukkan nama lengkap minimal 8 karakter" class="form-control bg-transparent" value="<?= set_value('nama_lengkap'); ?>" autocomplete="on" required />
+                                <input type="text" id="nama_lengkap" name="nama_lengkap" placeholder="Masukkan nama lengkap minimal 8 karakter" class="form-control bg-transparent" value="<?= set_value('nama_lengkap'); ?>" autocomplete="on" required/>
                                 <span class="error-message" id="error-nama-lengkap"></span>
                             </div>
                             <div class="form-outline mb-3 text-start">
 
                                 <label class="form-label" for="form3Example4">Username</label>
-                                <input type="text" id="username" name="username" placeholder="Masukkan username minimal 8 karakter" class="form-control bg-transparent" value="<?= set_value('username'); ?>" autocomplete="on" required />
+                                <input type="text" id="Username" name="username" placeholder="Masukkan username minimal 8 karakter" class="form-control bg-transparent" value="<?= set_value('username'); ?>" autocomplete="on" required/>
                                 <span class="error-message" id="error-nama-lengkap"></span>
                             </div>
 
@@ -71,7 +67,7 @@
                             </div>
                             <div class="form-outline mb-3 text-start">
                                 <label class="form-label" for="form3Example4">No. Telp</label>
-                                <input type="text" id="no_telp" name="nomor" placeholder="Masukkan Nomor Whatsapp" class="form-control bg-transparent" pattern="[0-9]*" maxlength="12" oninput="validasiAngka(this)" value="<?= set_value('nomor'); ?>" autocomplete="on" required />
+                                <input type="text" id="nomor" name="nomor" placeholder="Masukkan Nomor Whatsapp" class="form-control bg-transparent" pattern="[0-9]*" maxlength="13" oninput="validasiAngka(this)" value="<?= set_value('nomor'); ?>" autocomplete="on" required />
                             </div>
                             <div class="form-outline mb-3 text-start">
                                 <label class="form-label" for="form3Example4">Foto KTP</label>
